@@ -1,3 +1,6 @@
+package euchre.gameLogic;
+import Game;
+
 /**
  * 
  * @author Timothy Ward
