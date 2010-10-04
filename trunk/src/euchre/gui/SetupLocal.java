@@ -6,12 +6,12 @@ package euchre.gui;
  * @author Neil MacBay(nmmacbay)
  *
  */
-public class setupLocal {
+public class SetupLocal {
 	
 	/**
 	 * Constructs the form needed to setup a local Game.
 	 */
-	public setupLocal(){
+	public SetupLocal(){
 		
 	}
 	

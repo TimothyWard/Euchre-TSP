@@ -7,12 +7,12 @@ package euchre.gui;
  *
  */
 
-public class setupNetwork {
+public class SetupNetwork {
 	
 	/**
 	 * Constructs the form to interact with the setup of a network Game.
 	 */
-	public setupNetwork(){
+	public SetupNetwork(){
 		
 	}
 	
