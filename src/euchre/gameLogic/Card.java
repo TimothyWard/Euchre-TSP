@@ -1,4 +1,5 @@
 package euchre.gameLogic;
+
 /**
  * 
  * @author sdwilke
