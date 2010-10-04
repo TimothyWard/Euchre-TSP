@@ -7,12 +7,12 @@ package euchre.gui;
  * @author Neil MacBay (nmmacbay)
  *
  */
-public class welcome {
+public class Welcome {
 	
 	/**
 	 * Construct a welcome screen.
 	 */
-	public welcome(){
+	public Welcome(){
 		
 	}
 	

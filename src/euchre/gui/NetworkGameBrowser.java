@@ -6,13 +6,13 @@ package euchre.gui;
  * @author Neil MacBay(nmmacbay)
  *
  */
-public class networkGameBrowser {
+public class NetworkGameBrowser {
 	
 	/**
 	 * Creates an object that can browse network games and join them, or launch the
 	 * process for the user to host their own.
 	 */
-	public networkGameBrowser(){
+	public NetworkGameBrowser(){
 		
 	}
 	

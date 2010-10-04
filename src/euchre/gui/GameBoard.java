@@ -6,12 +6,12 @@ package euchre.gui;
  * @author Neil MacBay (nmmacbay)
  *
  */
-public class gameBoard {
+public class GameBoard {
 	
 	/**
 	 * Construct a Game board.
 	 */
-	public gameBoard(){
+	public GameBoard(){
 		
 	}
 	

@@ -16,7 +16,7 @@ public class Card extends Deck{
 	 * @param cardValue	value on the card
 	 */
 	
-	public card(char cardValue, char cardSuit){
+	public Card(char cardValue, char cardSuit){
 		suit = cardSuit;
 		value = cardValue;
 	}
