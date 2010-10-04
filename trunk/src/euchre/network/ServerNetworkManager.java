@@ -8,8 +8,8 @@ package euchre.network;
 public class ServerNetworkManager extends NetworkManager {
 
 	
-	public ServerNetworkManager(){
-		
+	public ServerNetworkManager(){		
+		super();
 		
 	}
 	

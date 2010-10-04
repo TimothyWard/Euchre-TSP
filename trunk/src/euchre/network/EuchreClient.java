@@ -10,6 +10,8 @@ import java.net.Socket;
  */
 public class EuchreClient {
 
+	EuchreConnectionThread clientNetworkThread = null;
+	
 	/**
 	 * Get any necessary references
 	 * 
