@@ -1,4 +1,7 @@
 package euchre.gameLogic;
+import Round;
+
+
 
 /**
  * 
@@ -29,7 +32,7 @@ public class GameLogic{
 	 * to be assigned for that round to the winning team.
 	 * @param roundSequence The sequence of events in a formatted string that happened in this round.
 	 */
-	public void roundWinner(String roundSequence){
+	public void interpret(Round roundSequence){
 		
 	}
 	
