@@ -1,3 +1,4 @@
+package euchre.gui;
 
 /**
  * Screen to search the network for possible games of euchre and the option to host your own game.
