@@ -1,3 +1,4 @@
+package euchre.gui;
 
 /**
  * Screen to setup a local game of euchre played between the user and some AI.

@@ -1,3 +1,4 @@
+package euchre.gui;
 
 /**
  * Welcomes the user to the euchre program, and asks them whether they would like to play

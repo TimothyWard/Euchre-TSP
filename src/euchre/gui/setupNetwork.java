@@ -1,3 +1,4 @@
+package euchre.gui;
 
 /**
  * Screen for the user to interact with the setup for a Network Game.
