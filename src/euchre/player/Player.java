@@ -1,3 +1,6 @@
+package euchre.player;
+import Game;
+
 /**
  * 
  * @author Timothy Ward

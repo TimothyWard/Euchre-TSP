@@ -1,3 +1,4 @@
+package euchre.player;
 /**
  * 
  * @author Kyle Kary
