@@ -8,7 +8,7 @@ import java.util.Collections;
  *
  */
 
-public class deck {
+public class Deck extends GameLogic{
 	private card[] cardDeck = {new card('9','h'), new card('0','h'), new card('a','h'), new card('j','h'), new card('k','h'), new card('q','h'), 
 								new card('9','s'), new card('0','s'), new card('a','s'), new card('j','s'), new card('k','s'), new card('q','s'), 
 								new card('9','c'), new card('0','c'), new card('a','c'), new card('j','c'), new card('k','c'), new card('q','c'), 
@@ -21,7 +21,7 @@ public class deck {
 	 *
 	 */
 	
-	public deck(){
+	public Deck(){
 		cardsLeftInDeck = 24;
 	}
 	
