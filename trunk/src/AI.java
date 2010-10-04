@@ -6,7 +6,7 @@
 
 
 /**
- * Imports???
+ * Imports
  * 
  */
 
@@ -14,7 +14,7 @@
 public class AI {
 	
 	
-	private card[] hand; //The AI's hand of cards
+	private card[] hand;
 	private card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private boolean isTurn = false;
 	private char trump; //Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
