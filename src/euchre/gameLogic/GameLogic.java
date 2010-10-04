@@ -1,5 +1,4 @@
 package euchre.gameLogic;
-import Game;
 
 /**
  * 
