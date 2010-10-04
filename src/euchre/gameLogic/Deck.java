@@ -8,11 +8,11 @@ import java.util.Collections;
  *
  */
 
-public class Deck extends GameLogic{
-	private card[] cardDeck = {new card('9','h'), new card('0','h'), new card('a','h'), new card('j','h'), new card('k','h'), new card('q','h'), 
-								new card('9','s'), new card('0','s'), new card('a','s'), new card('j','s'), new card('k','s'), new card('q','s'), 
-								new card('9','c'), new card('0','c'), new card('a','c'), new card('j','c'), new card('k','c'), new card('q','c'), 
-								new card('9','d'), new card('0','d'), new card('a','d'), new card('j','d'), new card('k','d'), new card('q','d')};;
+public class Deck{
+	private Card[] cardDeck = {new Card('9','h'), new Card('0','h'), new Card('a','h'), new Card('j','h'), new Card('k','h'), new Card('q','h'), 
+								new Card('9','s'), new Card('0','s'), new Card('a','s'), new Card('j','s'), new Card('k','s'), new Card('q','s'), 
+								new Card('9','c'), new Card('0','c'), new Card('a','c'), new Card('j','c'), new Card('k','c'), new Card('q','c'), 
+								new Card('9','d'), new Card('0','d'), new Card('a','d'), new Card('j','d'), new Card('k','d'), new Card('q','d')};;
 	private int cardsLeftInDeck;
 	
 	/**
@@ -26,7 +26,7 @@ public class Deck extends GameLogic{
 	}
 	
 	/**
-	 * takes all cards currently in the Deck and randomizes their order
+	 * takes all Cards currently in the Deck and randomizes their order
 	 */
 	
 	public void shuffle(){
@@ -34,29 +34,29 @@ public class Deck extends GameLogic{
 	}
 	
 	/**
-	 * removes one card object from deck and returns it
+	 * removes one Card object from deck and returns it
 	 * 
-	 * @return card removed from deck
+	 * @return Card removed from deck
 	 */
-	public card drawCard(){
+	public Card drawCard(){
 		return cardDeck[cardsLeftInDeck - 1];
 	}
 
 	/**
-	 * retrieves the number of cards still available in the deck
+	 * retrieves the number of Cards still available in the deck
 	 *
-	 * @return number of cards left in the deck
+	 * @return number of Cards left in the deck
 	 */
 	public int numberOfCards(){
 		return cardsLeftInDeck;
 	}
 
 	/**
-	 * takes a card object and returns it to the bottom of the deck
+	 * takes a Card object and returns it to the bottom of the deck
 	 *
-	 * @param c the card to be discarded
+	 * @param c the Card to be disCarded
 	 */
-	public void discardCard(card c){
+	public void disCardCard(Card c){
 		for(int x = cardsLeftInDeck; x > 0; x--){
 			cardDeck[x] = cardDeck[x-1];
 		}

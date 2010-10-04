@@ -5,7 +5,7 @@ package euchre.gameLogic;
  * 
  */
 
-public class Card extends Deck{
+public class Card{
 	char suit;		//h = hearts, s = spades, c = clubs, d = diamonds
 	char value;		// 9, 0 (0 = 10), a = ace, j = jack, q = queen, k = king
 	
