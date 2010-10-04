@@ -11,10 +11,10 @@ import java.net.Socket;
  */
 public class ClientNetworkManager extends NetworkManager {
 
-	private Socket mySocket;
 	
-	public ClientNetworkManager(Socket s){
-		mySocket = s;
+	
+	public ClientNetworkManager(){
+		super();
 		
 	}
 	
