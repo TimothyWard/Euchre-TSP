@@ -9,7 +9,7 @@ package euchre.gameLogic;
  *  determining the number of points to be awarded to a team for a specific trick and so on.
  *
  */
-public class GameLogic extends Game{
+public class GameLogic{
 	
 	private int scoreOfWe =0;
 	private int scoreOfThey =0;
