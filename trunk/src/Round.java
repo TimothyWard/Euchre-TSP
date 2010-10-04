@@ -1,4 +1,3 @@
-import euchre.gameLogic.Card;
 import euchre.player.*;
 /**
  * 
