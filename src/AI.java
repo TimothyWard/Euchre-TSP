@@ -1,13 +1,12 @@
 /**
  * 
- * @author krkary
+ * @author Kyle Kary
  *
  */
 
 
 /**
  * Imports
- * 
  */
 
 
@@ -46,6 +45,15 @@ public class AI {
 	 */
 	public void orderUp(){
 		
+		//if AI has a set amount of trump, order up the card
+		//else pass
+		
+		//if trump is still null, and the trump card has been turned down
+			//if the AI has a set amount of one suit, order up that suit
+			//if the AI is dealer and cannot pass (stuck), pick suit with the highest total cards
+			//else pass
+		
+		isTurn=false;
 	}
 	
 	/**
@@ -57,11 +65,11 @@ public class AI {
 		//else if hand contains left bower, play left bower
 		//else if hand contains off-suit, play highest off-suit
 		//else play lowest trump
-		
+		isTurn=false;
 	}
 	
 	/**
-	 * Method for when the AI must follow another card. Determines the best card to play and plays it.
+	 * Determines the best card to follow with and plays it.
 	 */
 	public void followCard(){
 		
@@ -72,6 +80,7 @@ public class AI {
 			//if !partnerHasTrick && AI has trump, play lowest trump
 			//else play lowest off-suit
 
+		isTurn=false;
 	}
 	
 	/**
