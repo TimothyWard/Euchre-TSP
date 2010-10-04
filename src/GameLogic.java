@@ -7,12 +7,12 @@
  *  determining the number of points to be awarded to a team for a specific trick and so on.
  *
  */
-public class GameLogic {
+public class GameLogic extends Game{
 	
 	private int scoreOfWe =0;
 	private int scoreOfThey =0;
 	/**
-	 * This method is just a placeholder in case anything should need to be done in it.
+	 * This method is just a place holder in case anything should need to be done in it.
 	 * Comments will be more filled in later once actions to be taken in this method are known.
 	 * @param args A String array.
 	 */

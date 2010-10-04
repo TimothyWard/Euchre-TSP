@@ -7,6 +7,8 @@
  */
 public class Game {
 	
+	private GameLogic computer;
+	
 	/**
 	 * This method is the first method called in the program. This method is 
 	 * responsible for instantiating all objects and running the overall program.
