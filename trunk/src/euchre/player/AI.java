@@ -1,20 +1,16 @@
+package euchre.player;
+
+
 /**
  * 
  * @author Kyle Kary
  *
  */
-
-
-/**
- * Imports
- */
-
-
-public class AI {
+public class AI extends Player{
 	
 	
-	//private card[] hand;
-	//private card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
+	//private Card[] hand;
+	//private Card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private boolean isTurn = false;
 	private char trump; //Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round; //Which round of the hand it currently is (1,2,3,4,5)
@@ -22,7 +18,7 @@ public class AI {
 
 	/**
 	 * The main method. Will probably end up waiting here for its turn, then 
-	 * calling other methods to complete its turn.
+	 * calling other methods to complete the turn.
 	 * @param args
 	 */
 	public static void main(String[] args) {
