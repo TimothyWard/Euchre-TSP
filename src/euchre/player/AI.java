@@ -1,4 +1,3 @@
-package euchre.player;
 /**
  * 
  * @author Kyle Kary
@@ -14,8 +13,8 @@ package euchre.player;
 public class AI {
 	
 	
-	private card[] hand;
-	private card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
+	//private card[] hand;
+	//private card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private boolean isTurn = false;
 	private char trump; //Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round; //Which round of the hand it currently is (1,2,3,4,5)
@@ -88,15 +87,16 @@ public class AI {
 	 * Plays the given card.
 	 * @param c The card to be played by the AI.
 	 */
-	public void playCard(card c){
-		
-	}
+//	public void playCard(card c){
+//		
+//	}
 	
 	/**
 	 * Determines if the AI has to follow suit with the lead card.
 	 * @return True if the AI has suit, false if it does not.
 	 */
 	public boolean hasSuit(){
+		return false;
 		
 	}
 	
@@ -105,32 +105,32 @@ public class AI {
 	 * @return True if the partner is going to take it, false otherwise
 	 */
 	public boolean partnerHasTrick(){
-		
+		return false;
 	}
 	
 	/**
 	 * Finds the lowest card in the AI hand.
 	 * @return the lowest card in the AI hand.
 	 */
-	public card lowestCard(){
-		
-	}
+//	public card lowestCard(){
+//		return null;
+//	}
 	
 	/**
 	 * Finds the lowest trump card in the AI hand.
 	 * @return the lowest trump card in the AI hand.
 	 */
-	public card lowestTrump(){
-		
-	}
+//	public card lowestTrump(){
+//		return null;
+//	}
 	
 	/**
 	 * Finds the highest off-suit card in the AI hand.
 	 * @return the highest off-suit card in the AI hand.
 	 */
-	public card highestOffSuit(){
-		
-	}
+//	public card highestOffSuit(){
+//		return null;
+//	}
 	
 	
 	
