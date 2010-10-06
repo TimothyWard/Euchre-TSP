@@ -11,10 +11,10 @@ public class AI extends Player{
 	
 	//private Card[] hand;
 	//private Card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
-	private boolean isTurn = false;
-	private char trump; //Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
-	private int round; //Which round of the hand it currently is (1,2,3,4,5)
-	private int tricks;  //Number of tricks won by the AI and its partner
+	private boolean isTurn = false;		//True if it is the AI's turn, false otherwise
+	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
+	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
+	private int tricks;  				//Number of tricks won by the AI and its partner
 
 	/**
 	 * The main method. Will probably end up waiting here for its turn, then 
@@ -41,13 +41,13 @@ public class AI extends Player{
 	 */
 	public void orderUp(){
 		
-		//if AI has a set amount of trump, order up the card
-		//else pass
+//		if AI has a set amount of trump, order up the card
+//		else pass
 		
-		//if trump is still null, and the trump card has been turned down
-			//if the AI has a set amount of one suit, order up that suit
-			//if the AI is dealer and cannot pass (stuck), pick suit with the highest total cards
-			//else pass
+//		if trump is still null, and the trump card has been turned down
+//			if the AI has a set amount of one suit, order up that suit
+//			if the AI is dealer and cannot pass (stuck), pick suit with the highest total cards
+//			else pass
 		
 		isTurn=false;
 	}
@@ -57,10 +57,10 @@ public class AI extends Player{
 	 */
 	public void leadCard(){
 		
-		//if hand contains right bower, play right bower
-		//else if hand contains left bower, play left bower
-		//else if hand contains off-suit, play highest off-suit
-		//else play lowest trump
+//		if hand contains right bower, play right bower
+//		else if hand contains left bower, play left bower
+//		else if hand contains off-suit, play highest off-suit
+//		else play lowest trump
 		isTurn=false;
 	}
 	
@@ -69,12 +69,12 @@ public class AI extends Player{
 	 */
 	public void followCard(){
 		
-		//if hasSuit, check if partner has trick
-			//if partnerHasTrick, play lowest same-suit
-			//if !partnerHasTrick, play highest same suit
-		//if !hasSuit, check if partner has trick
-			//if !partnerHasTrick && AI has trump, play lowest trump
-			//else play lowest off-suit
+//		if hasSuit, check if partner has trick
+//			if partnerHasTrick, play lowest same-suit
+//			if !partnerHasTrick, play highest same suit
+//		if !hasSuit, check if partner has trick
+//			if !partnerHasTrick && AI has trump, play lowest trump
+//			else play lowest off-suit
 
 		isTurn=false;
 	}
@@ -107,18 +107,13 @@ public class AI extends Player{
 	/**
 	 * Finds the lowest card in the AI hand.
 	 * @return the lowest card in the AI hand.
+	 * @param trump True to check for lowest trump, false to check for lowest off-suit
 	 */
-//	public card lowestCard(){
+//	public card lowestCard(boolean trump){
 //		return null;
 //	}
 	
-	/**
-	 * Finds the lowest trump card in the AI hand.
-	 * @return the lowest trump card in the AI hand.
-	 */
-//	public card lowestTrump(){
-//		return null;
-//	}
+
 	
 	/**
 	 * Finds the highest off-suit card in the AI hand.
