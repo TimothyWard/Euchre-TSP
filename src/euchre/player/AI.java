@@ -13,7 +13,7 @@ package euchre.player;
  */
 
 
-public class AI extends Player{
+public class AI implements Player{
 	
 	
 	//private Card[] hand;

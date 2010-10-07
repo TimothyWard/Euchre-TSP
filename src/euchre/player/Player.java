@@ -1,5 +1,5 @@
 package euchre.player;
 
-public class Player {
+public interface Player {
 
 }
