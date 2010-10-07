@@ -6,7 +6,6 @@ package euchre.player;
  * @author Kyle Kary
  *
  */
-<<<<<<< .mine
 
 
 /**
@@ -14,10 +13,7 @@ package euchre.player;
  */
 
 
-public class AI extends player{
-=======
 public class AI extends Player{
->>>>>>> .r36
 	
 	
 	//private Card[] hand;
