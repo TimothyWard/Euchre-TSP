@@ -1,5 +1,5 @@
 package euchre.player;
 
-public class Human extends player{
+public class Human implements player{
 
 }
