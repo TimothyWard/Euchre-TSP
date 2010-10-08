@@ -9,15 +9,15 @@ package euchre.player;
 
 
 /**
- * Imports
+ * Imports?
  */
 
 
 public class AI implements Player{
 	
 	
-	//private Card[] hand;
-	//private Card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
+	private Card[] hand;
+	private Card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private boolean isTurn = false;		//True if it is the AI's turn, false otherwise
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
@@ -47,7 +47,6 @@ public class AI implements Player{
 	 * and acts accordingly. Should only be called once per hand.
 	 */
 	public void orderUp(){
-		
 //		if AI has a set amount of trump, order up the card
 //		else pass
 		
@@ -90,9 +89,9 @@ public class AI implements Player{
 	 * Plays the given card.
 	 * @param c The card to be played by the AI.
 	 */
-//	public void playCard(card c){
-//		
-//	}
+	public void playCard(Card c){
+		
+	}
 	
 	/**
 	 * Determines if the AI has to follow suit with the lead card.
@@ -116,19 +115,20 @@ public class AI implements Player{
 	 * @return the lowest card in the AI hand.
 	 * @param trump True to check for lowest trump, false to check for lowest off-suit
 	 */
-//	public card lowestCard(boolean trump){
-//		return null;
-//	}
+	public Card lowestCard(boolean trump){
+		return null;
+	}
 	
 
 	
 	/**
-	 * Finds the highest off-suit card in the AI hand.
-	 * @return the highest off-suit card in the AI hand.
+	 * Finds the highest card in the AI hand.
+	 * @return the highest card in the AI hand.
+	 * @param trump True to check for highest trump, false to check for highest off-suit
 	 */
-//	public card highestOffSuit(){
-//		return null;
-//	}
+	public Card highestCard(boolean trump){
+		return null;
+	}
 	
 	
 	
