@@ -1,29 +1,64 @@
 package euchre.network;
 
+
+import java.net.*;
+import java.io.*;
+
 /**
  * A Runnable thread to facilitate communication for the clients and servers
  * 
  * @author mdhelgen
  *
  */
-public class EuchreConnectionThread implements Runnable{
 
-	/**
-	 * 
-	 * Get any necessary references
-	 */
-	public EuchreConnectionThread(){
+public class EuchreConnectionThread extends Thread {
+	private Socket socket = null;
+	private String threadName = "defaultname";
+	
+	private boolean running = true;
+
+	public EuchreConnectionThread(String name) {
+		super(name);
+		threadName = name;
+	}
+
+	public void run() {
+
+		while(true){
+		if(running)
+			System.out.println(threadName + " is running");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
+		}
+		/*
+		try {
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+			String inputLine, outputLine;
+			//KnockKnockProtocol kkp = new KnockKnockProtocol();
+			//outputLine = kkp.processInput(null);
+			//out.println(outputLine);
+
+			while ((inputLine = in.readLine()) != null) {
+				//outputLine = kkp.processInput(inputLine);
+				out.println(outputLine);
+				if (outputLine.equals("Bye"))
+					break;
+			}
+			out.close();
+			in.close();
+			socket.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 	}
 	
-	/**
-	 * 
-	 * Code for the communication loop goes here
-	 */
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
