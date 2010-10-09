@@ -11,6 +11,10 @@ import java.awt.*;
 public class Welcome extends javax.swing.JFrame{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Construct a welcome screen.
 	 */
     public Welcome(){

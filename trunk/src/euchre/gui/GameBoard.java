@@ -11,7 +11,12 @@ import java.awt.Toolkit;
  */
 public class GameBoard extends javax.swing.JFrame {
 
-    /** Creates new form GameBoard */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** Creates new form GameBoard */
     public GameBoard() {
         initComponents();
         centerScreen();
