@@ -9,9 +9,8 @@ import java.net.Socket;
  * @author mdhelgen
  *
  */
-public class ClientNetworkManager extends NetworkManager {
+public class ClientNetworkManager{ // extends NetworkManager {   abstract this out later
 
-	private EuchreClient self;
 	
 	public ClientNetworkManager(EuchreClient e){
 		super();
