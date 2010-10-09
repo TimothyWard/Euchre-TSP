@@ -97,16 +97,16 @@ public class HostGameSetup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_openLobbyButtonActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HostGameSetup().setVisible(true);
-            }
-        });
-    }
+//    /**
+//    * @param args the command line arguments
+//    */
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HostGameSetup().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox humanPlayerCount;
