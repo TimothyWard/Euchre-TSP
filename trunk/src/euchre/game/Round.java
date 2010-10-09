@@ -10,7 +10,7 @@ import euchre.player.*;
  *
  */
 public class Round{
-	protected char trumpSuit = ' ';
+	public char trumpSuit = ' ';
 	protected Player playerWhoOrdered;
 	protected char teamWhoOrdered = ' ';
 	protected char suitLed = ' ';
