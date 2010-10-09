@@ -47,7 +47,7 @@ public class AI implements Player{
 	 * and acts accordingly. Should only be called once per hand.
 	 * @return 
 	 */
-	public boolean orderUp(){
+	public boolean orderUp(Card c){
 //		if AI has a set amount of trump, order up the card
 //		else pass
 		
@@ -57,6 +57,7 @@ public class AI implements Player{
 //			else pass
 		
 		int numTrump = 0;
+		trump = c.getSuit();
 		
 		for(int i=0;i<hand.length;i++){
 			if(hand[i].getSuit()==trump){
@@ -155,6 +156,47 @@ public class AI implements Player{
 	@Override
 	public void setTurn() {
 		isTurn = true;
+		
+	}
+
+	@Override
+	public char callSuit() {
+		
+		int numHeart = 0;
+		int numDiamond = 0;
+		int numSpade = 0;
+		int numClub = 0;
+		
+		for(int i=0;i<hand.length;i++){
+			if(hand[i].getSuit()=='h'){
+				numHeart++;
+			}
+			else if(hand[i].getSuit()=='d'){
+				numDiamond++;
+			}
+			else if(hand[i].getSuit()=='s'){
+				numSpade++;
+			}
+			else{
+				numClub++;
+			}
+		}
+		
+		if(numHeart>=3){
+			return 'h';
+		}
+		else if(numDiamond>=3){
+			return 'd';
+		}
+		else if(numSpade>=3){
+			return 's';
+		}
+		else if(numClub>=3){
+			return 'c';
+		}
+		else{
+			return 0;
+		}
 		
 	}
 	
