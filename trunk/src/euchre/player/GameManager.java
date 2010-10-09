@@ -44,6 +44,14 @@ public class GameManager {
 				}
 			}
 		}
+	}//End of Main method
+	
+	/**
+	 * Sets the host player as player 1.
+	 * @param p The human player that is going to host the game. Host will also be first dealer.
+	 */
+	public void setHost(Human p){
+		player1 = p;
 	}
 
 	/**
