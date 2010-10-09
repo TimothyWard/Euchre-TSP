@@ -39,26 +39,28 @@ public class Game {
 		if (choice == 'h'){
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
-		GM.nextPlayer(new Human());
+		GM.setPlayer(new Human());
 		}
 		else if(choice == 'c'){
 			// add URL String argument to ClientNetworkManager to change host location
 			ClientNetworkManager client = new ClientNetworkManager();
 			client.start();
+			GM.setPlayer(new Human());
+			// if logic for next player
 		}
 		else if(choice == 'a'){
 			ServerNetworkManager network = new ServerNetworkManager();
 			network.start();
-			GM.nextPlayer(new Human());
+			GM.setPlayer(new Human());
 			ClientNetworkManager AI1 = new ClientNetworkManager();
 			AI1.start();
-			GM.nextPlayer(new AI());
+			GM.setPlayer(new AI());
 			ClientNetworkManager AI2 = new ClientNetworkManager();
 			AI2.start();
-			GM.nextPlayer(new AI());
+			GM.setPlayer(new AI());
 			ClientNetworkManager AI3 = new ClientNetworkManager();
 			AI3.start();
-			GM.nextPlayer(new AI());
+			GM.setPlayer(new AI());
 		}
 		//declare a new round object and inform network to proceed
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
