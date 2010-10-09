@@ -62,6 +62,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	 */
 	public int getNumClients(){
 		
+		
 		return threads.size();
 		
 	}
@@ -102,6 +103,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					
 				}
 			}	
 
