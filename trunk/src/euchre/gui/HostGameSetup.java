@@ -1,25 +1,31 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * HostGameSetup.java
- *
- * Created on Oct 9, 2010, 3:30:33 PM
- */
-
 package euchre.gui;
+
+import java.awt.*;
 
 /**
  *
  * @author sdwilke
+ * @author Neil MacBay(nmmacbay)
  */
 public class HostGameSetup extends javax.swing.JFrame {
 
     /** Creates new form HostGameSetup */
     public HostGameSetup() {
         initComponents();
+        centerScreen();
+    }
+
+    /**
+     * Moves the jFrame to the center of the screen
+     */
+    private void centerScreen(){
+        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
+        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+        int xSize = this.getSize().width;
+        int ySize = this.getSize().height;
+        Point p = new Point();
+        p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+        this.setLocation(p);
     }
 
     /** This method is called from within the constructor to
@@ -43,7 +49,8 @@ public class HostGameSetup extends javax.swing.JFrame {
 
         jLabel2.setText("Number of Human Players");
 
-        humanPlayerCount.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        humanPlayerCount.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        humanPlayerCount.setSelectedIndex(2);
 
         openLobbyButton.setText("Open Lobby");
         openLobbyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -97,16 +104,6 @@ public class HostGameSetup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_openLobbyButtonActionPerformed
 
-//    /**
-//    * @param args the command line arguments
-//    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new HostGameSetup().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox humanPlayerCount;
