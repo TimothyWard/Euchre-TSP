@@ -1,15 +1,13 @@
 package euchre.player;
 
 public class Human implements Player{
-
-	@Override
-	public void drawCard(Card c) {
-		// TODO Auto-generated method stub
+	
+	public Human(){
 		
 	}
 
 	@Override
-	public void setTurn() {
+	public void drawCard(Card c) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -24,6 +22,12 @@ public class Human implements Player{
 	public boolean orderUp(Card c) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Card playCard() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
