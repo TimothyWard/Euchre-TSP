@@ -22,18 +22,13 @@ public class NetworkGameBrowser extends javax.swing.JFrame {
      * Moves the jFrame to the center of the screen
      */
     private void centerScreen(){
-        int xCenter;
-        int yCenter;
-        int xSize;
-        int ySize;
+        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
+        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+        int xSize = this.getSize().width;
+        int ySize = this.getSize().height;
         Point p = new Point();
-        xSize = this.getSize().width;
-        ySize = this.getSize().height;
-        xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
-        yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
         p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
         this.setLocation(p);
-        return;
     }
   
     /** This method is called from within the constructor to
