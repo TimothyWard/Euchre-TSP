@@ -15,8 +15,8 @@ public class TestClass {
 		
 		
 		
-		ServerNetworkManager server = new ServerNetworkManager();
-		server.start();
+		//ServerNetworkManager server = new ServerNetworkManager();
+		//server.start();
 		
 		ClientNetworkManager client = new ClientNetworkManager();
 		client.start();
