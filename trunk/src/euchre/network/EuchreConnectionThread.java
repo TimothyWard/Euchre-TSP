@@ -14,7 +14,8 @@ import java.io.*;
 public class EuchreConnectionThread extends Thread {
 	private Socket socket = null;
 	private String threadName = "defaultname";
-	
+	BufferedReader in;
+
 	private boolean running = true;
 
 	public EuchreConnectionThread(String name, Socket s) {
@@ -24,17 +25,31 @@ public class EuchreConnectionThread extends Thread {
 	}
 
 	public void run() {
-
-		while(true){
-		if(running)
-			System.out.println(threadName + " is running");
 		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+			String inputLine;
+
+			while(true){
+				if(running)
+					while((inputLine = in.readLine()) != null){
+						System.out.println("Message from client:");
+						System.out.println(inputLine);
+					}
+
+						System.out.println(threadName + " is running");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			e1.printStackTrace();
 		}
 		/*
 		try {
@@ -59,7 +74,7 @@ public class EuchreConnectionThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+		 */
 	}
-	
+
 }
