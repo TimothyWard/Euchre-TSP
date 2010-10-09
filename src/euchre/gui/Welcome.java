@@ -135,7 +135,6 @@ public class Welcome extends javax.swing.JFrame{
      */
     private void choseLoacal(java.awt.event.MouseEvent evt) {       
     	choice = 'a';
-        this.setVisible(false);
     }
     
     /**
@@ -143,7 +142,6 @@ public class Welcome extends javax.swing.JFrame{
      */
     private void networkHost(java.awt.event.MouseEvent evt) {
     	choice = 'h';
-        this.setVisible(false);
     }
     
     /**
@@ -151,14 +149,13 @@ public class Welcome extends javax.swing.JFrame{
      */
     private void networkClient(java.awt.event.MouseEvent evt) {
     	choice = 'c';
-    	this.setVisible(false);   
     }
     
     /**
      * Returns the character associated with the gametype chosen by the user.
      * 'x' - No option has been chosen yet, the user is still deciding.
-     * 'a' - The user has chosen to start a local game.
-     * 'c' - The user has chosen to be client to a network game.
+     * 'a' - The user has chosen to start a local (AI) game.
+     * 'c' - The user has chosen to be client in a network game.
      * 'h' - The user has chosen to host a network game.
      * @return The character associated with the gametype chosen by the user.
      */
