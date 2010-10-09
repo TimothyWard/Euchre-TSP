@@ -17,7 +17,7 @@ public class AI implements Player{
 	
 	
 	private Card[] hand;
-	private Card card1, card2, card3; //Card played by player to the AI's left, AI's partner, and AI's right, respectively
+	private Card card1, card2, card3; 	//Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private boolean isTurn = false;		//True if it is the AI's turn, false otherwise
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
@@ -45,8 +45,9 @@ public class AI implements Player{
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
+	 * @return 
 	 */
-	public void orderUp(){
+	public boolean orderUp(){
 //		if AI has a set amount of trump, order up the card
 //		else pass
 		
@@ -55,7 +56,22 @@ public class AI implements Player{
 //			if the AI is dealer and cannot pass (stuck), pick suit with the highest total cards
 //			else pass
 		
-		isTurn=false;
+		int numTrump = 0;
+		
+		for(int i=0;i<hand.length;i++){
+			if(hand[i].getSuit()==trump){
+				numTrump++;
+			}
+		}
+		
+		if(numTrump>=4){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+		
 	}
 	
 	/**
@@ -128,6 +144,18 @@ public class AI implements Player{
 	 */
 	public Card highestCard(boolean trump){
 		return null;
+	}
+
+	@Override
+	public void drawCard(Card c) {
+		hand[0] = c;
+		
+	}
+
+	@Override
+	public void setTurn() {
+		isTurn = true;
+		
 	}
 	
 	
