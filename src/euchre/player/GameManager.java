@@ -1,14 +1,19 @@
 package euchre.player;
 
+import euchre.*;
+
 public class GameManager {
 
 	private Player player1, player2, player3, player4;
+	private Card[] playedCards = new Card[4];
 	private Player dealer = player1;
 	private Card upCard;
 	private Deck deck;
 	private char trump;
-	private int round;
+	//private int round;
 	private Player curPlayer;
+	
+	private Round round = new Round();
 
 
 	public GameManager() {
@@ -50,6 +55,15 @@ public class GameManager {
 		
 		for(round=1;round<6;round++){
 			
+			if(round==1){
+				curPlayer = nextPlayer(dealer);
+			}
+			
+			for(int i=0;i<4;i++){
+				playedCards[i] = curPlayer.playCard();
+				curPlayer=nextPlayer(curPlayer);
+			}
+			
 			
 			
 			
@@ -63,6 +77,21 @@ public class GameManager {
 		}
 
 	}//End of GameManager
+
+//	private Player findWinner() {
+//		
+//		Player winner = player1;
+//		Card highest = playedCards[0];
+//		char suitLed = playedCards[0].getSuit();
+//		
+//		for(int i=0;i<4;i++){
+//			if(playedCards[i].getSuit()==suitLed && playedCards[i].getCardValue()>highest.getCardValue()){
+//				highest=playedCards[i];
+//				
+//			}
+//		}
+//		return null;
+//	}
 
 	/**
 	 * Sets the host player as player 1.
