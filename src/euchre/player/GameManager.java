@@ -118,45 +118,26 @@ public class GameManager {
 //	}
 
 	/**
-	 * Sets the host player as player 1.
+	 * Adds a given player. If there is no host (player1), add it there first. Then, add any new players into the
+	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-	public void setHost(Human p){
-		player1 = p;
-
-	}
-
-	/**
-	 * Adds a new AI player to the game. As of right now, only adds to the first open player slot.
-	 * @param p
-	 */
-	public void addAI(Player p){
-		if(player2==null){
-			player2 = new AI();
+	public void setPlayer(Player p){
+		if(player1==null){
+			player1=p;
+		}
+		else if(player2==null){
+			player2=p;
 		}
 		else if(player3==null){
-			player3 = new AI();
+			player3=p;
 		}
 		else if(player4==null){
-			player4 = new AI();
+			player4=p;
 		}
+
 	}
 
-	/**
-	 * Adds a new Human player to the game. As of right now, only adds to the first open player slot.
-	 * @param p
-	 */
-	public void addHuman(Player p){
-		if(player2==null){
-			player2 = new Human();
-		}
-		else if(player3==null){
-			player3 = new Human();
-		}
-		else if(player4==null){
-			player4 = new Human();
-		}
-	}
 
 	/**
 	 * Deals five cards to each player, in groups of two and three.
