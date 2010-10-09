@@ -52,6 +52,39 @@ public class GameManager {
 	 */
 	public void setHost(Human p){
 		player1 = p;
+		
+	}
+	
+	/**
+	 * Adds a new AI player to the game. As of right now, only adds to the first open player slot.
+	 * @param p
+	 */
+	public void addAI(Player p){
+		if(player2==null){
+			player2 = new AI();
+		}
+		else if(player3==null){
+			player3 = new AI();
+		}
+		else if(player4==null){
+			player4 = new AI();
+		}
+	}
+	
+	/**
+	 * Adds a new Human player to the game. As of right now, only adds to the first open player slot.
+	 * @param p
+	 */
+	public void addHuman(Player p){
+		if(player2==null){
+			player2 = new Human();
+		}
+		else if(player3==null){
+			player3 = new Human();
+		}
+		else if(player4==null){
+			player4 = new Human();
+		}
 	}
 
 	/**
