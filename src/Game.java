@@ -12,7 +12,7 @@ public class Game {
 	Team they;
 	
 	/**
-	 * @author Timothy Ward
+	 * @author Timothy Ward 
 	 * This class is simply a place holder for two player in a team object.
 	 */
 	public class Team {
