@@ -1,26 +1,27 @@
 package euchre.player;
 
-public class Human implements Player{	
-	
-	@Override
-	public void drawCard(Card c){
-		for(int x = 0; x < 5; x++){
-			if(hand[x] == null){
-				hand[x] = c;
-				return;
-			}
-		}
-		System.out.println("error: hand is full");
-	}
+public class Human implements Player{
 
 	@Override
-	public void setTurn(){
+	public void drawCard(Card c) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean orderUp(){
+	public void setTurn() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public char callSuit() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean orderUp(Card c) {
 		// TODO Auto-generated method stub
 		return false;
 	}
