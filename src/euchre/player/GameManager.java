@@ -7,54 +7,72 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck;
 	private char trump;
+	private int round;
 	private Player curPlayer;
 
 
-//	public void main(String[] args) {
-//
-//		deal();															//Start by dealing the cards
-//		
-//		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer
-//
-//		//Check to see if any of the players 'order up' the card
-//		for(int i=0;i<4;i++){
-//
-//			if(curPlayer.orderUp(upCard)){
-//				dealer.drawCard(upCard);								//If a player orders it up, the dealer must pick up the card
-//				//discard needed										//and discard a card
-//			}
-//			else{
-//				curPlayer=nextPlayer(curPlayer);
-//
-//				if(curPlayer==dealer){									//If no one has ordered up the upCard...
-//					deck.disCardCard(upCard);							//...discard the upCard...
-//					for(int x=0;x<4;x++){								//...and check to see if any player picks a suit.
-//						if(curPlayer.callSuit() != 0){
-//							trump = curPlayer.callSuit();				//If a player calls suit, set trump equal to that suit
-//						}
-//						else{											//Otherwise, pass to the next person.
-//							curPlayer=nextPlayer(curPlayer);
-//							if(curPlayer==dealer){						//If it has returned to the dealer, force the dealer to pick a suit.
-//								while(curPlayer.callSuit()==0){
-//									curPlayer.callSuit();
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}//End of Main method
-	
+	public GameManager() {
+
+		deal();															//Start by dealing the cards...
+
+		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
+
+		//Check to see if any of the players 'order up' the card
+		for(int i=0;i<4;i++){
+			if(curPlayer.orderUp(upCard)){
+				dealer.drawCard(upCard);								//If a player orders it up, the dealer must pick up the card
+				//discard needed										//and discard a card
+			}
+			else{
+				curPlayer=nextPlayer(curPlayer);
+			}
+		}
+
+		//If no one has ordered up the upCard, ask them to pick a suit
+		if(curPlayer==dealer){									
+			deck.disCardCard(upCard);							//...and discard the upCard...
+			
+			for(int x=0;x<4;x++){								//...and check to see if any player picks a suit.
+				if(curPlayer.callSuit() != 0){
+					trump = curPlayer.callSuit();				//If a player calls suit, set trump equal to that suit
+				}
+				else{											//Otherwise, pass to the next person.
+					curPlayer=nextPlayer(curPlayer);
+					if(curPlayer==dealer){						//If it has returned to the dealer, force the dealer to pick a suit.
+						while(curPlayer.callSuit()==0){
+							curPlayer.callSuit();
+						}
+					}
+				}
+			}
+		}//End of calling suit
+		
+		
+		for(round=1;round<6;round++){
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+
+	}//End of GameManager
+
 	/**
 	 * Sets the host player as player 1.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
 	public void setHost(Human p){
 		player1 = p;
-		
+
 	}
-	
+
 	/**
 	 * Adds a new AI player to the game. As of right now, only adds to the first open player slot.
 	 * @param p
@@ -70,7 +88,7 @@ public class GameManager {
 			player4 = new AI();
 		}
 	}
-	
+
 	/**
 	 * Adds a new Human player to the game. As of right now, only adds to the first open player slot.
 	 * @param p
