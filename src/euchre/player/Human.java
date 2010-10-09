@@ -30,4 +30,17 @@ public class Human implements Player{
 		return null;
 	}
 
+	@Override
+	public char getTeam() {
+		return 0;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTeam(char c) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
