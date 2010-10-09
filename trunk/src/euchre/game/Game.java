@@ -1,6 +1,7 @@
 package euchre.game;
 import euchre.gui.Welcome;
 import euchre.player.*;
+import euchre.network.*;
 
 
 
@@ -24,10 +25,24 @@ public class Game {
 		GUI.setVisible(true);
 		while (GUI.getChoice() == 'x'){
 			//Do nothing, user is deciding game type.
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		char choice = GUI.getChoice();
 		GUI.dispose();
 		//if host, pass to network, if client pass to network with host object
+		if (choice == 'h'){
+		ServerNetworkManager network = new ServerNetworkManager();
+		network.start();
+		}
+		else if(choice == 'c'){
+			ClientNetworkManager client = new ClientNetworkManager();
+			client.start();
+		}
 		//declare a new round object and inform network to proceed
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
 		//once GameLogic has returned information regarding round winner and point information, store information
