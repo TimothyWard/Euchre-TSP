@@ -40,6 +40,7 @@ public class Game {
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
 		GM.setPlayer(new Human());
+		// THIS IS WHERE I ASK FOR MORE INFO
 		}
 		else if(choice == 'c'){
 			// add URL String argument to ClientNetworkManager to change host location
