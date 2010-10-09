@@ -25,7 +25,15 @@ public class Game {
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
-		waitUntilNotEqual(GUI.getChoice(), 'x');
+		while (GUI.getChoice() == 'x'){
+			//Do nothing, user is deciding game type.
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
 		//setup host and client objects, in a new game
@@ -51,12 +59,23 @@ public class Game {
 	 */
 	public static void createHost(GameManager GM, Welcome GUI){
 		GM.setPlayer(new Human());
-		waitUntilNotEqual(GM.getHostSetup().getAIs(), -1);
+		while (GM.getHostSetup().getAIs() ==-1){
+			//Do nothing, user is deciding game type.
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		// THIS RETURNS THE WRONG NUMBER 
 		int aiNumber = GM.getHostSetup().getAIs();
+		System.out.println(aiNumber);
 		// create specified number of AI's
 		while (aiNumber!=0){
 			ClientNetworkManager AI = new ClientNetworkManager();
 			AI.start();
+			aiNumber--;
 		}
 	}
 	
@@ -77,24 +96,7 @@ public class Game {
 		AI3.start();
 		GM.setPlayer(new AI());
 	}
-	
-	/**
-	 * This method simply waits for user input without wasting processor resources, once a != b the
-	 * method will return and the program will continue.
-	 * @param a
-	 * @param b
-	 */
-	public static void waitUntilNotEqual(Object a, Object b){
-		while (a == b){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+
 	
 	/**
 	 * This method will create a client object.
