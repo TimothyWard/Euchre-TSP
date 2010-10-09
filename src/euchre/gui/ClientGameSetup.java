@@ -33,7 +33,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         PlayerName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        StartButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +45,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Start");
+        StartButton.setText("Start");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,7 +60,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
                         .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,7 +71,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(StartButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -95,7 +95,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PlayerName;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton StartButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
