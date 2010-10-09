@@ -10,10 +10,49 @@ import euchre.player.*;
  *
  */
 public class Round{
-	public char trumpSuit = ' ';
+	protected char trumpSuit = ' ';
 	protected Player playerWhoOrdered;
 	protected char teamWhoOrdered = ' ';
 	protected char suitLed = ' ';
 	protected boolean alone = false;
 	protected Card[] cardsPlayed = new Card[20];
+	
+	
+	public char getTrumpSuit() {
+		return trumpSuit;
+	}
+	public void setTrumpSuit(char trumpSuit) {
+		this.trumpSuit = trumpSuit;
+	}
+	public Player getPlayerWhoOrdered() {
+		return playerWhoOrdered;
+	}
+	public void setPlayerWhoOrdered(Player playerWhoOrdered) {
+		this.playerWhoOrdered = playerWhoOrdered;
+	}
+	public char getTeamWhoOrdered() {
+		return teamWhoOrdered;
+	}
+	public void setTeamWhoOrdered(char teamWhoOrdered) {
+		this.teamWhoOrdered = teamWhoOrdered;
+	}
+	public char getSuitLed() {
+		return suitLed;
+	}
+	public void setSuitLed(char suitLed) {
+		this.suitLed = suitLed;
+	}
+	public boolean isAlone() {
+		return alone;
+	}
+	public void setAlone(boolean alone) {
+		this.alone = alone;
+	}
+	public Card[] getCardsPlayed() {
+		return cardsPlayed;
+	}
+	public void setCardsPlayed(Card[] cardsPlayed) {
+		this.cardsPlayed = cardsPlayed;
+	}
+	
 }
