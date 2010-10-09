@@ -18,15 +18,31 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	Socket clientSocket = null;
 	PrintWriter out = null;
 	
-	String hostname = "localhost";
+	String hostname;
 	int port = 4444;
 	
 	boolean running = true;
 	
+	/**
+	 * Create a ClientNetworkManager to connect to localhost.
+	 * 
+	 */
 	public ClientNetworkManager(){
 		
+		hostname = "localhost";
 		
 	}
+	
+	/**
+	 * Create a ClientNetworkManager to connect to the specified hostname.
+	 *  
+	 * @param hostname The hostname of the server to connect to.
+	 */
+	public ClientNetworkManager(String hostname){
+		
+		this.hostname = hostname;
+	}
+	
 	
 	/**
 	 * The thread's actions. Make a socket connection to the server and send a string
