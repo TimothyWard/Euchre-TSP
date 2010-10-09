@@ -17,7 +17,7 @@ public class Deck{
 								new Card('9','s'), new Card('0','s'), new Card('a','s'), new Card('j','s'), new Card('k','s'), new Card('q','s'), 
 								new Card('9','c'), new Card('0','c'), new Card('a','c'), new Card('j','c'), new Card('k','c'), new Card('q','c'), 
 								new Card('9','d'), new Card('0','d'), new Card('a','d'), new Card('j','d'), new Card('k','d'), new Card('q','d')};;
-	private int cardsLeftInDeck;
+	private int cardsLeftInDeck = 24;
 	
 	/**
 	 * Constructor to create deck object.  Initializes a deck of card objects representing
@@ -43,7 +43,8 @@ public class Deck{
 	 * @return Card removed from deck
 	 */
 	public Card drawCard(){
-		return cardDeck[cardsLeftInDeck - 1];
+		cardsLeftInDeck--;
+		return cardDeck[cardsLeftInDeck];
 	}
 
 	/**
