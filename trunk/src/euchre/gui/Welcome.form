@@ -33,9 +33,9 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButtonLocalGame" min="-2" pref="222" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                       <Component id="jButtonNetworkGame" min="-2" pref="222" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -48,8 +48,8 @@
               <Component id="jLabelWelcomeBanner" min="-2" pref="74" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonNetworkGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="jButtonLocalGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="jButtonNetworkGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
