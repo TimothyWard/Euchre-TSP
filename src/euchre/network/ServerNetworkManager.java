@@ -54,6 +54,17 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 
 		return listening;
 	}
+	
+	/**
+	 * Get the number of connected clients
+	 * 
+	 * @return The number of dispatched client threads
+	 */
+	public int getNumClients(){
+		
+		return threads.size();
+		
+	}
 
 	/**
 	 * The thread's actions. Creates a ServerSocket, and if it is listening for connections, will accept incoming requests,
