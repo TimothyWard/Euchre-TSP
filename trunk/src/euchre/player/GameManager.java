@@ -1,22 +1,32 @@
 package euchre.player;
 
-import euchre.*;
+import euchre.game.*;
 
+/**
+ * 
+ * @author krkary
+ *
+ * The game manager acts as a sort of dealer. It asks each player if they want to order up a card, pick a suit, play a card, etc. in addition
+ * to dealing the cards each hand. Also, the game manager passes important information on to the Round class, which in turn passes it on to 
+ * run the game.
+ */
 public class GameManager {
 
 	private Player player1, player2, player3, player4;
-	private Card[] playedCards = new Card[4];
 	private Player dealer = player1;
 	private Card upCard;
 	private Deck deck;
-	private char trump;
-	//private int round;
 	private Player curPlayer;
 	
 	private Round round = new Round();
 
 
 	public GameManager() {
+		
+		player1.setTeam('1');
+		player2.setTeam('2');
+		player3.setTeam('1');
+		player4.setTeam('2');
 
 		deal();															//Start by dealing the cards...
 
@@ -25,6 +35,9 @@ public class GameManager {
 		//Check to see if any of the players 'order up' the card
 		for(int i=0;i<4;i++){
 			if(curPlayer.orderUp(upCard)){
+				round.setPlayerWhoOrdered(curPlayer);
+				round.setTeamWhoOrdered(curPlayer.getTeam());
+				round.setTrumpSuit(upCard.getSuit());
 				dealer.drawCard(upCard);								//If a player orders it up, the dealer must pick up the card
 				//discard needed										//and discard a card
 			}
@@ -35,17 +48,21 @@ public class GameManager {
 
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer==dealer){									
-			deck.disCardCard(upCard);							//...and discard the upCard...
+			deck.disCardCard(upCard);									//...and discard the upCard...
 			
-			for(int x=0;x<4;x++){								//...and check to see if any player picks a suit.
+			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
-					trump = curPlayer.callSuit();				//If a player calls suit, set trump equal to that suit
+					round.setPlayerWhoOrdered(curPlayer);
+					round.setTeamWhoOrdered(curPlayer.getTeam());
+					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
 				}
-				else{											//Otherwise, pass to the next person.
+				else{													//Otherwise, pass to the next person.
 					curPlayer=nextPlayer(curPlayer);
-					if(curPlayer==dealer){						//If it has returned to the dealer, force the dealer to pick a suit.
+					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 						while(curPlayer.callSuit()==0){
-							curPlayer.callSuit();
+							round.setPlayerWhoOrdered(curPlayer);
+							round.setTeamWhoOrdered(curPlayer.getTeam());
+							round.setTrumpSuit(curPlayer.callSuit());
 						}
 					}
 				}
@@ -53,28 +70,28 @@ public class GameManager {
 		}//End of calling suit
 		
 		
-		for(round=1;round<6;round++){
-			
-			if(round==1){
-				curPlayer = nextPlayer(dealer);
-			}
-			
-			for(int i=0;i<4;i++){
-				playedCards[i] = curPlayer.playCard();
-				curPlayer=nextPlayer(curPlayer);
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		}
+//		for(round=1;round<6;round++){
+//			
+//			if(round==1){
+//				curPlayer = nextPlayer(dealer);
+//			}
+//			
+//			for(int i=0;i<4;i++){
+//				playedCards[i] = curPlayer.playCard();
+//				curPlayer=nextPlayer(curPlayer);
+//			}
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//		}
 
 	}//End of GameManager
 
