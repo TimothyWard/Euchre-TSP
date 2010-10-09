@@ -12,7 +12,7 @@ public class GameManager {
 	public void main(String[] args) {
 
 		deal();												//Start by dealing the cards
-		curPlayer = nextPlayer(dealer);						//The first player is the one after the dealer
+		curPlayer = nextPlayer(dealer);		 				//The first player is the one after the dealer
 		
 		for(int i=0;i<4;i++){								//Check to see if any of the players 'order up' the card
 			if(curPlayer.orderUp()){
