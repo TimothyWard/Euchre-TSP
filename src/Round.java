@@ -8,14 +8,11 @@ import euchre.player.*;
  * passed to GameLogic, which interprets and passes back pertinent information to Game.
  *
  */
-public class Round {
-	
+public class Round{
 	protected char trumpSuit = ' ';
 	protected Player playerWhoOrdered;
 	protected char teamWhoOrdered = ' ';
 	protected char suitLed = ' ';
 	protected boolean alone = false;
-	protected Card[] cards = new Card[20];
-
-
+	protected Card[] cardsPlayed = new Card[20];
 }
