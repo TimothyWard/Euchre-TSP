@@ -9,6 +9,26 @@ import euchre.player.*;
  */
 public class Game {
 	
+	
+	/**
+	 * This method is the first method called in the program. This method is 
+	 * responsible for instantiating all objects and running the overall program.
+	 * 
+	 * @param args A String array.
+	 */
+	public static void main(String [] args){
+		System.out.println("Game Run");
+		//declare new GUI window to ask if host or client
+		Welcome GUI = new Welcome();
+		GUI.setVisible(true);
+		//if host, pass to network, if client pass to network with host object
+		//declare a new round object and inform network to proceed
+		//wait for input for each round, once a round has received all input...send to gameLogic for computation
+		//once GameLogic has returned information regarding round winner and point information, store information
+		//repeat with new round object if game has not resolved
+		//once game winner is determined, inform network who won to update views.
+	}
+	
 	Team we;
 	Team they;
 	
@@ -24,25 +44,6 @@ public class Game {
 			this.playerOne = one;
 			this.playerTwo = two;
 		}
-	}
-
-
-	/**
-	 * This method is the first method called in the program. This method is 
-	 * responsible for instantiating all objects and running the overall program.
-	 * 
-	 * @param args A String array.
-	 */
-	public void main(String [] args){
-		//declare new GUI window to ask if host or client
-		Welcome GUI = new Welcome();
-		GUI.setVisible(true);
-		//if host, pass to network, if client pass to network with host object
-		//declare a new round object and inform network to proceed
-		//wait for input for each round, once a round has received all input...send to gameLogic for computation
-		//once GameLogic has returned information regarding round winner and point information, store information
-		//repeat with new round object if game has not resolved
-		//once game winner is determined, inform network who won to update views.
 	}
 
 	/**
