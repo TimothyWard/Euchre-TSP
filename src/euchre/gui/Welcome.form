@@ -25,19 +25,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabelWelcomeBanner" pref="803" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelWelcomeBanner" pref="803" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="jButtonLocalGame" min="-2" pref="222" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jButtonNetworkGame" min="-2" pref="222" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonNetworkHostGame" min="-2" pref="222" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonNetworkClientGame" min="-2" pref="222" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,12 +48,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jLabelWelcomeBanner" min="-2" pref="74" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonLocalGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                  <Component id="jButtonNetworkGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="jButtonNetworkHostGame" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="jButtonNetworkClientGame" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,15 +69,15 @@
         <Property name="text" type="java.lang.String" value="Welcome to Euchre, which type of game do you wish to play?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonNetworkGame">
+    <Component class="javax.swing.JButton" name="jButtonNetworkHostGame">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="DejaVu Sans" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Network Game"/>
+        <Property name="text" type="java.lang.String" value="Network Host Game"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="choseNetwork"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="choseNetwork,networkHost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonLocalGame">
@@ -86,6 +89,17 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="choseLoacal"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonNetworkClientGame">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Network Client Game"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="networkClient"/>
       </Events>
     </Component>
   </SubComponents>
