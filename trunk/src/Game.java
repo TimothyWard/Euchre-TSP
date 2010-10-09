@@ -1,3 +1,4 @@
+import euchre.gui.Welcome;
 import euchre.player.*;
 
 
@@ -34,6 +35,7 @@ public class Game {
 	 */
 	public void main(String [] args){
 		//declare new GUI window to ask if host or client
+		Welcome GUI = new Welcome();
 		//if host, pass to network, if client pass to network with host object
 		//declare a new round object and inform network to proceed
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
