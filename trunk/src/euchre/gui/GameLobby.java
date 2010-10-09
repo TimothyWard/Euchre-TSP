@@ -21,7 +21,7 @@ import java.awt.Toolkit;
 public class GameLobby extends javax.swing.JFrame {
 
     /** Creates new form GameLobby */
-    public GameLobby() {
+    public GameLobby(int numberOfPlayers, String hostName) {
         initComponents();
         centerScreen();
     }

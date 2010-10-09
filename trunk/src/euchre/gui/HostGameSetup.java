@@ -53,6 +53,11 @@ public class HostGameSetup extends javax.swing.JFrame {
         humanPlayerCount.setSelectedIndex(2);
 
         openLobbyButton.setText("Open Lobby");
+        openLobbyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                openLobby(evt);
+            }
+        });
         openLobbyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openLobbyButtonActionPerformed(evt);
@@ -103,6 +108,10 @@ public class HostGameSetup extends javax.swing.JFrame {
     private void openLobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLobbyButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_openLobbyButtonActionPerformed
+
+    private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
+        new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText()).setVisible(true);
+    }//GEN-LAST:event_openLobby
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
