@@ -2,6 +2,7 @@ package euchre.network;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -17,7 +18,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	Socket clientSocket = null;
 	PrintWriter out = null;
 	
-	String hostname = "rover-214-97.rovernet.mtu.edu";
+	String hostname = "localhost";
 	int port = 4444;
 	
 	boolean running = true;
@@ -38,12 +39,30 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 			
 			if(running){
 				
-				try {
+				
 					//create the new socket connection
-					clientSocket = new Socket(hostname, port);
+					try {
+						clientSocket = new Socket(hostname, port);
+					} catch (UnknownHostException e) {
+						// TODO Auto-generated catch block
+						System.out.println("blah");
+						running = false;
+						//e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+						System.out.println("Connection refused");
+						running = false;
+						break;
+					}
 					
 					//get reference to the output stream
-					out = new PrintWriter(clientSocket.getOutputStream(), true);
+					try {
+						out = new PrintWriter(clientSocket.getOutputStream(), true);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					System.out.println("connected to server");
 					
 					//send a message to the server
@@ -52,13 +71,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					
 					
 					
-				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			
 				
 				
 			}
