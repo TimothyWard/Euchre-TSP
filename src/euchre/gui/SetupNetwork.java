@@ -10,6 +10,10 @@ import java.awt.*;
 public class SetupNetwork extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
     * Constructs the form to interact with the setup of a network Game.
     */
     public SetupNetwork() {

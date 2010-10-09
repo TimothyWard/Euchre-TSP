@@ -10,6 +10,10 @@ import java.awt.*;
 public class SetupLocal extends javax.swing.JFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Constructs the form needed to setup a local Game.
 	 */
     public SetupLocal() {
