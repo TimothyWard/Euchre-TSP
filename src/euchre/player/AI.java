@@ -21,6 +21,7 @@ public class AI implements Player{
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
 	private int tricks;  				//Number of tricks won by the AI and its partner
+	private char team;
 
 
 	//	public static void main(String[] args) {
@@ -238,6 +239,13 @@ public class AI implements Player{
 
 	}
 
+	public char getTeam() {
+		return team;
+	}
+
+	public void setTeam(char team) {
+		this.team = team;
+	}
 
 
 
