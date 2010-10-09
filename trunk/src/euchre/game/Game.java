@@ -11,6 +11,8 @@ import euchre.network.*;
  */
 public class Game {
 	
+	//properties
+	GameManager GM = new GameManager();
 	
 	/**
 	 * This method is the first method called in the program. This method is 
@@ -38,6 +40,7 @@ public class Game {
 		if (choice == 'h'){
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
+		Player player = new Human();
 		}
 		else if(choice == 'c'){
 			ClientNetworkManager client = new ClientNetworkManager();
