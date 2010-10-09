@@ -10,4 +10,8 @@ public interface Player {
 	public char callSuit();
 	
 	public Card playCard();
+
+	public void setTeam(char c);
+	
+	public char getTeam();
 }
