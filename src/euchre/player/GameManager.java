@@ -17,6 +17,7 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck;
 	private Player curPlayer;
+	private int curRound = 1;
 	
 	private Round round = new Round();
 
@@ -70,29 +71,35 @@ public class GameManager {
 		}//End of calling suit
 		
 		
-//		for(round=1;round<6;round++){
-//			
-//			if(round==1){
-//				curPlayer = nextPlayer(dealer);
-//			}
-//			
-//			for(int i=0;i<4;i++){
-//				playedCards[i] = curPlayer.playCard();
-//				curPlayer=nextPlayer(curPlayer);
-//			}
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//		}
+		for(curRound=1;curRound<6;curRound++){
+			
+			Card[] playedCards = round.getCardsPlayed();
+			
+			if(curRound==1){
+				curPlayer = nextPlayer(dealer);
+			}
+			
+			for(int i=0;i<4;i++){
+				playedCards[i] = curPlayer.playCard();
+				curPlayer=nextPlayer(curPlayer);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 
+		
+		
+		dealer = nextPlayer(dealer);
+		
 	}//End of GameManager
 
 //	private Player findWinner() {
@@ -158,21 +165,26 @@ public class GameManager {
 
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
-
+													
 		for(int a=0;a<2;a++){								//Deals to each player twice
-			int draw=2;										//The number of cards to deal a player
+			
+			int draw=3;										//The number of cards to deal a player
+			
 			for(int i=0;i<4;i++){							//Deals to each player
-				curPlayer=nextPlayer(curPlayer);
-				for(int x=0;x<draw;x++){					//Deals the appropriate number of cards to each player
-					curPlayer.drawCard(deck.drawCard());	
-				}
-
+				
 				if(draw==2){								//If the previous player was dealt 2 cards,
 					draw=3;									//deal the next player 3 cards, and vice versa
 				}
 				else{
 					draw=2;
 				}
+				
+				curPlayer=nextPlayer(curPlayer);
+				for(int x=0;x<draw;x++){					//Deals the appropriate number of cards to each player
+					curPlayer.drawCard(deck.drawCard());	
+				}
+
+				
 
 			}
 		}
