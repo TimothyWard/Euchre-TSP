@@ -184,6 +184,10 @@ public class AI implements Player{
 
 	}
 
+	/**
+	 * Discards the given card.
+	 * @param c
+	 */
 	private void discard(Card c) {
 		// TODO Auto-generated method stub
 		
