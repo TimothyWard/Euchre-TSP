@@ -11,6 +11,9 @@
 
 package euchre.gui;
 
+import java.awt.Point;
+import java.awt.Toolkit;
+
 /**
  *
  * @author sdwilke
@@ -20,6 +23,20 @@ public class GameLobby extends javax.swing.JFrame {
     /** Creates new form GameLobby */
     public GameLobby() {
         initComponents();
+        centerScreen();
+    }
+
+    /**
+     * Moves the jFrame to the center of the screen
+     */
+    private void centerScreen(){
+        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
+        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+        int xSize = this.getSize().width;
+        int ySize = this.getSize().height;
+        Point p = new Point();
+        p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+        this.setLocation(p);
     }
 
     /** This method is called from within the constructor to
@@ -72,11 +89,11 @@ public class GameLobby extends javax.swing.JFrame {
 
         jLabel10.setText("Team: 1      2");
 
-        Player2Status.setText("...");
+        Player2Status.setText("...waiting");
 
-        Player3Status.setText("...");
+        Player3Status.setText("...waiting");
 
-        Player4Status.setText("...");
+        Player4Status.setText("...waiting");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

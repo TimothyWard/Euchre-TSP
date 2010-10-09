@@ -11,6 +11,9 @@
 
 package euchre.gui;
 
+import java.awt.Point;
+import java.awt.Toolkit;
+
 /**
  *
  * @author sdwilke
@@ -20,6 +23,20 @@ public class ClientGameSetup extends javax.swing.JFrame {
     /** Creates new form ClientGameSetup */
     public ClientGameSetup() {
         initComponents();
+        centerScreen();
+    }
+
+    /**
+     * Moves the jFrame to the center of the screen
+     */
+    private void centerScreen(){
+        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
+        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+        int xSize = this.getSize().width;
+        int ySize = this.getSize().height;
+        Point p = new Point();
+        p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+        this.setLocation(p);
     }
 
     /** This method is called from within the constructor to
