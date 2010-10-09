@@ -221,6 +221,18 @@ public class GameLobby extends javax.swing.JFrame {
 //      
 //    }
 
+    public void setPlayer2Status(String status){
+        Player2Status.setText(status);
+    }
+
+    public void setPlayer3Status(String status){
+        Player3Status.setText(status);
+    }
+
+    public void setPlayer4Status(String status){
+        Player4Status.setText(status);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Player2Status;
     private javax.swing.JLabel Player3Status;
