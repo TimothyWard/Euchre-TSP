@@ -15,7 +15,9 @@ public class Welcome extends javax.swing.JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	char choice = 'x';
+	
+	char choice = 'x'; // The variable storing the users gametype choice.
+	
 	/**
 	 * Construct a welcome screen.
 	 */
@@ -131,11 +133,9 @@ public class Welcome extends javax.swing.JFrame{
      /**
      * User chose a Local Game, so launch the setupLocal form so that they can setup their game.
      */
-    private void choseLoacal(java.awt.event.MouseEvent evt) {                             
-        //new SetupLocal().setVisible(true);
+    private void choseLoacal(java.awt.event.MouseEvent evt) {       
     	choice = 'a';
         this.setVisible(false);
-        //this.dispose();
     }
     
     /**
@@ -154,6 +154,14 @@ public class Welcome extends javax.swing.JFrame{
     	this.setVisible(false);   
     }
     
+    /**
+     * Returns the character associated with the gametype chosen by the user.
+     * 'x' - No option has been chosen yet, the user is still deciding.
+     * 'a' - The user has chosen to start a local game.
+     * 'c' - The user has chosen to be client to a network game.
+     * 'h' - The user has chosen to host a network game.
+     * @return The character associated with the gametype chosen by the user.
+     */
     public char getChoice(){
 		return choice;
     }
