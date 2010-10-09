@@ -28,8 +28,8 @@ public class AI implements Player{
 	 * calling other methods to complete the turn.
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		
+//	public static void main(String[] args) {
+//		
 //		while(isTurn==true){
 //			if(round==1 && trump != null){
 //				orderUp();
@@ -39,8 +39,8 @@ public class AI implements Player{
 //			}
 //
 //		}
-
-	}
+//
+//	}
 	
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
