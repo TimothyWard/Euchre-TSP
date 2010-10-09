@@ -35,7 +35,7 @@ public class AI implements Player{
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
-	 * @return True if the player orders up the suit, false otherwise
+	 * @return True if the player orders up the suit, false if they pass
 	 */
 	public boolean orderUp(Card c){
 
@@ -54,7 +54,6 @@ public class AI implements Player{
 		else{
 			return false;
 		}
-
 
 	}
 
