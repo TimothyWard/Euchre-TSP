@@ -82,7 +82,7 @@ public class AI implements Player{
 	}
 
 	/**
-	 * Plays a card. Determines if it is leading for following, and acts accordingly.
+	 * Plays a card. Determines if it is leading or following, and acts accordingly.
 	 * @param c The card to be played by the AI.
 	 */
 	public Card playCard(){
