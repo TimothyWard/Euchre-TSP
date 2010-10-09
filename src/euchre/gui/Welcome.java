@@ -1,5 +1,6 @@
 package euchre.gui;
 import java.awt.*;
+import euchre.game.Game;
   
 /**
  * Welcomes the user to the euchre program, and asks them whether they would like to play
@@ -14,6 +15,7 @@ public class Welcome extends javax.swing.JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	char choice = 'x';
 	/**
 	 * Construct a welcome screen.
 	 */
@@ -130,23 +132,30 @@ public class Welcome extends javax.swing.JFrame{
      * User chose a Local Game, so launch the setupLocal form so that they can setup their game.
      */
     private void choseLoacal(java.awt.event.MouseEvent evt) {                             
-        new SetupLocal().setVisible(true);
+        //new SetupLocal().setVisible(true);
+    	choice = 'a';
         this.setVisible(false);
-        this.dispose();
+        //this.dispose();
     }
     
     /**
      * User chose a Host a Network Game
      */
     private void networkHost(java.awt.event.MouseEvent evt) {
-        
+    	choice = 'h';
+        this.setVisible(false);
     }
     
     /**
      * User chose a be a client to a Network Game.
      */
     private void networkClient(java.awt.event.MouseEvent evt) {
-        
+    	choice = 'c';
+    	this.setVisible(false);   
+    }
+    
+    public char getChoice(){
+		return choice;
     }
 
     // Variables declaration - do not modify
