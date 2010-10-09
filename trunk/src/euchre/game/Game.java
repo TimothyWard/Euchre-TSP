@@ -20,8 +20,13 @@ public class Game {
 	public static void main(String [] args){
 		System.out.println("Game Run");
 		//declare new GUI window to ask if host or client
-		Welcome GUI = new Welcome(this);
+		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
+		while (GUI.getChoice() == 'x'){
+			//Do nothing, user is deciding game type.
+		}
+		char choice = GUI.getChoice();
+		GUI.dispose();
 		//if host, pass to network, if client pass to network with host object
 		//declare a new round object and inform network to proceed
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
