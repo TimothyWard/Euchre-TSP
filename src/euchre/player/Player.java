@@ -4,8 +4,6 @@ public interface Player {
 	Card[] hand = new Card[5];
 	public void drawCard(Card c);
 	
-	public void setTurn();
-	
 	public boolean orderUp(Card c);
 
 	public char callSuit();
