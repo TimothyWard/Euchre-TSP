@@ -17,9 +17,10 @@ public class EuchreConnectionThread extends Thread {
 	
 	private boolean running = true;
 
-	public EuchreConnectionThread(String name) {
+	public EuchreConnectionThread(String name, Socket s) {
 		super(name);
 		threadName = name;
+		socket = s;
 	}
 
 	public void run() {

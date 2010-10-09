@@ -1,5 +1,6 @@
 package euchre.network;
 
+
 public class TestClass {
 
 	/**
@@ -7,15 +8,27 @@ public class TestClass {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		ServerNetworkManager network = new ServerNetworkManager();
-		network.start();
+		
+		
+
+		
+		
+		
+		
+		ServerNetworkManager server = new ServerNetworkManager();
+		server.start();
+		
+		//ClientNetworkManager client = new ClientNetworkManager();
+		//client.start();
+		
+		/*
 		
 		for(int i = 0; i<1000; i++)
 		{
 			System.out.println("Main outputting");
 			Thread.sleep(500);
 		}
-		
+		*/
 		
 	}
 
