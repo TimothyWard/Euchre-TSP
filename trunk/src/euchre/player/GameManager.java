@@ -1,6 +1,7 @@
 package euchre.player;
 
 import euchre.game.*;
+import euchre.gui.*;
 
 /**
  * 
@@ -15,14 +16,28 @@ public class GameManager {
 	private Player player1, player2, player3, player4;
 	private Player dealer = player1;
 	private Card upCard;
-	private Deck deck;
+	private Deck deck = new Deck();
 	private Player curPlayer;
 	private int curRound = 1;
 	
 	private Round round = new Round();
+	private HostGameSetup hostSetup = new HostGameSetup();
 
+	
+//	public static void main(String[] args) {
+//		GameManager game = new GameManager();
+//		Player player = new Human();
+//		Player aiPlayer = new AI();
+//		game.setPlayer(player);
+//		game.setPlayer(aiPlayer);
+//	}
+	
 
 	public GameManager() {
+	
+	}
+	
+	public void setTrump(){
 		
 		player1.setTeam('1');
 		player2.setTeam('2');
@@ -125,6 +140,7 @@ public class GameManager {
 	public void setPlayer(Player p){
 		if(player1==null){
 			player1=p;
+			hostSetup.setVisible(true);
 		}
 		else if(player2==null){
 			player2=p;
