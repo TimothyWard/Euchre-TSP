@@ -6,6 +6,7 @@ public interface Player {
 	
 	public void setTurn();
 	
-	public boolean orderUp();
+	public boolean orderUp(Card c);
 
+	public char callSuit();
 }
