@@ -2,12 +2,17 @@ package euchre.gui;
 
 import java.awt.*;
 
+import euchre.player.Human;
+
 /**
  *
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
  */
 public class HostGameSetup extends javax.swing.JFrame {
+	
+	int AIs = -1;
+	int humans = -1;
 
     /** Creates new form HostGameSetup */
     public HostGameSetup() {
@@ -111,6 +116,10 @@ public class HostGameSetup extends javax.swing.JFrame {
 
     private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
         new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText()).setVisible(true);
+        humans = humanPlayerCount.getSelectedIndex()+1;
+        AIs = 3-humans;
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_openLobby
 
 
