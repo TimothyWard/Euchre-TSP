@@ -51,10 +51,10 @@ public class Game {
 	 * @return Team The winning team
 	 */
 	public Team gameWinner(){
-		if(we.score==10){
+		if(we.score == 10){
 			return we;
 		}
-		else if(they.score==10){
+		else if(they.score == 10){
 			return they;
 		}
 		else{
