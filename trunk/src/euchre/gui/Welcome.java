@@ -7,7 +7,7 @@ import java.awt.*;
  *
  * @author Neil MacBay (nmmacbay)
  *
- */ 
+ */
 public class Welcome extends javax.swing.JFrame{
 
 	/**
