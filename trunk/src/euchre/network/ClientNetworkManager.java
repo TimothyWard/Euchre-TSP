@@ -11,9 +11,9 @@ import java.net.Socket;
  */
 public class ClientNetworkManager extends NetworkManager {
 
+	private EuchreClient self;
 	
-	
-	public ClientNetworkManager(){
+	public ClientNetworkManager(EuchreClient e){
 		super();
 		
 	}
