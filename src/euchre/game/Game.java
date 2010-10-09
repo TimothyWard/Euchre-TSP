@@ -11,8 +11,6 @@ import euchre.network.*;
  */
 public class Game {
 	
-	//properties
-	GameManager GM = new GameManager();
 	
 	/**
 	 * This method is the first method called in the program. This method is 
@@ -21,6 +19,7 @@ public class Game {
 	 * @param args A String array.
 	 */
 	public static void main(String [] args){
+		GameManager GM = new GameManager();
 		System.out.println("Game Run");
 		//declare new GUI window to ask if host or client
 		Welcome GUI = new Welcome();
@@ -40,11 +39,26 @@ public class Game {
 		if (choice == 'h'){
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
-		Player player = new Human();
+		GM.nextPlayer(new Human());
 		}
 		else if(choice == 'c'){
+			// add URL String argument to ClientNetworkManager to change host location
 			ClientNetworkManager client = new ClientNetworkManager();
 			client.start();
+		}
+		else if(choice == 'a'){
+			ServerNetworkManager network = new ServerNetworkManager();
+			network.start();
+			GM.nextPlayer(new Human());
+			ClientNetworkManager AI1 = new ClientNetworkManager();
+			AI1.start();
+			GM.nextPlayer(new AI());
+			ClientNetworkManager AI2 = new ClientNetworkManager();
+			AI2.start();
+			GM.nextPlayer(new AI());
+			ClientNetworkManager AI3 = new ClientNetworkManager();
+			AI3.start();
+			GM.nextPlayer(new AI());
 		}
 		//declare a new round object and inform network to proceed
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
