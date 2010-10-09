@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 
 
 /**
- * Manages the client's network connection
+ * A thread to manage the client's network connection
  * 
  * @author mdhelgen
  *
@@ -17,6 +17,9 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	Socket clientSocket = null;
 	PrintWriter out = null;
 	
+	String hostname = "rover-214-97.rovernet.mtu.edu";
+	int port = 4444;
+	
 	boolean running = true;
 	
 	public ClientNetworkManager(){
@@ -24,15 +27,31 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		
 	}
 	
-	
+	/**
+	 * The thread's actions. Make a socket connection to the server and send a string
+	 * 
+	 */
 	public void run(){
 		
+		//run this loop continually
 		while(true){
+			
 			if(running){
 				
 				try {
-					clientSocket = new Socket("rover-214-97.rovernet.mtu.edu",4444);
+					//create the new socket connection
+					clientSocket = new Socket(hostname, port);
+					
+					//get reference to the output stream
 					out = new PrintWriter(clientSocket.getOutputStream(), true);
+					System.out.println("connected to server");
+					
+					//send a message to the server
+					out.println("CLIENT");
+					running = false;
+					
+					
+					
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -41,9 +60,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					e.printStackTrace();
 				}
 				
-				System.out.println("socket created");
-				out.println("CLIENT");
-				running = false;
+				
 			}
 			
 			
