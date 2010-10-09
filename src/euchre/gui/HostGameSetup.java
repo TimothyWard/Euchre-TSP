@@ -2,8 +2,6 @@ package euchre.gui;
 
 import java.awt.*;
 
-import euchre.player.Human;
-
 /**
  *
  * @author sdwilke
@@ -12,7 +10,6 @@ import euchre.player.Human;
 public class HostGameSetup extends javax.swing.JFrame {
 	
 	int AIs = -1;
-	int humans = -1;
 
     /** Creates new form HostGameSetup */
     public HostGameSetup() {
@@ -116,12 +113,13 @@ public class HostGameSetup extends javax.swing.JFrame {
 
     private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
         new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText()).setVisible(true);
-        humans = humanPlayerCount.getSelectedIndex()+1;
-        AIs = 3-humans;
+        AIs = 3-humanPlayerCount.getSelectedIndex()+1;
         this.setVisible(false);
-        this.dispose();
     }//GEN-LAST:event_openLobby
 
+    public int getAIs(){
+    	return AIs;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox humanPlayerCount;

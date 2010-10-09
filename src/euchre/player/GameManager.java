@@ -33,6 +33,20 @@ public class GameManager {
 //	}
 	
 
+	/**
+	 * @return the hostSetup
+	 */
+	public HostGameSetup getHostSetup() {
+		return hostSetup;
+	}
+
+	/**
+	 * @param hostSetup the hostSetup to set
+	 */
+	public void setHostSetup(HostGameSetup hostSetup) {
+		this.hostSetup = hostSetup;
+	}
+
 	public GameManager() {
 	
 	}
