@@ -51,23 +51,381 @@ public class GameBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonYourCard1 = new javax.swing.JButton();
+        jButtonYourCard2 = new javax.swing.JButton();
+        jButtonYourCard4 = new javax.swing.JButton();
+        jButtonYourCard5 = new javax.swing.JButton();
+        jButtonYourCard3 = new javax.swing.JButton();
+        jButtonYourPlayed = new javax.swing.JButton();
+        jButtonRPlayed = new javax.swing.JButton();
+        jButtonLPlayed = new javax.swing.JButton();
+        jButtonUPlayed = new javax.swing.JButton();
+        jButtonUCard2 = new javax.swing.JButton();
+        jButtonUCard3 = new javax.swing.JButton();
+        jButtonUCard1 = new javax.swing.JButton();
+        jButtonUCard4 = new javax.swing.JButton();
+        jButtonUCard5 = new javax.swing.JButton();
+        jButtonLCard3 = new javax.swing.JButton();
+        jButtonLCard4 = new javax.swing.JButton();
+        jButtonLCard5 = new javax.swing.JButton();
+        jButtonLCard2 = new javax.swing.JButton();
+        jButtonLCard1 = new javax.swing.JButton();
+        jButtonRCard5 = new javax.swing.JButton();
+        jButtonRCard4 = new javax.swing.JButton();
+        jButtonRCard3 = new javax.swing.JButton();
+        jButtonRCard2 = new javax.swing.JButton();
+        jButtonRCard1 = new javax.swing.JButton();
+        jLabelUPlayerName = new javax.swing.JLabel();
+        jLabelLPlayerName = new javax.swing.JLabel();
+        jLabelRPlayerName = new javax.swing.JLabel();
+        jLabelYTeamPoints = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabelYTeamTricks = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabelOTeamPoints = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabelOTeamTricks = new javax.swing.JLabel();
+        jButtonTurnedCard = new javax.swing.JButton();
+        jButtonPass = new javax.swing.JButton();
+        jButtonPickUp = new javax.swing.JButton();
+        jLabelYourName = new javax.swing.JLabel();
+        jLabelDealer = new javax.swing.JLabel();
+        jLabelPassInfo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonYourCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonYourCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonYourCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonYourCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonYourCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonYourPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonRPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonLPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonUCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+
+        jButtonLCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonLCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonLCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonLCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonLCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonRCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonRCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonRCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonRCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jButtonRCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"))); // NOI18N
+
+        jLabelUPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUPlayerName.setText("Player name");
+
+        jLabelLPlayerName.setText("Player name");
+
+        jLabelRPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelRPlayerName.setText("Player name");
+
+        jLabelYTeamPoints.setText("0");
+
+        jLabel7.setText("Tricks:");
+
+        jLabelYTeamTricks.setText("0");
+
+        jLabel5.setText("Points:");
+
+        jLabel9.setText("Points:");
+
+        jLabelOTeamPoints.setText("0");
+
+        jLabel11.setText("Tricks:");
+
+        jLabelOTeamTricks.setText("0");
+
+        jButtonTurnedCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/jc.png"))); // NOI18N
+
+        jButtonPass.setText("Pass");
+
+        jButtonPickUp.setText("Pick it up");
+
+        jLabelYourName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelYourName.setText("Player name");
+
+        jLabelDealer.setText("Your Deal:");
+
+        jLabelPassInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPassInfo.setText("(Player) passed, Your call");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelLPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 508, Short.MAX_VALUE)
+                        .addComponent(jLabelRPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonLCard3)
+                                    .addComponent(jButtonLCard2)
+                                    .addComponent(jButtonLCard1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel9))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelOTeamTricks)
+                                            .addComponent(jLabelOTeamPoints))))
+                                .addGap(138, 138, 138)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(99, 99, 99)
+                                        .addComponent(jButtonLPlayed)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButtonYourPlayed)
+                                            .addComponent(jButtonUPlayed))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButtonRPlayed)
+                                                .addGap(93, 93, 93))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelDealer)
+                                                    .addComponent(jButtonTurnedCard))
+                                                .addGap(46, 46, 46))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonUCard1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonUCard2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonUCard3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonUCard4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonUCard5))
+                                    .addComponent(jLabelUPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonLCard4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButtonLCard5)
+                                .addGap(262, 262, 262)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonPass, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonPickUp, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelPassInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(106, 106, 106))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabelYourName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jButtonYourCard1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonYourCard2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonYourCard3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonYourCard4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButtonYourCard5))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonRCard3)
+                                        .addComponent(jButtonRCard1)
+                                        .addComponent(jButtonRCard4)
+                                        .addComponent(jButtonRCard5))
+                                    .addComponent(jButtonRCard2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelYTeamTricks)
+                                    .addComponent(jLabelYTeamPoints))))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jButtonRCard1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonRCard2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonRCard3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonRCard4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonRCard5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRPlayerName)
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelYTeamPoints)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabelYTeamTricks)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabelOTeamPoints))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabelOTeamTricks))
+                                .addGap(45, 45, 45)
+                                .addComponent(jButtonLCard1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonUCard5)
+                                    .addComponent(jButtonUCard3)
+                                    .addComponent(jButtonUCard2)
+                                    .addComponent(jButtonUCard1)
+                                    .addComponent(jButtonUCard4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelUPlayerName)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonLCard2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonLCard3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonLCard4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonLCard5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelLPlayerName))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jButtonUPlayed)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonYourPlayed))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonRPlayed)
+                                            .addComponent(jButtonLPlayed))
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabelDealer)
+                                        .addGap(18, 18, 18)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                                .addComponent(jLabelPassInfo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonPickUp)
+                                    .addComponent(jButtonPass))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonYourCard5)
+                                    .addComponent(jButtonYourCard4)
+                                    .addComponent(jButtonYourCard3)
+                                    .addComponent(jButtonYourCard2)
+                                    .addComponent(jButtonYourCard1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelYourName)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(453, Short.MAX_VALUE)
+                .addComponent(jButtonTurnedCard)
+                .addGap(214, 214, 214))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonLCard1;
+    private javax.swing.JButton jButtonLCard2;
+    private javax.swing.JButton jButtonLCard3;
+    private javax.swing.JButton jButtonLCard4;
+    private javax.swing.JButton jButtonLCard5;
+    private javax.swing.JButton jButtonLPlayed;
+    private javax.swing.JButton jButtonPass;
+    private javax.swing.JButton jButtonPickUp;
+    private javax.swing.JButton jButtonRCard1;
+    private javax.swing.JButton jButtonRCard2;
+    private javax.swing.JButton jButtonRCard3;
+    private javax.swing.JButton jButtonRCard4;
+    private javax.swing.JButton jButtonRCard5;
+    private javax.swing.JButton jButtonRPlayed;
+    private javax.swing.JButton jButtonTurnedCard;
+    private javax.swing.JButton jButtonUCard1;
+    private javax.swing.JButton jButtonUCard2;
+    private javax.swing.JButton jButtonUCard3;
+    private javax.swing.JButton jButtonUCard4;
+    private javax.swing.JButton jButtonUCard5;
+    private javax.swing.JButton jButtonUPlayed;
+    private javax.swing.JButton jButtonYourCard1;
+    private javax.swing.JButton jButtonYourCard2;
+    private javax.swing.JButton jButtonYourCard3;
+    private javax.swing.JButton jButtonYourCard4;
+    private javax.swing.JButton jButtonYourCard5;
+    private javax.swing.JButton jButtonYourPlayed;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDealer;
+    private javax.swing.JLabel jLabelLPlayerName;
+    private javax.swing.JLabel jLabelOTeamPoints;
+    private javax.swing.JLabel jLabelOTeamTricks;
+    private javax.swing.JLabel jLabelPassInfo;
+    private javax.swing.JLabel jLabelRPlayerName;
+    private javax.swing.JLabel jLabelUPlayerName;
+    private javax.swing.JLabel jLabelYTeamPoints;
+    private javax.swing.JLabel jLabelYTeamTricks;
+    private javax.swing.JLabel jLabelYourName;
     // End of variables declaration//GEN-END:variables
 
 }
