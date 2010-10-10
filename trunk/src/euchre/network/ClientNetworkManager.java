@@ -61,7 +61,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 						clientSocket = new Socket(hostname, port);
 					} catch (UnknownHostException e) {
 						// TODO Auto-generated catch block
-						System.out.println("blah");
+						System.out.println("Unknown Host:" + hostname);
 						running = false;
 						//e.printStackTrace();
 					} catch (IOException e) {
