@@ -113,7 +113,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
 		new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText()).setVisible(true);
-		AIs = 3-humanPlayerCount.getSelectedIndex()+1;
+		AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
 		System.out.println(AIs);
 		this.setVisible(false);
 	}//GEN-LAST:event_openLobby
