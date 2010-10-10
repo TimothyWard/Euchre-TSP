@@ -64,6 +64,7 @@ public class GameLobby extends javax.swing.JFrame {
         jRadioBPlayer4Team2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Game Lobby");
 
         jButton1.setText("Start Game");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {

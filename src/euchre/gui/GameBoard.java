@@ -94,6 +94,7 @@ public class GameBoard extends javax.swing.JFrame {
         jLabelPassInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Euchre Game Board");
 
         jButtonYourCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
 
