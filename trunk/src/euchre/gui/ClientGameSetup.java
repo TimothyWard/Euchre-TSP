@@ -1,14 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ClientGameSetup.java
- *
- * Created on Oct 9, 2010, 4:17:51 PM
- */
-
 package euchre.gui;
 
 import java.awt.Point;
@@ -17,6 +6,7 @@ import java.awt.Toolkit;
 /**
  *
  * @author sdwilke
+ * @author Neil MacBay(nmmacbay)
  */
 public class ClientGameSetup extends javax.swing.JFrame {
 
@@ -51,8 +41,10 @@ public class ClientGameSetup extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PlayerName = new javax.swing.JTextField();
         StartButton = new javax.swing.JButton();
+        jLabelWaitingStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Client Game Setup");
 
         jLabel1.setText("Player Name:");
 
@@ -63,33 +55,47 @@ public class ClientGameSetup extends javax.swing.JFrame {
         });
 
         StartButton.setText("Start");
+        StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ready(evt);
+            }
+        });
+
+        jLabelWaitingStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelWaitingStatus.setText("Waiting for other Players...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(47, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(jLabelWaitingStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabelWaitingStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(StartButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -98,6 +104,11 @@ public class ClientGameSetup extends javax.swing.JFrame {
     private void PlayerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PlayerNameActionPerformed
+
+    private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
+        new GameBoard().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ready
 
 //    /**
 //    * @param args the command line arguments
@@ -114,6 +125,7 @@ public class ClientGameSetup extends javax.swing.JFrame {
     private javax.swing.JTextField PlayerName;
     private javax.swing.JButton StartButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelWaitingStatus;
     // End of variables declaration//GEN-END:variables
 
 }
