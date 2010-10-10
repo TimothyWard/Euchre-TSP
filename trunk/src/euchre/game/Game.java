@@ -19,9 +19,7 @@ public class Game {
 	 * @param args A String array.
 	 */
 	public static void main(String [] args){
-		//start network connection
-		ServerNetworkManager network = new ServerNetworkManager();
-		network.start();
+		
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
@@ -64,6 +62,14 @@ public class Game {
 	 * @param GUI
 	 */
 	public static void createHost(GameManager GM, Welcome GUI){
+		
+		//Matt changed:
+		//Moved this from main() to here
+		//Otherwise all clients would also create themselves as servers
+		//start network connection
+		ServerNetworkManager network = new ServerNetworkManager();
+		network.start();
+		
 		GM.setPlayer(new Human());
 		while (GM.getHostSetup().getAIs() ==-1){
 			//Do nothing, user is deciding game type.
