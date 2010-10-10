@@ -38,9 +38,15 @@ public class Game {
 		GUI.setVisible(false);
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
-		if (choice == 'h') createHost(GM, GUI);
-		else if(choice == 'c') createClient(GM, GUI);
-		else if(choice == 'a') createLocalOnlyGame(GM);
+		if (choice == 'h'){
+			createHost(GM, GUI);
+		}
+		else if(choice == 'c'){
+			createClient(GM, GUI);
+		}
+		else if(choice == 'a'){
+			createLocalOnlyGame(GM);
+		}
 		GUI.dispose();
 		GM.getHostSetup().dispose();
 		//declare a new round object and inform network to proceed
