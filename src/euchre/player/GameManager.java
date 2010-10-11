@@ -23,7 +23,7 @@ public class GameManager {
 	private Round round = new Round();
 	private HostGameSetup hostSetup = new HostGameSetup();
 
-	
+	//Test class
 //	public static void main(String[] args) {
 //		GameManager game = new GameManager();
 //		Player player = new Human();
@@ -52,11 +52,6 @@ public class GameManager {
 	}
 	
 	public void setTrump(){
-		
-		player1.setTeam('1');
-		player2.setTeam('2');
-		player3.setTeam('1');
-		player4.setTeam('2');
 
 		deal();															//Start by dealing the cards...
 
@@ -155,15 +150,19 @@ public class GameManager {
 		if(player1==null){
 			player1=p;
 			hostSetup.setVisible(true);
+			player1.setTeam('1');
 		}
 		else if(player2==null){
 			player2=p;
+			player2.setTeam('2');
 		}
 		else if(player3==null){
 			player3=p;
+			player3.setTeam('1');
 		}
 		else if(player4==null){
 			player4=p;
+			player4.setTeam('2');
 		}
 
 	}
