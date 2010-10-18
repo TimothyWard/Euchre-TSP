@@ -28,8 +28,13 @@ public class GameManager {
 //		GameManager game = new GameManager();
 //		Player player = new Human();
 //		Player aiPlayer = new AI();
+//		Player aiPlayer2 = new AI();
+//		Player aiPlayer3 = new AI();
 //		game.setPlayer(player);
 //		game.setPlayer(aiPlayer);
+//		game.setPlayer(aiPlayer2);
+//		game.setPlayer(aiPlayer3);
+//		game.deal();
 //	}
 	
 
@@ -64,7 +69,7 @@ public class GameManager {
 				round.setTeamWhoOrdered(curPlayer.getTeam());
 				round.setTrumpSuit(upCard.getSuit());
 				deck.disCardCard(dealer.drawCard(upCard));				//If a player orders it up, the dealer must pick up the card
-				//discard needed										//and discard a card
+				//FIX													//and discard a card
 			}
 			else{
 				curPlayer=nextPlayer(curPlayer);
@@ -84,6 +89,7 @@ public class GameManager {
 				else{													//Otherwise, pass to the next person.
 					curPlayer=nextPlayer(curPlayer);
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
+						//FIX
 						while(curPlayer.callSuit()==0){
 							round.setPlayerWhoOrdered(curPlayer);
 							round.setTeamWhoOrdered(curPlayer.getTeam());
@@ -126,20 +132,6 @@ public class GameManager {
 		
 	}//End of GameManager
 
-//	private Player findWinner() {
-//		
-//		Player winner = player1;
-//		Card highest = playedCards[0];
-//		char suitLed = playedCards[0].getSuit();
-//		
-//		for(int i=0;i<4;i++){
-//			if(playedCards[i].getSuit()==suitLed && playedCards[i].getCardValue()>highest.getCardValue()){
-//				highest=playedCards[i];
-//				
-//			}
-//		}
-//		return null;
-//	}
 
 	/**
 	 * Adds a given player. If there is no host (player1), add it there first. Then, add any new players into the
