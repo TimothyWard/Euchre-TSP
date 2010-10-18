@@ -7,9 +7,9 @@ public class Human implements Player{
 	}
 
 	@Override
-	public void drawCard(Card c) {
+	public Card drawCard(Card c) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
