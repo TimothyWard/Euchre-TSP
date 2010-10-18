@@ -16,7 +16,7 @@ package euchre.player;
 public class AI implements Player{
 
 
-	private Card[] hand;
+	private Card[] hand = new Card[5];
 	private Card card1, card2, card3; 	//Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
@@ -174,6 +174,7 @@ public class AI implements Player{
 	 */
 	@Override
 	public Card drawCard(Card c) {
+		//FIX
 		if(hand.length<5){
 			hand[hand.length-1] = c;
 			return null;
