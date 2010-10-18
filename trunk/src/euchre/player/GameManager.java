@@ -63,7 +63,7 @@ public class GameManager {
 				round.setPlayerWhoOrdered(curPlayer);
 				round.setTeamWhoOrdered(curPlayer.getTeam());
 				round.setTrumpSuit(upCard.getSuit());
-				dealer.drawCard(upCard);								//If a player orders it up, the dealer must pick up the card
+				deck.disCardCard(dealer.drawCard(upCard));				//If a player orders it up, the dealer must pick up the card
 				//discard needed										//and discard a card
 			}
 			else{
@@ -146,6 +146,8 @@ public class GameManager {
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
+	
+	//public void setPlayer(Player p, int num, char team){}
 	public void setPlayer(Player p){
 		if(player1==null){
 			player1=p;
