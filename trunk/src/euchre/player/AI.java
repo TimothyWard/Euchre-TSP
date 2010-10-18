@@ -173,13 +173,14 @@ public class AI implements Player{
 	 * @param c The card to add
 	 */
 	@Override
-	public void drawCard(Card c) {
+	public Card drawCard(Card c) {
 		if(hand.length<5){
 			hand[hand.length-1] = c;
+			return null;
 		}
 		else{
-			discard(lowestCard(false));
 			hand[hand.length-1] = c;
+			return discard(lowestCard(false));
 		}
 
 	}
@@ -188,8 +189,9 @@ public class AI implements Player{
 	 * Discards the given card.
 	 * @param c
 	 */
-	private void discard(Card c) {
+	private Card discard(Card c) {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 
