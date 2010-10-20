@@ -22,6 +22,7 @@ public class AI implements Player{
 	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
 	private int tricks;  				//Number of tricks won by the AI and its partner
 	private char team;
+	private int numCards = 0;
 
 
 	//	public static void main(String[] args) {
@@ -175,13 +176,15 @@ public class AI implements Player{
 	@Override
 	public Card drawCard(Card c) {
 		//FIX
-		if(hand.length<5){
-			hand[hand.length-1] = c;
+		if(numCards<5){
+			hand[numCards] = c;
 			return null;
 		}
 		else{
+			
 			hand[hand.length-1] = c;
-			return discard(lowestCard(false));
+			//FIX
+			return discard();
 		}
 
 	}
@@ -190,7 +193,7 @@ public class AI implements Player{
 	 * Discards the given card.
 	 * @param c
 	 */
-	private Card discard(Card c) {
+	public Card discard() {
 		// TODO Auto-generated method stub
 		return null;
 		
