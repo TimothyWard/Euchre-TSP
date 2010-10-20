@@ -19,24 +19,25 @@ public class GameManager {
 	private Deck deck = new Deck();
 	private Player curPlayer;
 	private int curRound = 1;
-	
+
 	private Round round = new Round();
 	private HostGameSetup hostSetup = new HostGameSetup();
 
 	//Test class
-//	public static void main(String[] args) {
-//		GameManager game = new GameManager();
-//		Player player = new Human();
-//		Player aiPlayer = new AI();
-//		Player aiPlayer2 = new AI();
-//		Player aiPlayer3 = new AI();
-//		game.setPlayer(player);
-//		game.setPlayer(aiPlayer);
-//		game.setPlayer(aiPlayer2);
-//		game.setPlayer(aiPlayer3);
-//		game.deal();
-//	}
-	
+		public static void main(String[] args) {
+			GameManager game = new GameManager();
+			Player player = new Human();
+			Player aiPlayer = new AI();
+			Player aiPlayer2 = new AI();
+			Player aiPlayer3 = new AI();
+			game.setPlayer(player);
+			game.setPlayer(aiPlayer);
+			game.setPlayer(aiPlayer2);
+			game.setPlayer(aiPlayer3);
+			game.deal();
+			game.setTrump();
+		}
+
 
 	/**
 	 * @return the hostSetup
@@ -53,9 +54,9 @@ public class GameManager {
 	}
 
 	public GameManager() {
-	
+
 	}
-	
+
 	public void setTrump(){
 
 		deal();															//Start by dealing the cards...
@@ -68,8 +69,8 @@ public class GameManager {
 				round.setPlayerWhoOrdered(curPlayer);
 				round.setTeamWhoOrdered(curPlayer.getTeam());
 				round.setTrumpSuit(upCard.getSuit());
-				deck.disCardCard(dealer.drawCard(upCard));				//If a player orders it up, the dealer must pick up the card
-				//FIX													//and discard a card
+				deck.disCardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
+				dealer.drawCard(upCard);								//and pick up the upCard
 			}
 			else{
 				curPlayer=nextPlayer(curPlayer);
@@ -79,7 +80,7 @@ public class GameManager {
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer==dealer){									
 			deck.disCardCard(upCard);									//...and discard the upCard...
-			
+
 			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
 					round.setPlayerWhoOrdered(curPlayer);
@@ -98,38 +99,38 @@ public class GameManager {
 					}
 				}
 			}
-		}//End of calling suit
-		
-		
+		}//End of calling trump
+
+
 		for(curRound=1;curRound<6;curRound++){
-			
+
 			Card[] playedCards = round.getCardsPlayed();
-			
+
 			if(curRound==1){
 				curPlayer = nextPlayer(dealer);
 			}
-			
+
 			for(int i=0;i<4;i++){
 				playedCards[i] = curPlayer.playCard();
 				curPlayer=nextPlayer(curPlayer);
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
+
+
+
+
 		}
 
-		
-		
+
+
 		dealer = nextPlayer(dealer);
-		
+
 	}//End of GameManager
 
 
@@ -138,8 +139,8 @@ public class GameManager {
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-	
-	//public void setPlayer(Player p, int num, char team){}
+
+	//public void setPlayer(Player p, int num, char team){
 	public void setPlayer(Player p){
 		if(player1==null){
 			player1=p;
@@ -169,26 +170,26 @@ public class GameManager {
 
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
-													
+
 		for(int a=0;a<2;a++){								//Deals to each player twice
-			
+
 			int draw=3;										//The number of cards to deal a player
-			
+
 			for(int i=0;i<4;i++){							//Deals to each player
-				
+
 				if(draw==2){								//If the previous player was dealt 2 cards,
 					draw=3;									//deal the next player 3 cards, and vice versa
 				}
 				else{
 					draw=2;
 				}
-				
+
 				curPlayer=nextPlayer(curPlayer);
 				for(int x=0;x<draw;x++){					//Deals the appropriate number of cards to each player
 					curPlayer.drawCard(deck.drawCard());	
 				}
 
-				
+
 
 			}
 		}
