@@ -43,4 +43,10 @@ public class Human implements Player{
 		
 	}
 
+	@Override
+	public Card discard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
