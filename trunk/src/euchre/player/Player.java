@@ -14,4 +14,6 @@ public interface Player {
 	public void setTeam(char c);
 	
 	public char getTeam();
+
+	public Card discard();
 }
