@@ -77,7 +77,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Number of Human Players"/>
+        <Property name="text" type="java.lang.String" value="Number of Additional Human Players"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nameInput">
