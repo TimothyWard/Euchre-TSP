@@ -54,6 +54,7 @@ public class GameManager {
 //			game.setTeam(3, 1);
 //			game.setTeam(4, 1);
 //			game.setTrump();
+//			System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
 //			System.out.println("Upcard: " + game.upCard.suit);
 //			System.out.println("Suit picked: " + game.round.getTrumpSuit());
 //
@@ -84,6 +85,11 @@ public class GameManager {
 
 	}
 
+	/**
+	 * Determines the trump suit for the round. First asks each player if they want the dealer to pick up the card.
+	 * If none do, then it asks each player if they want to call suit. If none call suit, the dealer is forced to pick
+	 * the trump suit.
+	 */
 	public void setTrump(){
 
 		deal();															//Start by dealing the cards...
@@ -162,7 +168,7 @@ public class GameManager {
 			}
 			led=played[0].getSuit();
 
-			round.setHand(h, played, false, led);
+			round.setHand(h, played, led);
 		}
 
 		round.setRoundComplete(true);
@@ -175,8 +181,6 @@ public class GameManager {
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-
-	//public void setPlayer(Player p, int num, char team){
 	public void setPlayer(Player p){
 		if(p1==null){
 			p1=p;
@@ -194,10 +198,18 @@ public class GameManager {
 
 	}
 
+	/**
+	 * Returns a reference to team one
+	 * @return Team one
+	 */
 	public Team getTeamOne(){
 		return teamOne;
 	}
 
+	/**
+	 * Returns a reference to team two
+	 * @return Team two
+	 */
 	public Team getTeamTwo(){
 		return teamTwo;
 	}
