@@ -25,36 +25,36 @@ public class GameManager {
 	private HostGameSetup hostSetup = new HostGameSetup();
 
 	//Test class
-	public static void main(String[] args) {
-		GameManager game = new GameManager();
-		Player player = new Human();
-		Player player2 = new Human();
-		Player player3 = new Human();
-		Player player4 = new Human();
-		game.setPlayer(player);
-		game.setPlayer(player2);
-		game.setPlayer(player3);
-		game.setPlayer(player4);
-		game.deal();
-
-		System.out.println("Player 1's Hand:");
-		for(int i=0;i<5;i++){
-			System.out.println(((Human) player).getHand()[i]);
-		}
-		System.out.println("Player 2's Hand:");
-		for(int i=0;i<5;i++){
-			System.out.println(((Human) player).getHand()[i]);
-		}
-		System.out.println("Player 3's Hand:");
-		for(int i=0;i<5;i++){
-			System.out.println(((Human) player).getHand()[i]);
-		}
-		System.out.println("Player 4's Hand:");
-		for(int i=0;i<5;i++){
-			System.out.println(((Human) player).getHand()[i]);
-		}
-
-	}
+//	public static void main(String[] args) {
+//		GameManager game = new GameManager();
+//		Player player = new Human();
+//		Player player2 = new Human();
+//		Player player3 = new Human();
+//		Player player4 = new Human();
+//		game.setPlayer(player);
+//		game.setPlayer(player2);
+//		game.setPlayer(player3);
+//		game.setPlayer(player4);
+//		game.deal();
+//
+//		System.out.println("Player 1's Hand:");
+//		for(int i=0;i<5;i++){
+//			System.out.println(((Human) player).getHand()[i]);
+//		}
+//		System.out.println("Player 2's Hand:");
+//		for(int i=0;i<5;i++){
+//			System.out.println(((Human) player).getHand()[i]);
+//		}
+//		System.out.println("Player 3's Hand:");
+//		for(int i=0;i<5;i++){
+//			System.out.println(((Human) player).getHand()[i]);
+//		}
+//		System.out.println("Player 4's Hand:");
+//		for(int i=0;i<5;i++){
+//			System.out.println(((Human) player).getHand()[i]);
+//		}
+//
+//	}
 
 
 	/**
