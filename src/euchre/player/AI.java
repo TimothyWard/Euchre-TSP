@@ -253,13 +253,11 @@ public class AI implements Player{
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 
 	@Override
 	public void setName(String n) {
-		// TODO Auto-generated method stub
 		name = n;
 	}
 
