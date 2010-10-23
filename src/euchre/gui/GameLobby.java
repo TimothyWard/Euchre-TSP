@@ -3,6 +3,8 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sdwilke
@@ -220,8 +222,36 @@ public class GameLobby extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void StartGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartGame
-        new GameBoard().setVisible(true);
-        this.setVisible(false);
+        int team1Players = 0;
+        int team2Players = 0;
+        if(jRadioBPlayer1Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer2Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer3Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer4Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        
+        if(team1Players == team2Players){ //both = 2
+        	new GameBoard().setVisible(true);
+        	this.setVisible(false);
+        }
+        else{
+        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set 2 players to each team");
+        }
     }//GEN-LAST:event_StartGame
 
 //    /**
