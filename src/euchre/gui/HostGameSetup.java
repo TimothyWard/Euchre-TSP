@@ -2,7 +2,6 @@ package euchre.gui;
 
 import java.awt.*;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import euchre.player.GameManager;
@@ -15,10 +14,17 @@ import euchre.player.GameManager;
  */
 public class HostGameSetup extends javax.swing.JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int AIs = -1;
 	GameManager myManager;
 	
-	/** Creates new form HostGameSetup */
+	/** 
+	 * Creates new form HostGameSetup 
+	 * @param inManager the Game Manager object for the game
+	 */
 	public HostGameSetup(GameManager inManager) {
 		initComponents();
 		centerScreen();

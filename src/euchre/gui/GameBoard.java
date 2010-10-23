@@ -2,7 +2,6 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
-import javax.swing.JOptionPane;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
@@ -22,7 +21,8 @@ public class GameBoard extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 
 	/** 
-	 * Creates new form GameBoard 
+	 * Creates new form GameBoard
+	 * @param player the human player object being controlled from the game  board
 	 */
     public GameBoard(Player player){
     	humanPlayer = (Human) player;
@@ -497,7 +497,7 @@ public class GameBoard extends javax.swing.JFrame {
     	}
 
     }//GEN-LAST:event_card4Clicked
-
+    
     private void card5Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[4]);
@@ -516,6 +516,7 @@ public class GameBoard extends javax.swing.JFrame {
     	if(humanPlayer.isTurn()){
     		jButtonPass.setVisible(false);
     		jButtonPickUp.setVisible(false);
+    		
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
