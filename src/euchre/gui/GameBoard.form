@@ -260,7 +260,7 @@
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="117" max="32767" attributes="0"/>
+                              <EmptySpace pref="126" max="32767" attributes="0"/>
                               <Component id="jLabelPassInfo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -281,7 +281,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="471" max="32767" attributes="0"/>
@@ -298,6 +298,9 @@
           <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="card1Clicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonYourCard2">
       <Properties>
@@ -305,6 +308,9 @@
           <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="card2Clicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonYourCard4">
       <Properties>
@@ -312,6 +318,9 @@
           <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="card4Clicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonYourCard5">
       <Properties>
@@ -319,6 +328,9 @@
           <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="card5Clicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonYourCard3">
       <Properties>
@@ -326,6 +338,9 @@
           <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="card3Clicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonYourPlayed">
       <Properties>
@@ -528,11 +543,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pass"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="passButtonClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPickUp">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pick it up"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pickItUpButtonClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelYourName">
       <Properties>
