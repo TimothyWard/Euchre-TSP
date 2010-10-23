@@ -1,9 +1,7 @@
 package euchre.gui;
 
 import java.awt.*;
-
 import javax.swing.JOptionPane;
-
 import euchre.player.GameManager;
 
 /**
@@ -13,10 +11,6 @@ import euchre.player.GameManager;
  * @author Neil MacBay(nmmacbay)
  */
 public class HostGameSetup extends javax.swing.JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	int AIs = -1;
 	GameManager myManager;
