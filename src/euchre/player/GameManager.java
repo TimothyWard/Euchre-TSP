@@ -18,6 +18,8 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck = new Deck();
 	private Player curPlayer;
+	private Team we;
+	private Team they;
 
 	private Round round = new Round();
 	private HostGameSetup hostSetup = new HostGameSetup();
@@ -35,18 +37,22 @@ public class GameManager {
 		game.setPlayer(player4);
 		game.deal();
 
-		//			for(int i=0;i<5;i++){
-		//				System.out.println(((Human) player).getHand()[i]);
-		//			}
-		//			for(int i=0;i<5;i++){
-		//				System.out.println(((Human) player).getHand()[i]);
-		//			}
-		//			for(int i=0;i<5;i++){
-		//				System.out.println(((Human) player).getHand()[i]);
-		//			}
-		//			for(int i=0;i<5;i++){
-		//				System.out.println(((Human) player).getHand()[i]);
-		//			}
+		System.out.println("Player 1's Hand:");
+		for(int i=0;i<5;i++){
+			System.out.println(((Human) player).getHand()[i]);
+		}
+		System.out.println("Player 2's Hand:");
+		for(int i=0;i<5;i++){
+			System.out.println(((Human) player).getHand()[i]);
+		}
+		System.out.println("Player 3's Hand:");
+		for(int i=0;i<5;i++){
+			System.out.println(((Human) player).getHand()[i]);
+		}
+		System.out.println("Player 4's Hand:");
+		for(int i=0;i<5;i++){
+			System.out.println(((Human) player).getHand()[i]);
+		}
 
 	}
 
@@ -145,21 +151,36 @@ public class GameManager {
 		if(player1==null){
 			player1=p;
 			hostSetup.setVisible(true);
-			player1.setTeam('1');
 		}
 		else if(player2==null){
 			player2=p;
-			player2.setTeam('2');
 		}
 		else if(player3==null){
 			player3=p;
-			player3.setTeam('1');
 		}
 		else if(player4==null){
 			player4=p;
-			player4.setTeam('2');
 		}
+		
+		we=new Team(player1,player3);
+		they = new Team(player2,player4);
 
+	}
+	
+	public void setTeam(int player, int team){
+		Player temp;
+		if(player==1){
+			player1.setTeam(team);
+		}
+		else if(player==2){
+			player2.setTeam(team);
+		}
+		else if(player==3){
+			player3.setTeam(team);
+		}
+		else if(player==4){
+			player4.setTeam(team);
+		}
 	}
 
 
@@ -188,9 +209,9 @@ public class GameManager {
 			}
 
 		}
-		
+
 		draw = 2;
-		
+
 		for(int i=0;i<4;i++){								//Deals to each player
 
 			if(draw==2){									//If the previous player was dealt 2 cards,
