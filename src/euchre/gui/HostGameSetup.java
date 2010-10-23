@@ -59,7 +59,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 
         jLabel1.setText("Name:");
 
-        jLabel2.setText("Number of Additional Human Players");
+        jLabel2.setText("additional human players:");
 
         humanPlayerCount.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
         humanPlayerCount.setSelectedIndex(2);
@@ -119,7 +119,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 	 */
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
 		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
-			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
+			JOptionPane.showMessageDialog(null, "Please enter a player name");
 		}else{ //Valid input
 			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager).setVisible(true);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
