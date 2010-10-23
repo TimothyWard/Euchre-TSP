@@ -293,7 +293,7 @@ public class GameLobby extends javax.swing.JFrame{
         		myManager.setTeam(4, 2);
         	}
         	//Launch the Game Board.
-        	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true); //arbitrary player
+        	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true);
         	this.setVisible(false);
         }
         else{
