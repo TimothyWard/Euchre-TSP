@@ -96,19 +96,7 @@
                               </Group>
                           </Group>
                           <Component id="jButtonLCard4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonLCard5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButtonPass" min="-2" pref="119" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButtonPickUp" min="-2" pref="116" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabelPassInfo" max="32767" attributes="1"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButtonLCard5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="1" attributes="1">
                                   <Component id="jLabelYourName" max="32767" attributes="0"/>
@@ -117,11 +105,21 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButtonYourCard1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonYourCard2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonYourCard3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonYourCard4" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="1">
+                                          <Component id="jButtonPass" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jButtonPickUp" min="-2" pref="116" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jButtonYourCard2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jButtonYourCard3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jButtonYourCard4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabelPassInfo" alignment="1" max="32767" attributes="1"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButtonYourCard5" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -265,8 +263,8 @@
                               <Component id="jLabelPassInfo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButtonPickUp" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButtonPass" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonPickUp" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -285,9 +283,9 @@
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="453" max="32767" attributes="0"/>
+              <EmptySpace pref="471" max="32767" attributes="0"/>
               <Component id="jButtonTurnedCard" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -331,28 +329,28 @@
     <Component class="javax.swing.JButton" name="jButtonYourPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonLPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonUPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
@@ -521,7 +519,7 @@
     <Component class="javax.swing.JButton" name="jButtonTurnedCard">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/jc.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
