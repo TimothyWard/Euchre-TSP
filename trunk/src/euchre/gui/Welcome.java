@@ -54,6 +54,7 @@ public class Welcome extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre");
         setName("frameWelcome"); // NOI18N
+        setResizable(false);
 
         jLabelWelcomeBanner.setFont(new java.awt.Font("DejaVu Sans", 0, 24));
         jLabelWelcomeBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -68,7 +69,7 @@ public class Welcome extends javax.swing.JFrame{
             }
         });
 
-        jButtonLocalGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jButtonLocalGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         jButtonLocalGame.setText("Local Game");
         jButtonLocalGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

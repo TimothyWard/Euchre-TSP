@@ -56,6 +56,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Host Game Setup");
+        setResizable(false);
 
         jLabel1.setText("Name:");
 
