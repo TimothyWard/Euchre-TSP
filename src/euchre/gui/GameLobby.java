@@ -8,10 +8,12 @@ import java.awt.Toolkit;
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
  */
-public class GameLobby extends javax.swing.JFrame {
+public class GameLobby extends javax.swing.JFrame{
 
-    /** Creates new form GameLobby */
-    public GameLobby(int numberOfPlayers, String hostName) {
+    /** 
+     * Creates new form GameLobby 
+     */
+    public GameLobby(int numberOfPlayers, String hostName){
         initComponents();
         centerScreen();
     }
