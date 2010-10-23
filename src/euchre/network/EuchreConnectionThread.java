@@ -19,6 +19,8 @@ public class EuchreConnectionThread extends Thread {
 	private boolean running = true;
 	EuchreProtocol protocol;
 	ServerNetworkManager server;
+	PrintWriter out = null;
+
 
 	
 	/**
@@ -33,6 +35,13 @@ public class EuchreConnectionThread extends Thread {
 		socket = s;
 		protocol = new EuchreProtocol();
 		this.server = server;
+		try {
+			out = new PrintWriter(socket.getOutputStream(), true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -54,8 +63,7 @@ public class EuchreConnectionThread extends Thread {
 					while((inputLine = in.readLine()) != null){
 						
 						//output the message
-						System.out.println("Message from client:");
-					    protocol.parse(inputLine);
+						
 					    server.toClients(inputLine,this.hashCode());
 					}
 
@@ -73,6 +81,10 @@ public class EuchreConnectionThread extends Thread {
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	public PrintWriter getPrintWriter(){
+		return out;
 	}
 
 }
