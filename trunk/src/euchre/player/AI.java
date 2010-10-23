@@ -1,5 +1,7 @@
 package euchre.player;
 
+import euchre.network.ClientNetworkManager;
+
 
 /**
  * 
@@ -23,6 +25,7 @@ public class AI implements Player{
 	private int tricks;  				//Number of tricks won by the AI and its partner
 	private int team;
 	private int numCards = 0;
+	private ClientNetworkManager clientManager;
 
 
 	//	public static void main(String[] args) {
@@ -31,6 +34,14 @@ public class AI implements Player{
 
 	public AI(){
 
+	}
+	/**
+	 * 
+	 * 
+	 * @param client Reference to the network interface
+	 */
+	public AI(ClientNetworkManager client){
+		clientManager = client;
 	}
 
 	/**
@@ -278,6 +289,16 @@ public class AI implements Player{
 	@Override
 	public Card[] getHand() {
 		return hand;
+	}
+	
+	/**
+	 * Send a message across the network 
+	 * 
+	 * @param message The tokenized message to send across the network (formatting to be defined)
+	 */
+	public void sendNetworkMessage(String message){
+		
+			clientManager.toServer(message);
 	}
 
 }
