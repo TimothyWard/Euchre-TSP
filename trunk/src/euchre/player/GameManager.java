@@ -44,24 +44,24 @@ public class GameManager {
 //			game.setTeam(3, 1);
 //			game.setTeam(4, 1);
 //			game.deal();
-//			game.playRound();
+//			//game.playRound();
 //	
-//	//			System.out.println("Player 1's Hand:");
-//	//			for(int i=0;i<5;i++){
-//	//				System.out.println(((Human) player).getHand()[i]);
-//	//			}
-//	//			System.out.println("Player 2's Hand:");
-//	//			for(int i=0;i<5;i++){
-//	//				System.out.println(((Human) player).getHand()[i]);
-//	//			}
-//	//			System.out.println("Player 3's Hand:");
-//	//			for(int i=0;i<5;i++){
-//	//				System.out.println(((Human) player).getHand()[i]);
-//	//			}
-//	//			System.out.println("Player 4's Hand:");
-//	//			for(int i=0;i<5;i++){
-//	//				System.out.println(((Human) player).getHand()[i]);
-//	//			}
+////				System.out.println("Player 1's Hand:");
+////				for(int i=0;i<5;i++){
+////					System.out.println(((Human) player).getHand()[i]);
+////				}
+////				System.out.println("Player 2's Hand:");
+////				for(int i=0;i<5;i++){
+////					System.out.println(((Human) player2).getHand()[i]);
+////				}
+////				System.out.println("Player 3's Hand:");
+////				for(int i=0;i<5;i++){
+////					System.out.println(((Human) player3).getHand()[i]);
+////				}
+////				System.out.println("Player 4's Hand:");
+////				for(int i=0;i<5;i++){
+////					System.out.println(((Human) player4).getHand()[i]);
+////				}
 //	
 //		}
 
