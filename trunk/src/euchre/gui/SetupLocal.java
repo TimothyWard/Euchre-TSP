@@ -1,6 +1,9 @@
 package euchre.gui;
 import java.awt.*;
 
+import euchre.player.Human;
+import euchre.player.Player;
+
 /**
  * Screen to setup a local game of euchre played between the user and some AI.
  *
@@ -8,13 +11,14 @@ import java.awt.*;
  *
  */
 public class SetupLocal extends javax.swing.JFrame {
-
+	private Human humanPlayer;
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructs the form needed to setup a local Game.
+	 * @param player the human player playing the game
 	 */
-    public SetupLocal() {
+    public SetupLocal(Player player) {
         initComponents();
         centerScreen();
     }
@@ -217,7 +221,7 @@ public class SetupLocal extends javax.swing.JFrame {
 	 * Launch a local game with the options that were selected by the user.
 	 */
     private void startGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startGame
-        new GameBoard().setVisible(true);
+        new GameBoard(humanPlayer).setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_startGame

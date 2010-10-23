@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import euchre.player.Human;
+import euchre.player.Player;
+
 /**
  * The game setup forms for the client. You input your name then signal that your ready.
  *
@@ -13,13 +16,14 @@ import javax.swing.JOptionPane;
  * @author Neil MacBay(nmmacbay)
  */
 public class ClientGameSetup extends javax.swing.JFrame{
-
+	private Human humanPlayer;
     /** 
      * Creates new form ClientGameSetup 
      */
-    public ClientGameSetup(){
+    public ClientGameSetup(Player player){
         initComponents();
         centerScreen();
+        humanPlayer = (Human) player;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
     	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
 		}else{ //Valid input
-			new GameBoard().setVisible(true);
+			new GameBoard(humanPlayer).setVisible(true);
 			this.setVisible(false);
         }
     }//GEN-LAST:event_ready

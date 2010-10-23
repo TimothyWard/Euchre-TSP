@@ -1,6 +1,7 @@
 package euchre.gui;
 import java.awt.*;
 import euchre.game.Game;
+import euchre.player.GameManager;
   
 /**
  * Welcomes the user to the euchre program, and asks them whether they would like to play
@@ -12,7 +13,6 @@ import euchre.game.Game;
 public class Welcome extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
-	
 	char choice = 'x'; // The variable storing the users gametype choice.
 	
 	/**
