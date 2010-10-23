@@ -106,7 +106,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
      */
     private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
     	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
-			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
+			JOptionPane.showMessageDialog(null, "Please enter a player name");
 		}else{ //Valid input
 			new GameBoard().setVisible(true);
 			this.setVisible(false);
