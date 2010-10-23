@@ -3,6 +3,7 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import euchre.player.GameManager;
@@ -296,7 +297,7 @@ public class GameLobby extends javax.swing.JFrame{
         	this.setVisible(false);
         }
         else{
-        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team");
+        	 JOptionPane.showMessageDialog(new JFrame("Error"), "Invalid Team Assignments.  Please set two players to each team");
         }
     }//GEN-LAST:event_StartGame
 
