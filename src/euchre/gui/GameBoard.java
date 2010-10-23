@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
+import euchre.player.Human;
 import euchre.player.Player;
 
 /**
@@ -16,13 +17,15 @@ import euchre.player.Player;
  */
 public class GameBoard extends javax.swing.JFrame {
 	private Card[] hand = new Card[5];
+	private Human humanPlayer;
 	private PictureManager picManager = new PictureManager();
 	private static final long serialVersionUID = 1L;
 
 	/** 
 	 * Creates new form GameBoard 
 	 */
-    public GameBoard() {
+    public GameBoard(Player player){
+    	humanPlayer = (Human) player;
         initComponents();
         centerScreen();
     }
@@ -469,31 +472,31 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
         //check if is player's turn
-    	
+    	humanPlayer.setPlayCard(hand[0]);
     	
     }//GEN-LAST:event_card1Clicked
 
     private void card2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2Clicked
     	//check if is player's turn
-    	
+    	humanPlayer.setPlayCard(hand[1]);
     	
     }//GEN-LAST:event_card2Clicked
 
     private void card3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3Clicked
     	//check if is player's turn
-    	
+    	humanPlayer.setPlayCard(hand[2]);
     	
     }//GEN-LAST:event_card3Clicked
 
     private void card4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card4Clicked
     	//check if is player's turn
-    	
+    	humanPlayer.setPlayCard(hand[3]);
 
     }//GEN-LAST:event_card4Clicked
 
     private void card5Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5Clicked
     	//check if is player's turn
-    	
+    	humanPlayer.setPlayCard(hand[4]);
 
     }//GEN-LAST:event_card5Clicked
 
@@ -516,7 +519,7 @@ public class GameBoard extends javax.swing.JFrame {
      */
     public void setCard(Card card, int cardNumber){
     	hand[cardNumber] = card;
-    	//handButtons[cardNumber] //set card image to button
+    	handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
     }
     
     
