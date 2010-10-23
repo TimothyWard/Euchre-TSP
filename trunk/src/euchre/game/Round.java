@@ -55,7 +55,7 @@ public class Round{
 	private char trumpSuit = ' ';
 	private Player playerWhoDealt = null;
 	private Team teamWhoOrdered = null;
-
+	private boolean roundComplete = false;
 
 	public void setHand(int hand, Card[] cardsPlayed, boolean alone, char suitLed){
 		if (hand == 1){
@@ -102,5 +102,11 @@ public class Round{
 	}
 	public void setTeamWhoOrdered(Team teamWhoOrdered) {
 		this.teamWhoOrdered = teamWhoOrdered;
+	}
+	public boolean isRoundComplete() {
+		return roundComplete;
+	}
+	public void setRoundComplete(boolean roundComplete) {
+		this.roundComplete = roundComplete;
 	}
 }
