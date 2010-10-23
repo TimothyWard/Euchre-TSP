@@ -12,9 +12,9 @@ public interface Player {
 	
 	public Card playCard();
 
-	public void setTeam(char c);
+	public void setTeam(int i);
 	
-	public char getTeam();
+	public int getTeam();
 
 	public Card discard();
 	

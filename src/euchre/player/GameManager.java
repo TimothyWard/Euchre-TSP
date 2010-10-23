@@ -168,19 +168,26 @@ public class GameManager {
 	}
 	
 	public void setTeam(int player, int team){
-		Player temp;
-		if(player==1){
-			player1.setTeam(team);
-		}
-		else if(player==2){
-			player2.setTeam(team);
-		}
-		else if(player==3){
-			player3.setTeam(team);
-		}
-		else if(player==4){
-			player4.setTeam(team);
-		}
+//		Player temp;
+//		
+//		
+//		if(team==1 && player1.getTeam()==null){
+//			player1==
+//		}
+//		
+//		
+//		if(player==1){
+//			player1.setTeam(team);
+//		}
+//		else if(player==2){
+//			player2.setTeam(team);
+//		}
+//		else if(player==3){
+//			player3.setTeam(team);
+//		}
+//		else if(player==4){
+//			player4.setTeam(team);
+//		}
 	}
 
 
