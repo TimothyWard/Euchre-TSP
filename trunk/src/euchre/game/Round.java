@@ -26,6 +26,12 @@ public class Round{
 		protected boolean alone = false;
 		protected Card[] cardsPlayed = new Card[5];
 
+		public Card[] getCardsPlayed() {
+			return cardsPlayed;
+		}
+		public void setCardsPlayed(Card[] cardsPlayed) {
+			this.cardsPlayed = cardsPlayed;
+		}
 		public char getSuitLed() {
 			return suitLed;
 		}
