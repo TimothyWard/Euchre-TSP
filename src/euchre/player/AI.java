@@ -263,6 +263,18 @@ public class AI implements Player{
 		
 	}
 
+	@Override
+	public int getNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setNumber(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

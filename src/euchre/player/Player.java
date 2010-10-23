@@ -21,4 +21,8 @@ public interface Player {
 	public void setName();
 	
 	public void getName();
+
+	public int getNumber();
+	
+	public void setNumber(int i);
 }
