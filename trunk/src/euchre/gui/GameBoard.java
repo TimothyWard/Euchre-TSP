@@ -472,31 +472,31 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
         //check if is player's turn
-    	humanPlayer.setPlayCard(hand[0]);
+    	humanPlayer.setActiveCard(hand[0]);
     	
     }//GEN-LAST:event_card1Clicked
 
     private void card2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2Clicked
     	//check if is player's turn
-    	humanPlayer.setPlayCard(hand[1]);
+    	humanPlayer.setActiveCard(hand[1]);
     	
     }//GEN-LAST:event_card2Clicked
 
     private void card3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3Clicked
     	//check if is player's turn
-    	humanPlayer.setPlayCard(hand[2]);
+    	humanPlayer.setActiveCard(hand[2]);
     	
     }//GEN-LAST:event_card3Clicked
 
     private void card4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card4Clicked
     	//check if is player's turn
-    	humanPlayer.setPlayCard(hand[3]);
+    	humanPlayer.setActiveCard(hand[3]);
 
     }//GEN-LAST:event_card4Clicked
 
     private void card5Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5Clicked
     	//check if is player's turn
-    	humanPlayer.setPlayCard(hand[4]);
+    	humanPlayer.setActiveCard(hand[4]);
 
     }//GEN-LAST:event_card5Clicked
 
