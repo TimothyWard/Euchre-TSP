@@ -31,15 +31,15 @@ public class GameBoard extends javax.swing.JFrame {
     }
     
 	public void setBottomPlayer(Player player){
-	    	
-	    }
+		jLabelYourName.setText(player.getName());
+	}
 	
 	public void setLeftPlayer(Player player){
-		
+		jLabelLPlayerName.setText(player.getName());
 	}
 	
 	public void setRightPlayer(Player player){
-		
+		jLabelRPlayerName.setText(player.getName());
 	}
     
     /**
