@@ -66,6 +66,14 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 		return threads.size();
 		
 	}
+	
+	public void toClients(String s, int hash){
+		System.out.println(s);
+		for(EuchreConnectionThread t : threads){
+			boolean test = (hash == t.hashCode());
+			System.out.println(t.hashCode() +" - " + test);
+		}
+	}
 
 	/**
 	 * The thread's actions. Creates a ServerSocket, and if it is listening for connections, will accept incoming requests,
@@ -95,7 +103,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 				try {
 
 					//accept a connection and dispatch a new thread with that socket as a parameter
-					threads.addLast(new EuchreConnectionThread("Thread",serverSocket.accept()));
+					threads.addLast(new EuchreConnectionThread("Thread",serverSocket.accept(), this));
 					//start the thread
 					threads.getLast().start();
 					System.out.println("Connection recieved/started");
