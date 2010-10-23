@@ -12,8 +12,8 @@ import euchre.player.Card;
  */
 public class GameLogic{
 
-	Team we;
-	Team they;
+	Team one;
+	Team two;
 	Card TRB;
 	Card TLB;
 	Card TA;
@@ -27,10 +27,12 @@ public class GameLogic{
 	Card LJ;
 	Card L10;
 	Card L9;
+	int teamOneTricks = 0;
+	int teamTwoTricks = 0;
 
-	public GameLogic(Team we, Team they){
-		this.we = we;
-		this.they = they;
+	public GameLogic(Team one, Team two){
+		this.one = one;
+		this.two = two;
 	}
 
 	/**
@@ -38,26 +40,70 @@ public class GameLogic{
 	 * @param roundSequence The round object containing all information for a specific round.
 	 */
 	public void interpret(Round round){
-		TRB = new Card('j', round.getTrumpSuit());
-		TLB = new Card('j', round.getTrumpSuit());
-		TA = new Card('a', round.getTrumpSuit());
-		TK = new Card('k', round.getTrumpSuit());
-		TQ = new Card('q', round.getTrumpSuit());
-		T10 = new Card('0', round.getTrumpSuit());
-		T9 = new Card('9', round.getTrumpSuit());
+		char trump = round.getTrumpSuit();
+		TRB = new Card('j', trump);
+		TLB = new Card('j', trump);
+		TA = new Card('a', trump);
+		TK = new Card('k', trump);
+		TQ = new Card('q', trump);
+		T10 = new Card('0', trump);
+		T9 = new Card('9', trump);
 
-		// do stuff to change score based on this round's new information
-		// interpret hand one and increment team one and two trick count
-		// interpret hand two and increment team one and two trick count
-		// interpret hand three and increment team one and two trick count
-		// interpret hand four and increment team one and two trick count
-		// interpret hand five and increment team one and two trick count
+		for (int x=0; x<5; x++){
+			if (interpretHand(round.getHand(x)) == one){
+				teamOneTricks++;
+			}
+			else if (interpretHand(round.getHand(x)) == two){
+				teamTwoTricks++;
+			}
+		}
+		
+		//if the round winner took 5 tricks
+		if ((teamOneTricks==5 && round.getTeamWhoOrdered()==one)||(teamTwoTricks==5 && round.getTeamWhoOrdered()==two)){
+			//if the round winner took all five tricks alone 
+			if (round.alone()){
+				if (round.getTeamWhoOrdered()==one){
+					incrementScore(one, 4);
+				}
+				else if (round.getTeamWhoOrdered()==two){
+					incrementScore(two, 4);
+				}
+			}
+			//if the round winner took all five tricks as a team 
+			else{
+				if (round.getTeamWhoOrdered()==one){
+					incrementScore(one, 2);
+				}
+				else if (round.getTeamWhoOrdered()==two){
+					incrementScore(two, 2);
+				}
+			}
+		}
+		//if the round winner took 3 or more tricks
+		else if ((teamOneTricks>=3 && round.getTeamWhoOrdered()==one)||(teamTwoTricks>=3 && round.getTeamWhoOrdered()==two)){
+			if (round.getTeamWhoOrdered()==one){
+				incrementScore(one, 1);
+			}
+			else if (round.getTeamWhoOrdered()==two){
+				incrementScore(two, 1);
+			}
+		}
+		//if the round winner took less than 3 tricks
+		else if ((teamOneTricks<3 && round.getTeamWhoOrdered()==one)||(teamTwoTricks<3 && round.getTeamWhoOrdered()==two)){
+			if (round.getTeamWhoOrdered()==one){
+				incrementScore(two, 2);
+			}
+			else if (round.getTeamWhoOrdered()==two){
+				incrementScore(one, 2);
+			}
+		}
 
 	}
 
 	/**
 	 * This method accepts a hand containing five cards and other information pertaining to 
 	 * the hand. It then interprets what happened in the hand, and increments the score accordingly.
+	 * 
 	 * @param hand The object holding the five cards played in the round, and some other information.
 	 */
 	public Team interpretHand(Hand hand){
@@ -67,7 +113,9 @@ public class GameLogic{
 		LJ = new Card('j', hand.getCardPlayed(0).getSuit());
 		L10 = new Card('0', hand.getCardPlayed(0).getSuit());
 		L9 = new Card('9', hand.getCardPlayed(0).getSuit());
+
 		int[] cardValue = {0,0,0,0};
+
 		for (int i=0; i<4; i++){
 			Card card = hand.getCardPlayed(i);
 			if (card.compareTo(TRB)==0) cardValue[i] = 13;
@@ -85,8 +133,11 @@ public class GameLogic{
 			if (card.compareTo(L9)==0) cardValue[i] = 1;
 			else cardValue[i] = 0;
 		}
-		if (maxIndex(cardValue)){
-			
+		if (maxIndex(cardValue)==0 || maxIndex(cardValue)==2){
+			return one;
+		}
+		else{
+			return two;
 		}
 	}
 
@@ -97,15 +148,15 @@ public class GameLogic{
 	 * @return The index of the maximum value of the array.
 	 */
 	public static int maxIndex(int[] array) {
-	    int maximum = array[0];
-	    int maxIndex = 0;
-	    for (int i=1; i<array.length; i++) {
-	        if (array[i] > maximum) {
-	            maximum = array[i]; 
-	            maxIndex = i;
-	        }
-	    }
-	    return maxIndex;
+		int maximum = array[0];
+		int maxIndex = 0;
+		for (int i=1; i<array.length; i++) {
+			if (array[i] > maximum) {
+				maximum = array[i]; 
+				maxIndex = i;
+			}
+		}
+		return maxIndex;
 	}//end method max
 
 	/**

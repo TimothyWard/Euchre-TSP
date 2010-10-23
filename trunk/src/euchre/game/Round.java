@@ -11,7 +11,7 @@ import euchre.player.*;
  *
  */
 public class Round{
-	
+
 	/**
 	 * 
 	 * @author Timothy Ward
@@ -23,7 +23,6 @@ public class Round{
 	public class Hand{
 
 		protected char suitLed = ' ';
-		protected boolean alone = false;
 		protected Card[] cardsPlayed = new Card[5];
 
 		public Card[] getCardsPlayed() {
@@ -38,12 +37,6 @@ public class Round{
 		public void setSuitLed(char suitLed) {
 			this.suitLed = suitLed;
 		}
-		public boolean isAlone() {
-			return alone;
-		}
-		public void setAlone(boolean alone) {
-			this.alone = alone;
-		}
 		public void setCardPlayed(int card, Card cardsPlayed) {
 			this.cardsPlayed[card] = cardsPlayed;
 		}
@@ -54,6 +47,27 @@ public class Round{
 
 	//properties
 	private Hand hand1;
+	public Hand getHand(int handNumber) {
+		if (handNumber == 1){
+			return hand1;
+		}
+		if (handNumber == 2){
+			return hand2;
+		}
+		if (handNumber == 3){
+			return hand3;
+		}
+		if (handNumber == 4){
+			return hand4;
+		}
+		if (handNumber == 5){
+			return hand5;
+		}
+		else{
+			return null;
+		}
+	}
+	
 	private Hand hand2;
 	private Hand hand3;
 	private Hand hand4;
@@ -62,30 +76,26 @@ public class Round{
 	private Player playerWhoDealt = null;
 	private Team teamWhoOrdered = null;
 	private boolean roundComplete = false;
-
-	public void setHand(int hand, Card[] cardsPlayed, boolean alone, char suitLed){
+	private boolean alone = false;
+	
+	public void setHand(int hand, Card[] cardsPlayed, char suitLed){
 		if (hand == 1){
-			hand1.alone = alone;
 			hand1.cardsPlayed = cardsPlayed;
 			hand1.suitLed = suitLed;
 		}
 		if (hand == 2){
-			hand2.alone = alone;
 			hand2.cardsPlayed = cardsPlayed;
 			hand2.suitLed = suitLed;
 		}
 		if (hand == 3){
-			hand3.alone = alone;
 			hand3.cardsPlayed = cardsPlayed;
 			hand3.suitLed = suitLed;
 		}
 		if (hand == 4){
-			hand4.alone = alone;
 			hand4.cardsPlayed = cardsPlayed;
 			hand4.suitLed = suitLed;
 		}
 		if (hand == 5){
-			hand5.alone = alone;
 			hand5.cardsPlayed = cardsPlayed;
 			hand5.suitLed = suitLed;
 		}
@@ -114,5 +124,11 @@ public class Round{
 	}
 	public void setRoundComplete(boolean roundComplete) {
 		this.roundComplete = roundComplete;
+	}
+	public boolean alone() {
+		return alone;
+	}
+	public void setAlone(boolean alone) {
+		this.alone = alone;
 	}
 }
