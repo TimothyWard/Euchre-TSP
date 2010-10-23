@@ -18,7 +18,8 @@ import euchre.player.Player;
 public class ClientGameSetup extends javax.swing.JFrame{
 	private Human humanPlayer;
     /** 
-     * Creates new form ClientGameSetup 
+     * Creates new form ClientGameSetup
+     * @param player the client player being set up
      */
     public ClientGameSetup(Player player){
         initComponents();
