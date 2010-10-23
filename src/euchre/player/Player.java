@@ -29,4 +29,6 @@ public interface Player {
 	public Card[] getHand();
 	
 	public char stickDealer();
+	
+	public void setTurn(boolean b);
 }

@@ -27,40 +27,40 @@ public class GameManager {
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 
 
-//		public static void main(String[] args) {
-//			GameManager game = new GameManager();
-//			Round round = new Round();
-//			game.setRound(round);
-////			Player player = new Human();
-////			Player player2 = new Human();
-////			Player player3 = new Human();
-////			Player player4 = new Human();
-//			Player ai1 = new AI();
-//			Player ai2 = new AI();
-//			Player ai3 = new AI();
-//			Player ai4 = new AI();
-////			game.setPlayer(player);
-////			game.setPlayer(player2);
-////			game.setPlayer(player3);
-////			game.setPlayer(player4);
-//			
-//			game.setPlayer(ai1);
-//			game.setPlayer(ai2);
-//			game.setPlayer(ai3);
-//			game.setPlayer(ai4);
-//			
-//			game.setTeam(1, 2);
-//			game.setTeam(2, 2);
-//			game.setTeam(3, 1);
-//			game.setTeam(4, 1);
-//			game.setTrump();
-//			System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
-//			System.out.println("Upcard: " + game.upCard.suit);
-//			System.out.println("Suit picked: " + game.round.getTrumpSuit());
-//
-//
-//	
-//		}
+	//		public static void main(String[] args) {
+	//			GameManager game = new GameManager();
+	//			Round round = new Round();
+	//			game.setRound(round);
+	////			Player player = new Human();
+	////			Player player2 = new Human();
+	////			Player player3 = new Human();
+	////			Player player4 = new Human();
+	//			Player ai1 = new AI();
+	//			Player ai2 = new AI();
+	//			Player ai3 = new AI();
+	//			Player ai4 = new AI();
+	////			game.setPlayer(player);
+	////			game.setPlayer(player2);
+	////			game.setPlayer(player3);
+	////			game.setPlayer(player4);
+	//			
+	//			game.setPlayer(ai1);
+	//			game.setPlayer(ai2);
+	//			game.setPlayer(ai3);
+	//			game.setPlayer(ai4);
+	//			
+	//			game.setTeam(1, 2);
+	//			game.setTeam(2, 2);
+	//			game.setTeam(3, 1);
+	//			game.setTeam(4, 1);
+	//			game.setTrump();
+	//			System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
+	//			System.out.println("Upcard: " + game.upCard.suit);
+	//			System.out.println("Suit picked: " + game.round.getTrumpSuit());
+	//
+	//
+	//	
+	//		}
 
 
 	public void setRound(Round round){
@@ -117,8 +117,8 @@ public class GameManager {
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer==dealer){									
 			deck.disCardCard(upCard);									//...and discard the upCard...
-			
-			
+
+
 			curPlayer=nextPlayer(dealer);
 			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
@@ -133,7 +133,7 @@ public class GameManager {
 				else{													//Otherwise, pass to the next person.
 					curPlayer=nextPlayer(curPlayer);
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
-						
+
 						round.setTrumpSuit(curPlayer.stickDealer());
 						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 							round.setTeamWhoOrdered(teamOne);
@@ -157,13 +157,15 @@ public class GameManager {
 		//Set the current player to the player to the left of the dealer
 		curPlayer = nextPlayer(dealer);
 		round.setRoundComplete(false);
-		
+
 		//Play five hands...
 		for(int h=1;h<6;h++){
 			Card[] played = new Card[4];
 			//For each player, have them play a card
 			for(int i=0;i<4;i++){
+				curPlayer.setTurn(true);
 				played[i] = curPlayer.playCard();
+				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
 			led=played[0].getSuit();
@@ -185,10 +187,10 @@ public class GameManager {
 		if(p1==null){
 			p1=p;
 			if (localOnly){
-			hostSetup.setVisible(true);
+				hostSetup.setVisible(true);
 			}
 			else{
-			// display host setup window with no additional players option	
+				new SetupLocal(p1).setVisible(true);
 			}
 		}
 		else if(p2==null){
@@ -263,7 +265,7 @@ public class GameManager {
 			player4.setTeam(2);
 			player4.setNumber(4);
 		}
-		
+
 		teamOne = new Team(player1,player3);
 		teamTwo = new Team(player2,player4);
 
@@ -339,19 +341,19 @@ public class GameManager {
 			return player1;
 		}
 	}
-	
+
 	public Player getPlayer1(){
 		return player1;
 	}
-	
+
 	public Player getPlayer2(){
 		return player2;
 	}
-	
+
 	public Player getPlayer3(){
 		return player3;
 	}
-	
+
 	public Player getPlayer4(){
 		return player4;
 	}

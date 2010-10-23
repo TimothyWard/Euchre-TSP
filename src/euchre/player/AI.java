@@ -306,5 +306,10 @@ public class AI implements Player{
 		//FIX
 		return hand[2].getSuit();
 	}
+	@Override
+	public void setTurn(boolean turn) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
