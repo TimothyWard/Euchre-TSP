@@ -167,6 +167,14 @@ public class GameManager {
 
 	}
 	
+	public Team getWe(){
+		return we;
+	}
+	
+	public Team getThey(){
+		return they;
+	}
+	
 	public void setTeam(int player, int team){
 //		Player temp;
 //		
