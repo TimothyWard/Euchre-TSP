@@ -4,6 +4,7 @@ public class Human implements Player{
 	private String name = "";
 	private Card[] hand = new Card[5];
 	private int numCards = 0;
+	private int team = 0;
 	
 	public Human(){
 		
@@ -50,14 +51,14 @@ public class Human implements Player{
 
 	@Override
 	public int getTeam() {
-		return 0;
+		return team;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void setTeam(int i) {
-		// TODO Auto-generated method stub
+		team = i;
 		
 	}
 
