@@ -116,7 +116,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
     }//GEN-LAST:event_ready
     
     /**
-     * Gets the current input(trimed of whitespace) of the text plain for the client to enter their name in.
+     * Gets the current input(trimmed of whitespace) of the text plain for the client to enter their name in.
      * 
      * @return The clients inputed name
      */
