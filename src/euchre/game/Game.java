@@ -10,7 +10,7 @@ import euchre.network.*;
  * This class is the highest order class of the Euchre program. It is responsible for the highest level interactions between componenets.
  */
 public class Game {	
-	
+
 	/**
 	 * This method is the first method called in the program. This method is 
 	 * responsible for instantiating all objects and running the overall program.
@@ -18,7 +18,7 @@ public class Game {
 	 * @param args A String array.
 	 */
 	public static void main(String [] args){
-		
+
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
@@ -33,7 +33,7 @@ public class Game {
 		}
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
-		
+
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 		if (choice == 'h') createHost(GM, GUI);
@@ -41,12 +41,12 @@ public class Game {
 		else if(choice == 'a') createLocalOnlyGame(GM);
 		GUI.dispose();
 		GM.getHostSetup().dispose();
-		
+
 		//set teams
-		while (GM.getOne().getPlayerOne() == null 
-				|| GM.getOne().getPlayerTwo() == null 
-				|| GM.getTwo().getPlayerOne() == null 
-				|| GM.getTwo().getPlayerTwo() == null){
+		while (GM.getTeamOne().getPlayerOne() == null 
+				|| GM.getTeamOne().getPlayerTwo() == null 
+				|| GM.getTeamTwo().getPlayerOne() == null 
+				|| GM.getTeamTwo().getPlayerTwo() == null){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
@@ -55,15 +55,27 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-		Team one = GM.getOne();
-		Team they = GM.getTwo();
-		
+		Team one = GM.getTeamOne();
+		Team two = GM.getTeamTwo();
+
 		//create a new tabulator and tell it which teams it is tabulating.
-		GameLogic tabulator = new GameLogic(we, they);
-		
-		//wait for input for each round, once a round has received all input...send to gameLogic for computation
-		//once GameLogic has returned information regarding round winner and point information, store information
-		//repeat with new round object if game has not resolved
+		GameLogic tabulator = new GameLogic(one, two);
+
+
+		while (gameWinner(one, two) == null){
+			Round currentRound = new Round();
+			while (currentRound.isRoundComplete()==false){
+				//Do nothing, the round is not over
+				try {
+					Thread.sleep(500);
+				} 
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			tabulator.interpret(currentRound);
+		}
+		GUI.displayWinner(Team);
 		//once game winner is determined, inform network who won to update views.
 	}
 
@@ -79,7 +91,7 @@ public class Game {
 		//start network connection
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
-		
+
 		GM.setPlayer(new Human());
 		while (GM.getHostSetup().getAIs() ==-1){
 			//Do nothing, user is deciding game type.
@@ -98,7 +110,7 @@ public class Game {
 			aiNumber--;
 		}
 	}
-	
+
 	/**
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
@@ -135,7 +147,7 @@ public class Game {
 	 * 
 	 * @return Team The winning team
 	 */
-	public Team gameWinner(Team one, Team two){
+	public static Team gameWinner(Team one, Team two){
 		if(one.getScore() >= 10){
 			return one;
 		}
