@@ -17,6 +17,8 @@ public class EuchreConnectionThread extends Thread {
 	private String threadName = "defaultname";
 	BufferedReader in;
 	private boolean running = true;
+	EuchreProtocol protocol;
+	ServerNetworkManager server;
 
 	
 	/**
@@ -25,10 +27,12 @@ public class EuchreConnectionThread extends Thread {
 	 * @param name A identifier for the client
 	 * @param s The socket connection to the client
 	 */
-	public EuchreConnectionThread(String name, Socket s) {
+	public EuchreConnectionThread(String name, Socket s, ServerNetworkManager server) {
 		super(name);
 		threadName = name;
 		socket = s;
+		protocol = new EuchreProtocol();
+		this.server = server;
 	}
 
 	/**
@@ -51,7 +55,8 @@ public class EuchreConnectionThread extends Thread {
 						
 						//output the message
 						System.out.println("Message from client:");
-						System.out.println(inputLine);
+					    protocol.parse(inputLine);
+					    server.toClients(inputLine,this.hashCode());
 					}
 
 				try {

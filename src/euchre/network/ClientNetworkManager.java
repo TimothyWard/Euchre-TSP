@@ -43,6 +43,11 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		this.hostname = hostname;
 	}
 	
+	public void registerPlayer(String name, int number){
+		
+		out.println("Name,"+name+","+number);
+	}
+	
 	
 	/**
 	 * The thread's actions. Make a socket connection to the server and send a string
