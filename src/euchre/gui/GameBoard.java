@@ -91,6 +91,8 @@ public class GameBoard extends javax.swing.JFrame {
         jLabelYourName = new javax.swing.JLabel();
         jLabelDealer = new javax.swing.JLabel();
         jLabelPassInfo = new javax.swing.JLabel();
+        theyLabel = new javax.swing.JLabel();
+        weLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
@@ -181,6 +183,10 @@ public class GameBoard extends javax.swing.JFrame {
         jLabelPassInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPassInfo.setText("(Player) passed, Your call");
 
+        theyLabel.setText("They:");
+
+        weLabel.setText("We:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,10 +206,12 @@ public class GameBoard extends javax.swing.JFrame {
                                     .addComponent(jButtonLCard2)
                                     .addComponent(jButtonLCard1)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
+                                        .addGap(17, 17, 17)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(theyTricksLabel)
-                                            .addComponent(theyPointsLabel))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(theyLabel)
+                                                .addComponent(theyPointsLabel)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelOTeamTricks)
@@ -275,10 +283,12 @@ public class GameBoard extends javax.swing.JFrame {
                                         .addComponent(jButtonRCard5))
                                     .addComponent(jButtonRCard2)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
+                                .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(weTricksLabel)
-                                    .addComponent(wePointsLabel))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(weLabel)
+                                        .addComponent(wePointsLabel)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelYTeamTricks)
@@ -302,7 +312,9 @@ public class GameBoard extends javax.swing.JFrame {
                         .addComponent(jButtonRCard5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelRPlayerName)
-                        .addGap(48, 48, 48)
+                        .addGap(28, 28, 28)
+                        .addComponent(weLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelYTeamPoints)
                             .addComponent(wePointsLabel))
@@ -313,7 +325,9 @@ public class GameBoard extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
+                                .addGap(5, 5, 5)
+                                .addComponent(theyLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(theyPointsLabel)
                                     .addComponent(jLabelOTeamPoints))
@@ -422,8 +436,10 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelYTeamPoints;
     private javax.swing.JLabel jLabelYTeamTricks;
     private javax.swing.JLabel jLabelYourName;
+    private javax.swing.JLabel theyLabel;
     private javax.swing.JLabel theyPointsLabel;
     private javax.swing.JLabel theyTricksLabel;
+    private javax.swing.JLabel weLabel;
     private javax.swing.JLabel wePointsLabel;
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
