@@ -15,6 +15,10 @@ public class Human implements Player{
 	boolean isHost = false;
 	EuchreProtocol protocol = new EuchreProtocol();
 	
+	public Human(){
+		
+	}
+	
 	/**
 	 * 
 	 * 
