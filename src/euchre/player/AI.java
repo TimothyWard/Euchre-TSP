@@ -15,7 +15,7 @@ package euchre.player;
 
 public class AI implements Player{
 
-
+	private String name = "";
 	private Card[] hand = new Card[5];
 	private Card card1, card2, card3; 	//Card played by player to the AI's left, AI's partner, and AI's right, respectively
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
@@ -252,15 +252,15 @@ public class AI implements Player{
 	}
 
 	@Override
-	public void getName() {
+	public String getName() {
 		// TODO Auto-generated method stub
-		
+		return name;
 	}
 
 	@Override
-	public void setName() {
+	public void setName(String n) {
 		// TODO Auto-generated method stub
-		
+		name = n;
 	}
 
 	@Override
@@ -274,7 +274,5 @@ public class AI implements Player{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }

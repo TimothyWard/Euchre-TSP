@@ -47,10 +47,11 @@
                                               <Component id="theyPointsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabelOTeamTricks" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabelOTeamPoints" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="theyTeamNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -152,6 +153,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelYTeamTricks" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelYTeamPoints" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="weTeamNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -179,7 +181,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelRPlayerName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="weLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="weLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="weTeamNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelYTeamPoints" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -195,7 +200,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="theyLabel" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="theyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="theyTeamNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="theyPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -546,12 +554,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="theyLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="They:"/>
+        <Property name="text" type="java.lang.String" value="Team:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="weLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="We:"/>
+        <Property name="text" type="java.lang.String" value="Team:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="theyTeamNumberLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="weTeamNumberLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2"/>
       </Properties>
     </Component>
   </SubComponents>
