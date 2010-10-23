@@ -322,6 +322,22 @@ public class GameManager {
 			return player1;
 		}
 	}
+	
+	public Player getPlayer1(){
+		return player1;
+	}
+	
+	public Player getPlayer2(){
+		return player2;
+	}
+	
+	public Player getPlayer3(){
+		return player3;
+	}
+	
+	public Player getPlayer4(){
+		return player4;
+	}
 
 
 }
