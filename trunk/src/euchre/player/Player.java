@@ -4,7 +4,7 @@ public interface Player {
 	Card[] hand = new Card[5];
 	String name = "";
 	
-	public Card drawCard(Card c);
+	public void drawCard(Card c);
 	
 	public boolean orderUp(Card c);
 

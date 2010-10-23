@@ -43,7 +43,9 @@ public class Deck{
 	 * @return Card removed from deck
 	 */
 	public Card drawCard(){
-		return cardDeck[cardsLeftInDeck - 1];
+		cardsLeftInDeck--;
+		return cardDeck[cardsLeftInDeck];
+		
 	}
 
 	/**
