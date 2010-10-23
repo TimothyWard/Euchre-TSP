@@ -13,6 +13,7 @@ import euchre.gui.*;
  */
 public class GameManager {
 
+	private Player p1,p2,p3,p4;
 	private Player player1, player2, player3, player4;
 	private Player dealer = player1;
 	private Card upCard;
@@ -28,44 +29,40 @@ public class GameManager {
 
 
 	//Test class
-	//	public static void main(String[] args) {
-	//		GameManager game = new GameManager();
-	//		Player player = new Human();
-	//		Player player2 = new Human();
-	//		Player player3 = new Human();
-	//		Player player4 = new Human();
-	//		game.setPlayer(player);
-	//		game.setPlayer(player2);
-	//		game.setPlayer(player3);
-	//		game.setPlayer(player4);
-	//		game.setTeam(1, 2);
-	//		game.setTeam(2, 2);
-	//		game.setTeam(3, 1);
-	//		game.setTeam(4, 1);
-	//		System.out.println(game.getTeamOne().getPlayerOne().getTeam());
-	//		System.out.println(game.player2.getTeam());
-	//		System.out.println(game.player3.getTeam());
-	//		System.out.println(game.player4.getTeam());
-	//		game.deal();
-
-	//		System.out.println("Player 1's Hand:");
-	//		for(int i=0;i<5;i++){
-	//			System.out.println(((Human) player).getHand()[i]);
-	//		}
-	//		System.out.println("Player 2's Hand:");
-	//		for(int i=0;i<5;i++){
-	//			System.out.println(((Human) player).getHand()[i]);
-	//		}
-	//		System.out.println("Player 3's Hand:");
-	//		for(int i=0;i<5;i++){
-	//			System.out.println(((Human) player).getHand()[i]);
-	//		}
-	//		System.out.println("Player 4's Hand:");
-	//		for(int i=0;i<5;i++){
-	//			System.out.println(((Human) player).getHand()[i]);
-	//		}
-
-	//	}
+		public static void main(String[] args) {
+			GameManager game = new GameManager();
+			Player player = new Human();
+			Player player2 = new Human();
+			Player player3 = new Human();
+			Player player4 = new Human();
+			game.setPlayer(player);
+			game.setPlayer(player2);
+			game.setPlayer(player3);
+			game.setPlayer(player4);
+			game.setTeam(1, 2);
+			game.setTeam(2, 2);
+			game.setTeam(3, 1);
+			game.setTeam(4, 1);
+			game.deal();
+	
+	//			System.out.println("Player 1's Hand:");
+	//			for(int i=0;i<5;i++){
+	//				System.out.println(((Human) player).getHand()[i]);
+	//			}
+	//			System.out.println("Player 2's Hand:");
+	//			for(int i=0;i<5;i++){
+	//				System.out.println(((Human) player).getHand()[i]);
+	//			}
+	//			System.out.println("Player 3's Hand:");
+	//			for(int i=0;i<5;i++){
+	//				System.out.println(((Human) player).getHand()[i]);
+	//			}
+	//			System.out.println("Player 4's Hand:");
+	//			for(int i=0;i<5;i++){
+	//				System.out.println(((Human) player).getHand()[i]);
+	//			}
+	
+		}
 
 
 	public void setRound(Round round){
@@ -187,18 +184,18 @@ public class GameManager {
 
 	//public void setPlayer(Player p, int num, char team){
 	public void setPlayer(Player p){
-		if(player1==null){
-			player1=p;
+		if(p1==null){
+			p1=p;
 			hostSetup.setVisible(true);
 		}
-		else if(player2==null){
-			player2=p;
+		else if(p2==null){
+			p2=p;
 		}
-		else if(player3==null){
-			player3=p;
+		else if(p3==null){
+			p3=p;
 		}
-		else if(player4==null){
-			player4=p;
+		else if(p4==null){
+			p4=p;
 		}
 
 	}
@@ -221,42 +218,42 @@ public class GameManager {
 
 		//Determines which player object is being referred to
 		if(player==1){
-			play = player1;
+			play = p1;
 		}
 		else if(player==2){
-			play = player2;
+			play = p2;
 		}
 		else if(player==3){
-			play = player3;
+			play = p3;
 		}
 		else{
-			play = player4;
+			play = p4;
 		}
 
 		//Sets the given player on the given team by putting that player in the corresponding "seat"
 		//and then setting all of the appropriate team references
-		if(team==1 && player1.getTeam()==0){
+		if(team==1 && player1==null){
 			player1=play;
 			player1.setTeam(1);
 			player1.setNumber(1);
 		}
-		else if(team==1 && player1.getTeam()!=0){
+		else if(team==1 && player1!=null){
 			player3=play;
 			player3.setTeam(1);
 			player3.setNumber(3);
 		}
-		if(team==2 && player2.getTeam()==0){
+		else if(team==2 && player2==null){
 			player2=play;
 			player2.setTeam(2);
 			player2.setNumber(2);
 		}
-		else if(team==2 && player2.getTeam()!=0){
+		else if(team==2 && player2!=null){
 			player4=play;
 			player4.setTeam(2);
 			player4.setNumber(4);
 		}
-
-		teamOne=new Team(player1,player3);
+		
+		teamOne = new Team(player1,player3);
 		teamTwo = new Team(player2,player4);
 
 	}
