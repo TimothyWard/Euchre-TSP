@@ -8,6 +8,7 @@ import euchre.player.Player;
  */
 public class Team {
 
+	private int teamNumber = 0;
 	private Player playerOne = null;
 	private Player playerTwo = null;
 	private int score = 0;
@@ -39,5 +40,13 @@ public class Team {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public int getTeamNumber() {
+		return teamNumber;
+	}
+
+	public void setTeamNumber(int teamNumber) {
+		this.teamNumber = teamNumber;
 	}
 }
