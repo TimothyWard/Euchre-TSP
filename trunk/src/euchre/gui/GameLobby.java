@@ -239,6 +239,7 @@ public class GameLobby extends javax.swing.JFrame{
      * @param evt The button-click that starts the event.
      */
     private void StartGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartGame
+    	//Figure out the number of players selected for each team.
         int team1Players = 0;
         int team2Players = 0;
         if(jRadioBPlayer1Team1.isSelected()){
@@ -261,8 +262,29 @@ public class GameLobby extends javax.swing.JFrame{
         }else{
         	team2Players++;
         }
-        
-        if(team1Players == team2Players){ //both = 2
+        if(team1Players == team2Players){ //Teams are valid.
+        	//set teams in game manager.
+        	if(jRadioBPlayer1Team1.isSelected()){
+        		myManager.setTeam(1, 1);
+        	}else{
+        		myManager.setTeam(1, 2);
+        	}
+        	if(jRadioBPlayer2Team1.isSelected()){
+        		myManager.setTeam(2, 1);
+        	}else{
+        		myManager.setTeam(2, 2);
+        	}
+        	if(jRadioBPlayer3Team1.isSelected()){
+        		myManager.setTeam(3, 1);
+        	}else{
+        		myManager.setTeam(3, 2);
+        	}
+        	if(jRadioBPlayer4Team1.isSelected()){
+        		myManager.setTeam(4, 1);
+        	}else{
+        		myManager.setTeam(4, 2);
+        	}
+        	//Launch the Game Board.
         	new GameBoard().setVisible(true);
         	this.setVisible(false);
         }
