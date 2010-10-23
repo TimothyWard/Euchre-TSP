@@ -21,7 +21,9 @@ public class Game {
 	 * @param args A String array.
 	 */
 	public static void main(String [] args){
-
+		//setup host and client objects, in a new game
+		GameManager GM = new GameManager();
+		
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
@@ -37,8 +39,7 @@ public class Game {
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
 
-		//setup host and client objects, in a new game
-		GameManager GM = new GameManager();
+		
 		if (choice == 'h') createHost(GM, GUI);
 		else if(choice == 'c') createClient(GM, GUI);
 		else if(choice == 'a') createLocalOnlyGame(GM);
