@@ -61,7 +61,7 @@ public class Human implements Player{
 
 	/**
 	 * Calls a suit to be trump.
-	 * @return char The suit to be trump: 'S' for spades, 'H' for hearts, 'D' for diamonds, and 'C' for clubs.
+	 * @return char The suit to be trump: 's' for spades, 'h' for hearts, 'd' for diamonds, and 'c' for clubs.
 	 *  Return 0 if not calling a suit
 	 */
 	public char callSuit() {
