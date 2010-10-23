@@ -71,7 +71,7 @@ public class Welcome extends javax.swing.JFrame{
             }
         });
 
-        jButtonLocalGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
+        jButtonLocalGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         jButtonLocalGame.setText("Local Game");
         jButtonLocalGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -79,7 +79,7 @@ public class Welcome extends javax.swing.JFrame{
             }
         });
 
-        jButtonNetworkClientGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jButtonNetworkClientGame.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         jButtonNetworkClientGame.setText("Network Client Game");
         jButtonNetworkClientGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,14 +95,14 @@ public class Welcome extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabelWelcomeBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE))
+                        .addComponent(jLabelWelcomeBanner, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jButtonLocalGame, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonNetworkHostGame, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,7 +115,7 @@ public class Welcome extends javax.swing.JFrame{
                     .addComponent(jButtonLocalGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNetworkHostGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
