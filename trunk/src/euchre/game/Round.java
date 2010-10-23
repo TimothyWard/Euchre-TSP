@@ -53,8 +53,8 @@ public class Round{
 	private Hand hand4;
 	private Hand hand5;
 	private char trumpSuit = ' ';
-	private Player playerWhoDealt;
-	private char teamWhoOrdered = ' ';
+	private Player playerWhoDealt = null;
+	private Team teamWhoOrdered = null;
 
 
 	public void setHand(int hand, Card[] cardsPlayed, boolean alone, char suitLed){
@@ -97,10 +97,10 @@ public class Round{
 	public void setPlayerWhoDealt(Player playerWhoDealt) {
 		this.playerWhoDealt = playerWhoDealt;
 	}
-	public char getTeamWhoOrdered() {
+	public Team getTeamWhoOrdered() {
 		return teamWhoOrdered;
 	}
-	public void setTeamWhoOrdered(char teamWhoOrdered) {
+	public void setTeamWhoOrdered(Team teamWhoOrdered) {
 		this.teamWhoOrdered = teamWhoOrdered;
 	}
 }
