@@ -10,6 +10,7 @@ public class Human implements Player{
 	private Card activeCard = null;
 	private int numCards = 0;
 	private int team = 0;
+	private boolean isTurn = false;
 	ClientNetworkManager clientManager;
 	ServerNetworkManager serverManager;
 	boolean isHost = false;
@@ -164,8 +165,15 @@ public class Human implements Player{
 
 	@Override
 	public void setNumber(int i) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
+	}
+	
+	public boolean isTurn(){
+		return isTurn;
+	}
+	
+	public void setTurn(boolean turn){
+		isTurn = turn;
 	}
 	
 	/**
