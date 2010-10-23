@@ -49,7 +49,7 @@ public class AI implements Player{
 			}
 		}
 
-		if(numTrump>=4){
+		if(numTrump>=3){
 			return true;
 		}
 		else{
@@ -195,7 +195,7 @@ public class AI implements Player{
 	 * @param c
 	 */
 	public Card discard() {
-		// TODO Auto-generated method stub
+		numCards--;
 		return null;
 		
 	}
