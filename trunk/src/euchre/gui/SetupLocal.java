@@ -73,6 +73,7 @@ public class SetupLocal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Setup Local Game");
+        setResizable(false);
 
         jLabel1.setText("Your Name: ");
 
@@ -114,7 +115,7 @@ public class SetupLocal extends javax.swing.JFrame {
         buttonGroup3.add(jRadioButton3E);
         jRadioButton3E.setText("Easy");
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Team 1");
 
@@ -170,9 +171,9 @@ public class SetupLocal extends javax.swing.JFrame {
                                         .addComponent(jRadioButton2H))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButtonGameStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                            .addComponent(jButtonGameStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jRadioButton3E, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                                .addComponent(jRadioButton3E, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jRadioButton3M)))
                                         .addGap(18, 18, 18)
