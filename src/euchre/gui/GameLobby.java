@@ -12,10 +12,6 @@ import euchre.player.GameManager;
  * @author Neil MacBay(nmmacbay)
  */
 public class GameLobby extends javax.swing.JFrame{
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	GameManager myManager;
 	
