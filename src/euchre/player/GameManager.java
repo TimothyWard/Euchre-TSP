@@ -190,7 +190,7 @@ public class GameManager {
 	public void setPlayer(Player p, boolean localOnly){
 		if(p1==null){
 			p1=p;
-			if (localOnly){
+			if (!localOnly){
 				hostSetup.setVisible(true);
 			}
 			else{
