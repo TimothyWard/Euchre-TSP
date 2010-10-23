@@ -59,7 +59,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 
         jLabel1.setText("Name:");
 
-        jLabel2.setText("additional human players:");
+        jLabel2.setText("Additional human players:");
 
         humanPlayerCount.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
         humanPlayerCount.setSelectedIndex(2);
