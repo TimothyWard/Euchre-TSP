@@ -18,50 +18,60 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck = new Deck();
 	private Player curPlayer;
-	private Team teamOne;
-	private Team teamTwo;
+	private Team teamOne = new Team(null, null);
+	private Team teamTwo = new Team(null, null);
+	private int curRound = 1;
+	private char led;
 
 	private Round round;
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 
-	
+
 	//Test class
-//	public static void main(String[] args) {
-//		GameManager game = new GameManager();
-//		Player player = new Human();
-//		Player player2 = new Human();
-//		Player player3 = new Human();
-//		Player player4 = new Human();
-//		game.setPlayer(player);
-//		game.setPlayer(player2);
-//		game.setPlayer(player3);
-//		game.setPlayer(player4);
-//		game.deal();
-//
-//		System.out.println("Player 1's Hand:");
-//		for(int i=0;i<5;i++){
-//			System.out.println(((Human) player).getHand()[i]);
-//		}
-//		System.out.println("Player 2's Hand:");
-//		for(int i=0;i<5;i++){
-//			System.out.println(((Human) player).getHand()[i]);
-//		}
-//		System.out.println("Player 3's Hand:");
-//		for(int i=0;i<5;i++){
-//			System.out.println(((Human) player).getHand()[i]);
-//		}
-//		System.out.println("Player 4's Hand:");
-//		for(int i=0;i<5;i++){
-//			System.out.println(((Human) player).getHand()[i]);
-//		}
-//
-//	}
+	//	public static void main(String[] args) {
+	//		GameManager game = new GameManager();
+	//		Player player = new Human();
+	//		Player player2 = new Human();
+	//		Player player3 = new Human();
+	//		Player player4 = new Human();
+	//		game.setPlayer(player);
+	//		game.setPlayer(player2);
+	//		game.setPlayer(player3);
+	//		game.setPlayer(player4);
+	//		game.setTeam(1, 2);
+	//		game.setTeam(2, 2);
+	//		game.setTeam(3, 1);
+	//		game.setTeam(4, 1);
+	//		System.out.println(game.getTeamOne().getPlayerOne().getTeam());
+	//		System.out.println(game.player2.getTeam());
+	//		System.out.println(game.player3.getTeam());
+	//		System.out.println(game.player4.getTeam());
+	//		game.deal();
+
+	//		System.out.println("Player 1's Hand:");
+	//		for(int i=0;i<5;i++){
+	//			System.out.println(((Human) player).getHand()[i]);
+	//		}
+	//		System.out.println("Player 2's Hand:");
+	//		for(int i=0;i<5;i++){
+	//			System.out.println(((Human) player).getHand()[i]);
+	//		}
+	//		System.out.println("Player 3's Hand:");
+	//		for(int i=0;i<5;i++){
+	//			System.out.println(((Human) player).getHand()[i]);
+	//		}
+	//		System.out.println("Player 4's Hand:");
+	//		for(int i=0;i<5;i++){
+	//			System.out.println(((Human) player).getHand()[i]);
+	//		}
+
+	//	}
 
 
 	public void setRound(Round round){
 		this.round = round;
 	}
-	
+
 	/**
 	 * @return the hostSetup
 	 */
@@ -134,30 +144,39 @@ public class GameManager {
 					}
 				}
 			}
-		}//End of calling trump
+		}//End of picking suit
 
+	}//End of setTrump
 
-		//		for(curRound=1;curRound<6;curRound++){
-		//
-		//			Card[] playedCards = round.getCardsPlayed();
-		//
-		//			if(curRound==1){
-		//				curPlayer = nextPlayer(dealer);
-		//			}
-		//
-		//			for(int i=0;i<4;i++){
-		//				playedCards[i] = curPlayer.playCard();
-		//				curPlayer=nextPlayer(curPlayer);
-		//			}
-		//
-		//
-		//		}
+	/**
+	 * Plays a round of Euchre, consisting of five hands.
+	 * 
+	 */
+	public void playRound(){
+
+		//If this is the first round, the current player is the player to the left of the dealer
+		if(curRound==1){
+				curPlayer = nextPlayer(dealer);
+			}
+		
+		
+		for(int h=1;h<6;h++){
+			Card[] played = new Card[4];
+
+			for(int i=0;i<4;i++){
+				played[i] = curPlayer.playCard();
+				curPlayer=nextPlayer(curPlayer);
+			}
+			led=played[0].getSuit();
+
+			round.setHand(h, played, false, led);
+		}
+
 
 
 
 		dealer = nextPlayer(dealer);
-
-	}//End of setTrump
+	}
 
 
 	/**
@@ -183,15 +202,15 @@ public class GameManager {
 		}
 
 	}
-	
+
 	public Team getTeamOne(){
 		return teamOne;
 	}
-	
+
 	public Team getTeamTwo(){
 		return teamTwo;
 	}
-	
+
 	/**
 	 * Sets the given player on the given team
 	 * @param player The number of the player
@@ -199,7 +218,7 @@ public class GameManager {
 	 */
 	public void setTeam(int player, int team){
 		Player play;
-		
+
 		//Determines which player object is being referred to
 		if(player==1){
 			play = player1;
@@ -213,7 +232,7 @@ public class GameManager {
 		else{
 			play = player4;
 		}
-		
+
 		//Sets the given player on the given team by putting that player in the corresponding "seat"
 		//and then setting all of the appropriate team references
 		if(team==1 && player1.getTeam()==0){
@@ -236,10 +255,10 @@ public class GameManager {
 			player4.setTeam(2);
 			player4.setNumber(4);
 		}
-		
+
 		teamOne=new Team(player1,player3);
 		teamTwo = new Team(player2,player4);
-		
+
 	}
 
 
