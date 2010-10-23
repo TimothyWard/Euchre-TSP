@@ -2,7 +2,7 @@ package euchre.player;
 
 public interface Player {
 	Card[] hand = new Card[5];
-	String name = "";
+	
 	
 	public void drawCard(Card c);
 	
@@ -18,9 +18,9 @@ public interface Player {
 
 	public Card discard();
 	
-	public void setName();
+	public void setName(String n);
 	
-	public void getName();
+	public String getName();
 
 	public int getNumber();
 	

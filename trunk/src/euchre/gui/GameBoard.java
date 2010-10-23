@@ -3,6 +3,11 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.JOptionPane;
+
+import euchre.game.Team;
+import euchre.player.Player;
+
 /**
  * The GUI that displays the euchre game to the user and allows them to play it.
  * 
@@ -21,6 +26,22 @@ public class GameBoard extends javax.swing.JFrame {
         centerScreen();
     }
     
+    public void setTopPlayer(Player player){
+    	jLabelUPlayerName.setText(player.getName());
+    }
+    
+	public void setBottomPlayer(Player player){
+	    	
+	    }
+	
+	public void setLeftPlayer(Player player){
+		
+	}
+	
+	public void setRightPlayer(Player player){
+		
+	}
+    
     /**
      * Moves the jFrame to the center of the screen
      */
@@ -37,8 +58,8 @@ public class GameBoard extends javax.swing.JFrame {
     /**
 	 * Display the winner of the Euchre game.
 	 */
-	private void displayWinner(){
-		
+	public void displayWinner(Team winner){
+		JOptionPane.showMessageDialog(null, "Winner : " + winner.getTeamNumber()); //display winning team number
 	}
 
     /** This method is called from within the constructor to
@@ -93,6 +114,8 @@ public class GameBoard extends javax.swing.JFrame {
         jLabelPassInfo = new javax.swing.JLabel();
         theyLabel = new javax.swing.JLabel();
         weLabel = new javax.swing.JLabel();
+        theyTeamNumberLabel = new javax.swing.JLabel();
+        weTeamNumberLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
@@ -183,9 +206,13 @@ public class GameBoard extends javax.swing.JFrame {
         jLabelPassInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPassInfo.setText("(Player) passed, Your call");
 
-        theyLabel.setText("They:");
+        theyLabel.setText("Team:");
 
-        weLabel.setText("We:");
+        weLabel.setText("Team:");
+
+        theyTeamNumberLabel.setText("1");
+
+        weTeamNumberLabel.setText("2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,10 +239,11 @@ public class GameBoard extends javax.swing.JFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(theyLabel)
                                                 .addComponent(theyPointsLabel)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelOTeamTricks)
-                                            .addComponent(jLabelOTeamPoints))))
+                                            .addComponent(jLabelOTeamPoints)
+                                            .addComponent(theyTeamNumberLabel))))
                                 .addGap(138, 138, 138)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -292,7 +320,8 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelYTeamTricks)
-                                    .addComponent(jLabelYTeamPoints))))))
+                                    .addComponent(jLabelYTeamPoints)
+                                    .addComponent(weTeamNumberLabel))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -313,7 +342,9 @@ public class GameBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelRPlayerName)
                         .addGap(28, 28, 28)
-                        .addComponent(weLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(weLabel)
+                            .addComponent(weTeamNumberLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelYTeamPoints)
@@ -326,7 +357,9 @@ public class GameBoard extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(theyLabel)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(theyLabel)
+                                    .addComponent(theyTeamNumberLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(theyPointsLabel)
@@ -438,9 +471,11 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelYourName;
     private javax.swing.JLabel theyLabel;
     private javax.swing.JLabel theyPointsLabel;
+    private javax.swing.JLabel theyTeamNumberLabel;
     private javax.swing.JLabel theyTricksLabel;
     private javax.swing.JLabel weLabel;
     private javax.swing.JLabel wePointsLabel;
+    private javax.swing.JLabel weTeamNumberLabel;
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
 

@@ -1,9 +1,9 @@
 package euchre.player;
 
 public class Human implements Player{
-	
-	Card[] hand = new Card[5];
-	int numCards = 0;
+	private String name = "";
+	private Card[] hand = new Card[5];
+	private int numCards = 0;
 	
 	public Human(){
 		
@@ -72,15 +72,13 @@ public class Human implements Player{
 	}
 
 	@Override
-	public void getName() {
-		// TODO Auto-generated method stub
-		
+	public String getName() {
+		return name;
 	}
 
 	@Override
-	public void setName() {
-		// TODO Auto-generated method stub
-		
+	public void setName(String n) {
+		name = n;
 	}
 
 	@Override
