@@ -301,4 +301,9 @@ public class AI implements Player{
 			clientManager.toServer(message);
 	}
 
+	@Override
+	public char stickDealer() {
+		return hand[2].getSuit();
+	}
+
 }
