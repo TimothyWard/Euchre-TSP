@@ -49,4 +49,16 @@ public class Human implements Player{
 		return null;
 	}
 
+	@Override
+	public void getName() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setName() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
