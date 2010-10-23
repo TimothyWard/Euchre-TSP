@@ -3,7 +3,7 @@ package euchre.gui.pictures;
 import javax.swing.*;
 
 /**
- * 
+ * A class for managing card pictures, to make them easier to access. Acts primarily as a library of pictures.
  * 
  * @author Neil MacBay (nmmacbay)
  */
