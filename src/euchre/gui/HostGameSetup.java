@@ -121,7 +121,8 @@ public class HostGameSetup extends javax.swing.JFrame {
 	 */
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
 		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
-			JOptionPane.showMessageDialog(new JFrame("Error"), "Please enter a player name");
+			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
+
 		}else{ //Valid input
 			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager).setVisible(true);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
