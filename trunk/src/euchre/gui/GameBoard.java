@@ -512,8 +512,10 @@ public class GameBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_passButtonClicked
 
     private void pickItUpButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pickItUpButtonClicked
-
-    	
+    	if(humanPlayer.isTurn()){
+    		jButtonPass.setVisible(false);
+    		jButtonPickUp.setVisible(false);
+    	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
     /**
