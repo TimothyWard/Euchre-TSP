@@ -2,6 +2,8 @@ package euchre.gui;
 
 import java.awt.*;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sdwilke
@@ -115,10 +117,14 @@ public class HostGameSetup extends javax.swing.JFrame {
 	}//GEN-LAST:event_openLobbyButtonActionPerformed
 
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
-		new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText()).setVisible(true);
-		AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
-		System.out.println(AIs);
-		this.setVisible(false);
+		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
+			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
+		}else{ //Valid input
+			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim()).setVisible(true);
+			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
+			System.out.println(AIs);
+			this.setVisible(false);
+		}
 	}//GEN-LAST:event_openLobby
 
 	public int getAIs(){
