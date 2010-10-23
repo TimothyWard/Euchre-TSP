@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import euchre.player.GameManager;
 
 /**
+ * The Game Lobby from the hosts perspective where they can monitor the status of other client players, decide teams, choose AI difficulties. And start the game.
  *
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
@@ -232,6 +233,11 @@ public class GameLobby extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Starts the game if everyone is connected and ready. And teams are valid(two players per team).
+     * 
+     * @param evt The button-click that starts the event.
+     */
     private void StartGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartGame
         int team1Players = 0;
         int team2Players = 0;
@@ -277,14 +283,41 @@ public class GameLobby extends javax.swing.JFrame{
 //      
 //    }
 
+    /**
+     * Sets the status of player two and how they appear to host.
+     * Examples:
+     * ...waiting
+     * ...connected...not ready
+     * ...connected...ready
+     * 
+     * @param status The string to display as the players status.
+     */
     public void setPlayer2Status(String status){
         Player2Status.setText(status);
     }
 
+    /**
+     * Sets the status of player three and how they appear to host.
+     * Examples:
+     * ...waiting
+     * ...connected...not ready
+     * ...connected...ready
+     * 
+     * @param status The string to display as the players status.
+     */
     public void setPlayer3Status(String status){
         Player3Status.setText(status);
     }
 
+    /**
+     * Sets the status of player four and how they appear to host.
+     * Examples:
+     * ...waiting
+     * ...connected...not ready
+     * ...connected...ready
+     * 
+     * @param status The string to display as the players status.
+     */
     public void setPlayer4Status(String status){
         Player4Status.setText(status);
     }

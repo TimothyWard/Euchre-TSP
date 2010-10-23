@@ -9,11 +9,9 @@ import java.awt.*;
  */
 public class NetworkGameBrowser extends javax.swing.JFrame {
 
-   /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-/**
+	
+	/**
     * Creates an object that can browse network games and join them, or launch the
     * process for the user to host their own.
     */

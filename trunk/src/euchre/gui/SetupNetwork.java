@@ -9,10 +9,7 @@ import java.awt.*;
  */
 public class SetupNetwork extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 	/**
     * Constructs the form to interact with the setup of a network Game.
     */
@@ -118,24 +115,8 @@ public class SetupNetwork extends javax.swing.JFrame {
         jRadioButton1H.setText("Hard");
 
         jTextFieldPlayerName.setText("Player 1");
-        jTextFieldPlayerName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerNameMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerNameMouseEntered(evt);
-            }
-        });
-        jTextFieldPlayerName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerNameFocusLost(evt);
-            }
-        });
 
-        jLabel4.setText("Computer Dificulty: ");
+        jLabel4.setText("Computer Dificulty:");
 
         jLabel3.setText("Computer Dificulty: ");
 
@@ -149,22 +130,6 @@ public class SetupNetwork extends javax.swing.JFrame {
         jRadioButton1E.setText("Easy");
 
         jTextFieldPlayerName1.setText("Player 2");
-        jTextFieldPlayerName1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName1MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName1MouseEntered(evt);
-            }
-        });
-        jTextFieldPlayerName1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName1FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName1FocusLost(evt);
-            }
-        });
 
         jLabel5.setText("Player Name: ");
 
@@ -174,22 +139,6 @@ public class SetupNetwork extends javax.swing.JFrame {
         jCheckBox1.setText("Yes");
 
         jTextFieldPlayerName2.setText("Player 3");
-        jTextFieldPlayerName2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName2MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName2MouseEntered(evt);
-            }
-        });
-        jTextFieldPlayerName2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName2FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName2FocusLost(evt);
-            }
-        });
 
         jLabel7.setText("Human Player:");
 
@@ -199,22 +148,6 @@ public class SetupNetwork extends javax.swing.JFrame {
         jLabel8.setText("Player Name: ");
 
         jTextFieldPlayerName3.setText("Player 4");
-        jTextFieldPlayerName3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName3MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerName3MouseEntered(evt);
-            }
-        });
-        jTextFieldPlayerName3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName3FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerName3FocusLost(evt);
-            }
-        });
 
         jCheckBox3.setSelected(true);
         jCheckBox3.setText("Yes");
@@ -383,74 +316,6 @@ public class SetupNetwork extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldPlayerNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameMouseExited
-
-}//GEN-LAST:event_jTextFieldPlayerNameMouseExited
-
-    private void jTextFieldPlayerNameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameMouseEntered
-
-}//GEN-LAST:event_jTextFieldPlayerNameMouseEntered
-
-    private void jTextFieldPlayerNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameFocusGained
-        if (jTextFieldPlayerName.getText() == "Player 1"){
-            jTextFieldPlayerName.setText("");
-        }
-}//GEN-LAST:event_jTextFieldPlayerNameFocusGained
-
-    private void jTextFieldPlayerNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameFocusLost
-        if (jTextFieldPlayerName.getText() == ""){
-            jTextFieldPlayerName.setText("Player 1");
-        }
-}//GEN-LAST:event_jTextFieldPlayerNameFocusLost
-
-    private void jTextFieldPlayerName1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName1MouseExited
-
-    private void jTextFieldPlayerName1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName1MouseEntered
-
-    private void jTextFieldPlayerName1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName1FocusGained
-
-    private void jTextFieldPlayerName1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName1FocusLost
-
-    private void jTextFieldPlayerName2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName2MouseExited
-
-    private void jTextFieldPlayerName2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName2MouseEntered
-
-    private void jTextFieldPlayerName2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName2FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName2FocusGained
-
-    private void jTextFieldPlayerName2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName2FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName2FocusLost
-
-    private void jTextFieldPlayerName3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName3MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName3MouseExited
-
-    private void jTextFieldPlayerName3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName3MouseEntered
-
-    private void jTextFieldPlayerName3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName3FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName3FocusGained
-
-    private void jTextFieldPlayerName3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerName3FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlayerName3FocusLost
 
     /**
     * Launch a Network game with the users and the options that they selected for their game.

@@ -3,7 +3,10 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.JOptionPane;
+
 /**
+ * The game setup forms for the client. You input your name then signal that your ready.
  *
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
@@ -50,12 +53,6 @@ public class ClientGameSetup extends javax.swing.JFrame{
 
         jLabel1.setText("Player Name:");
 
-        PlayerName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlayerNameActionPerformed(evt);
-            }
-        });
-
         StartButton.setText("Start");
         StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,20 +68,19 @@ public class ClientGameSetup extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelWaitingStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelWaitingStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                        .addGap(172, 172, 172)
+                        .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,14 +99,28 @@ public class ClientGameSetup extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PlayerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PlayerNameActionPerformed
-
+    /**
+     * Sends the message that this client is ready to play the game. Does nothing however if inputed name is not valid(empty field or all whitespace characters).
+     * 
+     * @param evt The button-click that initiates this event.
+     */
     private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
-        new GameBoard().setVisible(true);
-        this.setVisible(false);
+    	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
+			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
+		}else{ //Valid input
+			new GameBoard().setVisible(true);
+			this.setVisible(false);
+        }
     }//GEN-LAST:event_ready
+    
+    /**
+     * Gets the current input(trimed of whitespace) of the text plain for the client to enter their name in.
+     * 
+     * @return The clients inputed name
+     */
+    public String getClientName(){
+    	return PlayerName.getText().trim();
+    }
 
 //    /**
 //    * @param args the command line arguments

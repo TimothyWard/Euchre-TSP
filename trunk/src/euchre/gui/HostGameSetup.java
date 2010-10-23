@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import euchre.player.GameManager;
 
 /**
+ * A form for the host to enter the number of human players they want in their game, as well as their player name.
  *
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
@@ -69,11 +70,6 @@ public class HostGameSetup extends javax.swing.JFrame {
                 openLobby(evt);
             }
         });
-        openLobbyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openLobbyButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,10 +112,11 @@ public class HostGameSetup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void openLobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLobbyButtonActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_openLobbyButtonActionPerformed
-
+	/**
+	 * Opens the lobby for the host, will not open if name field is invalid.
+	 * 
+	 * @param evt The event of the button click.
+	 */
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
 		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
@@ -131,6 +128,11 @@ public class HostGameSetup extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_openLobby
 
+	/**
+	 * Returns the number of AI players.
+	 * 
+	 * @return The number of AI players.
+	 */
 	public int getAIs(){
 		return AIs;
 	}
