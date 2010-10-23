@@ -27,39 +27,39 @@ public class GameManager {
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 
 
-		public static void main(String[] args) {
-			GameManager game = new GameManager();
-			Round round = new Round();
-			game.setRound(round);
-//			Player player = new Human();
-//			Player player2 = new Human();
-//			Player player3 = new Human();
-//			Player player4 = new Human();
-			Player ai1 = new AI();
-			Player ai2 = new AI();
-			Player ai3 = new AI();
-			Player ai4 = new AI();
-//			game.setPlayer(player);
-//			game.setPlayer(player2);
-//			game.setPlayer(player3);
-//			game.setPlayer(player4);
-			
-			game.setPlayer(ai1);
-			game.setPlayer(ai2);
-			game.setPlayer(ai3);
-			game.setPlayer(ai4);
-			
-			game.setTeam(1, 2);
-			game.setTeam(2, 2);
-			game.setTeam(3, 1);
-			game.setTeam(4, 1);
-			game.setTrump();
-			System.out.println("Upcard: " + game.upCard.suit);
-			System.out.println("Suit picked: " + game.round.getTrumpSuit());
-
-
-	
-		}
+//		public static void main(String[] args) {
+//			GameManager game = new GameManager();
+//			Round round = new Round();
+//			game.setRound(round);
+////			Player player = new Human();
+////			Player player2 = new Human();
+////			Player player3 = new Human();
+////			Player player4 = new Human();
+//			Player ai1 = new AI();
+//			Player ai2 = new AI();
+//			Player ai3 = new AI();
+//			Player ai4 = new AI();
+////			game.setPlayer(player);
+////			game.setPlayer(player2);
+////			game.setPlayer(player3);
+////			game.setPlayer(player4);
+//			
+//			game.setPlayer(ai1);
+//			game.setPlayer(ai2);
+//			game.setPlayer(ai3);
+//			game.setPlayer(ai4);
+//			
+//			game.setTeam(1, 2);
+//			game.setTeam(2, 2);
+//			game.setTeam(3, 1);
+//			game.setTeam(4, 1);
+//			game.setTrump();
+//			System.out.println("Upcard: " + game.upCard.suit);
+//			System.out.println("Suit picked: " + game.round.getTrumpSuit());
+//
+//
+//	
+//		}
 
 
 	public void setRound(Round round){

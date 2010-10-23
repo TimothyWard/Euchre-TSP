@@ -7,6 +7,7 @@ import euchre.network.ServerNetworkManager;
 public class Human implements Player{
 	private String name = "";
 	private Card[] hand = new Card[5];
+	private Card toPlay = null;
 	private int numCards = 0;
 	private int team = 0;
 	ClientNetworkManager clientManager;
@@ -77,9 +78,24 @@ public class Human implements Player{
 	 */
 	@Override
 	public Card playCard() {
-		return null;
+		while (toPlay==null){
+			//Wait until the user clicks a card...
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Card c = toPlay;
+		toPlay = null;
+		return c;
 	}
 
+	public void setPlayCard(Card c){
+		toPlay = c;
+	}
 	/**
 	 * Returns the number of the team the player is on
 	 * @return int The team number of the player
