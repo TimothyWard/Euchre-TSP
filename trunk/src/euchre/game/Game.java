@@ -33,20 +33,20 @@ public class Game {
 		}
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
+		
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
-		if (choice == 'h'){
-			createHost(GM, GUI);
-		}
-		else if(choice == 'c'){
-			createClient(GM, GUI);
-		}
-		else if(choice == 'a'){
-			createLocalOnlyGame(GM);
-		}
+		if (choice == 'h') createHost(GM, GUI);
+		else if(choice == 'c') createClient(GM, GUI);
+		else if(choice == 'a') createLocalOnlyGame(GM);
 		GUI.dispose();
 		GM.getHostSetup().dispose();
-		while (GM.getWe().getPlayerOne() == null){
+		
+		//set teams
+		while (GM.getWe().getPlayerOne() == null 
+				|| GM.getWe().getPlayerTwo() == null 
+				|| GM.getThey().getPlayerOne() == null 
+				|| GM.getWe().getPlayerTwo() == null){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
@@ -57,7 +57,10 @@ public class Game {
 		}
 		Team we = GM.getWe();
 		Team they = GM.getThey();
+		
+		//create a new tabulator and tell it which teams it is tabulating.
 		GameLogic tabulator = new GameLogic(we, they);
+		
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
 		//once GameLogic has returned information regarding round winner and point information, store information
 		//repeat with new round object if game has not resolved
