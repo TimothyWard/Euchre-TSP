@@ -46,7 +46,7 @@ public class Game {
 		}
 		GUI.dispose();
 		GM.getHostSetup().dispose();
-		while (GM.getWe().getPlayerOne == null){
+		while (GM.getWe().getPlayerOne() == null){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
