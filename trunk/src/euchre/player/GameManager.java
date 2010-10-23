@@ -89,7 +89,12 @@ public class GameManager {
 		//Check to see if any of the players 'order up' the card
 		for(int i=0;i<4;i++){
 			if(curPlayer.orderUp(upCard)){
-				round.setTeamWhoOrdered(curPlayer.getTeam());
+				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+					round.setTeamWhoOrdered(teamOne);
+				}
+				else{
+					round.setTeamWhoOrdered(teamTwo);
+				}
 				round.setTrumpSuit(upCard.getSuit());
 				deck.disCardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
 				dealer.drawCard(upCard);								//and pick up the upCard
@@ -105,7 +110,12 @@ public class GameManager {
 
 			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
-					round.setTeamWhoOrdered(curPlayer.getTeam());
+					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+						round.setTeamWhoOrdered(teamOne);
+					}
+					else{
+						round.setTeamWhoOrdered(teamTwo);
+					}
 					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
 				}
 				else{													//Otherwise, pass to the next person.
@@ -113,7 +123,12 @@ public class GameManager {
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 						//FIX
 						while(curPlayer.callSuit()==0){
-							round.setTeamWhoOrdered(curPlayer.getTeam());
+							if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+								round.setTeamWhoOrdered(teamOne);
+							}
+							else{
+								round.setTeamWhoOrdered(teamTwo);
+							}
 							round.setTrumpSuit(curPlayer.callSuit());
 						}
 					}
@@ -185,6 +200,7 @@ public class GameManager {
 	public void setTeam(int player, int team){
 		Player play;
 		
+		//Determines which player object is being referred to
 		if(player==1){
 			play = player1;
 		}
@@ -198,7 +214,8 @@ public class GameManager {
 			play = player4;
 		}
 		
-		
+		//Sets the given player on the given team by putting that player in the corresponding "seat"
+		//and then setting all of the appropriate team references
 		if(team==1 && player1.getTeam()==0){
 			player1=play;
 			player1.setTeam(1);
@@ -268,10 +285,7 @@ public class GameManager {
 				curPlayer.drawCard(deck.drawCard());	
 			}
 
-
-
 		}
-
 
 		upCard = deck.drawCard();
 
