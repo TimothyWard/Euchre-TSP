@@ -174,17 +174,16 @@ public class AI implements Player{
 	 * @param c The card to add
 	 */
 	@Override
-	public Card drawCard(Card c) {
+	public void drawCard(Card c) {
 		//FIX
 		if(numCards<5){
 			hand[numCards] = c;
-			return null;
 		}
 		else{
 			
 			hand[hand.length-1] = c;
 			//FIX
-			return discard();
+			discard();
 		}
 
 	}
