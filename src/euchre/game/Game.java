@@ -9,9 +9,8 @@ import euchre.network.*;
  * @author Timothy Ward
  * This class is the highest order class of the Euchre program. It is responsible for the highest level interactions between componenets.
  */
-public class Game {
-
-
+public class Game {	
+	
 	/**
 	 * This method is the first method called in the program. This method is 
 	 * responsible for instantiating all objects and running the overall program.
@@ -19,6 +18,10 @@ public class Game {
 	 * @param args A String array.
 	 */
 	public static void main(String [] args){
+		
+		//properties
+		Team we = GM.;
+		Team they;
 		
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
@@ -62,10 +65,7 @@ public class Game {
 	 * @param GUI
 	 */
 	public static void createHost(GameManager GM, Welcome GUI){
-		
-		//Matt changed:
-		//Moved this from main() to here
-		//Otherwise all clients would also create themselves as servers
+
 		//start network connection
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
@@ -80,9 +80,7 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-		// THIS RETURNS THE WRONG NUMBER 
 		int aiNumber = GM.getHostSetup().getAIs();
-		System.out.println(aiNumber);
 		// create specified number of AI's
 		while (aiNumber!=0){
 			ClientNetworkManager AI = new ClientNetworkManager();
@@ -100,6 +98,7 @@ public class Game {
 		GM.setPlayer(new Human());
 		ClientNetworkManager AI1 = new ClientNetworkManager();
 		AI1.start();
+		
 		GM.setPlayer(new AI());
 		ClientNetworkManager AI2 = new ClientNetworkManager();
 		AI2.start();
@@ -109,7 +108,6 @@ public class Game {
 		GM.setPlayer(new AI());
 	}
 
-	
 	/**
 	 * This method will create a client object.
 	 * @param GM
@@ -121,9 +119,6 @@ public class Game {
 		client.start();
 		GM.setPlayer(new Human());
 	}
-	
-	Team we;
-	Team they;
 
 	/**
 	 * This method compares the scores of the two teams and returns the winning team
@@ -142,4 +137,5 @@ public class Game {
 			return null;
 		}
 	}
+
 }
