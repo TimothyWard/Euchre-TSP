@@ -17,7 +17,7 @@ public class Human implements Player{
 	/**
 	 * 
 	 * 
-	 * @param client
+	 * @param client Reference to the network interface as a client
 	 */
 	public Human(ClientNetworkManager client){
 		clientManager = client;
@@ -26,7 +26,7 @@ public class Human implements Player{
 	/**
 	 * 
 	 * 
-	 * @param server
+	 * @param server Reference to the network interface as a host
 	 */
 	public Human(ServerNetworkManager server){
 		serverManager = server;
@@ -129,6 +129,11 @@ public class Human implements Player{
 		
 	}
 	
+	/**
+	 * Send a message across the network 
+	 * 
+	 * @param message The tokenized message to send across the network (formatting to be defined)
+	 */
 	public void sendNetworkMessage(String message){
 		
 		if(isHost){
