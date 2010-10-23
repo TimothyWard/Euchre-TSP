@@ -125,7 +125,7 @@ public class Game {
 	public static void createLocalOnlyGame(GameManager GM){
 		ServerNetworkManager network = new ServerNetworkManager();
 		GM.setPlayer(new Human(), true);
-		while (GM.getLocalSetup().setupComplete == false){
+		while (GM.getLocalSetup().getSetupComplete() == false){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
