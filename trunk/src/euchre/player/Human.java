@@ -7,7 +7,7 @@ import euchre.network.ServerNetworkManager;
 public class Human implements Player{
 	private String name = "";
 	private Card[] hand = new Card[5];
-	private Card toPlay = null;
+	private Card activeCard = null;
 	private int numCards = 0;
 	private int team = 0;
 	ClientNetworkManager clientManager;
@@ -78,7 +78,7 @@ public class Human implements Player{
 	 */
 	@Override
 	public Card playCard() {
-		while (toPlay==null){
+		while (activeCard==null){
 			//Wait until the user clicks a card...
 			try {
 				Thread.sleep(500);
@@ -88,14 +88,11 @@ public class Human implements Player{
 			}
 		}
 		
-		Card c = toPlay;
-		toPlay = null;
+		Card c = activeCard;
+		activeCard = null;
 		return c;
 	}
 
-	public void setPlayCard(Card c){
-		toPlay = c;
-	}
 	/**
 	 * Returns the number of the team the player is on
 	 * @return int The team number of the player
@@ -113,10 +110,32 @@ public class Human implements Player{
 		
 	}
 
-	@Override
+	/**
+	 * Waits for the user to select a card to discard. Should only happen
+	 * if the user is the dealer and is picking up the trump card.
+	 */
 	public Card discard() {
+		
+		//Should prompt user to discard a card...
+		
+		while (activeCard==null){
+			//Wait until the user clicks a card...
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Card c = activeCard;
+		activeCard = null;
 		numCards--;
-		return null;
+		return c;
+	}
+	
+	public void setActiveCard(Card c) {
+		activeCard = c;
 	}
 	
 	public Card[] getHand(){
