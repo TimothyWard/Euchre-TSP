@@ -303,6 +303,7 @@ public class AI implements Player{
 
 	@Override
 	public char stickDealer() {
+		//FIX
 		return hand[2].getSuit();
 	}
 
