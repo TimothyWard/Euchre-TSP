@@ -13,6 +13,7 @@ import euchre.player.Player;
 public class SetupLocal extends javax.swing.JFrame {
 	private Human humanPlayer;
 	private static final long serialVersionUID = 1L;
+	private boolean setupComplete = false;
 	
 	/**
 	 * Constructs the form needed to setup a local Game.
@@ -221,10 +222,18 @@ public class SetupLocal extends javax.swing.JFrame {
 	 * Launch a local game with the options that were selected by the user.
 	 */
     private void startGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startGame
-        new GameBoard(humanPlayer).setVisible(true);
+        setupComplete = true;
         this.setVisible(false);
-        this.dispose();
     }//GEN-LAST:event_startGame
+    
+    /**
+     * Returns whether or not the user is done setting up the game with this window.
+     * 
+     * @return True if the user is done with this window.
+     */
+    public boolean getSetupComplete(){
+    	return setupComplete;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
