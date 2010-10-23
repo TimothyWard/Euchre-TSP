@@ -46,7 +46,18 @@ public class Game {
 		}
 		GUI.dispose();
 		GM.getHostSetup().dispose();
-		//declare a new round object and inform network to proceed
+		while (GM.getWe().score == 0){
+			//Do nothing, user is deciding game type.
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		Team we = GM.getWe();
+		Team they = GM.getThey();
+		GameLogic tabulator = new GameLogic(we, they);
 		//wait for input for each round, once a round has received all input...send to gameLogic for computation
 		//once GameLogic has returned information regarding round winner and point information, store information
 		//repeat with new round object if game has not resolved
@@ -122,11 +133,11 @@ public class Game {
 	 * 
 	 * @return Team The winning team
 	 */
-	public Team gameWinner(){
-		if(we.score >= 10){
+	public Team gameWinner(Team we, Team they){
+		if(we.getScore() >= 10){
 			return we;
 		}
-		else if(they.score >= 10){
+		else if(they.getScore() >= 10){
 			return they;
 		}
 		else{
