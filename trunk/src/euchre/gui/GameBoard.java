@@ -2,9 +2,7 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
-
 import javax.swing.JOptionPane;
-
 import euchre.game.Team;
 import euchre.player.Player;
 
@@ -12,7 +10,7 @@ import euchre.player.Player;
  * The GUI that displays the euchre game to the user and allows them to play it.
  * 
  * @author Neil MacBay (nmmacbay)
- *
+ * @author sdwilke
  */
 public class GameBoard extends javax.swing.JFrame {
 
