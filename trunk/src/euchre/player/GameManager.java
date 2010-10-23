@@ -148,16 +148,13 @@ public class GameManager {
 
 	/**
 	 * Plays a round of Euchre, consisting of five hands.
-	 * 
+	 * Determines the winner of each hand, and that player leads the next hand.
 	 */
 	public void playRound(){
 
-		//If this is the first round, the current player is the player to the left of the dealer
-		if(curRound==1){
-				curPlayer = nextPlayer(dealer);
-			}
-		
-		
+		//Set the current player to the player to the left of the dealer
+		curPlayer = nextPlayer(dealer);
+				
 		for(int h=1;h<6;h++){
 			Card[] played = new Card[4];
 
@@ -169,9 +166,6 @@ public class GameManager {
 
 			round.setHand(h, played, false, led);
 		}
-
-
-
 
 		dealer = nextPlayer(dealer);
 	}
