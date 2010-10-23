@@ -18,6 +18,7 @@ public class GameLobby extends javax.swing.JFrame{
     public GameLobby(int numberOfPlayers, String hostName){
         initComponents();
         centerScreen();
+        jLabelPlayerName.setText(hostName);
     }
 
     /**
@@ -66,6 +67,7 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer2Team2 = new javax.swing.JRadioButton();
         jRadioBPlayer3Team2 = new javax.swing.JRadioButton();
         jRadioBPlayer4Team2 = new javax.swing.JRadioButton();
+        jLabelPlayerName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Lobby");
@@ -104,10 +106,10 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer1Team1.setText("1");
 
         buttonGroup2.add(jRadioBPlayer2Team1);
-        jRadioBPlayer2Team1.setSelected(true);
         jRadioBPlayer2Team1.setText("1");
 
         buttonGroup3.add(jRadioBPlayer3Team1);
+        jRadioBPlayer3Team1.setSelected(true);
         jRadioBPlayer3Team1.setText("1");
 
         buttonGroup4.add(jRadioBPlayer4Team1);
@@ -117,15 +119,17 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer1Team2.setText("2");
 
         buttonGroup2.add(jRadioBPlayer2Team2);
+        jRadioBPlayer2Team2.setSelected(true);
         jRadioBPlayer2Team2.setText("2");
 
         buttonGroup3.add(jRadioBPlayer3Team2);
-        jRadioBPlayer3Team2.setSelected(true);
         jRadioBPlayer3Team2.setText("2");
 
         buttonGroup4.add(jRadioBPlayer4Team2);
         jRadioBPlayer4Team2.setSelected(true);
         jRadioBPlayer4Team2.setText("2");
+
+        jLabelPlayerName.setText("Player 1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,7 +146,8 @@ public class GameLobby extends javax.swing.JFrame{
                                 .addComponent(Player2Status, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(441, 441, 441)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -191,7 +196,8 @@ public class GameLobby extends javax.swing.JFrame{
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
                     .addComponent(jRadioBPlayer1Team1)
-                    .addComponent(jRadioBPlayer1Team2))
+                    .addComponent(jRadioBPlayer1Team2)
+                    .addComponent(jLabelPlayerName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -295,6 +301,7 @@ public class GameLobby extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelPlayerName;
     private javax.swing.JRadioButton jRadioBPlayer1Team1;
     private javax.swing.JRadioButton jRadioBPlayer1Team2;
     private javax.swing.JRadioButton jRadioBPlayer2Team1;
