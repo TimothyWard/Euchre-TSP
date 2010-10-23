@@ -15,7 +15,6 @@ public class Human implements Player{
 	 * @return
 	 */
 	public void drawCard(Card c) {
-		System.out.println("Card: " + c + "       NumCards: " + numCards);
 		if(numCards>=5){
 			discard();
 		}
@@ -50,14 +49,14 @@ public class Human implements Player{
 	}
 
 	@Override
-	public char getTeam() {
+	public int getTeam() {
 		return 0;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setTeam(char c) {
+	public void setTeam(int i) {
 		// TODO Auto-generated method stub
 		
 	}
