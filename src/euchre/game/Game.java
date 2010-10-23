@@ -1,4 +1,5 @@
 package euchre.game;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import euchre.gui.Welcome;
@@ -79,7 +80,7 @@ public class Game {
 		}
 		
 
-		JOptionPane.showMessageDialog(null, "Winner : " + gameWinner(one, two).getTeamNumber());
+		JOptionPane.showMessageDialog(new JFrame("Winner"), "Team " + gameWinner(one, two).getTeamNumber() + " wins!");
 		//once game winner is determined, inform network who won to update views.
 	}
 
