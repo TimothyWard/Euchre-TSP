@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JOptionPane;
 
+import euchre.player.GameManager;
+
 /**
  *
  * @author sdwilke
@@ -12,13 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class GameLobby extends javax.swing.JFrame{
 
+	GameManager myManager;
+	
     /** 
      * Creates new form GameLobby 
      */
-    public GameLobby(int numberOfPlayers, String hostName){
+    public GameLobby(int numberOfPlayers, String hostName, GameManager inManager){
         initComponents();
         centerScreen();
         jLabelPlayerName.setText(hostName);
+        myManager = inManager;
     }
 
     /**
