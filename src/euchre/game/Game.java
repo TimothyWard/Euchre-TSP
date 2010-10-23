@@ -126,30 +126,16 @@ public class Game {
 	Team they;
 
 	/**
-	 * @author Timothy Ward 
-	 * This class is simply a place holder for two player in a team object.
-	 */
-	public class Team {
-		protected Player playerOne;
-		protected Player playerTwo;
-		protected int score = 0;
-		public Team(Player one, Player two){
-			this.playerOne = one;
-			this.playerTwo = two;
-		}
-	}
-
-	/**
 	 * This method compares the scores of the two teams and returns the winning team
 	 * if there is one or null otherwise.
 	 * 
 	 * @return Team The winning team
 	 */
 	public Team gameWinner(){
-		if(we.score == 10){
+		if(we.score >= 10){
 			return we;
 		}
-		else if(they.score == 10){
+		else if(they.score >= 10){
 			return they;
 		}
 		else{
