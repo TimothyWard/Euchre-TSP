@@ -27,6 +27,7 @@ public class GameManager {
 	private Round round;
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 	private SetupLocal setupLocal;
+	private ClientGameSetup clientGameSetup;
 
 	//		public static void main(String[] args) {
 	//			GameManager game = new GameManager();
@@ -187,8 +188,8 @@ public class GameManager {
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-	public void setPlayer(Player p, boolean localOnly){
-		if(p1==null){
+	public void setPlayer(Player p, boolean localOnly, boolean humanClient){
+		if(p1==null && humanClient == false){
 			p1=p;
 			if (!localOnly){
 				hostSetup.setVisible(true);
@@ -200,12 +201,18 @@ public class GameManager {
 		}
 		else if(p2==null){
 			p2=p;
+			clientGameSetup = new ClientGameSetup(p2);
+			clientGameSetup.setVisible(true);
 		}
 		else if(p3==null){
 			p3=p;
+			clientGameSetup = new ClientGameSetup(p3);
+			clientGameSetup.setVisible(true);
 		}
 		else if(p4==null){
 			p4=p;
+			clientGameSetup = new ClientGameSetup(p4);
+			clientGameSetup.setVisible(true);
 		}
 
 	}
