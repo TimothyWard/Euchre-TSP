@@ -11,9 +11,6 @@ import euchre.game.Game;
  */
 public class Welcome extends javax.swing.JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	char choice = 'x'; // The variable storing the users gametype choice.

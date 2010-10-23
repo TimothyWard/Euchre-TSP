@@ -9,10 +9,8 @@ import java.awt.*;
  */
 public class SetupLocal extends javax.swing.JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Constructs the form needed to setup a local Game.
 	 */
@@ -85,22 +83,6 @@ public class SetupLocal extends javax.swing.JFrame {
         jLabel4.setText("Computer 3 Dificulty:");
 
         jTextFieldPlayerName.setText("Player 1");
-        jTextFieldPlayerName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerNameMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldPlayerNameMouseEntered(evt);
-            }
-        });
-        jTextFieldPlayerName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldPlayerNameFocusLost(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton1E);
         jRadioButton1E.setText("Easy");
@@ -132,11 +114,11 @@ public class SetupLocal extends javax.swing.JFrame {
         buttonGroup3.add(jRadioButton3E);
         jRadioButton3E.setText("Easy");
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Team 1");
 
-        jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Team 2");
 
@@ -171,7 +153,7 @@ public class SetupLocal extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(jRadioButton1H))
                                 .addComponent(jTextFieldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -188,7 +170,7 @@ public class SetupLocal extends javax.swing.JFrame {
                                         .addComponent(jRadioButton2H))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButtonGameStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                            .addComponent(jButtonGameStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jRadioButton3E, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,7 +178,7 @@ public class SetupLocal extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jRadioButton3H)))
                                 .addGap(77, 77, 77))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
                         .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
@@ -237,26 +219,6 @@ public class SetupLocal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldPlayerNameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameMouseEntered
-       
-    }//GEN-LAST:event_jTextFieldPlayerNameMouseEntered
-
-    private void jTextFieldPlayerNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameMouseExited
-        
-    }//GEN-LAST:event_jTextFieldPlayerNameMouseExited
-
-    private void jTextFieldPlayerNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameFocusGained
-         if (jTextFieldPlayerName.getText() == "Player 1"){
-            jTextFieldPlayerName.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldPlayerNameFocusGained
-
-    private void jTextFieldPlayerNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPlayerNameFocusLost
-        if (jTextFieldPlayerName.getText() == ""){
-        jTextFieldPlayerName.setText("Player 1");
-        }
-    }//GEN-LAST:event_jTextFieldPlayerNameFocusLost
 
     /**
 	 * Launch a local game with the options that were selected by the user.
