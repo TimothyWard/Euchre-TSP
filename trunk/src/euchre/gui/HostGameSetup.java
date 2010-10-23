@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.JOptionPane;
 
+import euchre.player.GameManager;
+
 /**
  *
  * @author sdwilke
@@ -12,11 +14,13 @@ import javax.swing.JOptionPane;
 public class HostGameSetup extends javax.swing.JFrame {
 
 	int AIs = -1;
-
+	GameManager myManager;
+	
 	/** Creates new form HostGameSetup */
-	public HostGameSetup() {
+	public HostGameSetup(GameManager inManager) {
 		initComponents();
 		centerScreen();
+		myManager = inManager;
 	}
 
 	/**
@@ -120,7 +124,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Name cannot be nothing or constist of entierly whitespace.");
 		}else{ //Valid input
-			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim()).setVisible(true);
+			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager).setVisible(true);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
 			System.out.println(AIs);
 			this.setVisible(false);
