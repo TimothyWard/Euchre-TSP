@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import euchre.game.Team;
+import euchre.player.Card;
 import euchre.player.Player;
 
 /**
@@ -13,7 +14,7 @@ import euchre.player.Player;
  * @author sdwilke
  */
 public class GameBoard extends javax.swing.JFrame {
-
+	private Card[] hand = new Card[5];
 	private static final long serialVersionUID = 1L;
 
 	/** 
@@ -121,14 +122,39 @@ public class GameBoard extends javax.swing.JFrame {
         setResizable(false);
 
         jButtonYourCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card1Clicked(evt);
+            }
+        });
 
         jButtonYourCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card2Clicked(evt);
+            }
+        });
 
         jButtonYourCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card4Clicked(evt);
+            }
+        });
 
         jButtonYourCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card5Clicked(evt);
+            }
+        });
 
         jButtonYourCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                card3Clicked(evt);
+            }
+        });
 
         jButtonYourPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png"))); // NOI18N
 
@@ -195,8 +221,18 @@ public class GameBoard extends javax.swing.JFrame {
         jButtonTurnedCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png"))); // NOI18N
 
         jButtonPass.setText("Pass");
+        jButtonPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passButtonClicked(evt);
+            }
+        });
 
         jButtonPickUp.setText("Pick it up");
+        jButtonPickUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pickItUpButtonClicked(evt);
+            }
+        });
 
         jLabelYourName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelYourName.setText("Player name");
@@ -404,7 +440,7 @@ public class GameBoard extends javax.swing.JFrame {
                                         .addGap(24, 24, 24)
                                         .addComponent(jLabelDealer)
                                         .addGap(18, 18, 18)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                                 .addComponent(jLabelPassInfo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -419,7 +455,7 @@ public class GameBoard extends javax.swing.JFrame {
                                     .addComponent(jButtonYourCard1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelYourName)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(471, Short.MAX_VALUE)
                 .addComponent(jButtonTurnedCard)
@@ -429,6 +465,60 @@ public class GameBoard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
+        
+    	
+    	
+    }//GEN-LAST:event_card1Clicked
+
+    private void card2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2Clicked
+        
+    	
+    	
+    }//GEN-LAST:event_card2Clicked
+
+    private void card3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3Clicked
+        
+    	
+    	
+    }//GEN-LAST:event_card3Clicked
+
+    private void card4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card4Clicked
+       
+    	
+
+    }//GEN-LAST:event_card4Clicked
+
+    private void card5Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5Clicked
+     
+    	
+
+    }//GEN-LAST:event_card5Clicked
+
+    private void passButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passButtonClicked
+    
+    	
+
+    }//GEN-LAST:event_passButtonClicked
+
+    private void pickItUpButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pickItUpButtonClicked
+
+    	
+
+    }//GEN-LAST:event_pickItUpButtonClicked
+    /**
+     * used to display the players hand to the GUI
+     * 
+     * @param card the card to be set to the specified button
+     * @param cardNumber the button to set to the specified card
+     */
+    public void setCard(Card card, int cardNumber){
+    	hand[cardNumber] = card;
+    	//handButtons[cardNumber] //set card image to button
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLCard1;
     private javax.swing.JButton jButtonLCard2;
@@ -456,6 +546,7 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonYourCard3;
     private javax.swing.JButton jButtonYourCard4;
     private javax.swing.JButton jButtonYourCard5;
+    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
     private javax.swing.JButton jButtonYourPlayed;
     private javax.swing.JLabel jLabelDealer;
     private javax.swing.JLabel jLabelLPlayerName;
