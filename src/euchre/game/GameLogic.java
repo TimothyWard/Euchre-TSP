@@ -14,19 +14,7 @@ public class GameLogic{
 
 	Team one;
 	Team two;
-	Card TRB;
-	Card TLB;
-	Card TA;
-	Card TK;
-	Card TQ;
-	Card T10;
-	Card T9;
-	Card LA;
-	Card LK;
-	Card LQ;
-	Card LJ;
-	Card L10;
-	Card L9;
+	Card TRB, TLB, TA, TK, TQ, T10, T9, LA, LK, LQ, LJ, L10, L9;
 	int teamOneTricks = 0;
 	int teamTwoTricks = 0;
 
