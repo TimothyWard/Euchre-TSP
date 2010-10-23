@@ -43,7 +43,7 @@ public class AI implements Player{
 		int numTrump = 0;
 		trump = c.getSuit();
 
-		for(int i=0;i<hand.length;i++){
+		for(int i=0;i<numCards;i++){
 			if(hand[i].getSuit()==trump){
 				numTrump++;
 			}
@@ -175,16 +175,18 @@ public class AI implements Player{
 	 */
 	@Override
 	public void drawCard(Card c) {
-		//FIX
-		if(numCards<5){
+		if(numCards == 0){
+			hand[0] = c;
+		}
+		else if(numCards > 0 && numCards < 5){
 			hand[numCards] = c;
 		}
-		else{
-			
-			hand[hand.length-1] = c;
-			//FIX
+		else if(numCards == 5){
 			discard();
+			hand[numCards] = c;
 		}
+		
+		numCards++;
 
 	}
 
@@ -271,6 +273,11 @@ public class AI implements Player{
 	public void setNumber(int i) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Card[] getHand() {
+		return hand;
 	}
 
 }
