@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import euchre.game.Team;
+import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
 import euchre.player.Player;
 
@@ -15,6 +16,7 @@ import euchre.player.Player;
  */
 public class GameBoard extends javax.swing.JFrame {
 	private Card[] hand = new Card[5];
+	private PictureManager picManager = new PictureManager();
 	private static final long serialVersionUID = 1L;
 
 	/** 
