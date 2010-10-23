@@ -61,13 +61,6 @@ public class GameBoard extends javax.swing.JFrame {
         this.setLocation(p);
     }
     
-    /**
-	 * Display the winner of the Euchre game.
-	 */
-	public void displayWinner(Team winner){
-		JOptionPane.showMessageDialog(null, "Winner : " + winner.getTeamNumber()); //display winning team number
-	}
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
