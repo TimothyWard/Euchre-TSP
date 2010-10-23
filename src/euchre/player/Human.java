@@ -16,10 +16,17 @@ public class Human implements Player{
 	 * @return
 	 */
 	public void drawCard(Card c) {
-		if(numCards>=5){
-			discard();
+		if(numCards == 0){
+			hand[0] = c;
 		}
-		hand[numCards] = c;
+		else if(numCards > 0 && numCards < 5){
+			hand[numCards] = c;
+		}
+		else if(numCards == 5){
+			discard();
+			hand[numCards] = c;
+		}
+		
 		numCards++;
 	}
 
@@ -29,7 +36,6 @@ public class Human implements Player{
 	 *  Return 0 if not calling a suit
 	 */
 	public char callSuit() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -39,24 +45,30 @@ public class Human implements Player{
 	 * @return True if ordered up, false otherwise
 	 */
 	public boolean orderUp(Card c) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Plays the user selected card;
+	 * @return Card the card selected by the user
+	 */
 	@Override
 	public Card playCard() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	/**
+	 * Returns the number of the team the player is on
+	 * @return int The team number of the player
+	 */
 	public int getTeam() {
 		return team;
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
+	/**
+	 * Sets the player's team number
+	 * @param i The team number of the player
+	 */
 	public void setTeam(int i) {
 		team = i;
 		
