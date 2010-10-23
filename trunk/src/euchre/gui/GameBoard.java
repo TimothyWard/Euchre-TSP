@@ -42,6 +42,14 @@ public class GameBoard extends javax.swing.JFrame {
 		jLabelRPlayerName.setText(player.getName());
 	}
     
+	public void setWeTeam(Team team){
+		weTeamNumberLabel.setText("" + team.getTeamNumber());
+	}
+	
+	public void setTheyTeam(Team team){
+		theyTeamNumberLabel.setText("" + team.getTeamNumber());
+	}
+	
     /**
      * Moves the jFrame to the center of the screen
      */
