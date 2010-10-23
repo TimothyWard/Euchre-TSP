@@ -29,40 +29,41 @@ public class GameManager {
 
 
 	//Test class
-		public static void main(String[] args) {
-			GameManager game = new GameManager();
-			Player player = new Human();
-			Player player2 = new Human();
-			Player player3 = new Human();
-			Player player4 = new Human();
-			game.setPlayer(player);
-			game.setPlayer(player2);
-			game.setPlayer(player3);
-			game.setPlayer(player4);
-			game.setTeam(1, 2);
-			game.setTeam(2, 2);
-			game.setTeam(3, 1);
-			game.setTeam(4, 1);
-			game.deal();
-	
-	//			System.out.println("Player 1's Hand:");
-	//			for(int i=0;i<5;i++){
-	//				System.out.println(((Human) player).getHand()[i]);
-	//			}
-	//			System.out.println("Player 2's Hand:");
-	//			for(int i=0;i<5;i++){
-	//				System.out.println(((Human) player).getHand()[i]);
-	//			}
-	//			System.out.println("Player 3's Hand:");
-	//			for(int i=0;i<5;i++){
-	//				System.out.println(((Human) player).getHand()[i]);
-	//			}
-	//			System.out.println("Player 4's Hand:");
-	//			for(int i=0;i<5;i++){
-	//				System.out.println(((Human) player).getHand()[i]);
-	//			}
-	
-		}
+//		public static void main(String[] args) {
+//			GameManager game = new GameManager();
+//			Player player = new Human();
+//			Player player2 = new Human();
+//			Player player3 = new Human();
+//			Player player4 = new Human();
+//			game.setPlayer(player);
+//			game.setPlayer(player2);
+//			game.setPlayer(player3);
+//			game.setPlayer(player4);
+//			game.setTeam(1, 2);
+//			game.setTeam(2, 2);
+//			game.setTeam(3, 1);
+//			game.setTeam(4, 1);
+//			game.deal();
+//			game.playRound();
+//	
+//	//			System.out.println("Player 1's Hand:");
+//	//			for(int i=0;i<5;i++){
+//	//				System.out.println(((Human) player).getHand()[i]);
+//	//			}
+//	//			System.out.println("Player 2's Hand:");
+//	//			for(int i=0;i<5;i++){
+//	//				System.out.println(((Human) player).getHand()[i]);
+//	//			}
+//	//			System.out.println("Player 3's Hand:");
+//	//			for(int i=0;i<5;i++){
+//	//				System.out.println(((Human) player).getHand()[i]);
+//	//			}
+//	//			System.out.println("Player 4's Hand:");
+//	//			for(int i=0;i<5;i++){
+//	//				System.out.println(((Human) player).getHand()[i]);
+//	//			}
+//	
+//		}
 
 
 	public void setRound(Round round){
