@@ -1,6 +1,8 @@
 package euchre.gui;
 import java.awt.*;
 
+import euchre.player.Player;
+
 /**
  * Screen for the user to interact with the setup for a Network Game.
  *
@@ -8,7 +10,7 @@ import java.awt.*;
  *
  */
 public class SetupNetwork extends javax.swing.JFrame {
-
+	Player p;
     private static final long serialVersionUID = 1L;
 	/**
     * Constructs the form to interact with the setup of a network Game.
@@ -322,7 +324,7 @@ public class SetupNetwork extends javax.swing.JFrame {
     * Launch a Network game with the users and the options that they selected for their game.
     */
     private void launchNetworkGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_launchNetworkGame
-        new GameBoard().setVisible(true);
+        new GameBoard(p).setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_launchNetworkGame
