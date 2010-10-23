@@ -8,8 +8,8 @@ import euchre.player.Player;
  */
 public class Team {
 
-	private Player playerOne;
-	private Player playerTwo;
+	private Player playerOne = null;
+	private Player playerTwo = null;
 	private int score = 0;
 	
 	public Team(Player one, Player two){

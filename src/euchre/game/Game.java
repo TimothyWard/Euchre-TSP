@@ -46,7 +46,7 @@ public class Game {
 		}
 		GUI.dispose();
 		GM.getHostSetup().dispose();
-		while (GM.getWe().score == 0){
+		while (GM.getWe().getPlayerOne == null){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
@@ -105,7 +105,6 @@ public class Game {
 		GM.setPlayer(new Human());
 		ClientNetworkManager AI1 = new ClientNetworkManager();
 		AI1.start();
-		
 		GM.setPlayer(new AI());
 		ClientNetworkManager AI2 = new ClientNetworkManager();
 		AI2.start();
