@@ -50,6 +50,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Game Setup");
+        setResizable(false);
 
         jLabel1.setText("Player Name:");
 
