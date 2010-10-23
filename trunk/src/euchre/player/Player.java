@@ -25,4 +25,6 @@ public interface Player {
 	public int getNumber();
 	
 	public void setNumber(int i);
+	
+	public Card[] getHand();
 }

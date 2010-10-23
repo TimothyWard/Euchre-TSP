@@ -21,7 +21,6 @@ public class GameManager {
 	private Player curPlayer;
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
-	private int curRound = 1;
 	private char led;
 
 	private Round round;
@@ -29,41 +28,39 @@ public class GameManager {
 
 
 	//Test class
-//		public static void main(String[] args) {
-//			GameManager game = new GameManager();
-//			Player player = new Human();
-//			Player player2 = new Human();
-//			Player player3 = new Human();
-//			Player player4 = new Human();
+		public static void main(String[] args) {
+			GameManager game = new GameManager();
+			Round round = new Round();
+			game.setRound(round);
+			Player player = new Human();
+			Player player2 = new Human();
+			Player player3 = new Human();
+			Player player4 = new Human();
+			Player ai1 = new AI();
+			Player ai2 = new AI();
+			Player ai3 = new AI();
+			Player ai4 = new AI();
 //			game.setPlayer(player);
 //			game.setPlayer(player2);
 //			game.setPlayer(player3);
 //			game.setPlayer(player4);
-//			game.setTeam(1, 2);
-//			game.setTeam(2, 2);
-//			game.setTeam(3, 1);
-//			game.setTeam(4, 1);
-//			game.deal();
-//			//game.playRound();
-//	
-////				System.out.println("Player 1's Hand:");
-////				for(int i=0;i<5;i++){
-////					System.out.println(((Human) player).getHand()[i]);
-////				}
-////				System.out.println("Player 2's Hand:");
-////				for(int i=0;i<5;i++){
-////					System.out.println(((Human) player2).getHand()[i]);
-////				}
-////				System.out.println("Player 3's Hand:");
-////				for(int i=0;i<5;i++){
-////					System.out.println(((Human) player3).getHand()[i]);
-////				}
-////				System.out.println("Player 4's Hand:");
-////				for(int i=0;i<5;i++){
-////					System.out.println(((Human) player4).getHand()[i]);
-////				}
-//	
-//		}
+			
+			game.setPlayer(ai1);
+			game.setPlayer(ai2);
+			game.setPlayer(ai3);
+			game.setPlayer(ai4);
+			
+			game.setTeam(1, 2);
+			game.setTeam(2, 2);
+			game.setTeam(3, 1);
+			game.setTeam(4, 1);
+			game.setTrump();
+			System.out.println("Upcard: " + game.upCard.suit);
+			System.out.println("Suit picked: " + game.round.getTrumpSuit());
+
+
+	
+		}
 
 
 	public void setRound(Round round){
@@ -154,10 +151,12 @@ public class GameManager {
 
 		//Set the current player to the player to the left of the dealer
 		curPlayer = nextPlayer(dealer);
-				
+		round.setRoundComplete(false);
+		
+		//Play five hands...
 		for(int h=1;h<6;h++){
 			Card[] played = new Card[4];
-
+			//For each player, have them play a card
 			for(int i=0;i<4;i++){
 				played[i] = curPlayer.playCard();
 				curPlayer=nextPlayer(curPlayer);
@@ -167,6 +166,7 @@ public class GameManager {
 			round.setHand(h, played, false, led);
 		}
 
+		round.setRoundComplete(true);
 		dealer = nextPlayer(dealer);
 	}
 
