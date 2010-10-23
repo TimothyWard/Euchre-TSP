@@ -79,8 +79,7 @@ public class Game {
 			tabulator.interpret(currentRound);
 		}
 		
-
-		JOptionPane.showMessageDialog(new JFrame("Winner"), "Team " + gameWinner(one, two).getTeamNumber() + " wins!");
+		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 		//once game winner is determined, inform network who won to update views.
 	}
 

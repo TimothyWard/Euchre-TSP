@@ -297,7 +297,7 @@ public class GameLobby extends javax.swing.JFrame{
         	this.setVisible(false);
         }
         else{
-        	 JOptionPane.showMessageDialog(new JFrame("Error"), "Invalid Team Assignments.  Please set two players to each team");
+        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_StartGame
 
