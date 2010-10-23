@@ -18,12 +18,13 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck = new Deck();
 	private Player curPlayer;
-	private Team we;
-	private Team they;
+	private Team teamOne;
+	private Team teamTwo;
 
-	private Round round = new Round();
-	private HostGameSetup hostSetup = new HostGameSetup();
+	private Round round;
+	private HostGameSetup hostSetup = new HostGameSetup(this);
 
+	
 	//Test class
 //	public static void main(String[] args) {
 //		GameManager game = new GameManager();
@@ -57,6 +58,10 @@ public class GameManager {
 //	}
 
 
+	public void setRound(Round round){
+		this.round = round;
+	}
+	
 	/**
 	 * @return the hostSetup
 	 */
@@ -161,41 +166,63 @@ public class GameManager {
 		else if(player4==null){
 			player4=p;
 		}
-		
-		we=new Team(player1,player3);
-		they = new Team(player2,player4);
 
 	}
 	
-	public Team getWe(){
-		return we;
+	public Team getTeamOne(){
+		return teamOne;
 	}
 	
-	public Team getThey(){
-		return they;
+	public Team getTeamTwo(){
+		return teamTwo;
 	}
 	
+	/**
+	 * Sets the given player on the given team
+	 * @param player The number of the player
+	 * @param team The team to put that player on
+	 */
 	public void setTeam(int player, int team){
-//		Player temp;
-//		
-//		
-//		if(team==1 && player1.getTeam()==null){
-//			player1==
-//		}
-//		
-//		
-//		if(player==1){
-//			player1.setTeam(team);
-//		}
-//		else if(player==2){
-//			player2.setTeam(team);
-//		}
-//		else if(player==3){
-//			player3.setTeam(team);
-//		}
-//		else if(player==4){
-//			player4.setTeam(team);
-//		}
+		Player play;
+		
+		if(player==1){
+			play = player1;
+		}
+		else if(player==2){
+			play = player2;
+		}
+		else if(player==3){
+			play = player3;
+		}
+		else{
+			play = player4;
+		}
+		
+		
+		if(team==1 && player1.getTeam()==0){
+			player1=play;
+			player1.setTeam(1);
+			player1.setNumber(1);
+		}
+		else if(team==1 && player1.getTeam()!=0){
+			player3=play;
+			player3.setTeam(1);
+			player3.setNumber(3);
+		}
+		if(team==2 && player2.getTeam()==0){
+			player2=play;
+			player2.setTeam(2);
+			player2.setNumber(2);
+		}
+		else if(team==2 && player2.getTeam()!=0){
+			player4=play;
+			player4.setTeam(2);
+			player4.setNumber(4);
+		}
+		
+		teamOne=new Team(player1,player3);
+		teamTwo = new Team(player2,player4);
+		
 	}
 
 
