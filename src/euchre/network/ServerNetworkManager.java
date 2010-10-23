@@ -79,6 +79,17 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 				t.getPrintWriter().println(s);
 		}
 	}
+	
+public void toClients(String s){
+		
+		System.out.println("Message from client:");
+	    protocol.parse(s);
+		
+	    System.out.println(s);
+		for(EuchreConnectionThread t : threads){
+			t.getPrintWriter().println(s);
+		}
+	}
 
 	/**
 	 * The thread's actions. Creates a ServerSocket, and if it is listening for connections, will accept incoming requests,
