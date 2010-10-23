@@ -15,6 +15,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	boolean listening = true;
 	ServerSocket serverSocket = null;
 	int port = 4444;
+	EuchreProtocol protocol;
 
 	//contains references to all of the communication threads for socket connections
 	LinkedList<EuchreConnectionThread> threads = new LinkedList<EuchreConnectionThread>();
@@ -24,7 +25,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	 * 
 	 */
 	public ServerNetworkManager(){		
-
+		protocol = new EuchreProtocol();
 	}
 
 	/**
@@ -68,10 +69,14 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	}
 	
 	public void toClients(String s, int hash){
-		System.out.println(s);
+		
+		System.out.println("Message from client:");
+	    protocol.parse(s);
+		
+	    System.out.println(s);
 		for(EuchreConnectionThread t : threads){
-			boolean test = (hash == t.hashCode());
-			System.out.println(t.hashCode() +" - " + test);
+			if(hash != t.hashCode())
+				t.getPrintWriter().println(s);
 		}
 	}
 

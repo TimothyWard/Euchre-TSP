@@ -1,6 +1,8 @@
 package euchre.network;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
@@ -17,11 +19,14 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 
 	Socket clientSocket = null;
 	PrintWriter out = null;
+	BufferedReader in;
+	EuchreProtocol protocol;
 	
 	String hostname;
 	int port = 4444;
-	
+	boolean connecting = true;
 	boolean running = true;
+	String inputLine;
 	
 	/**
 	 * Create a ClientNetworkManager to connect to localhost.
@@ -30,6 +35,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	public ClientNetworkManager(){
 		
 		hostname = "localhost";
+		protocol = new EuchreProtocol();
 		
 	}
 	
@@ -45,7 +51,12 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	
 	public void registerPlayer(String name, int number){
 		
-		out.println("Name,"+name+","+number);
+		toServer("Name,"+name+","+number);
+	}
+	
+	public void toServer(String tokenizedString){
+		
+		out.println(tokenizedString);
 	}
 	
 	
@@ -58,7 +69,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		//run this loop continually
 		while(true){
 			
-			if(running){
+			if(connecting){
 				
 				
 					//create the new socket connection
@@ -80,6 +91,8 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					//get reference to the output stream
 					try {
 						out = new PrintWriter(clientSocket.getOutputStream(), true);
+						in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -88,13 +101,22 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					
 					//send a message to the server
 					out.println("CLIENT");
-					running = false;
-					
-					
-					
-			
+					connecting = false;
 				
-				
+			}
+			if(running){
+				try {
+					while((inputLine = in.readLine()) != null){
+						
+						//output the message
+						System.out.println("Message from server:");
+					    protocol.parse(inputLine);
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 			
 			
