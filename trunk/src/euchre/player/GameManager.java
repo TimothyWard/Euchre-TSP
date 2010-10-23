@@ -181,10 +181,15 @@ public class GameManager {
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-	public void setPlayer(Player p){
+	public void setPlayer(Player p, boolean localOnly){
 		if(p1==null){
 			p1=p;
+			if (localOnly){
 			hostSetup.setVisible(true);
+			}
+			else{
+			// display host setup window with no additional players option	
+			}
 		}
 		else if(p2==null){
 			p2=p;
