@@ -97,7 +97,7 @@ public class Game {
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.start();
 
-		GM.setPlayer(new Human());
+		GM.setPlayer(new Human(), false);
 		while (GM.getHostSetup().getAIs() ==-1){
 			//Do nothing, user is deciding game type.
 			try {
@@ -111,7 +111,7 @@ public class Game {
 		// create specified number of AI's
 		while (aiNumber!=0){
 			ClientNetworkManager AI = new ClientNetworkManager();
-			GM.setPlayer(new AI());
+			GM.setPlayer(new AI(), false);
 			AI.start();
 			aiNumber--;
 		}
@@ -124,7 +124,7 @@ public class Game {
 	 */
 	public static void createLocalOnlyGame(GameManager GM){
 		ServerNetworkManager network = new ServerNetworkManager();
-		GM.setPlayer(new Human());
+		GM.setPlayer(new Human(), true);
 		while (GM.getHostSetup().getAIs() ==-1){
 			//Do nothing, user is deciding game type.
 			try {
@@ -136,13 +136,13 @@ public class Game {
 		}
 		ClientNetworkManager AI1 = new ClientNetworkManager();
 		AI1.start();
-		GM.setPlayer(new AI());
+		GM.setPlayer(new AI(), true);
 		ClientNetworkManager AI2 = new ClientNetworkManager();
 		AI2.start();
-		GM.setPlayer(new AI());
+		GM.setPlayer(new AI(), true);
 		ClientNetworkManager AI3 = new ClientNetworkManager();
 		AI3.start();
-		GM.setPlayer(new AI());
+		GM.setPlayer(new AI(), true);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Game {
 		// add URL String argument to ClientNetworkManager to change host location
 		ClientNetworkManager client = new ClientNetworkManager();
 		client.start();
-		GM.setPlayer(new Human());
+		GM.setPlayer(new Human(), false);
 	}
 
 	/**
