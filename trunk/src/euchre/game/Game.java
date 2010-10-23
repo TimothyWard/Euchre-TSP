@@ -19,10 +19,6 @@ public class Game {
 	 */
 	public static void main(String [] args){
 		
-		//properties
-		Team we = GM.;
-		Team they;
-		
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
