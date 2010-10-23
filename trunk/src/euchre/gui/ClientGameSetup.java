@@ -8,10 +8,12 @@ import java.awt.Toolkit;
  * @author sdwilke
  * @author Neil MacBay(nmmacbay)
  */
-public class ClientGameSetup extends javax.swing.JFrame {
+public class ClientGameSetup extends javax.swing.JFrame{
 
-    /** Creates new form ClientGameSetup */
-    public ClientGameSetup() {
+    /** 
+     * Creates new form ClientGameSetup 
+     */
+    public ClientGameSetup(){
         initComponents();
         centerScreen();
     }
