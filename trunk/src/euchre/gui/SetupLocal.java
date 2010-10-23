@@ -31,15 +31,7 @@ public class SetupLocal extends javax.swing.JFrame {
         p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
         this.setLocation(p);
     }
-
-    /**
-    * Launch a local game with the options that were selected by the user.
-    */
-    private void launchLocalGame(java.awt.event.MouseEvent evt) {
-        new GameBoard().setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
