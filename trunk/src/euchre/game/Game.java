@@ -1,4 +1,6 @@
 package euchre.game;
+import javax.swing.JOptionPane;
+
 import euchre.gui.Welcome;
 import euchre.player.*;
 import euchre.network.*;
@@ -75,7 +77,9 @@ public class Game {
 			}
 			tabulator.interpret(currentRound);
 		}
-		GUI.displayWinner(Team);
+		
+
+		JOptionPane.showMessageDialog(null, "Winner : " + gameWinner(one, two).getTeamNumber());
 		//once game winner is determined, inform network who won to update views.
 	}
 
