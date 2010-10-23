@@ -48,7 +48,7 @@ public class GameLogic{
 	 * @param points The number of points to be added to the specified team's score
 	 */
 	public void incrementScore(Team team, int points){
-		team.score += points;	
+		team.setScore(team.getScore() + points);	
 	}
 
 }
