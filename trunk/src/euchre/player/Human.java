@@ -144,4 +144,10 @@ public class Human implements Player{
 		}
 	}
 
+	@Override
+	public char stickDealer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

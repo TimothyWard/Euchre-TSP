@@ -27,4 +27,6 @@ public interface Player {
 	public void setNumber(int i);
 	
 	public Card[] getHand();
+	
+	public char stickDealer();
 }
