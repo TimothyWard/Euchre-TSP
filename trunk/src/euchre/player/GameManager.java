@@ -22,10 +22,11 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
+	
 
 	private Round round;
 	private HostGameSetup hostSetup = new HostGameSetup(this);
-
+	private SetupLocal setupLocal;
 
 	//		public static void main(String[] args) {
 	//			GameManager game = new GameManager();
@@ -81,6 +82,9 @@ public class GameManager {
 		this.hostSetup = hostSetup;
 	}
 
+	public SetupLocal getLocalSetup(){
+		return this.setupLocal;
+	}
 	public GameManager() {
 
 	}
@@ -190,7 +194,8 @@ public class GameManager {
 				hostSetup.setVisible(true);
 			}
 			else{
-				new SetupLocal(p1).setVisible(true);
+				setupLocal = new SetupLocal(p1);
+				setupLocal.setVisible(true);
 			}
 		}
 		else if(p2==null){
