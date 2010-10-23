@@ -25,6 +25,12 @@ public class GameLobby extends javax.swing.JFrame{
         centerScreen();
         jLabelPlayerName.setText(hostName);
         myManager = inManager;
+        if (numberOfPlayers == 1){
+        	setPlayer4Status("Is computer player");
+        	setPlayer3Status("Is computer player");
+        }else if (numberOfPlayers == 2){
+        	setPlayer4Status("Is computer player");
+        }
     }
 
     /**
