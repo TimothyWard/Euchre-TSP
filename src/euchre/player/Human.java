@@ -1,13 +1,36 @@
 package euchre.player;
 
+import euchre.network.ClientNetworkManager;
+import euchre.network.EuchreProtocol;
+import euchre.network.ServerNetworkManager;
+
 public class Human implements Player{
 	private String name = "";
 	private Card[] hand = new Card[5];
 	private int numCards = 0;
 	private int team = 0;
+	ClientNetworkManager clientManager;
+	ServerNetworkManager serverManager;
+	boolean isHost = false;
+	EuchreProtocol protocol = new EuchreProtocol();
 	
-	public Human(){
-		
+	/**
+	 * 
+	 * 
+	 * @param client
+	 */
+	public Human(ClientNetworkManager client){
+		clientManager = client;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param server
+	 */
+	public Human(ServerNetworkManager server){
+		serverManager = server;
+		isHost = true;
 	}
 
 	/**
@@ -104,6 +127,16 @@ public class Human implements Player{
 	public void setNumber(int i) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void sendNetworkMessage(String message){
+		
+		if(isHost){
+			serverManager.toClients(message);
+		}
+		else{
+			clientManager.toServer(message);
+		}
 	}
 
 }
