@@ -559,7 +559,6 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonYourCard3;
     private javax.swing.JButton jButtonYourCard4;
     private javax.swing.JButton jButtonYourCard5;
-    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
     private javax.swing.JButton jButtonYourPlayed;
     private javax.swing.JLabel jLabelDealer;
     private javax.swing.JLabel jLabelLPlayerName;
@@ -580,5 +579,6 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel weTeamNumberLabel;
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
 
 }
