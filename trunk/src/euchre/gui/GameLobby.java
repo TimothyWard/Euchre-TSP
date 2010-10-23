@@ -2,10 +2,7 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import euchre.player.GameManager;
 
 /**
@@ -16,10 +13,18 @@ import euchre.player.GameManager;
  */
 public class GameLobby extends javax.swing.JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GameManager myManager;
 	
     /** 
      * Creates new form GameLobby 
+     * 
+     * @param numberOfPlayers the number of additional human players
+     * @param hostName the name of the host player
+     * @param inManager the Game Manager object for the game
      */
     public GameLobby(int numberOfPlayers, String hostName, GameManager inManager){
         initComponents();
