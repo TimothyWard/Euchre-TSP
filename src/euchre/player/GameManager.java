@@ -18,25 +18,37 @@ public class GameManager {
 	private Card upCard;
 	private Deck deck = new Deck();
 	private Player curPlayer;
-	private int curRound = 1;
 
 	private Round round = new Round();
 	private HostGameSetup hostSetup = new HostGameSetup();
 
 	//Test class
-		public static void main(String[] args) {
-			GameManager game = new GameManager();
-			Player player = new Human();
-			Player aiPlayer = new AI();
-			Player aiPlayer2 = new AI();
-			Player aiPlayer3 = new AI();
-			game.setPlayer(player);
-			game.setPlayer(aiPlayer);
-			game.setPlayer(aiPlayer2);
-			game.setPlayer(aiPlayer3);
-			game.deal();
-			game.setTrump();
-		}
+	public static void main(String[] args) {
+		GameManager game = new GameManager();
+		Player player = new Human();
+		Player player2 = new Human();
+		Player player3 = new Human();
+		Player player4 = new Human();
+		game.setPlayer(player);
+		game.setPlayer(player2);
+		game.setPlayer(player3);
+		game.setPlayer(player4);
+		game.deal();
+
+		//			for(int i=0;i<5;i++){
+		//				System.out.println(((Human) player).getHand()[i]);
+		//			}
+		//			for(int i=0;i<5;i++){
+		//				System.out.println(((Human) player).getHand()[i]);
+		//			}
+		//			for(int i=0;i<5;i++){
+		//				System.out.println(((Human) player).getHand()[i]);
+		//			}
+		//			for(int i=0;i<5;i++){
+		//				System.out.println(((Human) player).getHand()[i]);
+		//			}
+
+	}
 
 
 	/**
@@ -66,7 +78,6 @@ public class GameManager {
 		//Check to see if any of the players 'order up' the card
 		for(int i=0;i<4;i++){
 			if(curPlayer.orderUp(upCard)){
-				round.setPlayerWhoOrdered(curPlayer);
 				round.setTeamWhoOrdered(curPlayer.getTeam());
 				round.setTrumpSuit(upCard.getSuit());
 				deck.disCardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
@@ -83,7 +94,6 @@ public class GameManager {
 
 			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
-					round.setPlayerWhoOrdered(curPlayer);
 					round.setTeamWhoOrdered(curPlayer.getTeam());
 					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
 				}
@@ -92,7 +102,6 @@ public class GameManager {
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 						//FIX
 						while(curPlayer.callSuit()==0){
-							round.setPlayerWhoOrdered(curPlayer);
 							round.setTeamWhoOrdered(curPlayer.getTeam());
 							round.setTrumpSuit(curPlayer.callSuit());
 						}
@@ -102,36 +111,27 @@ public class GameManager {
 		}//End of calling trump
 
 
-		for(curRound=1;curRound<6;curRound++){
-
-			Card[] playedCards = round.getCardsPlayed();
-
-			if(curRound==1){
-				curPlayer = nextPlayer(dealer);
-			}
-
-			for(int i=0;i<4;i++){
-				playedCards[i] = curPlayer.playCard();
-				curPlayer=nextPlayer(curPlayer);
-			}
-
-
-
-
-
-
-
-
-
-
-
-		}
+		//		for(curRound=1;curRound<6;curRound++){
+		//
+		//			Card[] playedCards = round.getCardsPlayed();
+		//
+		//			if(curRound==1){
+		//				curPlayer = nextPlayer(dealer);
+		//			}
+		//
+		//			for(int i=0;i<4;i++){
+		//				playedCards[i] = curPlayer.playCard();
+		//				curPlayer=nextPlayer(curPlayer);
+		//			}
+		//
+		//
+		//		}
 
 
 
 		dealer = nextPlayer(dealer);
 
-	}//End of GameManager
+	}//End of setTrump
 
 
 	/**
@@ -171,28 +171,44 @@ public class GameManager {
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
 
-		for(int a=0;a<2;a++){								//Deals to each player twice
+		int draw=3;											//The number of cards to deal a player
 
-			int draw=3;										//The number of cards to deal a player
+		for(int i=0;i<4;i++){								//Deals to each player
 
-			for(int i=0;i<4;i++){							//Deals to each player
-
-				if(draw==2){								//If the previous player was dealt 2 cards,
-					draw=3;									//deal the next player 3 cards, and vice versa
-				}
-				else{
-					draw=2;
-				}
-
-				curPlayer=nextPlayer(curPlayer);
-				for(int x=0;x<draw;x++){					//Deals the appropriate number of cards to each player
-					curPlayer.drawCard(deck.drawCard());	
-				}
-
-
-
+			if(draw==2){									//If the previous player was dealt 2 cards,
+				draw=3;										//deal the next player 3 cards, and vice versa
 			}
+			else{
+				draw=2;
+			}
+
+			curPlayer=nextPlayer(curPlayer);
+			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+				curPlayer.drawCard(deck.drawCard());	
+			}
+
 		}
+		
+		draw = 2;
+		
+		for(int i=0;i<4;i++){								//Deals to each player
+
+			if(draw==2){									//If the previous player was dealt 2 cards,
+				draw=3;										//deal the next player 3 cards, and vice versa
+			}
+			else{
+				draw=2;
+			}
+
+			curPlayer=nextPlayer(curPlayer);
+			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+				curPlayer.drawCard(deck.drawCard());	
+			}
+
+
+
+		}
+
 
 		upCard = deck.drawCard();
 
