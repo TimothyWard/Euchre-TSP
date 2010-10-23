@@ -43,10 +43,10 @@ public class Game {
 		GM.getHostSetup().dispose();
 		
 		//set teams
-		while (GM.getWe().getPlayerOne() == null 
-				|| GM.getWe().getPlayerTwo() == null 
-				|| GM.getThey().getPlayerOne() == null 
-				|| GM.getWe().getPlayerTwo() == null){
+		while (GM.getOne().getPlayerOne() == null 
+				|| GM.getOne().getPlayerTwo() == null 
+				|| GM.getTwo().getPlayerOne() == null 
+				|| GM.getTwo().getPlayerTwo() == null){
 			//Do nothing, user is deciding game type.
 			try {
 				Thread.sleep(500);
@@ -55,8 +55,8 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-		Team we = GM.getWe();
-		Team they = GM.getThey();
+		Team one = GM.getOne();
+		Team they = GM.getTwo();
 		
 		//create a new tabulator and tell it which teams it is tabulating.
 		GameLogic tabulator = new GameLogic(we, they);
@@ -135,12 +135,12 @@ public class Game {
 	 * 
 	 * @return Team The winning team
 	 */
-	public Team gameWinner(Team we, Team they){
-		if(we.getScore() >= 10){
-			return we;
+	public Team gameWinner(Team one, Team two){
+		if(one.getScore() >= 10){
+			return one;
 		}
-		else if(they.getScore() >= 10){
-			return they;
+		else if(two.getScore() >= 10){
+			return two;
 		}
 		else{
 			return null;
