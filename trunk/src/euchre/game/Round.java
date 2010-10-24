@@ -21,7 +21,16 @@ public class Round{
 	 *
 	 */
 	public class Hand{
-
+		
+		public Hand(){
+			
+		}
+		
+		public Hand(char suitLed, Card[] cardsPlayed) {
+			super();
+			this.suitLed = suitLed;
+			this.cardsPlayed = cardsPlayed;
+		}
 		protected char suitLed = ' ';
 		protected Card[] cardsPlayed = new Card[5];
 
@@ -44,74 +53,39 @@ public class Round{
 			return this.cardsPlayed[card];
 		}
 	}
-
-	//properties
-	private Hand hand1;
-	public Hand getHand(int handNumber) {
-		if (handNumber == 1){
-			return hand1;
-		}
-		if (handNumber == 2){
-			return hand2;
-		}
-		if (handNumber == 3){
-			return hand3;
-		}
-		if (handNumber == 4){
-			return hand4;
-		}
-		if (handNumber == 5){
-			return hand5;
-		}
-		else{
-			return null;
-		}
-	}
 	
-	private Hand hand2;
-	private Hand hand3;
-	private Hand hand4;
-	private Hand hand5;
+	//properties
+	private Hand hand1 = new Hand();
+	private Hand hand2 = new Hand();
+	private Hand hand3 = new Hand();
+	private Hand hand4 = new Hand();
+	private Hand hand5 = new Hand();
 	private char trumpSuit = ' ';
-	private Player playerWhoDealt = null;
 	private Team teamWhoOrdered = null;
 	private boolean roundComplete = false;
 	private boolean alone = false;
 	
 	public void setHand(int hand, Card[] cardsPlayed, char suitLed){
-		if (hand == 1){
-			hand1.cardsPlayed = cardsPlayed;
-			hand1.suitLed = suitLed;
-		}
-		if (hand == 2){
-			hand2.cardsPlayed = cardsPlayed;
-			hand2.suitLed = suitLed;
-		}
-		if (hand == 3){
-			hand3.cardsPlayed = cardsPlayed;
-			hand3.suitLed = suitLed;
-		}
-		if (hand == 4){
-			hand4.cardsPlayed = cardsPlayed;
-			hand4.suitLed = suitLed;
-		}
-		if (hand == 5){
-			hand5.cardsPlayed = cardsPlayed;
-			hand5.suitLed = suitLed;
-		}
+		if (hand == 1) hand1 = new Hand(suitLed, cardsPlayed);
+		else if (hand == 2) hand2 = new Hand(suitLed, cardsPlayed);
+		else if (hand == 3) hand3 = new Hand(suitLed, cardsPlayed);
+		else if (hand == 4) hand4 = new Hand(suitLed, cardsPlayed);
+		else if (hand == 5) hand5 = new Hand(suitLed, cardsPlayed);
 		else System.out.println("An invalid hand number was passed to add to this round");
+	}
+	public Hand getHand(int handNumber) {
+		if (handNumber == 1) return hand1;
+		if (handNumber == 2) return hand2;
+		if (handNumber == 3) return hand3;
+		if (handNumber == 4) return hand4;
+		if (handNumber == 5) return hand5;
+		else return null;
 	}
 	public char getTrumpSuit() {
 		return trumpSuit;
 	}
 	public void setTrumpSuit(char trumpSuit) {
 		this.trumpSuit = trumpSuit;
-	}
-	public Player getPlayerWhoDealt() {
-		return playerWhoDealt;
-	}
-	public void setPlayerWhoDealt(Player playerWhoDealt) {
-		this.playerWhoDealt = playerWhoDealt;
 	}
 	public Team getTeamWhoOrdered() {
 		return teamWhoOrdered;

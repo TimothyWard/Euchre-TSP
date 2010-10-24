@@ -17,7 +17,7 @@ public class Team {
 		this.playerOne = one;
 		this.playerTwo = two;
 	}
-	
+
 	public Player getPlayerOne() {
 		return playerOne;
 	}
