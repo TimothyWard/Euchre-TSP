@@ -29,6 +29,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	 */
 	public ServerNetworkManager(){		
 		protocol = new EuchreProtocol();
+		protocol.setServerNetworkManager(this);
 	}
 
 	/**
@@ -93,6 +94,10 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	public void parse(String message, int hash){
 		
 		protocol.serverParse(message);
+	}
+	
+	public EuchreProtocol getParser(){
+		return protocol;
 	}
 	
 	/**
