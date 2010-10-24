@@ -29,11 +29,6 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
         centerScreen();
         setBottomPlayer(humanPlayer);
-        jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
-        jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
-        jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
-        jButtonYourCard4.setIcon(picManager.getPicture(humanPlayer.getHand()[3].getSuit(), humanPlayer.getHand()[3].getCardValue()));
-        jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
     }
     
     public void setTopPlayer(Player player){
@@ -42,6 +37,11 @@ public class GameBoard extends javax.swing.JFrame {
     
 	public void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
+		jButtonYourCard1.setIcon(picManager.getPicture(player.getHand()[0].getSuit(), player.getHand()[0].getCardValue()));
+        jButtonYourCard2.setIcon(picManager.getPicture(player.getHand()[1].getSuit(), player.getHand()[1].getCardValue()));
+        jButtonYourCard3.setIcon(picManager.getPicture(player.getHand()[2].getSuit(), player.getHand()[2].getCardValue()));
+        jButtonYourCard4.setIcon(picManager.getPicture(player.getHand()[3].getSuit(), player.getHand()[3].getCardValue()));
+        jButtonYourCard5.setIcon(picManager.getPicture(player.getHand()[4].getSuit(), player.getHand()[4].getCardValue()));
 	}
 	
 	public void setLeftPlayer(Player player){
