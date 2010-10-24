@@ -152,18 +152,10 @@ public class Game {
 		ClientGameSetup clientSetup = new ClientGameSetup(human);
 		clientSetup.setVisible(true);
 		ClientNetworkManager client = new ClientNetworkManager();
+		clientSetup.setGameManager(GM);
+		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
-		while (clientSetup.getClientName() == ""){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		client.toServer("Registerplayer,"+ clientSetup.getClientName());
 
 	}
 
