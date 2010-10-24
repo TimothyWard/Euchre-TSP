@@ -2,10 +2,7 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import euchre.player.Human;
 import euchre.player.Player;
 
@@ -16,6 +13,7 @@ import euchre.player.Player;
  * @author Neil MacBay(nmmacbay)
  */
 public class ClientGameSetup extends javax.swing.JFrame{
+	private static final long serialVersionUID = 1L;
 	private Human humanPlayer;
     /** 
      * Creates new form ClientGameSetup
