@@ -24,13 +24,13 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
-	
+
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
 
 
 	private Round round = null;
-	private HostGameSetup hostSetup = new HostGameSetup(this);
+	
 	private SetupLocal setupLocal;
 	private ClientGameSetup clientGameSetup;
 
@@ -71,19 +71,6 @@ public class GameManager {
 		this.round = round;
 	}
 
-	/**
-	 * @return the hostSetup
-	 */
-	public HostGameSetup getHostSetup() {
-		return hostSetup;
-	}
-
-	/**
-	 * @param hostSetup the hostSetup to set
-	 */
-	public void setHostSetup(HostGameSetup hostSetup) {
-		this.hostSetup = hostSetup;
-	}
 
 	public SetupLocal getLocalSetup(){
 		return this.setupLocal;
@@ -242,15 +229,15 @@ public class GameManager {
 				curPlayer=nextPlayer(curPlayer);
 			}
 
-			
+
 
 			led=played[0].getSuit();
-			
+
 			round.setHand(h, played, led);
-			
+
 			//Sets the start player to the winner of the last trick.
 			curPlayer = trickWinner(played);
-			
+
 		}
 
 		round.setRoundComplete(true);
@@ -328,41 +315,32 @@ public class GameManager {
 
 
 	/**
-	 * Adds a given player. If there is no host (player1), add it there first. Then, add any new players into the
+	 * Adds a host player. If there is no host (player1), add it there first. Then, add any new players into the
 	 * first open player slot.
 	 * @param p The human player that is going to host the game. Host will also be first dealer.
 	 */
-	public void setPlayer(Player p, boolean localOnly, boolean humanClient){
-		if(p1==null && humanClient == false){
+	public void setHostPlayer(Player p){
+		if(p1==null){
 			p1=p;
-			if (!localOnly){
-				hostSetup.setVisible(true);
-			}
-			else{
-				setupLocal = new SetupLocal(p1);
-				setupLocal.setVisible(true);
-			}
 		}
-		else if(p2==null){
+	}
+	/**
+	 * Adds a client player. If there is no host (player1), add it there first. Then, add any new players into the
+	 * first open player slot.
+	 * @param p The human player that is going to host the game. Host will also be first dealer.
+	 */
+	public void setClientPlayer(Player p){
+		if(p2==null){
 			p2=p;
-			clientGameSetup = new ClientGameSetup(p2);
-			clientGameSetup.setGameManager(this);
-			clientGameSetup.setVisible(true);
 		}
 		else if(p3==null){
 			p3=p;
-			clientGameSetup = new ClientGameSetup(p3);
-			clientGameSetup.setGameManager(this);
-			clientGameSetup.setVisible(true);
 		}
 		else if(p4==null){
 			p4=p;
-			clientGameSetup = new ClientGameSetup(p4);		
-			clientGameSetup.setGameManager(this);
-			clientGameSetup.setVisible(true);
 		}
-
 	}
+
 
 	/**
 	 * Returns a reference to team one
@@ -475,7 +453,7 @@ public class GameManager {
 	public void setServerNetworkManager(ServerNetworkManager s){
 		server = s;
 	}
-	
+
 	/**
 	 * Set reference to the network interface (client)
 	 * 
@@ -485,7 +463,7 @@ public class GameManager {
 	public void setClientNetworkManager(ClientNetworkManager c){
 		client = c;
 	}
-	
+
 	/**
 	 * Get reference to the network interface (server)
 	 * 
@@ -495,7 +473,7 @@ public class GameManager {
 	public ServerNetworkManager getServerNetworkManager(){
 		return server;
 	}
-	
+
 	/**
 	 * Get reference to the network interface (client)
 	 * 
