@@ -28,10 +28,10 @@ public class GameLobby extends javax.swing.JFrame{
         jLabelPlayerName.setText(hostName);
         myManager = inManager;
         if (numberOfPlayers == 1){
-        	setPlayer4Status("computer 4");
-        	setPlayer3Status("computer 3");
+        	setPlayer4Status("Computer 4");
+        	setPlayer3Status("Computer 3");
         }else if (numberOfPlayers == 2){
-        	setPlayer4Status("computer 4");
+        	setPlayer4Status("Computer 4");
         }
     }
 
