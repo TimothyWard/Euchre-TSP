@@ -5,6 +5,7 @@ import euchre.network.EuchreProtocol;
 import euchre.network.ServerNetworkManager;
 
 public class Human implements Player{
+	
 	private String name = "";
 	private Card[] hand = new Card[5];
 	private Card activeCard = null;
@@ -280,6 +281,11 @@ public class Human implements Player{
 		else{
 			clientManager.toServer(message);
 		}
+	}
+
+	@Override
+	public boolean isHuman() {
+		return true;
 	}
 
 
