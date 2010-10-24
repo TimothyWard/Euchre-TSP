@@ -367,7 +367,7 @@ public class GameLobby extends javax.swing.JFrame{
         		myManager.setTeam(4, 2);
         	}
         	//Launch the Game Board.
-        	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true);
+        	new GameBoard().setVisible(true);
         	if (myAIManager != null){
         		myAIManager.setVisible(false);
         		myAIManager.dispose();

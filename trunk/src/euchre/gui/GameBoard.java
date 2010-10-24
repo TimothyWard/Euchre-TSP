@@ -32,8 +32,7 @@ public class GameBoard extends javax.swing.JFrame {
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
 	 */
-    public GameBoard(Player player){
-    	humanPlayer = (Human) player;
+    public GameBoard(){
         initComponents();
         centerScreen();
         this.setBackground(Color.GREEN);

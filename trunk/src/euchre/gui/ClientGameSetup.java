@@ -123,7 +123,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			PlayerName.setEditable(false);
-			GB = new GameBoard(myManager.getTeamOne().getPlayerOne());
+			GB = new GameBoard();
 			GB.setVisible(true);
 			GB.setGameManager(myManager);
         }
