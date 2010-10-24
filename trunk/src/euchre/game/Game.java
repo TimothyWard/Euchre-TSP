@@ -70,6 +70,7 @@ public class Game {
 
 		while (gameWinner(one, two) == null){
 			Round currentRound = new Round();
+			GM.setRound(currentRound);
 			while (currentRound.isRoundComplete()==false){
 				//Do nothing, the round is not over
 				try {
@@ -81,6 +82,7 @@ public class Game {
 			}
 			tabulator.interpret(currentRound, one, two);
 		}
+		GM.setRound(null);
 
 		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 		//once game winner is determined, inform network who won to update views.
