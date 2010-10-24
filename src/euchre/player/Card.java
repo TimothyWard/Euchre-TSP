@@ -41,6 +41,11 @@ public class Card{
 		return value;
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 * @return 1 if this card is greater than the given card, 0 if they are equal, -1 if this card is less than the given card
+	 */
 	public int compareTo(Card c){
 		int tempVal;
 		int compVal;
