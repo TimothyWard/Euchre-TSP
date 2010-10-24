@@ -35,7 +35,10 @@ public class AI implements Player{
 //		Deck deck = new Deck();
 //		deck.shuffle();
 //		
+//		Card[] played = new Card[4];
+//		
 //		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println("Hand:");
 //		System.out.println(aiPlayer.hand[0].getSuit() + " " + aiPlayer.hand[0].getCardValue());
 //		aiPlayer.drawCard(deck.drawCard());
 //		System.out.println(aiPlayer.hand[1].getSuit() + " " + aiPlayer.hand[1].getCardValue());
@@ -46,11 +49,7 @@ public class AI implements Player{
 //		aiPlayer.drawCard(deck.drawCard());
 //		System.out.println(aiPlayer.hand[4].getSuit() + " " + aiPlayer.hand[4].getCardValue());
 //		
-//		System.out.println("----------------");
-//		
-//		System.out.println(aiPlayer.stickDealer());
-//		aiPlayer.leadCard();
-//		System.out.println(aiPlayer.playCard.getSuit()+ " " + aiPlayer.playCard.getCardValue());
+//	
 //		
 //	}
 
@@ -107,19 +106,15 @@ public class AI implements Player{
 
 		if(highestCard(true)==TRB){
 			playCard = highestCard(true);
-			playCard();
 		}
 		else if(highestCard(true)==TLB){
 			playCard = highestCard(true);
-			playCard();
 		}
 		else if(highestCard(false).getSuit() != trump){
 			playCard = highestCard(false);
-			playCard();
 		}
 		else{
 			playCard = lowestCard(true);
-			playCard();
 		}
 		
 		//		if hand contains right bower, play right bower
@@ -143,15 +138,32 @@ public class AI implements Player{
 			led = played[0];
 		}
 		
+		//If the AI has suit, they must follow suit...
 		if(hasSuit(led.getSuit())){
-			//if(played[1])
+			//If the AI's partner is winning this trick, play a lower card than them.
+			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
+				//FIX
+				//Play lowest same-suit!
+				playCard = lowestCard(false);
+			}
+			//If the AI's partner is not winning the trick, play a higher card than them.
+			else{
+				//FIX
+				//Play highest same-suit!
+				playCard = highestCard(true);
+			}
 		}
-		//		if hasSuit, check if partner has trick
-		//			if partnerHasTrick, play lowest same-suit
-		//			if !partnerHasTrick, play highest same suit
-		//		if !hasSuit, check if partner has trick
-		//			if !partnerHasTrick && AI has trump, play lowest trump
-		//			else play lowest off-suit
+		//If the AI does not have suit...
+		else{
+			//If the AI's partner is winning the trick, play the lowest off suit card in the AI's hand
+			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
+				playCard = lowestCard(false);
+			}
+			//If the AI's partner is not winning the trick, play the lowest trump card in the AI's hand
+			else{
+				playCard = lowestCard(true);
+			}
+		}
 	}
 
 	/**
@@ -164,12 +176,25 @@ public class AI implements Player{
 		//Remove card from AI's hand after playing it.
 		if(played[0]==null){
 			leadCard();
-			return playCard;
 		}
 		else{
 			followCard();
-			return playCard;
 		}
+
+		for(int i=0;i<numCards;i++){
+			if(hand[i]==playCard){
+				Card c = hand[numCards-1];
+				hand[numCards-1]=hand[i];
+				hand[i]=c;
+				hand[numCards-1]=null;
+				numCards--;
+				return playCard;
+			}
+		}
+		
+		
+		
+		return playCard;
 
 	}
 
@@ -201,7 +226,7 @@ public class AI implements Player{
 
 		//Finds the lowest trump card in the hand
 		if(isTrump){
-			for(int i=0;i<hand.length;i++){
+			for(int i=0;i<numCards;i++){
 				if(hand[i].compareTo(lowestCard)<0 && hand[i].getSuit()==trump){
 					lowestCard = hand[i];
 				}
@@ -215,7 +240,7 @@ public class AI implements Player{
 		}
 		//Finds the lowest off-suit card in the hand
 		if(!isTrump){
-			for(int i=0;i<hand.length;i++){
+			for(int i=0;i<numCards;i++){
 				if(hand[i].compareTo(lowestCard)<0 && hand[i].getSuit()!=trump){
 					lowestCard = hand[i];
 				}
@@ -236,14 +261,14 @@ public class AI implements Player{
 		Card highestCard = hand[0];
 
 		if(isTrump){
-			for(int i=0;i<hand.length;i++){
+			for(int i=0;i<numCards;i++){
 				if(hand[i].getCardValue()>highestCard.getCardValue() && hand[i].getSuit()==trump){
 					highestCard = hand[i];
 				}
 			}
 		}
 		else{
-			for(int i=0;i<hand.length;i++){
+			for(int i=0;i<numCards;i++){
 				if(hand[i].getCardValue()>highestCard.getCardValue() && hand[i].getSuit()!=trump){
 					highestCard = hand[i];
 				}
