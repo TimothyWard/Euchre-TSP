@@ -330,6 +330,21 @@ public class GameManager {
 	}
 	
 	/**
+	 * Adds all client and host players. 
+	 * 
+	 * @param host The human player that is going to be the host of the game. 
+	 * @param client1 The first player that is going to be a client in the game.
+	 * @param client2 The second player that is going to be a client in the game.
+	 * @param client3 The third player that is going to be a client in the game.
+	 */
+	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
+			p1=host;
+			p2=client1;
+			p3=client2;
+			p4=client3;
+	}
+	
+	/**
 	 * Adds a host and three client players for a local only game. 
 	 * 
 	 * @param p The AI player that is going to be a client in the game. 
