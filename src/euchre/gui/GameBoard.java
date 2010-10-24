@@ -613,7 +613,7 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void passButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passButtonClicked
     	if(humanPlayer.isTurn()){
-    		
+    		humanPlayer.setOrderUp(false);
     		
     	}
     }//GEN-LAST:event_passButtonClicked
@@ -625,7 +625,7 @@ public class GameBoard extends javax.swing.JFrame {
     		jButtonTurnedCard.setVisible(false);
     		jLabelDealer.setVisible(false);
     		GM.getDealer().discard();
-    		GM.getDealer().orderUp(turnedCard);
+    		humanPlayer.setOrderUp(true);
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
