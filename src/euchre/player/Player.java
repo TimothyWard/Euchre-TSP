@@ -30,9 +30,7 @@ public interface Player {
 	
 	public char stickDealer();
 	
-	/**
-	 * Set's the player's turn to either true or false
-	 * @param b Whether or not it is the player's turn
-	 */
+	public boolean isHuman();
+	
 	public void setTurn(boolean b);
 }

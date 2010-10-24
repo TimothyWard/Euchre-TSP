@@ -19,18 +19,17 @@ public class AI implements Player{
 
 	private String name = "";
 	private Card[] hand = new Card[5];
-	private Card card1, card2, card3; 	//Card played by player to the AI's left, AI's partner, and AI's right, respectively
+	private Card[] played = new Card[3];
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
-	private int round;   			 	//Which round of the hand it currently is (1,2,3,4,5)
-	private int tricks;  				//Number of tricks won by the AI and its partner
 	private int team;
 	private int numCards = 0;
 	private int playerNumber;
 	private Card playCard;
 	private ClientNetworkManager clientManager;
 	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
+	private Card led = null;
 
-
+////Test for AI
 //	public static void main(String[] args) {
 //		AI aiPlayer = new AI();
 //		Deck deck = new Deck();
@@ -134,6 +133,19 @@ public class AI implements Player{
 	 */
 	public void followCard(){
 
+		if(played[0]==null && played[1]==null){
+			led = played[2];
+		}
+		else if(played[0]==null){
+			led = played[1];
+		}
+		else{
+			led = played[0];
+		}
+		
+		if(hasSuit(led.getSuit())){
+			//if(played[1])
+		}
 		//		if hasSuit, check if partner has trick
 		//			if partnerHasTrick, play lowest same-suit
 		//			if !partnerHasTrick, play highest same suit
@@ -147,8 +159,17 @@ public class AI implements Player{
 	 * @param c The card to be played by the AI.
 	 */
 	public Card playCard(){
-
-		return null;
+		
+		//FIX
+		//Remove card from AI's hand after playing it.
+		if(played[0]==null){
+			leadCard();
+			return playCard;
+		}
+		else{
+			followCard();
+			return playCard;
+		}
 
 	}
 
@@ -156,7 +177,7 @@ public class AI implements Player{
 	 * Determines if the AI has to follow suit with the lead card.
 	 * @return True if the AI has suit, false if it does not.
 	 */
-	public boolean hasSuit(){
+	public boolean hasSuit(char c){
 		
 		
 		return false;
@@ -393,6 +414,16 @@ public class AI implements Player{
 	public void setTurn(boolean turn) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setPlayed(Card[] cards){
+		for(int i=0;i<3;i++){
+			played[2-i]=cards[i];
+		}
+	}
+	@Override
+	public boolean isHuman() {
+		return false;
 	}
 
 }
