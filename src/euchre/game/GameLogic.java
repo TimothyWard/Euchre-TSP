@@ -36,8 +36,12 @@ public class GameLogic{
 //	}
 
 	/**
+	 * 
 	 * This method accepts a round object and interprets it relative to the game.
-	 * @param roundSequence The round object containing all information for a specific round.
+	 * 
+	 * @param round The round object containing all information for a specific round.
+	 * @param one The first team to be interpreted.
+	 * @param two The second team to be interpreted.
 	 */
 	public static void interpret(Round round, Team one, Team two){
 		int teamOneTricks = 0;
@@ -97,7 +101,12 @@ public class GameLogic{
 	 * This method accepts a hand containing five cards and other information pertaining to 
 	 * the hand. It then interprets what happened in the hand, and increments the score accordingly.
 	 * 
+	 * @param round The object holding all five hands as well as other round information.
 	 * @param hand The object holding the five cards played in the round, and some other information.
+	 * @param one The first team to be tabulated.
+	 * @param two The second team to be tabulated.
+	 * 
+	 * @return The team that took the trick for this hand.
 	 */
 	public static Team interpretHand(Round round, Hand hand, Team one, Team two){
 		char trump = round.getTrumpSuit();
@@ -166,9 +175,8 @@ public class GameLogic{
 	 * @param points The number of points to be added to the specified team's score
 	 */
 	public static void incrementScore(Team team, int points){
-		System.out.println(team);
 		team.setScore(team.getScore() + points);	
-		System.out.println("Team " + team.getTeamNumber() + " won " + points + " points!!!");
+		System.out.println("Team " + team.getTeamNumber() + " earned " + points + " points!!!");
 	}
 
 }
