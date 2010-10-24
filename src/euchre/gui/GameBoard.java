@@ -109,11 +109,11 @@ public class GameBoard extends javax.swing.JFrame {
     
 	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
-		jButtonYourCard1.setIcon(picManager.getPicture(player.getHand()[0].getSuit(), player.getHand()[0].getCardValue()));
-        jButtonYourCard2.setIcon(picManager.getPicture(player.getHand()[1].getSuit(), player.getHand()[1].getCardValue()));
-        jButtonYourCard3.setIcon(picManager.getPicture(player.getHand()[2].getSuit(), player.getHand()[2].getCardValue()));
-        jButtonYourCard4.setIcon(picManager.getPicture(player.getHand()[3].getSuit(), player.getHand()[3].getCardValue()));
-        jButtonYourCard5.setIcon(picManager.getPicture(player.getHand()[4].getSuit(), player.getHand()[4].getCardValue()));
+		setCard(player.getHand()[0], 0);
+		setCard(player.getHand()[1], 1);
+		setCard(player.getHand()[2], 2);
+		setCard(player.getHand()[3], 3);
+		setCard(player.getHand()[4], 4);
 	}
 	
 	private void setLeftPlayer(Player player){
@@ -623,6 +623,7 @@ public class GameBoard extends javax.swing.JFrame {
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
+    
     /**
      * used to display the players hand to the GUI
      * 
