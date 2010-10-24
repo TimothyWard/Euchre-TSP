@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import euchre.gui.ClientGameSetup;
 import euchre.gui.HostGameSetup;
+import euchre.gui.SetupLocal;
 import euchre.gui.Welcome;
 import euchre.player.*;
 import euchre.network.*;
@@ -122,38 +123,39 @@ public class Game {
 		}
 	}
 
-//	/**
-//	 * The method will create a local only game, it is for when a user chooses to play against
-//	 * three computers.
-//	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
-//	 */
-//	public static void createLocalOnlyGame(GameManager GM){
-//		ServerNetworkManager network = new ServerNetworkManager();
-//		network.setGameManager(GM);
-//		network.start();
-//		GM.setPlayer(new Human(), true, false);
-//		while (GM.getLocalSetup().getSetupComplete() == false){
-//			//Do nothing, user is deciding game type.
-//			try {
-//				Thread.sleep(500);
-//			} 
-//			catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		ClientNetworkManager AI1 = new ClientNetworkManager();
-//		AI1.setGameManager(GM);
-//		AI1.start();
-//		GM.setPlayer(new AI(), true, false);
-//		ClientNetworkManager AI2 = new ClientNetworkManager();
-//		AI2.setGameManager(GM);
-//		AI2.start();
-//		GM.setPlayer(new AI(), true, false);
-//		ClientNetworkManager AI3 = new ClientNetworkManager();
-//		AI3.setGameManager(GM);
-//		AI3.start();
-//		GM.setPlayer(new AI(), true, false);
-//	}
+	/**
+	 * The method will create a local only game, it is for when a user chooses to play against
+	 * three computers.
+	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 */
+	public static void createLocalOnlyGame(GameManager GM){
+		ServerNetworkManager network = new ServerNetworkManager();
+		network.setGameManager(GM);
+		network.start();
+		Human human = new Human();
+		GM.setHostPlayer(human);
+		SetupLocal local = new SetupLocal(human);
+		local.setVisible(true);
+		while (local.getSetupComplete() == false){
+			//Do nothing, user is deciding game type.
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientNetworkManager AI1 = new ClientNetworkManager();
+		AI1.setGameManager(GM);
+		AI1.start();
+		ClientNetworkManager AI2 = new ClientNetworkManager();
+		AI2.setGameManager(GM);
+		AI2.start();
+		ClientNetworkManager AI3 = new ClientNetworkManager();
+		AI3.setGameManager(GM);
+		AI3.start();
+		GM.setLocalPlayers(new AI(), new AI(), new AI());
+	}
 
 	/**
 	 * This method will create a client object.
