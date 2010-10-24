@@ -222,6 +222,40 @@ public class SetupLocal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public char getComputer1Difficulty(){
+    	if (jRadioButton1E.isSelected()){ //easy
+    		return 'e';
+    	}else if(jRadioButton1M.isSelected()){//medium
+    		return 'm';
+    	}else{//hard
+    		return 'h';
+    	}
+    }
+    
+    public char getComputer2Difficulty(){
+    	if (jRadioButton2E.isSelected()){ //easy
+    		return 'e';
+    	}else if(jRadioButton2M.isSelected()){//medium
+    		return 'm';
+    	}else{//hard
+    		return 'h';
+    	}
+    }
+    
+    public char getComputer3Difficulty(){
+    	if (jRadioButton3E.isSelected()){ //easy
+    		return 'e';
+    	}else if(jRadioButton3M.isSelected()){//medium
+    		return 'm';
+    	}else{//hard
+    		return 'h';
+    	}
+    }
+    
+    public String getPlayerName(){
+    	return jTextFieldPlayerName.getText().trim();
+    }
+    
     /**
 	 * Launch a local game with the options that were selected by the user.
 	 */
