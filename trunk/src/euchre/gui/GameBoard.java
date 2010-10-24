@@ -624,11 +624,20 @@ public class GameBoard extends javax.swing.JFrame {
     		jButtonPickUp.setVisible(false);
     		jButtonTurnedCard.setVisible(false);
     		jLabelDealer.setVisible(false);
-    		GM.getDealer().discard();
     		humanPlayer.setOrderUp(true);
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
+    
+    /**
+     * hides the buttons used during trump selection
+     */
+    public void clearTrumpButtons(){
+    	jButtonPass.setVisible(false);
+    	jButtonPickUp.setVisible(false);
+    	jButtonTurnedCard.setVisible(false);
+    	jLabelDealer.setVisible(false);
+    }
     
     /**
      * used to display the players hand to the GUI
