@@ -1,5 +1,7 @@
 package euchre.player;
 
+import java.util.LinkedList;
+
 
 /**
  * A class that is used to evaluate cards.
@@ -113,5 +115,189 @@ public class CardEvaluator {
 		return cardValue;
 	}
 	
+	/**
+	 * Given an array of cards(represents a hand) along with the trump and lead suits, picks the highest value card. Or null if hand is empty.
+	 * 
+	 * @param trump The suite that is trump.
+	 * @param lead The suite that is lead.
+	 * @param hand The array of cards to find the highest trump card in.
+	 * @return Highest value card in hand, or null if the hand is empty.
+	 */
+	public static Card highestCardInHand(char trump, char lead, Card[] hand){
+		Card currentHighest = null;
+		int currentHValue = -6; //every card evaluation is higher in value
+		for (Card card: hand){
+			if (card != null){
+				if (cardValue(trump, lead, card) > currentHValue){
+					currentHValue = cardValue(trump, lead, card);
+					currentHighest = card;
+				}
+			}
+		}
+		return currentHighest;
+	}
 	
+	/**
+	 * Given an array of cards(represents a hand) along with the trump and lead suits, picks the highest lead card. Null if no lead exist.
+	 * 
+	 * @param trump The suite that is trump.
+	 * @param lead The suite that is lead.
+	 * @param hand The array of card to find the highest lead card in.
+	 * @return The highest lead car, or null if no lead cards exist.
+	 */
+	@SuppressWarnings("unchecked")
+	public static Card highestLeadInHand(char trump, char lead, Card[] hand){
+		if (!hasLead(lead, hand)){
+			return null;
+		}
+		if (trump == lead){ //lead must be evaluated as trump.
+			return highestCardInHand(trump, lead, hand);
+		}
+		LinkedList<Card> cardList = new LinkedList();
+		for (Card card: hand){
+			if (card != null){
+				if (card.getSuit() == lead){ //bowers would have been ignored, why there is a trump == lead case.
+					cardList.add(card);
+				}
+			}
+		}
+		return highestCardInHand(trump, lead, hand);
+	}
+	
+	/**
+	 * Given an array of cards(represents a hand) along with the trump and lead suits, picks the lowest trump card. Null if no trump exist.
+	 * 
+	 * @param trump The suit that is trump.
+	 * @param lead The suit that is lead.
+	 * @param hand The array of card to find the highest lead card in.
+	 * @return The lowest lead car, or null if no lead cards exist.
+	 */
+	public static Card lowestTrumpInHand(char trump, char lead, Card[] hand){
+		if (!hasTrump(trump, hand)){
+			return null;
+		}
+		Card currentLowest = null;
+		int currentLValue = 14; //every card evaluation is lower in value
+		for (Card card: hand){
+			if (card != null){
+				if (cardValue(trump, lead, card) < currentLValue && cardValue(trump, lead, card) > 6){//6 is highest non-trump.
+					currentLValue = cardValue(trump, lead, card);
+					currentLowest = card;
+				}
+			}
+		}
+		return currentLowest;
+	}
+	
+	/**
+	 * Given an array of cards(represents a hand) along with the trump and lead suits, picks the lowest lead card. Null if no lead exist.
+	 * 
+	 * @param trump The suit that is trump.
+	 * @param lead The suit that is lead.
+	 * @param hand The array of card to find the highest lead card in.
+	 * @return The lowest lead car, or null if no lead cards exist.
+	 */
+	public static Card lowestLeadInHand(char trump, char lead, Card[] hand){
+		if (!hasLead(lead, hand)){
+			return null;
+		}
+		if (trump == lead){ //lead must be evaluated as trump.
+			return lowestTrumpInHand(trump, lead, hand);
+		}
+		Card currentLowest = null;
+		int currentLValue = 7; //lowest possible trump value.
+		for (Card card: hand){
+			if (card != null){
+				if (cardValue(trump, lead, card) < currentLValue && cardValue(trump, lead, card) > 0){//0 is highest off-suite.
+					currentLValue = cardValue(trump, lead, card);
+					currentLowest = card;
+				}
+			}
+		}
+		return currentLowest;
+	}
+	
+	/**
+	 * Returns the lowest card in the hand, or null if the hand is empty.
+	 * 
+	 * @param trump The suit that is trump.
+	 * @param lead The suit that is lead.
+	 * @param hand The array of card to find the highest lead card in.
+	 * @return The lowest value card in hand, or null if the hand is empty.
+	 */
+	public static Card lowestCardInHand(char trump, char lead, Card[] hand){
+		Card currentLowest = null;
+		int currentLValue = 14; //higher than highest possible value.
+		for (Card card: hand){
+			if (card != null){
+				if (cardValue(trump, lead, card) < currentLValue){
+					currentLValue = cardValue(trump, lead, card);
+					currentLowest = card;
+				}
+			}
+		}
+		return currentLowest;
+	}
+	
+	/**
+	 * Returns whether or not a given hand has trump cards contained, given also the suit that is trump.
+	 * 
+	 * @param trump The suit that is trump.
+	 * @param hand The array of cards that is the hand
+	 * @return True if the hand contains one or more trump cards.
+	 */
+	public static boolean hasTrump(char trump, Card[] hand){
+		boolean foundTrump = false;
+		for (Card card: hand){
+			if (card != null){
+				if (card.suit == trump){
+					foundTrump = true;
+				}
+			}
+		}
+		return foundTrump;
+	}
+	
+	/**
+	 * Returns whether or not a given hand has lead cards contained, given also the suit that is lead.
+	 * 
+	 * @param lead The suit that is lead.
+	 * @param hand The array of cards that is the hand
+	 * @return True if the hand contains one or more lead cards.
+	 */
+	public static boolean hasLead(char lead, Card[] hand){
+		boolean foundLead = false;
+		for (Card card: hand){
+			if (card != null){
+				if (card.suit == lead){
+					foundLead = true;
+				}
+			}
+		}
+		return foundLead;
+	}
+	
+	/**
+	 * Test cases
+	 * 
+	 * @param args
+	 */
+	/*public static void main(String[] args){
+		Card[] hand = {new Card('0','h'), new Card('j','c'), new Card('j','s'), new Card('a','h'), new Card('a','d')};
+		char trump = 's';
+		char lead = 'h';
+		System.out.println("trump = '" + trump + "'  lead = '" + lead + "'");
+		System.out.print("Cards in hand: ");
+		for (Card card: hand){
+			System.out.print(" || card = "+card.toString()+" value = " + cardValue(trump, lead, card) + " || ");
+		}
+		System.out.println();
+		System.out.println("hasTrump: " + hasTrump(trump, hand));
+		System.out.println("hasLead: " + hasLead(lead, hand));
+		System.out.println("Highest Card: " + highestCardInHand(trump, lead, hand));
+		System.out.println("Highest lead: " + highestLeadInHand(trump, lead, hand));
+		System.out.println("Lowest trump: " + lowestTrumpInHand(trump, lead, hand));
+		System.out.println("Lowest lead: " + lowestLeadInHand(trump, lead, hand));
+		System.out.println("Lowest card: " + lowestCardInHand(trump, lead, hand));
+	}*/
 }
