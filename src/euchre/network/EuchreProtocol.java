@@ -57,7 +57,6 @@ public class EuchreProtocol {
 
 					}
 				}
-				System.out.println(connectedClients);
 
 			}
 			else if(token.equals("SetPlayers")){
