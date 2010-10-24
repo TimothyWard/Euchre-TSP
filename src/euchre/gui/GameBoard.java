@@ -35,6 +35,11 @@ public class GameBoard extends javax.swing.JFrame {
         centerScreen();
         setBottomPlayer(humanPlayer);
         this.setBackground(Color.GREEN);
+        heartsButton.setVisible(false);
+        clubsButton.setVisible(false);
+        diamondsButton.setVisible(false);
+        spadesButton.setVisible(false);
+        suitPassButton.setVisible(false);
     }
     
     
@@ -693,29 +698,44 @@ public class GameBoard extends javax.swing.JFrame {
     		jButtonPickUp.setVisible(false);
     		jButtonTurnedCard.setVisible(false);
     		jLabelDealer.setVisible(false);
+    		heartsButton.setVisible(true);
+            clubsButton.setVisible(true);
+            diamondsButton.setVisible(true);
+            spadesButton.setVisible(true);
+            suitPassButton.setVisible(true);
     		humanPlayer.setOrderUp(true);
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
 
     private void heartsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartsListener
-        // TODO add your handling code here:
+    	if(humanPlayer.isTurn()){
+    		 humanPlayer.setCallSuit('h');
+    	}
     }//GEN-LAST:event_heartsListener
 
     private void clubsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clubsListener
-        // TODO add your handling code here:
+    	if(humanPlayer.isTurn()){
+    		humanPlayer.setCallSuit('c');
+    	}
     }//GEN-LAST:event_clubsListener
 
     private void diamondsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diamondsListener
-        // TODO add your handling code here:
+    	if(humanPlayer.isTurn()){
+    		humanPlayer.setCallSuit('d');
+    	}
     }//GEN-LAST:event_diamondsListener
 
     private void spadesListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spadesListener
-        // TODO add your handling code here:
+    	if(humanPlayer.isTurn()){
+    		humanPlayer.setCallSuit('s');
+    	}
     }//GEN-LAST:event_spadesListener
 
     private void suitPassListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suitPassListener
-        // TODO add your handling code here:
+    	if(humanPlayer.isTurn()){
+    		humanPlayer.setCallSuit('x');
+    	}
     }//GEN-LAST:event_suitPassListener
     
     /**
