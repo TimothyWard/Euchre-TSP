@@ -433,6 +433,10 @@ public class GameManager {
 			return player1;
 		}
 	}
+	
+	public Player getDealer(){
+		return dealer;
+	}
 
 	public Player getPlayer1(){
 		return player1;
