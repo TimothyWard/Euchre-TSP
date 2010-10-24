@@ -35,6 +35,10 @@ public class GameBoard extends javax.swing.JFrame {
         setBottomPlayer(humanPlayer);
     }
     
+    public void newRound(){
+    	
+    }
+    
     public void setGameManager(GameManager gm){
     	GM = gm;
     	if(humanPlayer.getTeam() == 1){
