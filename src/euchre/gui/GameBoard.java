@@ -201,6 +201,11 @@ public class GameBoard extends javax.swing.JFrame {
         weLabel = new javax.swing.JLabel();
         theyTeamNumberLabel = new javax.swing.JLabel();
         weTeamNumberLabel = new javax.swing.JLabel();
+        heartsButton = new javax.swing.JButton();
+        clubsButton = new javax.swing.JButton();
+        diamondsButton = new javax.swing.JButton();
+        spadesButton = new javax.swing.JButton();
+        suitPassButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
@@ -338,6 +343,41 @@ public class GameBoard extends javax.swing.JFrame {
 
         weTeamNumberLabel.setText("2");
 
+        heartsButton.setText("Hearts");
+        heartsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                heartsListener(evt);
+            }
+        });
+
+        clubsButton.setText("Clubs");
+        clubsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clubsListener(evt);
+            }
+        });
+
+        diamondsButton.setText("Diamonds");
+        diamondsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diamondsListener(evt);
+            }
+        });
+
+        spadesButton.setText("Spades");
+        spadesButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                spadesListener(evt);
+            }
+        });
+
+        suitPassButton.setText("Pass");
+        suitPassButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                suitPassListener(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -370,13 +410,24 @@ public class GameBoard extends javax.swing.JFrame {
                                             .addComponent(theyTeamNumberLabel))))
                                 .addGap(138, 138, 138)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(99, 99, 99)
-                                        .addComponent(jButtonLPlayed)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButtonYourPlayed)
-                                            .addComponent(jButtonUPlayed))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(99, 99, 99)
+                                                .addComponent(jButtonLPlayed)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jButtonYourPlayed)
+                                                    .addComponent(jButtonUPlayed)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(heartsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(diamondsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(clubsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(spadesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                                                .addGap(134, 134, 134)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -406,8 +457,12 @@ public class GameBoard extends javax.swing.JFrame {
                                     .addComponent(jLabelYourName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jButtonYourCard1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonYourCard1)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(9, 9, 9)
+                                            .addComponent(suitPassButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jButtonPass, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,27 +564,38 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonLCard3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonLCard4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonLCard4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jButtonUPlayed)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonYourPlayed))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(72, 72, 72)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonRPlayed)
+                                        .addComponent(jButtonLPlayed))
+                                    .addGap(24, 24, 24)
+                                    .addComponent(jLabelDealer)
+                                    .addGap(18, 18, 18))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonLCard5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelLPlayerName))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButtonUPlayed)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonYourPlayed))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButtonRPlayed)
-                                            .addComponent(jButtonLPlayed))
-                                        .addGap(24, 24, 24)
-                                        .addComponent(jLabelDealer)
-                                        .addGap(18, 18, 18)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                                .addComponent(jLabelPassInfo)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(heartsButton)
+                                    .addComponent(clubsButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(diamondsButton)
+                                    .addComponent(spadesButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelPassInfo)
+                                    .addComponent(suitPassButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonPass)
@@ -543,7 +609,7 @@ public class GameBoard extends javax.swing.JFrame {
                                     .addComponent(jButtonYourCard1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelYourName)))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(471, Short.MAX_VALUE)
                 .addComponent(jButtonTurnedCard)
@@ -631,6 +697,26 @@ public class GameBoard extends javax.swing.JFrame {
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
+
+    private void heartsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartsListener
+        // TODO add your handling code here:
+    }//GEN-LAST:event_heartsListener
+
+    private void clubsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clubsListener
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clubsListener
+
+    private void diamondsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diamondsListener
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diamondsListener
+
+    private void spadesListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spadesListener
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spadesListener
+
+    private void suitPassListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suitPassListener
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suitPassListener
     
     /**
      * hides the buttons used during trump selection
@@ -670,6 +756,9 @@ public class GameBoard extends javax.swing.JFrame {
     }    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clubsButton;
+    private javax.swing.JButton diamondsButton;
+    private javax.swing.JButton heartsButton;
     private javax.swing.JButton jButtonLCard1;
     private javax.swing.JButton jButtonLCard2;
     private javax.swing.JButton jButtonLCard3;
@@ -707,6 +796,8 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelYTeamPoints;
     private javax.swing.JLabel jLabelYTeamTricks;
     private javax.swing.JLabel jLabelYourName;
+    private javax.swing.JButton spadesButton;
+    private javax.swing.JButton suitPassButton;
     private javax.swing.JLabel theyLabel;
     private javax.swing.JLabel theyPointsLabel;
     private javax.swing.JLabel theyTeamNumberLabel;
