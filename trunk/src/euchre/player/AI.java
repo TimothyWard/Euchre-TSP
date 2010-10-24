@@ -31,6 +31,29 @@ public class AI implements Player{
 	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 
 
+//	public static void main(String[] args) {
+//		AI aiPlayer = new AI();
+//		Deck deck = new Deck();
+//		deck.shuffle();
+//		
+//		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println(aiPlayer.hand[0].getSuit() + " " + aiPlayer.hand[0].getCardValue());
+//		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println(aiPlayer.hand[1].getSuit() + " " + aiPlayer.hand[1].getCardValue());
+//		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println(aiPlayer.hand[2].getSuit() + " " + aiPlayer.hand[2].getCardValue());
+//		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println(aiPlayer.hand[3].getSuit() + " " + aiPlayer.hand[3].getCardValue());
+//		aiPlayer.drawCard(deck.drawCard());
+//		System.out.println(aiPlayer.hand[4].getSuit() + " " + aiPlayer.hand[4].getCardValue());
+//		
+//		System.out.println("----------------");
+//		
+//		System.out.println(aiPlayer.stickDealer());
+//		aiPlayer.leadCard();
+//		System.out.println(aiPlayer.playCard.getSuit()+ " " + aiPlayer.playCard.getCardValue());
+//		
+//	}
 
 	public AI(){
 
@@ -158,21 +181,23 @@ public class AI implements Player{
 		//Finds the lowest trump card in the hand
 		if(isTrump){
 			for(int i=0;i<hand.length;i++){
-				if(hand[i].getCardValue()<lowestCard.getCardValue() && hand[i].getSuit()==trump){
+				if(hand[i].compareTo(lowestCard)<0 && hand[i].getSuit()==trump){
 					lowestCard = hand[i];
 				}
+			}
+			if(lowestCard.getSuit()==trump){
+				return lowestCard;
+			}
+			else{
+				isTrump=false;
 			}
 		}
 		//Finds the lowest off-suit card in the hand
-		else{
+		if(!isTrump){
 			for(int i=0;i<hand.length;i++){
-				if(hand[i].getCardValue()<lowestCard.getCardValue() && hand[i].getSuit()!=trump){
+				if(hand[i].compareTo(lowestCard)<0 && hand[i].getSuit()!=trump){
 					lowestCard = hand[i];
 				}
-			}
-			//If there are no off-suit cards in the hand, return the lowest trump card.
-			if(lowestCard==null){
-				lowestCard = lowestCard(isTrump);
 			}
 		}
 		
@@ -353,6 +378,7 @@ public class AI implements Player{
 	public char stickDealer() {
 		//FIX
 		trump = hand[2].getSuit();
+		
 		TRB = new Card('j', trump);
 		TLB = new Card('j', trump);
 		TA = new Card('a', trump);
