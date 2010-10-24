@@ -51,43 +51,43 @@ public class CardEvaluator {
 		Card L10 = new Card('0', lead);
 		Card L9 = new Card('9', lead);
 		int cardValue;
-		if (card.compareTo(TRB)==0){ 
+		if (card.equals(TRB)){ 
 			cardValue = 13;
 		}
-		else if (card.compareTo(TLB)==0){
+		else if (card.equals(TLB)){
 			cardValue = 12;
 		}
-		else if (card.compareTo(TA)==0){
+		else if (card.equals(TA)){
 			cardValue = 11;
 		}
-		else if (card.compareTo(TK)==0){
+		else if (card.equals(TK)){
 			cardValue = 10;
 		}
-		else if (card.compareTo(TQ)==0){
+		else if (card.equals(TQ)){
 			cardValue = 9;
 		}
-		else if (card.compareTo(T10)==0) {
+		else if (card.equals(T10)) {
 			cardValue = 8;
 		}
-		else if (card.compareTo(T9)==0) {
+		else if (card.equals(T9)) {
 			cardValue = 7;
 		}
-		else if (card.compareTo(LA)==0) {
+		else if (card.equals(LA)) {
 			cardValue = 6;
 		}
-		else if (card.compareTo(LK)==0) {
+		else if (card.equals(LK)) {
 			cardValue = 5;
 		}
-		else if (card.compareTo(LQ)==0) {
+		else if (card.equals(LQ)) {
 			cardValue = 4;
 		}
-		else if (card.compareTo(LJ)==0) {
+		else if (card.equals(LJ)) {
 			cardValue = 3;
 		}
-		else if (card.compareTo(L10)==0) {
+		else if (card.equals(L10)) {
 			cardValue = 2;
 		}
-		else if (card.compareTo(L9)==0) {
+		else if (card.equals(L9)) {
 			cardValue = 1;
 		}
 		else{ //not lead or trump.
@@ -161,7 +161,13 @@ public class CardEvaluator {
 				}
 			}
 		}
-		return highestCardInHand(trump, lead, hand);
+		Card[] modHand = new Card[cardList.size()];
+		int i=0;
+		for (Card card: cardList){
+			modHand[i] = card;
+			i++;
+		}
+		return highestCardInHand(trump, lead, modHand);
 	}
 	
 	/**
@@ -278,6 +284,44 @@ public class CardEvaluator {
 	}
 	
 	/**
+	 * Returns the number of trump cards in a hand.
+	 * 
+	 * @param trump The suit that is trump.
+	 * @param hand The array of cards that is the hand.
+	 * @return The number of trump cards.
+	 */
+	public static int numberOfTrump(char trump, Card[] hand){
+		int number = 0;
+		for (Card card: hand){
+			if (card != null){
+				if (card.suit == trump){
+					number++;
+				}
+			}
+		}
+		return number;
+	}
+	
+	/**
+	 * Returns the number of lead cards in a hand.
+	 * 
+	 * @param lead The suit that is lead.
+	 * @param hand The array of cards that is the hand.
+	 * @return The number of lead cards.
+	 */
+	public static int numberOfLead(char lead, Card[] hand){
+		int number = 0;
+		for (Card card: hand){
+			if (card != null){
+				if (card.suit == lead){
+					number++;
+				}
+			}
+		}
+		return number;
+	}
+	
+	/**
 	 * Test cases
 	 * 
 	 * @param args
@@ -294,6 +338,8 @@ public class CardEvaluator {
 		System.out.println();
 		System.out.println("hasTrump: " + hasTrump(trump, hand));
 		System.out.println("hasLead: " + hasLead(lead, hand));
+		System.out.println("numberOfTrump: " + numberOfTrump(trump, hand));
+		System.out.println("numberOfLead: " + numberOfLead(lead, hand));
 		System.out.println("Highest Card: " + highestCardInHand(trump, lead, hand));
 		System.out.println("Highest lead: " + highestLeadInHand(trump, lead, hand));
 		System.out.println("Lowest trump: " + lowestTrumpInHand(trump, lead, hand));
