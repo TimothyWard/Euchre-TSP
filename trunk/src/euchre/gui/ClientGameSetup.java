@@ -143,6 +143,8 @@ public class ClientGameSetup extends javax.swing.JFrame{
     	return PlayerName.getText().trim();
     }
     
+    
+    
     /**
      * Pass reference to the GameManager in 
      * 
