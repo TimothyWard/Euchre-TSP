@@ -11,6 +11,8 @@ public class Human implements Player{
 	private int numCards = 0;
 	private int team = 0;
 	private boolean isTurn = false;
+	private char orderSuit = 0;
+	
 	ClientNetworkManager clientManager;
 	ServerNetworkManager serverManager;
 	boolean isHost = false;
@@ -65,7 +67,30 @@ public class Human implements Player{
 	 *  Return 0 if not calling a suit
 	 */
 	public char callSuit() {
-		return 0;
+		while (orderSuit==0){
+			//Wait until the user selects a suit
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(orderSuit=='x'){
+			orderSuit=0;
+			return 0;
+		}
+		else{
+			char temp = orderSuit;
+			orderSuit=0;
+			return temp;
+		}
+
+	}
+	
+	public void setCallSuit(char c){
+		orderSuit=c;
 	}
 
 	/**
@@ -103,7 +128,6 @@ public class Human implements Player{
 	 * @return int The team number of the player
 	 */
 	public int getTeam() {
-		
 		
 		return team;
 	}
