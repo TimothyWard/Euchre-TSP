@@ -3,6 +3,9 @@ package euchre.gui;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
+
+import javax.swing.JOptionPane;
+
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
@@ -754,7 +757,13 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void suitPassListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suitPassListener
     	if(humanPlayer.isTurn()){
-    		humanPlayer.setCallSuit('x');
+    		if(GM.getDealer() == humanPlayer){
+    			JOptionPane.showMessageDialog(null, "Please select a suit", "Stick the Dealer", JOptionPane.ERROR_MESSAGE);
+    			suitPassButton.setVisible(false);
+    		}
+    		else{
+    			humanPlayer.setCallSuit('x');
+    		}    		
     	}
     }//GEN-LAST:event_suitPassListener
     
