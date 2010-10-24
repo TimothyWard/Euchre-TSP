@@ -96,10 +96,13 @@
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="179" max="-2" attributes="0"/>
-              <EmptySpace pref="250" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="startGame" alignment="0" min="-2" pref="264" max="-2" attributes="1"/>
+                  <Component id="changeComputerDifficulty" alignment="0" pref="264" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,15 +141,17 @@
                   <Component id="jRadioBPlayer4Team1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRadioBPlayer4Team2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="changeComputerDifficulty" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="startGame" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="startGame">
       <Properties>
         <Property name="text" type="java.lang.String" value="Start Game"/>
       </Properties>
@@ -281,6 +286,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 1"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="changeComputerDifficulty">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change Computer Difficulty"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changeAIDifficulty"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
