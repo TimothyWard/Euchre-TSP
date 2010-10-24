@@ -24,7 +24,7 @@ public class GameManager {
 	private char led;
 
 
-	private Round round;
+	private Round round = null;
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 	private SetupLocal setupLocal;
 	private ClientGameSetup clientGameSetup;
@@ -86,16 +86,77 @@ public class GameManager {
 	public SetupLocal getLocalSetup(){
 		return this.setupLocal;
 	}
+
 	public GameManager() {
 
 	}
 
+	/**
+	 * The actual control for playing through the game.
+	 * While round has been initialized, deal cards, determine trump, and play a round of Euchre.
+	 */
 	public void playGame(){
 
-		deal();
-		setTrump();
-		playRound();
+		while(round != null){
+			deal();
+			setTrump();
+			playRound();
+		}
 	}
+
+
+	/**
+	 * Deals five cards to each player, in groups of two and three.
+	 * 
+	 * Order of dealing is two, three, two, three, three, two, three, two
+	 * 
+	 */
+	public void deal(){
+
+		deck.shuffle();										//Shuffle the deck of cards
+		curPlayer = dealer;
+
+		int draw=3;											//The number of cards to deal a player
+
+		for(int i=0;i<4;i++){								//Deals to each player
+
+			if(draw==2){									//If the previous player was dealt 2 cards,
+				draw=3;										//deal the next player 3 cards, and vice versa
+			}
+			else{
+				draw=2;
+			}
+
+			curPlayer=nextPlayer(curPlayer);
+			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+				curPlayer.drawCard(deck.drawCard());	
+			}
+
+		}
+
+		draw = 2;
+
+		for(int i=0;i<4;i++){								//Deals to each player
+
+			if(draw==2){									//If the previous player was dealt 2 cards,
+				draw=3;										//deal the next player 3 cards, and vice versa
+			}
+			else{
+				draw=2;
+			}
+
+			curPlayer=nextPlayer(curPlayer);
+			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+				curPlayer.drawCard(deck.drawCard());	
+			}
+
+		}
+
+		upCard = deck.drawCard();
+
+	}
+
+
 	/**
 	 * Determines the trump suit for the round. First asks each player if they want the dealer to pick up the card.
 	 * If none do, then it asks each player if they want to call suit. If none call suit, the dealer is forced to pick
@@ -178,26 +239,33 @@ public class GameManager {
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
+
+			
+
+			led=played[0].getSuit();
+			
+			round.setHand(h, played, led);
 			
 			//Sets the start player to the winner of the last trick.
-			if(h != 1){
-				curPlayer = trickWinner(played);
-			}
+			curPlayer = trickWinner(played);
 			
-			led=played[0].getSuit();
-
-			round.setHand(h, played, led);
 		}
 
 		round.setRoundComplete(true);
 		dealer = nextPlayer(dealer);
 	}
 
+	/**
+	 * Determines the winner of a trick. This isn't used for scoring, just to keep track of who
+	 * leads each hand.
+	 * @param cards An array of the cards played in the hand
+	 * @return The player who won the hand/trick
+	 */
 	public Player trickWinner(Card[] cards){
 
 		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 		char trump = round.getTrumpSuit();
-		
+
 		LA = new Card('a', cards[0].getSuit());
 		LK = new Card('k', cards[0].getSuit());
 		LQ = new Card('q', cards[0].getSuit());
@@ -231,7 +299,7 @@ public class GameManager {
 			if (card.compareTo(L9)==0) cardValue[i] = 1;
 			else cardValue[i] = 0;
 		}
-		
+
 		int maximum = cardValue[0];
 		int maxIndex = 0;
 		for (int i=1; i<cardValue.length; i++) {
@@ -240,7 +308,7 @@ public class GameManager {
 				maxIndex = i;
 			}
 		}
-		
+
 		if(maxIndex==0){
 			return player1;
 		}
@@ -253,7 +321,7 @@ public class GameManager {
 		else{
 			return player4;
 		}
-		
+
 	}
 
 
@@ -356,57 +424,6 @@ public class GameManager {
 		teamTwo = new Team(player2,player4);
 
 	}
-
-
-	/**
-	 * Deals five cards to each player, in groups of two and three.
-	 */
-	public void deal(){
-
-		deck.shuffle();										//Shuffle the deck of cards
-		curPlayer = dealer;
-
-		int draw=3;											//The number of cards to deal a player
-
-		for(int i=0;i<4;i++){								//Deals to each player
-
-			if(draw==2){									//If the previous player was dealt 2 cards,
-				draw=3;										//deal the next player 3 cards, and vice versa
-			}
-			else{
-				draw=2;
-			}
-
-			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-				curPlayer.drawCard(deck.drawCard());	
-			}
-
-		}
-
-		draw = 2;
-
-		for(int i=0;i<4;i++){								//Deals to each player
-
-			if(draw==2){									//If the previous player was dealt 2 cards,
-				draw=3;										//deal the next player 3 cards, and vice versa
-			}
-			else{
-				draw=2;
-			}
-
-			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-				curPlayer.drawCard(deck.drawCard());	
-			}
-
-		}
-
-		upCard = deck.drawCard();
-
-		dealer=nextPlayer(dealer);
-	}
-
 
 	/**
 	 * Finds the next player after a given player
