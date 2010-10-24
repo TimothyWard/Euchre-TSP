@@ -31,8 +31,6 @@ public class GameManager {
 
 	private Round round = null;
 	
-	private SetupLocal setupLocal;
-	private ClientGameSetup clientGameSetup;
 
 	//			public static void main(String[] args) {
 	//				GameManager game = new GameManager();
@@ -69,11 +67,6 @@ public class GameManager {
 
 	public void setRound(Round round){
 		this.round = round;
-	}
-
-
-	public SetupLocal getLocalSetup(){
-		return this.setupLocal;
 	}
 
 	public GameManager() {
@@ -315,19 +308,19 @@ public class GameManager {
 
 
 	/**
-	 * Adds a host player. If there is no host (player1), add it there first. Then, add any new players into the
-	 * first open player slot.
-	 * @param p The human player that is going to host the game. Host will also be first dealer.
+	 * Adds a host player.
+	 * @param p The human player that is going to host the game. 
 	 */
 	public void setHostPlayer(Player p){
 		if(p1==null){
 			p1=p;
 		}
 	}
+	
 	/**
-	 * Adds a client player. If there is no host (player1), add it there first. Then, add any new players into the
-	 * first open player slot.
-	 * @param p The human player that is going to host the game. Host will also be first dealer.
+	 * Adds a client player. 
+	 * 
+	 * @param p The human player that is going to be a client in the game. 
 	 */
 	public void setClientPlayer(Player p){
 		if(p2==null){
@@ -339,6 +332,19 @@ public class GameManager {
 		else if(p4==null){
 			p4=p;
 		}
+	}
+	
+	/**
+	 * Adds a host and three client players for a local only game. 
+	 * 
+	 * @param p The AI player that is going to be a client in the game. 
+	 * @param p The AI player that is going to be a client in the game. 
+	 * @param p The AI player that is going to be a client in the game. 
+	 */
+	public void setLocalPlayers(Player playerOne, Player playerTwo, Player playerThree){
+		p1=playerOne;
+		p2=playerTwo;
+		p3=playerThree;
 	}
 
 
