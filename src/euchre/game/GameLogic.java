@@ -13,27 +13,32 @@ import euchre.player.Human;
  */
 public class GameLogic{
 
-//	static Team ONE = new Team(new Human(), new Human());
-//	static Team TWO = new Team(new Human(), new Human());
-//	static Round test = new Round();
-//
-//	public static void main(String[] args){
-//		Card[] hand1 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
-//		Card[] hand2 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
-//		Card[] hand3 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
-//		Card[] hand4 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
-//		Card[] hand5 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
-//		test.setHand(1, hand1, 's');
-//		test.setHand(2, hand2, 's');
-//		test.setHand(3, hand3, 's');
-//		test.setHand(4, hand4, 's');
-//		test.setHand(5, hand5, 's');
-//		test.setAlone(false);
-//		test.setTeamWhoOrdered(ONE);
-//		test.setTrumpSuit('d');
-//		test.setRoundComplete(true);
-//		interpret(test, ONE, TWO);
-//	}
+	/**
+	//BEGIN TESTING CODE FOR THIS CLASS
+	static Team ONE = new Team(new Human(), new Human());
+	static Team TWO = new Team(new Human(), new Human());
+	static Round test = new Round();
+
+	public static void main(String[] args){
+		Card[] hand1 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
+		Card[] hand2 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
+		Card[] hand3 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
+		Card[] hand4 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
+		Card[] hand5 = {new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s'),new Card('a','s')};
+		test.setHand(1, hand1, 's');
+		test.setHand(2, hand2, 's');
+		test.setHand(3, hand3, 's');
+		test.setHand(4, hand4, 's');
+		test.setHand(5, hand5, 's');
+		test.setAlone(false);
+		test.setTeamWhoOrdered(ONE);
+		test.setTrumpSuit('d');
+		test.setRoundComplete(true);
+		interpret(test, ONE, TWO);
+	}
+	//END TESTING CODE FOR THIS CLASS
+	//This class must have all static methods for this test code to run.
+	 **/
 
 	/**
 	 * 
@@ -43,7 +48,7 @@ public class GameLogic{
 	 * @param one The first team to be interpreted.
 	 * @param two The second team to be interpreted.
 	 */
-	public static void interpret(Round round, Team one, Team two){
+	public void interpret(Round round, Team one, Team two){
 		int teamOneTricks = 0;
 		int teamTwoTricks = 0;
 		for (int x=1; x<=5; x++){
@@ -54,7 +59,7 @@ public class GameLogic{
 				teamTwoTricks++;
 			}
 		}
-		
+
 		//if the round winner took 5 tricks
 		if ((teamOneTricks==5 && round.getTeamWhoOrdered()==one)||(teamTwoTricks==5 && round.getTeamWhoOrdered()==two)){
 			//if the round winner took all five tricks alone 
@@ -108,7 +113,7 @@ public class GameLogic{
 	 * 
 	 * @return The team that took the trick for this hand.
 	 */
-	public static Team interpretHand(Round round, Hand hand, Team one, Team two){
+	public Team interpretHand(Round round, Hand hand, Team one, Team two){
 		char trump = round.getTrumpSuit();
 		Card TRB = new Card('j', trump);
 		Card TLB = new Card('j', trump);
@@ -157,7 +162,7 @@ public class GameLogic{
 	 * @param array The array to find the max of.
 	 * @return The index of the maximum value of the array.
 	 */
-	public static int maxIndex(int[] array) {
+	public int maxIndex(int[] array) {
 		int maximum = array[0];
 		int maxIndex = 0;
 		for (int i=1; i<array.length; i++) {
@@ -174,7 +179,7 @@ public class GameLogic{
 	 * @param team The team whose score is to be changed
 	 * @param points The number of points to be added to the specified team's score
 	 */
-	public static void incrementScore(Team team, int points){
+	public void incrementScore(Team team, int points){
 		team.setScore(team.getScore() + points);	
 		System.out.println("Team " + team.getTeamNumber() + " earned " + points + " points!!!");
 	}
