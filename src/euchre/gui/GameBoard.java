@@ -35,10 +35,46 @@ public class GameBoard extends javax.swing.JFrame {
         setBottomPlayer(humanPlayer);
     }
     
+    
+    /**
+     * resets the board to start a new round
+     */
     public void newRound(){
-    	
+    	jButtonYourPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
+        jButtonRPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
+        jButtonLPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
+        jButtonUPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
+        jButtonUCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
+        jButtonUCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
+        jButtonUCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
+        jButtonUCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
+        jButtonUCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
+        jButtonLCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonLCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonLCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonLCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonLCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonRCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonRCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonRCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonRCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonRCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        jButtonPass.setVisible(true);
+		jButtonPickUp.setVisible(true);
+		jButtonTurnedCard.setVisible(true);
+		jLabelDealer.setVisible(true);
+		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
+        jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
+        jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
+        jButtonYourCard4.setIcon(picManager.getPicture(humanPlayer.getHand()[3].getSuit(), humanPlayer.getHand()[3].getCardValue()));
+        jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
     }
     
+    /**
+     * sets the game manager so gameboard can have access to the players
+     * 
+     * @param gm the game manager
+     */
     public void setGameManager(GameManager gm){
     	GM = gm;
     	if(humanPlayer.getTeam() == 1){
@@ -49,6 +85,8 @@ public class GameBoard extends javax.swing.JFrame {
     		}
     		leftPlayer = gm.getTeamTwo().getPlayerOne();
     		rightPlayer = gm.getTeamTwo().getPlayerTwo();
+    		setWeTeam(gm.getTeamOne());
+    		setTheyTeam(gm.getTeamTwo());
     	}else{
     		if(gm.getTeamTwo().getPlayerOne().getNumber() != humanPlayer.getNumber()){
     			topPlayer = gm.getTeamTwo().getPlayerOne();
@@ -57,17 +95,19 @@ public class GameBoard extends javax.swing.JFrame {
     		}
     		leftPlayer = gm.getTeamOne().getPlayerOne();
     		rightPlayer = gm.getTeamOne().getPlayerTwo();
+    		setWeTeam(gm.getTeamTwo());
+    		setTheyTeam(gm.getTeamOne());
     	}
     	setTopPlayer(topPlayer);
     	setLeftPlayer(leftPlayer);
     	setRightPlayer(rightPlayer);
     }
     
-    public void setTopPlayer(Player player){
+    private void setTopPlayer(Player player){
     	jLabelUPlayerName.setText(player.getName());
     }
     
-	public void setBottomPlayer(Player player){
+	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
 		jButtonYourCard1.setIcon(picManager.getPicture(player.getHand()[0].getSuit(), player.getHand()[0].getCardValue()));
         jButtonYourCard2.setIcon(picManager.getPicture(player.getHand()[1].getSuit(), player.getHand()[1].getCardValue()));
@@ -76,11 +116,11 @@ public class GameBoard extends javax.swing.JFrame {
         jButtonYourCard5.setIcon(picManager.getPicture(player.getHand()[4].getSuit(), player.getHand()[4].getCardValue()));
 	}
 	
-	public void setLeftPlayer(Player player){
+	private void setLeftPlayer(Player player){
 		jLabelLPlayerName.setText(player.getName());
 	}
 	
-	public void setRightPlayer(Player player){
+	private void setRightPlayer(Player player){
 		jLabelRPlayerName.setText(player.getName());
 	}
     
