@@ -119,6 +119,7 @@ public class Game {
 			ClientNetworkManager AI = new ClientNetworkManager();
 			AI.setGameManager(GM);
 			GM.setClientPlayer(new AI());
+			AI.toServer("Registerplayer," + "Computer " + aiNumber);
 			AI.start();
 			aiNumber--;
 		}
@@ -150,14 +151,17 @@ public class Game {
 		//get info out of GUI here and give to Network or GM
 		ClientNetworkManager AI1 = new ClientNetworkManager();
 		AI1.setGameManager(GM);
+		AI1.toServer("Registerplayer," + "Computer One");
 		AI1.start();
 		
 		ClientNetworkManager AI2 = new ClientNetworkManager();
 		AI2.setGameManager(GM);
+		AI2.toServer("Registerplayer," + "Computer Two");
 		AI2.start();
 		
 		ClientNetworkManager AI3 = new ClientNetworkManager();
 		AI3.setGameManager(GM);
+		AI3.toServer("Registerplayer," + "Computer Three");
 		AI3.start();
 		
 		GM.setLocalPlayers(new AI(), new AI(), new AI());
@@ -170,13 +174,15 @@ public class Game {
 	 */
 	public static void createClient(GameManager GM, Welcome GUI){
 		// add URL String argument to ClientNetworkManager to change host location
-		ClientNetworkManager client = new ClientNetworkManager();
-		client.setGameManager(GM);
-		client.start();
 		Human human = new Human();
 		GM.setClientPlayer(human);
 		ClientGameSetup clientSetup = new ClientGameSetup(human);
 		clientSetup.setVisible(true);
+		ClientNetworkManager client = new ClientNetworkManager();
+		client.setGameManager(GM);
+		client.toServer("Registerplayer,"+ clientSetup.getClientName());
+		client.start();
+
 	}
 
 	/**
