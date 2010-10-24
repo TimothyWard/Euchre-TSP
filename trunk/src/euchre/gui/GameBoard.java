@@ -711,24 +711,44 @@ public class GameBoard extends javax.swing.JFrame {
     private void heartsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartsListener
     	if(humanPlayer.isTurn()){
     		 humanPlayer.setCallSuit('h');
+    		 heartsButton.setVisible(false);
+    		 clubsButton.setVisible(false);
+    		 diamondsButton.setVisible(false);
+    		 spadesButton.setVisible(false);
+    		 suitPassButton.setVisible(false);
     	}
     }//GEN-LAST:event_heartsListener
 
     private void clubsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clubsListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('c');
+    		heartsButton.setVisible(false);
+            clubsButton.setVisible(false);
+            diamondsButton.setVisible(false);
+            spadesButton.setVisible(false);
+            suitPassButton.setVisible(false);
     	}
     }//GEN-LAST:event_clubsListener
 
     private void diamondsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diamondsListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('d');
+    		heartsButton.setVisible(false);
+            clubsButton.setVisible(false);
+            diamondsButton.setVisible(false);
+            spadesButton.setVisible(false);
+            suitPassButton.setVisible(false);
     	}
     }//GEN-LAST:event_diamondsListener
 
     private void spadesListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spadesListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('s');
+    		heartsButton.setVisible(false);
+            clubsButton.setVisible(false);
+            diamondsButton.setVisible(false);
+            spadesButton.setVisible(false);
+            suitPassButton.setVisible(false);
     	}
     }//GEN-LAST:event_spadesListener
 
