@@ -10,7 +10,7 @@ import euchre.network.ServerNetworkManager;
  * @author krkary
  *
  * The game manager acts as a sort of dealer. It asks each player if they want to order up a card, pick a suit, play a card, etc. in addition
- * to dealing the cards each hand. Also, the game manager passes important information on to the Round class, which in turn passes it on to 
+ * to dealing the cards each hand. Also, the game manager passes important information on to the Round class, which in turn stores it to help 
  * run the game.
  */
 public class GameManager {
@@ -64,9 +64,6 @@ public class GameManager {
 	//				System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
 	//				System.out.println("Upcard: " + game.upCard.suit);
 	//				System.out.println("Suit picked: " + game.round.getTrumpSuit());
-	//	
-	//	
-	//		
 	//			}
 
 
