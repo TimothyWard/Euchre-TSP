@@ -53,10 +53,11 @@ public class ClientGameSetup extends javax.swing.JFrame{
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        PlayerName = new javax.swing.JTextField();
-        PlayerName.setText("");
+        playerName = new javax.swing.JTextField();
         StartButton = new javax.swing.JButton();
         jLabelWaitingStatus = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        serverIP = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client Game Setup");
@@ -74,6 +75,8 @@ public class ClientGameSetup extends javax.swing.JFrame{
         jLabelWaitingStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelWaitingStatus.setText("Waiting for other Players...");
 
+        jLabel2.setText("Server IP:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,23 +86,32 @@ public class ClientGameSetup extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelWaitingStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)))
+                            .addComponent(jLabelWaitingStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(serverIP, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
-                        .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(StartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(serverIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(PlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelWaitingStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,13 +128,13 @@ public class ClientGameSetup extends javax.swing.JFrame{
      * @param evt The button-click that initiates this event.
      */
     private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
-    	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
+    	if (playerName.getText().isEmpty() || playerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
 		}else{ //Valid input
-			myManager.getClientNetworkManager().toServer("RegisterPlayer,"+PlayerName.getText().trim());
+			myManager.getClientNetworkManager().toServer("RegisterPlayer,"+playerName.getText().trim());
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
-			PlayerName.setEditable(false);
+			playerName.setEditable(false);
 			GB = new GameBoard();
 			GB.setVisible(true);
 			GB.setGameManager(myManager);
@@ -144,7 +156,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
      * @return The clients inputed name
      */
     public String getClientName(){
-    	return PlayerName.getText().trim();
+    	return playerName.getText().trim();
     }
     
     
@@ -171,10 +183,12 @@ public class ClientGameSetup extends javax.swing.JFrame{
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PlayerName;
     private javax.swing.JButton StartButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelWaitingStatus;
+    private javax.swing.JTextField playerName;
+    private javax.swing.JTextField serverIP;
     // End of variables declaration//GEN-END:variables
 
 }
