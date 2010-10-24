@@ -349,16 +349,19 @@ public class GameManager {
 		else if(p2==null){
 			p2=p;
 			clientGameSetup = new ClientGameSetup(p2);
+			clientGameSetup.setGameManager(this);
 			clientGameSetup.setVisible(true);
 		}
 		else if(p3==null){
 			p3=p;
 			clientGameSetup = new ClientGameSetup(p3);
+			clientGameSetup.setGameManager(this);
 			clientGameSetup.setVisible(true);
 		}
 		else if(p4==null){
 			p4=p;
-			clientGameSetup = new ClientGameSetup(p4);
+			clientGameSetup = new ClientGameSetup(p4);		
+			clientGameSetup.setGameManager(this);
 			clientGameSetup.setVisible(true);
 		}
 
