@@ -46,7 +46,7 @@ public class GameLobby extends javax.swing.JFrame{
         	numberOfAI = 0;
         }
         connectionsMade = 3 - numberOfPlayers;
-        //startGame.setEnabled(false);
+        startGame.setEnabled(false);
     }
     
     public String getHostName(){
