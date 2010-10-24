@@ -471,6 +471,24 @@ public class GameBoard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setBottomPlayedCard(Card c){
+    	jButtonYourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+    
+    public void setUpperPlayedCard(Card c){
+    	jButtonUPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+
+    public void setLeftPlayedCard(Card c){
+    	jButtonLPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+
+    public void setRightPlayedCard(Card c){
+    	jButtonRPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+    
+    
+    
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[0]);
@@ -517,6 +535,8 @@ public class GameBoard extends javax.swing.JFrame {
     	if(humanPlayer.isTurn()){
     		jButtonPass.setVisible(false);
     		jButtonPickUp.setVisible(false);
+    		jButtonTurnedCard.setVisible(false);
+    		jLabelDealer.setVisible(false);
     		
     	}
 
