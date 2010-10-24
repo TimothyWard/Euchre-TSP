@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
+import euchre.player.GameManager;
 import euchre.player.Human;
 import euchre.player.Player;
 
@@ -19,7 +20,7 @@ public class GameBoard extends javax.swing.JFrame {
 	private Human humanPlayer;
 	private PictureManager picManager = new PictureManager();
 	private static final long serialVersionUID = 1L;
-
+	private GameManager GM;
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -29,6 +30,10 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
         centerScreen();
         setBottomPlayer(humanPlayer);
+    }
+    
+    public void setGameManager(GameManager gm){
+    	GM = gm;
     }
     
     public void setTopPlayer(Player player){
