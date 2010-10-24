@@ -46,7 +46,7 @@ public class GameLobby extends javax.swing.JFrame{
         	numberOfAI = 0;
         }
         connectionsMade = 3 - numberOfPlayers;
-        	startGame.setEnabled(false);
+        //startGame.setEnabled(false);
     }
     
     public String getHostName(){
@@ -324,60 +324,60 @@ public class GameLobby extends javax.swing.JFrame{
         int team1Players = 0;
         int team2Players = 0;
         if(startGame.isEnabled()){
-	        if(jRadioBPlayer1Team1.isSelected()){
-	        	team1Players++;
-	        }else{
-	        	team2Players++;
-	        }
-	        if(jRadioBPlayer2Team1.isSelected()){
-	        	team1Players++;
-	        }else{
-	        	team2Players++;
-	        }
-	        if(jRadioBPlayer3Team1.isSelected()){
-	        	team1Players++;
-	        }else{
-	        	team2Players++;
-	        }
-	        if(jRadioBPlayer4Team1.isSelected()){
-	        	team1Players++;
-	        }else{
-	        	team2Players++;
-	        }
-	        if(team1Players == team2Players){ //Teams are valid.
-	        	//set teams in game manager.
-	        	if(jRadioBPlayer1Team1.isSelected()){
-	        		myManager.setTeam(1, 1);
-	        	}else{
-	        		myManager.setTeam(1, 2);
-	        	}
-	        	if(jRadioBPlayer2Team1.isSelected()){
-	        		myManager.setTeam(2, 1);
-	        	}else{
-	        		myManager.setTeam(2, 2);
-	        	}
-	        	if(jRadioBPlayer3Team1.isSelected()){
-	        		myManager.setTeam(3, 1);
-	        	}else{
-	        		myManager.setTeam(3, 2);
-	        	}
-	        	if(jRadioBPlayer4Team1.isSelected()){
-	        		myManager.setTeam(4, 1);
-	        	}else{
-	        		myManager.setTeam(4, 2);
-	        	}
-	        	//Launch the Game Board.
-	        	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true);
-	        	if (myAIManager != null){
-	        		myAIManager.setVisible(false);
-	        		myAIManager.dispose();
-	        	}
-	        	finished = true;
-	        	this.setVisible(false);
-	        }
-	        else{
-	        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
-	        }
+        if(jRadioBPlayer1Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer2Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer3Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(jRadioBPlayer4Team1.isSelected()){
+        	team1Players++;
+        }else{
+        	team2Players++;
+        }
+        if(team1Players == team2Players){ //Teams are valid.
+        	//set teams in game manager.
+        	if(jRadioBPlayer1Team1.isSelected()){
+        		myManager.setTeam(1, 1);
+        	}else{
+        		myManager.setTeam(1, 2);
+        	}
+        	if(jRadioBPlayer2Team1.isSelected()){
+        		myManager.setTeam(2, 1);
+        	}else{
+        		myManager.setTeam(2, 2);
+        	}
+        	if(jRadioBPlayer3Team1.isSelected()){
+        		myManager.setTeam(3, 1);
+        	}else{
+        		myManager.setTeam(3, 2);
+        	}
+        	if(jRadioBPlayer4Team1.isSelected()){
+        		myManager.setTeam(4, 1);
+        	}else{
+        		myManager.setTeam(4, 2);
+        	}
+        	//Launch the Game Board.
+        	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true);
+        	if (myAIManager != null){
+        		myAIManager.setVisible(false);
+        		myAIManager.dispose();
+        	}
+        	finished = true;
+        	this.setVisible(false);
+        }
+        else{
+        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         }
     }//GEN-LAST:event_StartGame
 
