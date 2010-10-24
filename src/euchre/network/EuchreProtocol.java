@@ -45,7 +45,8 @@ public class EuchreProtocol {
 			else if(token.equals("RegisterPlayer")){
 				String name = parser.nextToken();
 				System.out.println("Player: " + name);
-
+				
+				
 				if(connectedClients == null)
 					connectedClients = name;
 				else{
@@ -57,6 +58,24 @@ public class EuchreProtocol {
 
 					}
 				}
+				
+				
+
+				switch(numConnectedClients){
+				case 1:
+					manager.getLobby().setPlayer2Status(name);
+					break;
+				case 2:
+					manager.getLobby().setPlayer3Status(name);
+					break;
+				case 3:
+					manager.getLobby().setPlayer4Status(name);
+					break;
+				}
+				
+				
+				
+				
 
 			}
 			else if(token.equals("SetPlayers")){

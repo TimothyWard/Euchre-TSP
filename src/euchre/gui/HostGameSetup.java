@@ -14,7 +14,6 @@ public class HostGameSetup extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	int AIs = -1;
 	GameManager myManager;
-	GameLobby gl;
 	
 	/** 
 	 * Creates new form HostGameSetup 
@@ -126,7 +125,9 @@ public class HostGameSetup extends javax.swing.JFrame {
 
 		}else{ //Valid input
 			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim());
-			new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager).setVisible(true);
+			GameLobby gl = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
+			gl.setVisible(true);
+			myManager.setLobby(gl);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
 			System.out.println(AIs);
 			this.setVisible(false);

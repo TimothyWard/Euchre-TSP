@@ -25,6 +25,7 @@ public class GameManager {
 	private Team teamTwo = new Team(null, null);
 	private char led;
 
+	private GameLobby lobby;
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
 
@@ -475,6 +476,14 @@ public class GameManager {
 	}
 	public Player getp4(){
 		return p4;
+	}
+	
+	public GameLobby getLobby(){
+		return lobby;
+	}
+	
+	public void setLobby(GameLobby gl){
+		lobby = gl;
 	}
 	
 
