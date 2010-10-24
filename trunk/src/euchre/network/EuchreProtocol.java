@@ -6,6 +6,7 @@ package euchre.network;
 import java.util.StringTokenizer;
 
 import euchre.player.GameManager;
+import euchre.player.Human;
 
 /**
  * @author mdhelgen
@@ -30,9 +31,10 @@ public class EuchreProtocol {
 	public void serverParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
+		System.out.println("PARSING '" + input + "'");
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
-		
+			
 			//"name", player name, player number
 			if(token.equals("Name")){
 				String name = parser.nextToken();
