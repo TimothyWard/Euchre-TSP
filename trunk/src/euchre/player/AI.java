@@ -25,6 +25,7 @@ public class AI implements Player{
 	private int tricks;  				//Number of tricks won by the AI and its partner
 	private int team;
 	private int numCards = 0;
+	private int playerNumber;
 	private ClientNetworkManager clientManager;
 
 
@@ -213,7 +214,6 @@ public class AI implements Player{
 
 	/**
 	 * Asks the AI to call a suit. If the AI isn't happy with its hand, it will pass.
-	 * If the AI is the dealer and is "stuck", it will pick the best suit possible.
 	 */
 	@Override
 	public char callSuit() {
@@ -255,35 +255,47 @@ public class AI implements Player{
 		}
 
 	}
-
+	
+	/**
+	 * Returns the player's team
+	 */
 	public int getTeam() {
 		return team;
 	}
-
+	
+	/**
+	 * Sets the player's team
+	 */
 	public void setTeam(int team) {
 		this.team = team;
 	}
 
-	@Override
+	/**
+	 * Returns the name of the player
+	 */
 	public String getName() {
 		return name;
 	}
 
-	@Override
+	/**
+	 * Sets the name of the player
+	 */
 	public void setName(String n) {
 		name = n;
 	}
 
-	@Override
+	/**
+	 * Returns the player's number.
+	 */
 	public int getNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		return playerNumber;
 	}
 
-	@Override
+	/**
+	 * Sets the player's number.
+	 */
 	public void setNumber(int i) {
-		// TODO Auto-generated method stub
-		
+		playerNumber = i;
 	}
 
 	@Override
