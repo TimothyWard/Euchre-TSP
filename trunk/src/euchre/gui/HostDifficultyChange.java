@@ -89,7 +89,7 @@ public class HostDifficultyChange extends javax.swing.JFrame {
         player4Medium = new javax.swing.JRadioButton();
         applyDifficulties = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Change Computer Difficulties");
         setResizable(false);
 
