@@ -619,6 +619,7 @@ public class GameBoard extends javax.swing.JFrame {
     		jButtonPickUp.setVisible(false);
     		jButtonTurnedCard.setVisible(false);
     		jLabelDealer.setVisible(false);
+    		humanPlayer.setOrderUp(true);
     		
     	}
 
