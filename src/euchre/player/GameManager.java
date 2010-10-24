@@ -463,6 +463,20 @@ public class GameManager {
 	public Player getPlayer4(){
 		return player4;
 	}
+	
+	public Player getp1(){
+		return p1;
+	}
+	public Player getp2(){
+		return p2;
+	}
+	public Player getp3(){
+		return p3;
+	}
+	public Player getp4(){
+		return p4;
+	}
+	
 
 	/**
 	 * Set reference to the network interface(server)
