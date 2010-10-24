@@ -63,7 +63,7 @@ public class Game {
 		Team two = GM.getTeamTwo();
 
 		//create a new tabulator and tell it which teams it is tabulating.
-		GameLogic tabulator = new GameLogic(one, two);
+		GameLogic tabulator = new GameLogic();
 
 
 		while (gameWinner(one, two) == null){
@@ -77,7 +77,7 @@ public class Game {
 					e.printStackTrace();
 				}
 			}
-			tabulator.interpret(currentRound);
+			tabulator.interpret(currentRound, one, two);
 		}
 		
 		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
