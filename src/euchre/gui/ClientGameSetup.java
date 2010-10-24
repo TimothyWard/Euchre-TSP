@@ -3,6 +3,8 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+
+import euchre.player.GameManager;
 import euchre.player.Human;
 import euchre.player.Player;
 
@@ -15,6 +17,9 @@ import euchre.player.Player;
 public class ClientGameSetup extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 	private Human humanPlayer;
+	
+	private GameManager myManager;
+	
     /** 
      * Creates new form ClientGameSetup
      * @param player the client player being set up
@@ -125,6 +130,16 @@ public class ClientGameSetup extends javax.swing.JFrame{
      */
     public String getClientName(){
     	return PlayerName.getText().trim();
+    }
+    
+    /**
+     * Pass reference to the GameManager in 
+     * 
+     * @author mdhelgen
+     * @param GM
+     */
+    public void setGameManager(GameManager GM){
+    	myManager = GM;
     }
 
 //    /**
