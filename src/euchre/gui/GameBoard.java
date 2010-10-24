@@ -21,6 +21,9 @@ public class GameBoard extends javax.swing.JFrame {
 	private PictureManager picManager = new PictureManager();
 	private static final long serialVersionUID = 1L;
 	private GameManager GM;
+	private Player topPlayer;
+	private Player leftPlayer;
+	private Player rightPlayer;
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -34,6 +37,26 @@ public class GameBoard extends javax.swing.JFrame {
     
     public void setGameManager(GameManager gm){
     	GM = gm;
+    	if(humanPlayer.getTeam() == 1){
+    		if(gm.getTeamOne().getPlayerOne().getNumber() != humanPlayer.getNumber()){
+    			topPlayer = gm.getTeamOne().getPlayerOne();
+    		}else{
+    			topPlayer = gm.getTeamOne().getPlayerTwo();
+    		}
+    		leftPlayer = gm.getTeamTwo().getPlayerOne();
+    		rightPlayer = gm.getTeamTwo().getPlayerTwo();
+    	}else{
+    		if(gm.getTeamTwo().getPlayerOne().getNumber() != humanPlayer.getNumber()){
+    			topPlayer = gm.getTeamTwo().getPlayerOne();
+    		}else{
+    			topPlayer = gm.getTeamTwo().getPlayerTwo();
+    		}
+    		leftPlayer = gm.getTeamOne().getPlayerOne();
+    		rightPlayer = gm.getTeamOne().getPlayerTwo();
+    	}
+    	setTopPlayer(topPlayer);
+    	setLeftPlayer(leftPlayer);
+    	setRightPlayer(rightPlayer);
     }
     
     public void setTopPlayer(Player player){
