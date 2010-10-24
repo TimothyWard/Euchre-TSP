@@ -91,6 +91,7 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Change Computer Difficulties");
+        setResizable(false);
 
         player3Difficulty.setText("Difficulty of Computer player 3:");
 
