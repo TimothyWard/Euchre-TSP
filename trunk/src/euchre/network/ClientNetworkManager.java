@@ -50,6 +50,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	public ClientNetworkManager(String hostname){
 		
 		this.hostname = hostname;
+		protocol = new EuchreProtocol();
 	}
 	
 	public void registerPlayer(String name, int number){
