@@ -28,6 +28,7 @@ public class GameBoard extends javax.swing.JFrame {
     	humanPlayer = (Human) player;
         initComponents();
         centerScreen();
+        setBottomPlayer(humanPlayer);
     }
     
     public void setTopPlayer(Player player){
@@ -507,7 +508,7 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void passButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passButtonClicked
     	if(humanPlayer.isTurn()){
-    		
+
     		
     	}
     }//GEN-LAST:event_passButtonClicked
@@ -529,9 +530,7 @@ public class GameBoard extends javax.swing.JFrame {
     public void setCard(Card card, int cardNumber){
     	hand[cardNumber] = card;
     	handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
-    }
-    
-    
+    }    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLCard1;
