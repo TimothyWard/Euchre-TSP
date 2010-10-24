@@ -15,6 +15,7 @@ import euchre.player.GameManager;
 public class GameLobby extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 	private GameManager myManager;
+	private boolean finished = false;
 	private int numberOfAI;
 	HostDifficultyChange myAIManager;
     private char player3Difficulty;
@@ -45,7 +46,19 @@ public class GameLobby extends javax.swing.JFrame{
         	numberOfAI = 0;
         }
     }
+    
+    public String getHostName(){
+    	return jLabelPlayerName.getText();
+    }
 
+    public boolean getFinished(){
+    	return finished;
+    }
+    
+    public int getNumberOfAIPlayers(){
+    	return numberOfAI;
+    }
+    
     public char getPlayer3Difficulty(){
         return player3Difficulty;
     }
@@ -356,6 +369,7 @@ public class GameLobby extends javax.swing.JFrame{
         		myAIManager.setVisible(false);
         		myAIManager.dispose();
         	}
+        	finished = true;
         	this.setVisible(false);
         }
         else{
