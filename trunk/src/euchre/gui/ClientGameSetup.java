@@ -3,7 +3,6 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-
 import euchre.player.GameManager;
 import euchre.player.Human;
 import euchre.player.Player;
@@ -17,7 +16,6 @@ import euchre.player.Player;
 public class ClientGameSetup extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 	private Human humanPlayer;
-	
 	private GameManager myManager;
 	
     /** 
