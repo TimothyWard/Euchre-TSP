@@ -26,7 +26,7 @@ public class Game {
 	public static void main(String [] args){
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
-		
+
 		//declare GUI welcome window and ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
@@ -42,7 +42,7 @@ public class Game {
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
 
-		
+
 		if (choice == 'h') createHost(GM, GUI);
 		else if(choice == 'c') createClient(GM, GUI);
 		else if(choice == 'a') createLocalOnlyGame(GM);
@@ -81,7 +81,7 @@ public class Game {
 			}
 			tabulator.interpret(currentRound, one, two);
 		}
-		
+
 		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 		//once game winner is determined, inform network who won to update views.
 	}
@@ -99,30 +99,23 @@ public class Game {
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.setGameManager(GM);
 		network.start();
-
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 		GM.setHostPlayer(new Human());
-		while (hostSetup.getAIs() ==-1){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		// get info from GUI and give to GM and Network
-		int aiNumber = hostSetup.getAIs();
-		// create specified number of AI's
-		while (aiNumber!=0){
-			ClientNetworkManager AI = new ClientNetworkManager();
-			AI.setGameManager(GM);
-			GM.setClientPlayer(new AI());
-			AI.toServer("Registerplayer," + "Computer " + aiNumber);
-			AI.start();
-			aiNumber--;
-		}
+		//		while (hostSetup.getAIs() ==-1){
+		//			//Do nothing, user is deciding game type.
+		//			try {
+		//				Thread.sleep(500);
+		//			} 
+		//			catch (InterruptedException e) {
+		//				e.printStackTrace();
+		//			}
+		//		}
+		//		int aiNumber = hostSetup.getAIs();
+		//		while (aiNumber!=0){
+		//			GM.setClientPlayer(new AI());
+		//			aiNumber--;
+		//		}
 	}
 
 	/**
@@ -131,10 +124,6 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 */
 	public static void createLocalOnlyGame(GameManager GM){
-		System.out.println("local game");
-		ServerNetworkManager network = new ServerNetworkManager();
-		network.start();
-		network.setGameManager(GM);
 		Human human = new Human();
 		GM.setHostPlayer(human);
 		SetupLocal local = new SetupLocal(human);
@@ -148,22 +137,6 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-		//get info out of GUI here and give to Network or GM
-		ClientNetworkManager AI1 = new ClientNetworkManager();
-		AI1.setGameManager(GM);
-		AI1.toServer("Registerplayer," + "Computer One");
-		AI1.start();
-		
-		ClientNetworkManager AI2 = new ClientNetworkManager();
-		AI2.setGameManager(GM);
-		AI2.toServer("Registerplayer," + "Computer Two");
-		AI2.start();
-		
-		ClientNetworkManager AI3 = new ClientNetworkManager();
-		AI3.setGameManager(GM);
-		AI3.toServer("Registerplayer," + "Computer Three");
-		AI3.start();
-		
 		GM.setLocalPlayers(new AI(), new AI(), new AI());
 	}
 
