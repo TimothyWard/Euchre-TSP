@@ -27,6 +27,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
     public ClientGameSetup(Player player){
         initComponents();
         centerScreen();
+        jLabelWaitingStatus.setVisible(false);
         humanPlayer = (Human) player;
     }
 
@@ -118,10 +119,20 @@ public class ClientGameSetup extends javax.swing.JFrame{
     	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
 		}else{ //Valid input
-			new GameBoard(humanPlayer).setVisible(true);
-			this.setVisible(false);
+			jLabelWaitingStatus.setVisible(true);
+			StartButton.setVisible(false);
+			PlayerName.setEditable(false);
         }
     }//GEN-LAST:event_ready
+    
+    /**
+     * Returns whether or not this client is waiting on other players and is ready to start the game.
+     * 
+     * @return True if the client is waiting.
+     */
+    public boolean isWaiting(){
+    	return jLabelWaitingStatus.isVisible();
+    }
     
     /**
      * Gets the current input(trimmed of whitespace) of the text plain for the client to enter their name in.
