@@ -103,4 +103,8 @@ public class Card{
 		}
 		return 0;
 	}
+	
+	public String toString(){
+		return "" + value + suit;
+	}
 }
