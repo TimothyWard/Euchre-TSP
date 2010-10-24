@@ -639,6 +639,22 @@ public class GameBoard extends javax.swing.JFrame {
     	jLabelDealer.setVisible(false);
     }
     
+    public void setWeTricks(int tricks){
+    	jLabelYTeamTricks.setText("" + tricks);
+    }
+    
+    public void setTheyTricks(int tricks){
+    	jLabelOTeamTricks.setText("" + tricks);
+    }
+    
+    public void setWePoints(int points){
+    	jLabelYTeamPoints.setText("" + points);
+    }
+    
+    public void setTheyPoints(int points){
+    	jLabelOTeamPoints.setText("" + points);
+    }
+    
     /**
      * used to display the players hand to the GUI
      * 
