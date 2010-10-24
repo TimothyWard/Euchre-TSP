@@ -112,6 +112,7 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
+		// get info from GUI and give to GM and Network
 		int aiNumber = hostSetup.getAIs();
 		// create specified number of AI's
 		while (aiNumber!=0){
