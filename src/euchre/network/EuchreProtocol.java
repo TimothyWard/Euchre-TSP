@@ -14,6 +14,8 @@ import euchre.player.Human;
  */
 public class EuchreProtocol {
 	
+	private int connectedClients = 0;
+	
 	private GameManager manager;
 	private ClientNetworkManager client;
 	private ServerNetworkManager server;
@@ -44,24 +46,9 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("RegisterPlayer")){
 				String name = parser.nextToken();
-				if(manager.getPlayer2() == null)
-				{
-					manager.getPlayer2().setName(name);
-					server.toClients("SetPlayerName,"+name+",2");
-					
-				}
-				if(manager.getPlayer3() == null)
-				{
-					manager.getPlayer3().setName(name);
-					server.toClients("SetPlayerName,"+name+",3");
-					
-				}
-				if(manager.getPlayer4() == null)
-				{
-					manager.getPlayer4().setName(name);
-					server.toClients("SetPlayerName,"+name+",4");
-					
-				}
+				System.out.println("Player: " + name);
+				
+				
 			}
 			else{
 				System.out.println("Undefined token: " + token);
