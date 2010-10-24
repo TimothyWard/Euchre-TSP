@@ -12,16 +12,18 @@ public class Human implements Player{
 	private int team = 0;
 	private boolean isTurn = false;
 	private char orderSuit = 0;
-	
+	private boolean orderUp = false;
+	private int orderedUp = 0;
+
 	ClientNetworkManager clientManager;
 	ServerNetworkManager serverManager;
 	boolean isHost = false;
 	EuchreProtocol protocol = new EuchreProtocol();
-	
+
 	public Human(){
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -30,7 +32,7 @@ public class Human implements Player{
 	public Human(ClientNetworkManager client){
 		clientManager = client;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -57,7 +59,7 @@ public class Human implements Player{
 			discard();
 			hand[numCards] = c;
 		}
-		
+
 		numCards++;
 	}
 
@@ -76,7 +78,7 @@ public class Human implements Player{
 				e.printStackTrace();
 			}
 		}
-		
+
 		if(orderSuit=='x'){
 			orderSuit=0;
 			return 0;
@@ -88,7 +90,7 @@ public class Human implements Player{
 		}
 
 	}
-	
+
 	public void setCallSuit(char c){
 		orderSuit=c;
 	}
@@ -99,7 +101,25 @@ public class Human implements Player{
 	 * @return True if ordered up, false otherwise
 	 */
 	public boolean orderUp(Card c) {
-		return false;
+
+		while (orderedUp == 0){
+			//Wait until the user selects a suit
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		orderedUp = 0;
+		return orderUp;
+
+	}
+
+	public void setOrderUp(boolean b){
+		orderedUp = 1;
+		orderUp = b;
 	}
 
 	/**
@@ -117,7 +137,7 @@ public class Human implements Player{
 				e.printStackTrace();
 			}
 		}
-		
+
 		Card c = activeCard;
 		activeCard = null;
 		return c;
@@ -128,7 +148,7 @@ public class Human implements Player{
 	 * @return int The team number of the player
 	 */
 	public int getTeam() {
-		
+
 		return team;
 	}
 
@@ -138,7 +158,7 @@ public class Human implements Player{
 	 */
 	public void setTeam(int i) {
 		team = i;
-		
+
 	}
 
 	/**
@@ -146,9 +166,9 @@ public class Human implements Player{
 	 * if the user is the dealer and is picking up the trump card.
 	 */
 	public Card discard() {
-		
+
 		//Should prompt user to discard a card...
-		
+
 		while (activeCard==null){
 			//Wait until the user clicks a card...
 			try {
@@ -158,57 +178,102 @@ public class Human implements Player{
 				e.printStackTrace();
 			}
 		}
-		
+
 		Card c = activeCard;
 		activeCard = null;
 		numCards--;
 		return c;
 	}
-	
+
+	/**
+	 * Sets the active card. The active card is either the card the player is going to play
+	 * or the card that the player is going to discard.
+	 * @param c The card to be the active card.
+	 */
 	public void setActiveCard(Card c) {
 		activeCard = c;
 	}
-	
+
+	/**
+	 * Returns the player's hand of cards as an array of cards
+	 * @return An array of the player's cards
+	 */
 	public Card[] getHand(){
 		return hand;
 	}
 
-	@Override
+	/**
+	 * Returns the player's name
+	 */
 	public String getName() {
 		return name;
 	}
 
-	@Override
+	/**
+	 * Set's the player's name
+	 */
 	public void setName(String n) {
 		name = n;
 	}
 
-	@Override
+	/**
+	 * Return's the player's number
+	 */
 	public int getNumber() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	/**
+	 * Sets the player's number
+	 */
 	public void setNumber(int i) {
 		// TODO Auto-generated method stub	
 	}
-	
+
+	/**
+	 * Returns whether it is the player's turn or not
+	 * @return True if it is, false if it isn't
+	 */
 	public boolean isTurn(){
 		return isTurn;
 	}
-	
+
+	/**
+	 * Sets the players turn as either true or false
+	 * @param turn True if it is the player's turn, false if it isn't
+	 */
 	public void setTurn(boolean turn){
 		isTurn = turn;
 	}
-	
+
+	/**
+	 * Sticks the dealer and forces them to pick a suit for trump. Dealer cannot pass.
+	 */
+	public char stickDealer() {
+		while (orderSuit==0){
+			//Wait until the user selects a suit
+			try {
+				Thread.sleep(500);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		char temp = orderSuit;
+		orderSuit=0;
+		return temp;
+
+	}
+
 	/**
 	 * Send a message across the network 
 	 * 
 	 * @param message The tokenized message to send across the network (formatting to be defined)
 	 */
 	public void sendNetworkMessage(String message){
-		
+
 		if(isHost){
 			serverManager.toClients(message);
 		}
@@ -217,11 +282,6 @@ public class Human implements Player{
 		}
 	}
 
-	@Override
-	public char stickDealer() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 }
