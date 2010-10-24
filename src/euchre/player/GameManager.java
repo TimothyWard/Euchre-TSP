@@ -22,47 +22,47 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
-	
+
 
 	private Round round;
 	private HostGameSetup hostSetup = new HostGameSetup(this);
 	private SetupLocal setupLocal;
 	private ClientGameSetup clientGameSetup;
 
-	//		public static void main(String[] args) {
-	//			GameManager game = new GameManager();
-	//			Round round = new Round();
-	//			game.setRound(round);
-	////			Player player = new Human();
-	////			Player player2 = new Human();
-	////			Player player3 = new Human();
-	////			Player player4 = new Human();
-	//			Player ai1 = new AI();
-	//			Player ai2 = new AI();
-	//			Player ai3 = new AI();
-	//			Player ai4 = new AI();
-	////			game.setPlayer(player);
-	////			game.setPlayer(player2);
-	////			game.setPlayer(player3);
-	////			game.setPlayer(player4);
-	//			
-	//			game.setPlayer(ai1);
-	//			game.setPlayer(ai2);
-	//			game.setPlayer(ai3);
-	//			game.setPlayer(ai4);
-	//			
-	//			game.setTeam(1, 2);
-	//			game.setTeam(2, 2);
-	//			game.setTeam(3, 1);
-	//			game.setTeam(4, 1);
-	//			game.setTrump();
-	//			System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
-	//			System.out.println("Upcard: " + game.upCard.suit);
-	//			System.out.println("Suit picked: " + game.round.getTrumpSuit());
-	//
-	//
+	//			public static void main(String[] args) {
+	//				GameManager game = new GameManager();
+	//				Round round = new Round();
+	//				game.setRound(round);
+	//	//			Player player = new Human();
+	//	//			Player player2 = new Human();
+	//	//			Player player3 = new Human();
+	//	//			Player player4 = new Human();
+	//				Player ai1 = new AI();
+	//				Player ai2 = new AI();
+	//				Player ai3 = new AI();
+	//				Player ai4 = new AI();
+	//	//			game.setPlayer(player);
+	//	//			game.setPlayer(player2);
+	//	//			game.setPlayer(player3);
+	//	//			game.setPlayer(player4);
+	//				
+	//				game.setPlayer(ai1, true, true);
+	//				game.setPlayer(ai2, true, false);
+	//				game.setPlayer(ai3, true, false);
+	//				game.setPlayer(ai4, true, false);
+	//				
+	//				game.setTeam(1, 2);
+	//				game.setTeam(2, 2);
+	//				game.setTeam(3, 1);
+	//				game.setTeam(4, 1);
+	//				game.setTrump();
+	//				System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
+	//				System.out.println("Upcard: " + game.upCard.suit);
+	//				System.out.println("Suit picked: " + game.round.getTrumpSuit());
 	//	
-	//		}
+	//	
+	//		
+	//			}
 
 
 	public void setRound(Round round){
@@ -90,14 +90,18 @@ public class GameManager {
 
 	}
 
+	public void playGame(){
+
+		deal();
+		setTrump();
+		playRound();
+	}
 	/**
 	 * Determines the trump suit for the round. First asks each player if they want the dealer to pick up the card.
 	 * If none do, then it asks each player if they want to call suit. If none call suit, the dealer is forced to pick
 	 * the trump suit.
 	 */
 	public void setTrump(){
-
-		deal();															//Start by dealing the cards...
 
 		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
 
@@ -166,6 +170,7 @@ public class GameManager {
 		//Play five hands...
 		for(int h=1;h<6;h++){
 			Card[] played = new Card[4];
+
 			//For each player, have them play a card
 			for(int i=0;i<4;i++){
 				curPlayer.setTurn(true);
@@ -173,6 +178,12 @@ public class GameManager {
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
+			
+			//Sets the start player to the winner of the last trick.
+			if(h != 1){
+				curPlayer = trickWinner(played);
+			}
+			
 			led=played[0].getSuit();
 
 			round.setHand(h, played, led);
@@ -180,6 +191,69 @@ public class GameManager {
 
 		round.setRoundComplete(true);
 		dealer = nextPlayer(dealer);
+	}
+
+	public Player trickWinner(Card[] cards){
+
+		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
+		char trump = round.getTrumpSuit();
+		
+		LA = new Card('a', cards[0].getSuit());
+		LK = new Card('k', cards[0].getSuit());
+		LQ = new Card('q', cards[0].getSuit());
+		LJ = new Card('j', cards[0].getSuit());
+		L10 = new Card('0', cards[0].getSuit());
+		L9 = new Card('9', cards[0].getSuit());
+		TRB = new Card('j', trump);
+		TLB = new Card('j', trump);
+		TA = new Card('a', trump);
+		TK = new Card('k', trump);
+		TQ = new Card('q', trump);
+		T10 = new Card('0', trump);
+		T9 = new Card('9', trump);
+
+		int[] cardValue = {0,0,0,0};
+
+		for (int i=0; i<4; i++){
+			Card card = cards[i];
+			if (card.compareTo(TRB)==0) cardValue[i] = 13;
+			if (card.compareTo(TLB)==0) cardValue[i] = 12;
+			if (card.compareTo(TA)==0) cardValue[i] = 11;
+			if (card.compareTo(TK)==0) cardValue[i] = 10;
+			if (card.compareTo(TQ)==0) cardValue[i] = 9;
+			if (card.compareTo(T10)==0) cardValue[i] = 8;
+			if (card.compareTo(T9)==0) cardValue[i] = 7;
+			if (card.compareTo(LA)==0) cardValue[i] = 6;
+			if (card.compareTo(LK)==0) cardValue[i] = 5;
+			if (card.compareTo(LQ)==0) cardValue[i] = 4;
+			if (card.compareTo(LJ)==0) cardValue[i] = 3;
+			if (card.compareTo(L10)==0) cardValue[i] = 2;
+			if (card.compareTo(L9)==0) cardValue[i] = 1;
+			else cardValue[i] = 0;
+		}
+		
+		int maximum = cardValue[0];
+		int maxIndex = 0;
+		for (int i=1; i<cardValue.length; i++) {
+			if (cardValue[i] > maximum) {
+				maximum = cardValue[i]; 
+				maxIndex = i;
+			}
+		}
+		
+		if(maxIndex==0){
+			return player1;
+		}
+		else if(maxIndex==1){
+			return player2;
+		}
+		else if(maxIndex==2){
+			return player3;
+		}
+		else{
+			return player4;
+		}
+		
 	}
 
 
