@@ -324,14 +324,8 @@ public class GameManager {
 	 * @param p The human player that is going to be a client in the game. 
 	 */
 	public void setClientPlayer(Player p){
-		if(p2==null){
-			p2=p;
-		}
-		else if(p3==null){
-			p3=p;
-		}
-		else if(p4==null){
-			p4=p;
+		if(p1==null){
+			p1=p;
 		}
 	}
 	
