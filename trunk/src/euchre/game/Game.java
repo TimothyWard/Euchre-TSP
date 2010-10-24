@@ -101,6 +101,7 @@ public class Game {
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.setGameManager(GM);
 		network.start();
+		GM.setServerNetworkManager(network);
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 		GM.setHostPlayer(new Human());
