@@ -2,6 +2,8 @@ package euchre.player;
 
 import euchre.game.*;
 import euchre.gui.*;
+import euchre.network.ClientNetworkManager;
+import euchre.network.ServerNetworkManager;
 
 /**
  * 
@@ -22,6 +24,9 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
+	
+	private ServerNetworkManager server;
+	private ClientNetworkManager client;
 
 
 	private Round round = null;
@@ -461,5 +466,44 @@ public class GameManager {
 		return player4;
 	}
 
+	/**
+	 * Set reference to the network interface(server)
+	 * 
+	 * @param s
+	 * @author mdhelgen
+	 */
+	public void setServerNetworkManager(ServerNetworkManager s){
+		server = s;
+	}
+	
+	/**
+	 * Set reference to the network interface (client)
+	 * 
+	 * @param c
+	 * @author mdhelgen
+	 */
+	public void setClientNetworkManager(ClientNetworkManager c){
+		client = c;
+	}
+	
+	/**
+	 * Get reference to the network interface (server)
+	 * 
+	 * @return the ServerNetworkManager reference
+	 * @author mdhelgen
+	 */
+	public ServerNetworkManager getServerNetworkManager(){
+		return server;
+	}
+	
+	/**
+	 * Get reference to the network interface (client)
+	 * 
+	 * @return the ClientNetworkManager reference
+	 * @author mdhelgen
+	 */
+	public ClientNetworkManager getClientNetworkManager(){
+		return client;
+	}
 
 }
