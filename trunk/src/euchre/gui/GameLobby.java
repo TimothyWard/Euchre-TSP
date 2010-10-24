@@ -1,5 +1,6 @@
 package euchre.gui;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -13,7 +14,11 @@ import euchre.player.GameManager;
  */
 public class GameLobby extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
-	GameManager myManager;
+	private GameManager myManager;
+	private int numberOfAI;
+	HostDifficultyChange myAIManager;
+    private char player3Difficulty;
+    private char player4Difficulty;
 	
     /** 
      * Creates new form GameLobby 
@@ -28,10 +33,50 @@ public class GameLobby extends javax.swing.JFrame{
         jLabelPlayerName.setText(hostName);
         myManager = inManager;
         if (numberOfPlayers == 1){
-        	setPlayer4Status("Computer Two");
-        	setPlayer3Status("Computer One");
+        	setPlayer4Difficulty('m');
+        	setPlayer3Difficulty('m');
+        	numberOfAI = 2;
         }else if (numberOfPlayers == 2){
-        	setPlayer4Status("Computer One");
+        	setPlayer4Difficulty('m');
+        	numberOfAI = 1;
+        }else{ //Number of players == 3
+        	changeComputerDifficulty.setVisible(false);
+        	this.setSize(new Dimension(688,220));
+        	numberOfAI = 0;
+        }
+    }
+
+    public char getPlayer3Difficulty(){
+        return player3Difficulty;
+    }
+    
+    public char getPlayer4Difficulty(){
+        return player4Difficulty;
+    }
+
+    public void setPlayer3Difficulty(char difficulty){
+       if (difficulty == 'e'){
+    	   player3Difficulty = 'e';
+    	   setPlayer3Status("...is computer player...Difficulty: Easy");
+       }else if (difficulty == 'm'){
+    	   player3Difficulty = 'm';
+    	   setPlayer3Status("...is computer player...Difficulty: Medium");
+       }else if (difficulty == 'h'){
+    	   player3Difficulty = 'h';
+    	   setPlayer3Status("...is computer player...Difficulty: Hard");
+       }
+    }
+
+    public void setPlayer4Difficulty(char difficulty){
+    	if (difficulty == 'e'){
+     	   player4Difficulty = 'e';
+     	   setPlayer4Status("...is computer player...Difficulty: Easy");
+        }else if (difficulty == 'm'){
+     	   player4Difficulty = 'm';
+     	   setPlayer4Status("...is computer player...Difficulty: Medium");
+        }else if (difficulty == 'h'){
+     	   player4Difficulty = 'h';
+     	   setPlayer4Status("...is computer player...Difficulty: Hard");
         }
     }
 
@@ -61,7 +106,7 @@ public class GameLobby extends javax.swing.JFrame{
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
+        startGame = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -82,13 +127,14 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer3Team2 = new javax.swing.JRadioButton();
         jRadioBPlayer4Team2 = new javax.swing.JRadioButton();
         jLabelPlayerName = new javax.swing.JLabel();
+        changeComputerDifficulty = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Lobby");
         setResizable(false);
 
-        jButton1.setText("Start Game");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        startGame.setText("Start Game");
+        startGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StartGame(evt);
             }
@@ -146,6 +192,13 @@ public class GameLobby extends javax.swing.JFrame{
 
         jLabelPlayerName.setText("Player 1");
 
+        changeComputerDifficulty.setText("Change Computer Difficulty");
+        changeComputerDifficulty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changeAIDifficulty(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,10 +251,12 @@ public class GameLobby extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioBPlayer4Team2)))
                 .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startGame, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeComputerDifficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
+                .addGap(208, 208, 208))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,9 +289,11 @@ public class GameLobby extends javax.swing.JFrame{
                     .addComponent(jLabel1)
                     .addComponent(jRadioBPlayer4Team1)
                     .addComponent(jRadioBPlayer4Team2))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changeComputerDifficulty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(startGame)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -295,12 +352,26 @@ public class GameLobby extends javax.swing.JFrame{
         	}
         	//Launch the Game Board.
         	new GameBoard(myManager.getTeamOne().getPlayerOne()).setVisible(true);
+        	if (myAIManager != null){
+        		myAIManager.setVisible(false);
+        		myAIManager.dispose();
+        	}
         	this.setVisible(false);
         }
         else{
         	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_StartGame
+
+    /**
+     * Starts the form to change the difficulty of the AI's.
+     * 
+     * @param evt The button-click that starts the event.
+     */
+    private void changeAIDifficulty(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeAIDifficulty
+        myAIManager = new HostDifficultyChange(this, numberOfAI);
+        myAIManager.setVisible(true);
+    }//GEN-LAST:event_changeAIDifficulty
 
 //    /**
 //    * @param args the command line arguments
@@ -361,7 +432,7 @@ public class GameLobby extends javax.swing.JFrame{
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton changeComputerDifficulty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -379,6 +450,7 @@ public class GameLobby extends javax.swing.JFrame{
     private javax.swing.JRadioButton jRadioBPlayer3Team2;
     private javax.swing.JRadioButton jRadioBPlayer4Team1;
     private javax.swing.JRadioButton jRadioBPlayer4Team2;
+    private javax.swing.JButton startGame;
     // End of variables declaration//GEN-END:variables
 
 }
