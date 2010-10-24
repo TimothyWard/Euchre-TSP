@@ -55,6 +55,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 
         jLabel1 = new javax.swing.JLabel();
         PlayerName = new javax.swing.JTextField();
+        PlayerName.setText("");
         StartButton = new javax.swing.JButton();
         jLabelWaitingStatus = new javax.swing.JLabel();
 
@@ -119,6 +120,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
     	if (PlayerName.getText().isEmpty() || PlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
 		}else{ //Valid input
+			myManager.getClientNetworkManager().toServer("RegisterPlayer,"+PlayerName.getText().trim());
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			PlayerName.setEditable(false);
