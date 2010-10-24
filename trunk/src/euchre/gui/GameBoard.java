@@ -22,13 +22,18 @@ public class GameBoard extends javax.swing.JFrame {
 
 	/** 
 	 * Creates new form GameBoard
-	 * @param player the human player object being controlled from the game  board
+	 * @param player the human player object being controlled from the game board
 	 */
     public GameBoard(Player player){
     	humanPlayer = (Human) player;
         initComponents();
         centerScreen();
         setBottomPlayer(humanPlayer);
+        jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
+        jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
+        jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
+        jButtonYourCard4.setIcon(picManager.getPicture(humanPlayer.getHand()[3].getSuit(), humanPlayer.getHand()[3].getCardValue()));
+        jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
     }
     
     public void setTopPlayer(Player player){
@@ -526,7 +531,7 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void passButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passButtonClicked
     	if(humanPlayer.isTurn()){
-
+    		
     		
     	}
     }//GEN-LAST:event_passButtonClicked
