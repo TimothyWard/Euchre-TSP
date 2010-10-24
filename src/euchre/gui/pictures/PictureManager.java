@@ -60,7 +60,7 @@ public class PictureManager {
 		s10 = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/10s.png"));
 		sa = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/as.png"));
 		sj = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/js.png"));
-		sq = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/1s.png"));
+		sq = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/qs.png"));
 		sk = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/ks.png"));
 		c9 = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/9c.png"));
 		c10 = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/10c.png"));
