@@ -525,6 +525,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[0]);
+    		jButtonYourCard1.setIcon(picManager.getPicture('e', 'a'));
     	}
     	
     }//GEN-LAST:event_card1Clicked
@@ -532,6 +533,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void card2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card2Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[1]);
+    		jButtonYourCard2.setIcon(picManager.getPicture('e', 'a'));
     	}
     	
     }//GEN-LAST:event_card2Clicked
@@ -539,6 +541,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void card3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card3Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[2]);
+    		jButtonYourCard3.setIcon(picManager.getPicture('e', 'a'));
     	}
     	
     }//GEN-LAST:event_card3Clicked
@@ -546,6 +549,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void card4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card4Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[3]);
+    		jButtonYourCard4.setIcon(picManager.getPicture('e', 'a'));
     	}
 
     }//GEN-LAST:event_card4Clicked
@@ -553,6 +557,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void card5Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card5Clicked
     	if(humanPlayer.isTurn()){
     		humanPlayer.setActiveCard(hand[4]);
+    		jButtonYourCard5.setIcon(picManager.getPicture('e', 'a'));
     	}
 
     }//GEN-LAST:event_card5Clicked
