@@ -29,6 +29,9 @@ public class AI implements Player{
 	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 	private Card led = null;
 
+	
+	CardEvaluator calc = new CardEvaluator();
+	
 ////Test for AI
 //	public static void main(String[] args) {
 //		AI aiPlayer = new AI();
@@ -82,16 +85,11 @@ public class AI implements Player{
 		}
 
 		if(numTrump>=3){
-			TRB = new Card('j', trump);
-			TLB = new Card('j', trump);
-			TA = new Card('a', trump);
-			TK = new Card('k', trump);
-			TQ = new Card('q', trump);
-			T10 = new Card('0', trump);
-			T9 = new Card('9', trump);
+			trump = c.getSuit();
 			return true;
 		}
 		else{
+			trump = 0;
 			return false;
 		}
 
@@ -104,17 +102,17 @@ public class AI implements Player{
 		//FIX
 		//Highest and lowest cards need to use compareTo, not < or >
 
-		if(highestCard(true)==TRB){
-			playCard = highestCard(true);
+		if(calc.highestCardInHand(trump, trump, hand).equals(TRB)){
+			playCard = calc.highestCardInHand(trump, trump, hand);
 		}
-		else if(highestCard(true)==TLB){
-			playCard = highestCard(true);
+		else if(calc.highestCardInHand(trump, trump, hand).equals(TLB)){
+			playCard = calc.highestCardInHand(trump, trump, hand);
 		}
-		else if(highestCard(false).getSuit() != trump){
-			playCard = highestCard(false);
-		}
+//		else if(calc.){
+//			playCard = highestCard(false);
+//		}
 		else{
-			playCard = lowestCard(true);
+			playCard = calc.lowestTrumpInHand(trump, trump, hand);
 		}
 		
 		//		if hand contains right bower, play right bower
@@ -139,7 +137,7 @@ public class AI implements Player{
 		}
 		
 		//If the AI has suit, they must follow suit...
-		if(hasSuit(led.getSuit())){
+		if(calc.hasLead(led.getSuit(), hand)){
 			//If the AI's partner is winning this trick, play a lower card than them.
 			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
 				//FIX
