@@ -1,5 +1,6 @@
 package euchre.gui;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
 import euchre.game.Team;
@@ -33,6 +34,7 @@ public class GameBoard extends javax.swing.JFrame {
         initComponents();
         centerScreen();
         setBottomPlayer(humanPlayer);
+        this.setBackground(Color.GREEN);
     }
     
     
@@ -202,9 +204,9 @@ public class GameBoard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
-        setBackground(new java.awt.Color(53, 147, 17));
+        setBackground(java.awt.Color.lightGray);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setForeground(java.awt.Color.white);
+        setForeground(java.awt.Color.lightGray);
         setResizable(false);
 
         jButtonYourCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
