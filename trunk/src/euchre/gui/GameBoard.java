@@ -24,6 +24,7 @@ public class GameBoard extends javax.swing.JFrame {
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
+	private Card turnedCard;
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -564,6 +565,10 @@ public class GameBoard extends javax.swing.JFrame {
     	jButtonRPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
     }
     
+    public void setTurnedCard(Card c){
+    	jButtonTurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getSuit()));
+    	turnedCard = c;
+    }
     
     
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
@@ -619,8 +624,8 @@ public class GameBoard extends javax.swing.JFrame {
     		jButtonPickUp.setVisible(false);
     		jButtonTurnedCard.setVisible(false);
     		jLabelDealer.setVisible(false);
-    		humanPlayer.setOrderUp(true);
-    		
+    		GM.getDealer().discard();
+    		GM.getDealer().orderUp(turnedCard);
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
