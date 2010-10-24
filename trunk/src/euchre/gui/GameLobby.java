@@ -21,6 +21,7 @@ public class GameLobby extends javax.swing.JFrame{
     private char player3Difficulty;
     private char player4Difficulty;
 	private int connectionsMade = 0;
+	
     /** 
      * Creates new form GameLobby 
      * 

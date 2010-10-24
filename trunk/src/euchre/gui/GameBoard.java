@@ -79,6 +79,16 @@ public class GameBoard extends javax.swing.JFrame {
     }
     
     /**
+     * sets which player is using the gameboard
+     * 
+     * @param n player number
+     */
+    public void setPlayerNumber(int n){
+    	
+    }
+    
+    
+    /**
      * sets the game manager so gameboard can have access to the players
      * 
      * @param gm the game manager
