@@ -20,7 +20,7 @@ public class GameLobby extends javax.swing.JFrame{
 	HostDifficultyChange myAIManager;
     private char player3Difficulty;
     private char player4Difficulty;
-	
+	private int connectionsMade = 0;
     /** 
      * Creates new form GameLobby 
      * 
@@ -45,6 +45,8 @@ public class GameLobby extends javax.swing.JFrame{
         	this.setSize(new Dimension(688,220));
         	numberOfAI = 0;
         }
+        connectionsMade = 3 - numberOfPlayers;
+        	startGame.setEnabled(false);
     }
     
     public String getHostName(){
@@ -410,6 +412,10 @@ public class GameLobby extends javax.swing.JFrame{
      */
     public void setPlayer2Status(String status){
         Player2Status.setText(status);
+        connectionsMade++;
+        if(connectionsMade >= 3){
+        	startGame.setEnabled(true);
+        }
     }
 
     /**
@@ -423,6 +429,10 @@ public class GameLobby extends javax.swing.JFrame{
      */
     public void setPlayer3Status(String status){
         Player3Status.setText(status);
+        connectionsMade++;
+        if(connectionsMade >= 3){
+        	startGame.setEnabled(true);
+        }
     }
 
     /**
@@ -436,6 +446,10 @@ public class GameLobby extends javax.swing.JFrame{
      */
     public void setPlayer4Status(String status){
         Player4Status.setText(status);
+        connectionsMade++;
+        if(connectionsMade >= 3){
+        	startGame.setEnabled(true);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
