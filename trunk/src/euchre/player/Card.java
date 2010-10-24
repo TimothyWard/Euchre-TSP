@@ -104,7 +104,7 @@ public class Card{
 		return 0;
 	}
 	
-	public boolean equalTo(Card card){
+	public boolean equals(Card card){
 		if (card.getSuit()==this.getSuit() && card.getCardValue()==this.getCardValue()){
 			return true;
 		}
