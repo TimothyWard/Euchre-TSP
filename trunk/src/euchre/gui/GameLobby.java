@@ -205,7 +205,7 @@ public class GameLobby extends javax.swing.JFrame{
 
         jLabelPlayerName.setText("Player 1");
 
-        changeComputerDifficulty.setText("Change Computer Difficulty");
+        changeComputerDifficulty.setText("Change AI Difficulty Level");
         changeComputerDifficulty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changeAIDifficulty(evt);
@@ -224,11 +224,11 @@ public class GameLobby extends javax.swing.JFrame{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Player2Status, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
+                                .addComponent(Player2Status, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
+                                .addComponent(jLabelPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -237,13 +237,13 @@ public class GameLobby extends javax.swing.JFrame{
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Player3Status, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Player4Status, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
