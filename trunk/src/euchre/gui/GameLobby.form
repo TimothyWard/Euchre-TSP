@@ -47,7 +47,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelPlayerName" pref="477" max="32767" attributes="0"/>
+                              <Component id="Player1Status" pref="477" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -100,7 +100,7 @@
               <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="startGame" alignment="0" min="-2" pref="264" max="-2" attributes="1"/>
-                  <Component id="changeComputerDifficulty" alignment="0" pref="264" max="32767" attributes="1"/>
+                  <Component id="changeComputerDifficulty" alignment="0" pref="285" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
           </Group>
@@ -115,7 +115,7 @@
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRadioBPlayer1Team1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRadioBPlayer1Team2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Player1Status" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -282,7 +282,7 @@
         <Property name="text" type="java.lang.String" value="2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelPlayerName">
+    <Component class="javax.swing.JLabel" name="Player1Status">
       <Properties>
         <Property name="text" type="java.lang.String" value="Player 1"/>
       </Properties>

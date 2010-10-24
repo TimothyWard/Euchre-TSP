@@ -31,7 +31,7 @@ public class GameLobby extends javax.swing.JFrame{
     public GameLobby(int numberOfPlayers, String hostName, GameManager inManager){
         initComponents();
         centerScreen();
-        jLabelPlayerName.setText(hostName);
+        Player1Status.setText(hostName);
         myManager = inManager;
         if (numberOfPlayers == 1){
         	setPlayer4Difficulty('m');
@@ -50,7 +50,7 @@ public class GameLobby extends javax.swing.JFrame{
     }
     
     public String getHostName(){
-    	return jLabelPlayerName.getText();
+    	return Player1Status.getText();
     }
 
     public boolean getFinished(){
@@ -141,7 +141,7 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer2Team2 = new javax.swing.JRadioButton();
         jRadioBPlayer3Team2 = new javax.swing.JRadioButton();
         jRadioBPlayer4Team2 = new javax.swing.JRadioButton();
-        jLabelPlayerName = new javax.swing.JLabel();
+        Player1Status = new javax.swing.JLabel();
         changeComputerDifficulty = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -205,7 +205,7 @@ public class GameLobby extends javax.swing.JFrame{
         jRadioBPlayer4Team2.setSelected(true);
         jRadioBPlayer4Team2.setText("2");
 
-        jLabelPlayerName.setText("Player 1");
+        Player1Status.setText("Player 1");
 
         changeComputerDifficulty.setText("Change AI Difficulty Level");
         changeComputerDifficulty.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,7 +230,7 @@ public class GameLobby extends javax.swing.JFrame{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)))
+                                .addComponent(Player1Status, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -270,7 +270,7 @@ public class GameLobby extends javax.swing.JFrame{
                 .addGap(216, 216, 216)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(startGame, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(changeComputerDifficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
+                    .addComponent(changeComputerDifficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
                 .addGap(208, 208, 208))
         );
         layout.setVerticalGroup(
@@ -282,7 +282,7 @@ public class GameLobby extends javax.swing.JFrame{
                     .addComponent(jLabel8)
                     .addComponent(jRadioBPlayer1Team1)
                     .addComponent(jRadioBPlayer1Team2)
-                    .addComponent(jLabelPlayerName))
+                    .addComponent(Player1Status))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -455,6 +455,7 @@ public class GameLobby extends javax.swing.JFrame{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Player1Status;
     private javax.swing.JLabel Player2Status;
     private javax.swing.JLabel Player3Status;
     private javax.swing.JLabel Player4Status;
@@ -471,7 +472,6 @@ public class GameLobby extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelPlayerName;
     private javax.swing.JRadioButton jRadioBPlayer1Team1;
     private javax.swing.JRadioButton jRadioBPlayer1Team2;
     private javax.swing.JRadioButton jRadioBPlayer2Team1;
