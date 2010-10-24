@@ -103,6 +103,8 @@ public class Human implements Player{
 	 * @return int The team number of the player
 	 */
 	public int getTeam() {
+		
+		
 		return team;
 	}
 
