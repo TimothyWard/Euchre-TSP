@@ -63,8 +63,8 @@ public class EuchreConnectionThread extends Thread {
 					while((inputLine = in.readLine()) != null){
 						
 						//output the message
-						
-					    server.toClients(inputLine,this.hashCode());
+						server.parse(inputLine,this.hashCode());
+					    //server.toClients(inputLine,this.hashCode());
 					}
 
 				try {

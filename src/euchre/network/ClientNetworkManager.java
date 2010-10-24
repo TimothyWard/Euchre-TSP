@@ -8,6 +8,8 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import euchre.player.GameManager;
+
 
 /**
  * A thread to manage the client's network connection
@@ -21,6 +23,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	PrintWriter out = null;
 	BufferedReader in;
 	EuchreProtocol protocol;
+	GameManager manager;
 	
 	String hostname;
 	int port = 4444;
@@ -59,6 +62,10 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		out.println(tokenizedString);
 	}
 	
+	public void setGameManager(GameManager gm){
+		manager = gm;
+		protocol.setGameManager(gm);
+	}
 	
 	/**
 	 * The thread's actions. Make a socket connection to the server and send a string
@@ -100,7 +107,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					System.out.println("connected to server");
 					
 					//send a message to the server
-					out.println("CLIENT");
+					//out.println("CLIENT");
 					connecting = false;
 				
 			}
@@ -110,7 +117,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 						
 						//output the message
 						System.out.println("Message from server:");
-					    protocol.parse(inputLine);
+					    protocol.clientParse(inputLine);
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

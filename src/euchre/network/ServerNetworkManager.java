@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.LinkedList;
 
+import euchre.player.GameManager;
+
 /**
  * Manages the server's network connections
  * 
@@ -16,6 +18,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	ServerSocket serverSocket = null;
 	int port = 4444;
 	EuchreProtocol protocol;
+	GameManager manager;
 
 	//contains references to all of the communication threads for socket connections
 	LinkedList<EuchreConnectionThread> threads = new LinkedList<EuchreConnectionThread>();
@@ -55,40 +58,51 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 
 		return listening;
 	}
-	
+
 	/**
 	 * Get the number of connected clients
 	 * 
 	 * @return The number of dispatched client threads
 	 */
 	public int getNumClients(){
-		
-		
+
+
 		return threads.size();
-		
+
 	}
-	
+
 	public void toClients(String s, int hash){
-		
-		System.out.println("Message from client:");
-	    protocol.parse(s);
-		
-	    System.out.println(s);
+
+
+		System.out.println(s);
 		for(EuchreConnectionThread t : threads){
 			if(hash != t.hashCode())
 				t.getPrintWriter().println(s);
 		}
 	}
-	
-public void toClients(String s){
-		
-		System.out.println("Message from client:");
-	    protocol.parse(s);
-		
-	    System.out.println(s);
+
+	public void toClients(String s){
+
+
+		System.out.println(s);
 		for(EuchreConnectionThread t : threads){
 			t.getPrintWriter().println(s);
 		}
+	}
+	
+	public void parse(String message, int hash){
+		
+		protocol.serverParse(message);
+	}
+	
+	/**
+	 * Sets reference in the protocol to the gamemanager, where the player info is stored
+	 * 
+	 * @param gm The GameManager object for our game
+	 */
+	public void setGameManager(GameManager gm){
+		manager = gm;
+		protocol.setGameManager(gm);
 	}
 
 	/**
@@ -127,7 +141,7 @@ public void toClients(String s){
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					
+
 				}
 			}	
 
