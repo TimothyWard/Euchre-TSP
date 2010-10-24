@@ -88,8 +88,8 @@ public class Game {
 	 * This method will just create a host object, and will also create the appropriately
 	 * specified number of AI and Human players to accompany.
 	 * 
-	 * @param GM
-	 * @param GUI
+	 * @param GM The GameManager object for the network and to pass the new host to.
+	 * @param GUI The welcome window for user input.
 	 */
 	public static void createHost(GameManager GM, Welcome GUI){
 
@@ -122,7 +122,7 @@ public class Game {
 	/**
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
-	 * @param GM
+	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 */
 	public static void createLocalOnlyGame(GameManager GM){
 		ServerNetworkManager network = new ServerNetworkManager();
@@ -154,8 +154,8 @@ public class Game {
 
 	/**
 	 * This method will create a client object.
-	 * @param GM
-	 * @param GUI
+	 * @param GM The GameManager object for the network and to pass the new client to.
+	 * @param GUI The welcome window for user input.
 	 */
 	public static void createClient(GameManager GM, Welcome GUI){
 		// add URL String argument to ClientNetworkManager to change host location
@@ -169,6 +169,8 @@ public class Game {
 	 * This method compares the scores of the two teams and returns the winning team
 	 * if there is one or null otherwise.
 	 * 
+	 * @param one The first team.
+	 * @param two The second team.
 	 * @return Team The winning team
 	 */
 	public static Team gameWinner(Team one, Team two){
