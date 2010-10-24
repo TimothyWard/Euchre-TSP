@@ -24,7 +24,6 @@ public class GameBoard extends javax.swing.JFrame {
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
-	private Card turnedCard;
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -567,7 +566,6 @@ public class GameBoard extends javax.swing.JFrame {
     
     public void setTurnedCard(Card c){
     	jButtonTurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getSuit()));
-    	turnedCard = c;
     }
     
     
