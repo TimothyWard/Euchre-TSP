@@ -105,8 +105,12 @@ public class Card{
 	}
 	
 	public boolean equalTo(Card card){
-		if (card.getSuit()==this.getSuit() && card.getCardValue()==this.getCardValue()) return true;
-		else return false;
+		if (card.getSuit()==this.getSuit() && card.getCardValue()==this.getCardValue()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	public String toString(){
 		return "" + value + suit;
