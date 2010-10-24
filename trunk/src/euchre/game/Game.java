@@ -45,7 +45,7 @@ public class Game {
 		
 		if (choice == 'h') createHost(GM, GUI);
 		else if(choice == 'c') createClient(GM, GUI);
-//		else if(choice == 'a') createLocalOnlyGame(GM);
+		else if(choice == 'a') createLocalOnlyGame(GM);
 		GUI.dispose();
 
 		//set teams
@@ -129,9 +129,10 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 */
 	public static void createLocalOnlyGame(GameManager GM){
+		System.out.println("local game");
 		ServerNetworkManager network = new ServerNetworkManager();
-		network.setGameManager(GM);
 		network.start();
+		network.setGameManager(GM);
 		Human human = new Human();
 		GM.setHostPlayer(human);
 		SetupLocal local = new SetupLocal(human);
@@ -145,15 +146,19 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
+		//get info out of GUI here and give to Network or GM
 		ClientNetworkManager AI1 = new ClientNetworkManager();
 		AI1.setGameManager(GM);
 		AI1.start();
+		
 		ClientNetworkManager AI2 = new ClientNetworkManager();
 		AI2.setGameManager(GM);
 		AI2.start();
+		
 		ClientNetworkManager AI3 = new ClientNetworkManager();
 		AI3.setGameManager(GM);
 		AI3.start();
+		
 		GM.setLocalPlayers(new AI(), new AI(), new AI());
 	}
 
