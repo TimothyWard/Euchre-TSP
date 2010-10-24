@@ -26,12 +26,11 @@ public class AI implements Player{
 	private int team;
 	private int numCards = 0;
 	private int playerNumber;
+	private Card playCard;
 	private ClientNetworkManager clientManager;
+	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 
 
-	//	public static void main(String[] args) {
-	//
-	//	}
 
 	public AI(){
 
@@ -62,6 +61,13 @@ public class AI implements Player{
 		}
 
 		if(numTrump>=3){
+			TRB = new Card('j', trump);
+			TLB = new Card('j', trump);
+			TA = new Card('a', trump);
+			TK = new Card('k', trump);
+			TQ = new Card('q', trump);
+			T10 = new Card('0', trump);
+			T9 = new Card('9', trump);
 			return true;
 		}
 		else{
@@ -74,7 +80,26 @@ public class AI implements Player{
 	 * Determines the best card to lead and plays it.
 	 */
 	public void leadCard(){
+		//FIX
+		//Highest and lowest cards need to use compareTo, not < or >
 
+		if(highestCard(true)==TRB){
+			playCard = highestCard(true);
+			playCard();
+		}
+		else if(highestCard(true)==TLB){
+			playCard = highestCard(true);
+			playCard();
+		}
+		else if(highestCard(false).getSuit() != trump){
+			playCard = highestCard(false);
+			playCard();
+		}
+		else{
+			playCard = lowestCard(true);
+			playCard();
+		}
+		
 		//		if hand contains right bower, play right bower
 		//		else if hand contains left bower, play left bower
 		//		else if hand contains off-suit, play highest off-suit
@@ -109,8 +134,9 @@ public class AI implements Player{
 	 * @return True if the AI has suit, false if it does not.
 	 */
 	public boolean hasSuit(){
+		
+		
 		return false;
-
 	}
 
 	/**
@@ -239,20 +265,30 @@ public class AI implements Player{
 		}
 
 		if(numHeart>=3){
-			return 'h';
+			trump = 'h';
 		}
 		else if(numDiamond>=3){
-			return 'd';
+			trump = 'd';
 		}
 		else if(numSpade>=3){
-			return 's';
+			trump = 's';
 		}
 		else if(numClub>=3){
-			return 'c';
+			trump = 'c';
 		}
 		else{
-			return 0;
+			trump = 0;
+			return trump;
 		}
+		
+		TRB = new Card('j', trump);
+		TLB = new Card('j', trump);
+		TA = new Card('a', trump);
+		TK = new Card('k', trump);
+		TQ = new Card('q', trump);
+		T10 = new Card('0', trump);
+		T9 = new Card('9', trump);
+		return trump;
 
 	}
 	
@@ -316,7 +352,16 @@ public class AI implements Player{
 	@Override
 	public char stickDealer() {
 		//FIX
-		return hand[2].getSuit();
+		trump = hand[2].getSuit();
+		TRB = new Card('j', trump);
+		TLB = new Card('j', trump);
+		TA = new Card('a', trump);
+		TK = new Card('k', trump);
+		TQ = new Card('q', trump);
+		T10 = new Card('0', trump);
+		T9 = new Card('9', trump);
+		return trump;
+		
 	}
 	@Override
 	public void setTurn(boolean turn) {
