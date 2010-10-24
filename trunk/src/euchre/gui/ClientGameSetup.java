@@ -17,6 +17,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 	private Human humanPlayer;
 	private GameManager myManager;
+	private GameBoard GB;
 	
     /** 
      * Creates new form ClientGameSetup
@@ -122,6 +123,9 @@ public class ClientGameSetup extends javax.swing.JFrame{
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			PlayerName.setEditable(false);
+			GB = new GameBoard(myManager.getTeamOne().getPlayerOne());
+			GB.setVisible(true);
+			GB.setGameManager(myManager);
         }
     }//GEN-LAST:event_ready
     
