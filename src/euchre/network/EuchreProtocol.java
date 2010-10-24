@@ -14,6 +14,8 @@ import euchre.player.GameManager;
 public class EuchreProtocol {
 	
 	private GameManager manager;
+	private ClientNetworkManager client;
+	private ServerNetworkManager server;
 	
 	/**
 	 * Get any necessary references
@@ -40,7 +42,24 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("RegisterPlayer")){
 				String name = parser.nextToken();
-				
+				if(manager.getPlayer2() == null)
+				{
+					manager.getPlayer2().setName(name);
+					server.toClients("SetPlayerName,"+name+",2");
+					
+				}
+				if(manager.getPlayer3() == null)
+				{
+					manager.getPlayer3().setName(name);
+					server.toClients("SetPlayerName,"+name+",3");
+					
+				}
+				if(manager.getPlayer4() == null)
+				{
+					manager.getPlayer4().setName(name);
+					server.toClients("SetPlayerName,"+name+",4");
+					
+				}
 			}
 			else{
 				System.out.println("Undefined token: " + token);
@@ -58,6 +77,24 @@ public class EuchreProtocol {
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
 			if(token.equals("SetPlayerName")){
+				String name = parser.nextToken();
+				int num = Integer.parseInt(parser.nextToken());
+				switch(num){
+				case 1:
+					manager.getPlayer1().setName(name);
+					break;
+				case 2:
+					manager.getPlayer2().setName(name);
+					break;
+				case 3:
+					manager.getPlayer3().setName(name);
+					break;
+				case 4:
+					manager.getPlayer4().setName(name);
+					break;
+	
+				}
+				
 				
 			}
 			else
@@ -75,6 +112,14 @@ public class EuchreProtocol {
 	
 	public void setGameManager(GameManager gm){
 		manager = gm;
+	}
+	
+	public void setClientNetworkManager(ClientNetworkManager c){
+		client = c;
+	}
+	
+	public void setServerNetworkManager(ServerNetworkManager s){
+		server = s;
 	}
 	
 	
