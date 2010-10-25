@@ -188,11 +188,11 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
+		clientSetup.dispose();
 		GameBoard GB = new GameBoard();
 		GB.setVisible(true);
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
-		clientSetup.dispose();
 
 	}
 
