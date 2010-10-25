@@ -25,7 +25,9 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
+	private boolean waiting = true;
 
+	private GameBoard board;
 	private GameLobby lobby;
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
@@ -493,6 +495,22 @@ public class GameManager {
 
 	public void setLobby(GameLobby gl){
 		lobby = gl;
+	}
+	
+	public void setGameBoard(GameBoard gb){
+		board = gb;
+	}
+	
+	public GameBoard getGameBoard(){
+		return board;
+	}
+	
+	public boolean isWaiting(){
+		return waiting;
+	}
+	
+	public void setGameManagerWaiting(boolean b){
+		waiting = b;
 	}
 
 
