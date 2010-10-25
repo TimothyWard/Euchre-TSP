@@ -24,6 +24,14 @@ public class AI implements Player{
 	private ClientNetworkManager clientManager;
 	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 	private Card led = null;
+	public double getPlayerID() {
+		return playerID;
+	}
+	public void setPlayerID(double playerID) {
+		this.playerID = playerID;
+	}
+
+	private double playerID = Math.random();
 
 	
 	CardEvaluator calc = new CardEvaluator();
