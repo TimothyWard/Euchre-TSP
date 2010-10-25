@@ -15,6 +15,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	int AIs = -1;
 	GameManager myManager;
+	GameLobby lobby;
 	
 	/** 
 	 * Creates new form HostGameSetup 
@@ -127,9 +128,9 @@ public class HostGameSetup extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else { //Valid input
 			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
-			GameLobby gl = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
-			gl.setVisible(true);
-			myManager.setLobby(gl);
+			lobby = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
+			lobby.setVisible(true);
+			myManager.setLobby(lobby);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
 			System.out.println(AIs);
 			this.setVisible(false);
@@ -160,6 +161,10 @@ public class HostGameSetup extends javax.swing.JFrame {
 	 */
 	public int getAIs(){
 		return AIs;
+	}
+	
+	public GameLobby getGameLobby(){
+		return lobby;
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
