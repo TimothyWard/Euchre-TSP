@@ -28,6 +28,7 @@ public class GameBoard extends javax.swing.JFrame {
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
+	
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -42,7 +43,6 @@ public class GameBoard extends javax.swing.JFrame {
         spadesButton.setVisible(false);
         suitPassButton.setVisible(false);
     }
-    
     
     /**
      * resets the board to start a new round
@@ -95,6 +95,7 @@ public class GameBoard extends javax.swing.JFrame {
      */
     public void setGameManager(GameManager gm){
     	GM = gm;
+    	
     	if(humanPlayer.getTeam() == 1){
     		if(gm.getTeamOne().getPlayerOne().getNumber() != humanPlayer.getNumber()){
     			topPlayer = gm.getTeamOne().getPlayerOne();
@@ -700,10 +701,7 @@ public class GameBoard extends javax.swing.JFrame {
 
     private void pickItUpButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pickItUpButtonClicked
     	if(humanPlayer.isTurn()){
-    		jButtonPass.setVisible(false);
-    		jButtonPickUp.setVisible(false);
-    		jButtonTurnedCard.setVisible(false);
-    		jLabelDealer.setVisible(false);
+	    	this.hideTrumpButtons();
     		heartsButton.setVisible(true);
             clubsButton.setVisible(true);
             diamondsButton.setVisible(true);
@@ -773,7 +771,7 @@ public class GameBoard extends javax.swing.JFrame {
     /**
      * hides the buttons used during trump selection
      */
-    public void clearTrumpButtons(){
+    public void hideTrumpButtons(){
     	jButtonPass.setVisible(false);
     	jButtonPickUp.setVisible(false);
     	jButtonTurnedCard.setVisible(false);
