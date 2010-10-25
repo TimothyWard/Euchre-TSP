@@ -132,7 +132,8 @@ public class ClientGameSetup extends javax.swing.JFrame{
     	if (playerName.getText().isEmpty() || playerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);    		
 		}else{ //Valid input
-			gottenInput = true;
+			if(playerName.getText().trim().isEmpty() == false)
+				gottenInput = true;
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			playerName.setEditable(false);
@@ -156,7 +157,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
      * 
      * @return true if there is input, false if it is still waiting
      */
-    public boolean noInput(){
+    public boolean hasInput(){
     	
     	return gottenInput;
     }
