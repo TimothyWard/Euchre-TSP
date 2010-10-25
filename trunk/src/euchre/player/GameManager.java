@@ -370,18 +370,10 @@ public class GameManager {
 	}
 
 
-	/**
-	 * Returns a reference to team one
-	 * @return Team one
-	 */
 	public Team getTeamOne(){
 		return teamOne;
 	}
 
-	/**
-	 * Returns a reference to team two
-	 * @return Team two
-	 */
 	public Team getTeamTwo(){
 		return teamTwo;
 	}
