@@ -96,7 +96,6 @@ public class AI implements Player{
 	 */
 	public void leadCard(){
 		//FIX
-
 		if(calc.highestCardInHand(trump, trump, hand).equals(TRB)){
 			playCard = calc.highestCardInHand(trump, trump, hand);
 		}
@@ -132,6 +131,7 @@ public class AI implements Player{
 		else{
 			led = played[0];
 		}
+		
 		
 		//If the AI has suit, they must follow suit...
 		if(calc.hasLead(led.getSuit(), hand)){
