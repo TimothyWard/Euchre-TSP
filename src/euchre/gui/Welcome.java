@@ -21,6 +21,7 @@ public class Welcome extends javax.swing.JFrame{
     public Welcome(){
         initComponents();
         centerScreen();
+        jButton1.setVisible(false);
     }
 
     /**
