@@ -346,16 +346,16 @@ public class GameManager {
 	 * @param client3 The third player that is going to be a client in the game.
 	 */
 	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
-		if (p1.equals(host)){
+		if (p1.getPlayerID()==host.getPlayerID()){
 			playerIAm=host;
 		}
-		else if (p1.equals(client1)){
+		else if (p1.getPlayerID()==client1.getPlayerID()){
 			playerIAm=client1;
 		}
-		else if (p1.equals(client2)){
+		else if (p1.getPlayerID()==client2.getPlayerID()){
 			playerIAm=client2;
 		}
-		else if (p1.equals(client3)){
+		else if (p1.getPlayerID()==client3.getPlayerID()){
 			playerIAm=client3;
 		}
 		p1=host;
