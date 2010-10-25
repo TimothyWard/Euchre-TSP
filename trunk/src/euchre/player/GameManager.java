@@ -16,6 +16,7 @@ import euchre.network.ServerNetworkManager;
 public class GameManager {
 
 	private Player p1,p2,p3,p4;
+	private Player playerIAm;
 	private Player player1, player2, player3, player4;
 	private Player dealer = player1;
 	private Card upCard;
@@ -350,6 +351,18 @@ public class GameManager {
 	 * @param client3 The third player that is going to be a client in the game.
 	 */
 	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
+		if (p1.equals(host)){
+			playerIAm=host;
+		}
+		else if (p1.equals(client1)){
+			playerIAm=client1;
+		}
+		else if (p1.equals(client2)){
+			playerIAm=client2;
+		}
+		else if (p1.equals(client3)){
+			playerIAm=client3;
+		}
 		p1=host;
 		p2=client1;
 		p3=client2;
