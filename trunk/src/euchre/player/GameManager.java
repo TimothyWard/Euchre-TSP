@@ -36,39 +36,39 @@ public class GameManager {
 	private Round round = null;
 
 
-//		public static void main(String[] args) {
-//			GameManager game = new GameManager();
-//			Round round = new Round();
-//			game.setRound(round);
-//			//			Player player = new Human();
-//			//			Player player2 = new Human();
-//			//			Player player3 = new Human();
-//			//			Player player4 = new Human();
-//			//			game.setAllPlayers(player, player2, player3, player4);
-//			Player ai1 = new AI();
-//			Player ai2 = new AI();
-//			Player ai3 = new AI();
-//			Player ai4 = new AI();
-//			game.p1 = ai1;
-//			game.p2 = ai2;
-//			game.p3 = ai3;
-//			game.p4 = ai4;
-//			game.setAllPlayers(ai1, ai2, ai3, ai4);
-//	
-//			game.setTeam(1, 2);
-//			game.setTeam(2, 2);
-//			game.setTeam(3, 1);
-//			game.setTeam(4, 1);
-//			
-//			game.deal();
-//			game.setTrump();
-//			
-//			System.out.println("Upcard: " + game.upCard);
-//			System.out.println("Trump Suit: " + game.round.getTrumpSuit());
-//			
-//			game.playRound();
-//
-//		}
+		public static void main(String[] args) {
+			GameManager game = new GameManager();
+			Round round = new Round();
+			game.setRound(round);
+			//			Player player = new Human();
+			//			Player player2 = new Human();
+			//			Player player3 = new Human();
+			//			Player player4 = new Human();
+			//			game.setAllPlayers(player, player2, player3, player4);
+			Player ai1 = new AI();
+			Player ai2 = new AI();
+			Player ai3 = new AI();
+			Player ai4 = new AI();
+			game.p1 = ai1;
+			game.p2 = ai2;
+			game.p3 = ai3;
+			game.p4 = ai4;
+			game.setAllPlayers(ai1, ai2, ai3, ai4);
+	
+			game.setTeam(1, 2);
+			game.setTeam(2, 2);
+			game.setTeam(3, 1);
+			game.setTeam(4, 1);
+			
+			game.deal();
+			game.setTrump();
+			
+			System.out.println("Upcard: " + game.upCard);
+			System.out.println("Trump Suit: " + game.round.getTrumpSuit());
+			
+			game.playRound();
+
+		}
 
 
 	public void setRound(Round round){
@@ -268,15 +268,22 @@ public class GameManager {
 
 		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 		char trump = round.getTrumpSuit();
+		char ledSuit = cards[0].getSuit();
+		char sameColor;
+				
+		if(trump == 's') sameColor = 'c';
+		else if(trump == 'c') sameColor = 's';
+		else if(trump == 'd') sameColor = 'h';
+		else sameColor = 'd';
 
-		LA = new Card('a', cards[0].getSuit());
-		LK = new Card('k', cards[0].getSuit());
-		LQ = new Card('q', cards[0].getSuit());
-		LJ = new Card('j', cards[0].getSuit());
-		L10 = new Card('0', cards[0].getSuit());
-		L9 = new Card('9', cards[0].getSuit());
+		LA = new Card('a', ledSuit);
+		LK = new Card('k', ledSuit);
+		LQ = new Card('q', ledSuit);
+		LJ = new Card('j', ledSuit);
+		L10 = new Card('0', ledSuit);
+		L9 = new Card('9', ledSuit);
 		TRB = new Card('j', trump);
-		TLB = new Card('j', trump);
+		TLB = new Card('j', sameColor);
 		TA = new Card('a', trump);
 		TK = new Card('k', trump);
 		TQ = new Card('q', trump);
@@ -284,23 +291,30 @@ public class GameManager {
 		T9 = new Card('9', trump);
 
 		int[] cardValue = {0,0,0,0};
-
+		Player[] players = new Player[4];
+		
+		players[0] = curPlayer;
+		players[1] = nextPlayer(players[0]);
+		players[2] = nextPlayer(players[1]);
+		players[3] = nextPlayer(players[2]);
+		
 		for (int i=0; i<4; i++){
 			Card card = cards[i];
-			if (card.compareTo(TRB)==0) cardValue[i] = 13;
-			if (card.compareTo(TLB)==0) cardValue[i] = 12;
-			if (card.compareTo(TA)==0) cardValue[i] = 11;
-			if (card.compareTo(TK)==0) cardValue[i] = 10;
-			if (card.compareTo(TQ)==0) cardValue[i] = 9;
-			if (card.compareTo(T10)==0) cardValue[i] = 8;
-			if (card.compareTo(T9)==0) cardValue[i] = 7;
-			if (card.compareTo(LA)==0) cardValue[i] = 6;
-			if (card.compareTo(LK)==0) cardValue[i] = 5;
-			if (card.compareTo(LQ)==0) cardValue[i] = 4;
-			if (card.compareTo(LJ)==0) cardValue[i] = 3;
-			if (card.compareTo(L10)==0) cardValue[i] = 2;
-			if (card.compareTo(L9)==0) cardValue[i] = 1;
+			if (card.equals(TRB)) cardValue[i] = 13;
+			else if (card.equals(TLB)) cardValue[i] = 12;
+			else if (card.equals(TA)) cardValue[i] = 11;
+			else if (card.equals(TK)) cardValue[i] = 10;
+			else if (card.equals(TQ)) cardValue[i] = 9;
+			else if (card.equals(T10)) cardValue[i] = 8;
+			else if (card.equals(T9)) cardValue[i] = 7;
+			else if (card.equals(LA)) cardValue[i] = 6;
+			else if (card.equals(LK)) cardValue[i] = 5;
+			else if (card.equals(LQ)) cardValue[i] = 4;
+			else if (card.equals(LJ)) cardValue[i] = 3;
+			else if (card.equals(L10)) cardValue[i] = 2;
+			else if (card.equals(L9)) cardValue[i] = 1;
 			else cardValue[i] = 0;
+			//System.out.println("Card: " + card + "     CardValue: " + cardValue[i]);
 		}
 
 		int maximum = cardValue[0];
@@ -313,16 +327,16 @@ public class GameManager {
 		}
 
 		if(maxIndex==0){
-			return player1;
+			return players[0];
 		}
 		else if(maxIndex==1){
-			return player2;
+			return players[1];
 		}
 		else if(maxIndex==2){
-			return player3;
+			return players[2];
 		}
 		else{
-			return player4;
+			return players[3];
 		}
 
 	}
