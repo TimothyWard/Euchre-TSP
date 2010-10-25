@@ -93,13 +93,15 @@ public class GameManager {
 
 
 	/**
-	 * Deals five cards to each player, in groups of two and three.
+	 * Creates a new deck of cards, shuffles the cards, and then
+	 * deals five cards to each player, in groups of two and three.
 	 * 
 	 * Order of dealing is two, three, two, three, three, two, three, two
 	 * 
 	 */
 	public void deal(){
 
+		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
 
