@@ -59,7 +59,13 @@ public class GameManager {
 //		System.out.println(game.round.getTeamWhoOrdered().equals(game.teamOne));
 //		System.out.println("Upcard: " + game.upCard.suit);
 //		System.out.println("Suit picked: " + game.round.getTrumpSuit());
-//		System.out.println(game.player2);
+//		
+//		
+//		System.out.println(game.player2.playCard());
+//		System.out.println(game.player3.playCard());
+//		System.out.println(game.player4.playCard());
+//		System.out.println(game.player1.playCard());
+//		
 //	}
 
 
