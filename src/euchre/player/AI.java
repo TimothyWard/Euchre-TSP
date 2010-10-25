@@ -96,7 +96,6 @@ public class AI implements Player{
 	 */
 	public void leadCard(){
 		//FIX
-		//Highest and lowest cards need to use compareTo, not < or >
 
 		if(calc.highestCardInHand(trump, trump, hand).equals(TRB)){
 			playCard = calc.highestCardInHand(trump, trump, hand);
@@ -108,7 +107,9 @@ public class AI implements Player{
 //			playCard = highestCard(false);
 //		}
 		else{
-			playCard = calc.lowestTrumpInHand(trump, trump, hand);
+			//FIX
+			playCard = calc.lowestCardInHand(trump, trump, hand);
+			//playCard = calc.lowestTrumpInHand(trump, trump, hand);
 		}
 		
 		//		if hand contains right bower, play right bower
@@ -175,7 +176,6 @@ public class AI implements Player{
 		T9 = new Card('9', trump);
 		
 		//FIX
-		//Remove card from AI's hand after playing it.
 		if(played[0]==null){
 			leadCard();
 		}
@@ -452,7 +452,10 @@ public class AI implements Player{
 	public void setTrump(char tr){
 		trump = tr;
 	}
-	@Override
+	
+	/**
+	 * Self awareness?
+	 */
 	public boolean isHuman() {
 		return false;
 	}
