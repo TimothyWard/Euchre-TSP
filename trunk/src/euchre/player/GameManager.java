@@ -31,39 +31,36 @@ public class GameManager {
 
 
 	private Round round = null;
-	
 
-	//			public static void main(String[] args) {
-	//				GameManager game = new GameManager();
-	//				Round round = new Round();
-	//				game.setRound(round);
-	//	//			Player player = new Human();
-	//	//			Player player2 = new Human();
-	//	//			Player player3 = new Human();
-	//	//			Player player4 = new Human();
-	//				Player ai1 = new AI();
-	//				Player ai2 = new AI();
-	//				Player ai3 = new AI();
-	//				Player ai4 = new AI();
-	//	//			game.setPlayer(player);
-	//	//			game.setPlayer(player2);
-	//	//			game.setPlayer(player3);
-	//	//			game.setPlayer(player4);
-	//				
-	//				game.setPlayer(ai1, true, true);
-	//				game.setPlayer(ai2, true, false);
-	//				game.setPlayer(ai3, true, false);
-	//				game.setPlayer(ai4, true, false);
-	//				
-	//				game.setTeam(1, 2);
-	//				game.setTeam(2, 2);
-	//				game.setTeam(3, 1);
-	//				game.setTeam(4, 1);
-	//				game.setTrump();
-	//				System.out.println(game.round.getTeamWhoOrdered()==game.getTeamTwo());
-	//				System.out.println("Upcard: " + game.upCard.suit);
-	//				System.out.println("Suit picked: " + game.round.getTrumpSuit());
-	//			}
+
+//	public static void main(String[] args) {
+//		GameManager game = new GameManager();
+//		Round round = new Round();
+//		game.setRound(round);
+//		//			Player player = new Human();
+//		//			Player player2 = new Human();
+//		//			Player player3 = new Human();
+//		//			Player player4 = new Human();
+//		//			game.setAllPlayers(player, player2, player3, player4);
+//		Player ai1 = new AI();
+//		Player ai2 = new AI();
+//		Player ai3 = new AI();
+//		Player ai4 = new AI();
+//
+//		game.setAllPlayers(ai1, ai2, ai3, ai4);
+//
+//		game.setTeam(1, 2);
+//		game.setTeam(2, 2);
+//		game.setTeam(3, 1);
+//		game.setTeam(4, 1);
+//		game.deal();
+//		game.setTrump();
+//
+//		System.out.println(game.round.getTeamWhoOrdered().equals(game.teamOne));
+//		System.out.println("Upcard: " + game.upCard.suit);
+//		System.out.println("Suit picked: " + game.round.getTrumpSuit());
+//		System.out.println(game.player2);
+//	}
 
 
 	public void setRound(Round round){
@@ -166,9 +163,8 @@ public class GameManager {
 				curPlayer=nextPlayer(curPlayer);
 			}
 		}
-
 		//If no one has ordered up the upCard, ask them to pick a suit
-		if(curPlayer==dealer){									
+		if(curPlayer.equals(dealer)){
 			deck.disCardCard(upCard);									//...and discard the upCard...
 
 
@@ -198,6 +194,15 @@ public class GameManager {
 				}
 			}
 		}//End of picking suit
+
+		//Tells any AI what the current trump is...
+		for(int a=0;a<3;a++){
+			Player temp = curPlayer;
+			if(temp.isHuman()==false){
+				((AI)temp).setTrump(round.getTrumpSuit());
+				temp = nextPlayer(temp);
+			}
+		}//...end of telling AI trump
 
 	}//End of setTrump
 
@@ -318,7 +323,7 @@ public class GameManager {
 			p1=p;
 		}
 	}
-	
+
 	/**
 	 * Adds a client player. 
 	 * 
@@ -329,7 +334,7 @@ public class GameManager {
 			p1=p;
 		}
 	}
-	
+
 	/**
 	 * Adds all client and host players. 
 	 * 
@@ -339,12 +344,13 @@ public class GameManager {
 	 * @param client3 The third player that is going to be a client in the game.
 	 */
 	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
-			p1=host;
-			p2=client1;
-			p3=client2;
-			p4=client3;
+		p1=host;
+		p2=client1;
+		p3=client2;
+		p4=client3;
+		dealer=p1;
 	}
-	
+
 	/**
 	 * Adds a host and three client players for a local only game. 
 	 * 
@@ -444,7 +450,7 @@ public class GameManager {
 			return player1;
 		}
 	}
-	
+
 	public Player getDealer(){
 		return dealer;
 	}
@@ -464,7 +470,7 @@ public class GameManager {
 	public Player getPlayer4(){
 		return player4;
 	}
-	
+
 	public Player getp1(){
 		return p1;
 	}
@@ -477,15 +483,15 @@ public class GameManager {
 	public Player getp4(){
 		return p4;
 	}
-	
+
 	public GameLobby getLobby(){
 		return lobby;
 	}
-	
+
 	public void setLobby(GameLobby gl){
 		lobby = gl;
 	}
-	
+
 
 	/**
 	 * Set reference to the network interface(server)
