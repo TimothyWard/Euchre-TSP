@@ -137,9 +137,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			playerName.setEditable(false);
-			GB = new GameBoard();
-			GB.setVisible(true);
-			GB.setGameManager(myManager);
+			serverIP.setEditable(false);
         }
     }//GEN-LAST:event_ready
     
