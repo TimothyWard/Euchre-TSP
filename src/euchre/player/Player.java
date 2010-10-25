@@ -33,4 +33,8 @@ public interface Player {
 	public boolean isHuman();
 	
 	public void setTurn(boolean b);
+	
+	public int getPlayerID();
+	
+	public int setPlayerID();
 }
