@@ -43,10 +43,11 @@ public class Game {
 		char choice = GUI.getChoice();
 		GUI.setVisible(false);
 
+		GameBoard GB = new GameBoard();
 
-		if (choice == 'h') createHost(GM, GUI);
-		else if(choice == 'c') createClient(GM, GUI);
-		else if(choice == 'a') createLocalOnlyGame(GM);
+		if (choice == 'h') createHost(GM, GUI, GB);
+		else if(choice == 'c') createClient(GM, GUI, GB);
+		else if(choice == 'a') createLocalOnlyGame(GM, GB);
 		GUI.dispose();
 
 		//set teams
@@ -75,7 +76,7 @@ public class Game {
 			while (currentRound.isRoundComplete()==false){
 				//Do nothing, the round is not over
 				try {
-					Thread.sleep(500);
+					Thread.sleep(5000);
 				} 
 				catch (InterruptedException e) {
 					e.printStackTrace();
@@ -96,7 +97,7 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new host to.
 	 * @param GUI The welcome window for user input.
 	 */
-	public static void createHost(GameManager GM, Welcome GUI){
+	public static void createHost(GameManager GM, Welcome GUI, GameBoard GB){
 
 		//start network connection
 		ServerNetworkManager network = new ServerNetworkManager();
@@ -107,20 +108,34 @@ public class Game {
 
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
-		//		while (hostSetup.getAIs() ==-1){
-		//			//Do nothing, user is deciding game type.
-		//			try {
-		//				Thread.sleep(500);
-		//			} 
-		//			catch (InterruptedException e) {
-		//				e.printStackTrace();
-		//			}
-		//		}
-		//		int aiNumber = hostSetup.getAIs();
-		//		while (aiNumber!=0){
-		//			GM.setClientPlayer(new AI());
-		//			aiNumber--;
-		//		}
+
+		while (hostSetup.getGameLobby().isSetupComplete()==false){
+			//Do nothing, waiting for client connections
+			try {
+				Thread.sleep(5000);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		initializeGameBoard(GM,GB);
+
+		/**
+				while (hostSetup.getAIs() ==-1){
+					//Do nothing, user is deciding game type.
+					try {
+						Thread.sleep(500);
+					} 
+					catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				int aiNumber = hostSetup.getAIs();
+				while (aiNumber!=0){
+					GM.setClientPlayer(new AI());
+					aiNumber--;
+				}
+		 **/
 	}
 
 	/**
@@ -128,7 +143,7 @@ public class Game {
 	 * three computers.
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 */
-	public static void createLocalOnlyGame(GameManager GM){
+	public static void createLocalOnlyGame(GameManager GM, GameBoard GB){
 		Human human = new Human();
 		GM.setHostPlayer(human);
 		SetupLocal local = new SetupLocal(human);
@@ -150,8 +165,7 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new client to.
 	 * @param GUI The welcome window for user input.
 	 */
-	public static void createClient(GameManager GM, Welcome GUI){
-		// add URL String argument to ClientNetworkManager to change host location
+	public static void createClient(GameManager GM, Welcome GUI, GameBoard GB){
 		Human human = new Human();
 		GM.setClientPlayer(human);
 		ClientGameSetup clientSetup = new ClientGameSetup(human);
@@ -160,13 +174,10 @@ public class Game {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
-
-
 
 		clientSetup.setGameManager(GM);
 		GM.setClientNetworkManager(client);
@@ -176,25 +187,31 @@ public class Game {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim()+","+human.getPlayerID());
-		
+
 		while(GM.isWaiting()){
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		clientSetup.dispose();
-		GameBoard GB = new GameBoard();
-		GB.setVisible(true);
+
+	}
+
+	/**
+	 * This method initializes the GameBoard.
+	 * 
+	 * @param GM The GameManager.
+	 * @param GB The GameBoard.
+	 */
+	public static void initializeGameBoard(GameManager GM, GameBoard GB){
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
-
+		GB.setVisible(true);
 	}
 
 	/**
