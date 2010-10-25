@@ -50,6 +50,7 @@ public class Welcome extends javax.swing.JFrame{
         jButtonNetworkHostGame = new javax.swing.JButton();
         jButtonLocalGame = new javax.swing.JButton();
         jButtonNetworkClientGame = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre");
@@ -85,6 +86,13 @@ public class Welcome extends javax.swing.JFrame{
             }
         });
 
+        jButton1.setText("Dont Touch");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                YouTouchedIt(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +108,10 @@ public class Welcome extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonNetworkHostGame, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,11 +124,17 @@ public class Welcome extends javax.swing.JFrame{
                     .addComponent(jButtonLocalGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNetworkHostGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNetworkClientGame, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void YouTouchedIt(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_YouTouchedIt
+        new GameBoard().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_YouTouchedIt
 
     /**
      * User chose a Network game, so launch the networkGameBrowser so that they can find or make one.
@@ -162,6 +179,7 @@ public class Welcome extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonLocalGame;
     private javax.swing.JButton jButtonNetworkClientGame;
     private javax.swing.JButton jButtonNetworkHostGame;
