@@ -18,6 +18,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 	private Human humanPlayer;
 	private GameManager myManager;
 	private GameBoard GB;
+	private boolean gottenInput = false;
 	
     /** 
      * Creates new form ClientGameSetup
@@ -129,9 +130,9 @@ public class ClientGameSetup extends javax.swing.JFrame{
      */
     private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
     	if (playerName.getText().isEmpty() || playerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
-			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);    		
 		}else{ //Valid input
-			myManager.getClientNetworkManager().toServer("RegisterPlayer,"+playerName.getText().trim());
+			gottenInput = true;
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			playerName.setEditable(false);
@@ -151,12 +152,28 @@ public class ClientGameSetup extends javax.swing.JFrame{
     }
     
     /**
+     * Returns whether or not we have gotten valid input from this setup window yet
+     * 
+     * @return true if there is input, false if it is still waiting
+     */
+    public boolean noInput(){
+    	
+    	return gottenInput;
+    }
+    
+    /**
      * Gets the current input(trimmed of whitespace) of the text plain for the client to enter their name in.
      * 
      * @return The clients inputed name
      */
     public String getClientName(){
     	return playerName.getText().trim();
+    }
+    
+    public String getIP(){
+    	if(serverIP.getText().trim().isEmpty())
+    		return "localhost";
+    	return serverIP.getText().trim();
     }
     
     

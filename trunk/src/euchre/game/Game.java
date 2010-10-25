@@ -154,11 +154,20 @@ public class Game {
 		GM.setClientPlayer(human);
 		ClientGameSetup clientSetup = new ClientGameSetup(human);
 		clientSetup.setVisible(true);
-		ClientNetworkManager client = new ClientNetworkManager();
+		while(clientSetup.noInput())
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
+		client.toServer("RegisterPlayer,"+clientSetup.getName().trim());
 		clientSetup.setGameManager(GM);
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
+		
 
 	}
 
