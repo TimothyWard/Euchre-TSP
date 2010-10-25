@@ -123,8 +123,9 @@ public class HostGameSetup extends javax.swing.JFrame {
 	private void openLobby(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLobby
 		if (nameInput.getText().isEmpty() || nameInput.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
-
-		}else{ //Valid input
+		}else if(contains(nameInput.getText().trim(), ',')){
+			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
+		}else { //Valid input
 			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
 			GameLobby gl = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
 			gl.setVisible(true);
@@ -134,6 +135,23 @@ public class HostGameSetup extends javax.swing.JFrame {
 			this.setVisible(false);
 		}
 	}//GEN-LAST:event_openLobby
+	
+    /**
+     * Checks the given string for the given character.
+     * 
+     * @param string The string to look for the character in.
+     * @param look The character to look for in the string.
+     * @return True if the character was found in the string.
+     */
+    private boolean contains(String string, char look){
+		boolean wasFound = false;
+		for (int i=0; i < string.length(); i++){
+				if (string.charAt(i) == look){
+					wasFound = true;
+				}
+		}
+    	return wasFound;	
+    }
 
 	/**
 	 * Returns the number of AI players.

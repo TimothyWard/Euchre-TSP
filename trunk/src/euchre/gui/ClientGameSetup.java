@@ -131,7 +131,10 @@ public class ClientGameSetup extends javax.swing.JFrame{
     private void ready(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ready
     	if (playerName.getText().isEmpty() || playerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);    		
-		}else{ //Valid input
+		}else if(contains(playerName.getText().trim(), ',')){
+			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE); 
+		}else{ //Valid input, maybe
+			
 			if(playerName.getText().trim().isEmpty() == false)
 				gottenInput = true;
 			jLabelWaitingStatus.setVisible(true);
@@ -140,6 +143,23 @@ public class ClientGameSetup extends javax.swing.JFrame{
 			serverIP.setEditable(false);
         }
     }//GEN-LAST:event_ready
+    
+    /**
+     * Checks the given string for the given character.
+     * 
+     * @param string The string to look for the character in.
+     * @param look The character to look for in the string.
+     * @return True if the character was found in the string.
+     */
+    private boolean contains(String string, char look){
+		boolean wasFound = false;
+		for (int i=0; i < string.length(); i++){
+				if (string.charAt(i) == look){
+					wasFound = true;
+				}
+		}
+    	return wasFound;	
+    }
     
     /**
      * Returns whether or not this client is waiting on other players and is ready to start the game.
