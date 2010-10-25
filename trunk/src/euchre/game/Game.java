@@ -109,6 +109,12 @@ public class Game {
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 
+		try {
+			Thread.sleep(5000);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		while (hostSetup.getGameLobby().isSetupComplete()==false){
 			//Do nothing, waiting for client connections
 			try {
@@ -119,6 +125,8 @@ public class Game {
 			}
 		}
 		initializeGameBoard(GM,GB);
+		GB.updateBoard();
+		network.toClients("SpawnGameBoard");
 
 		/**
 				while (hostSetup.getAIs() ==-1){
