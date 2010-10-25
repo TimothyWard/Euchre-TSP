@@ -129,7 +129,7 @@ public class AI implements Player{
 	 * Determines the best card to follow with and plays it.
 	 */
 	public void followCard(){
-
+				
 		if(played[0]==null && played[1]==null){
 			led = played[2];
 		}
@@ -143,7 +143,6 @@ public class AI implements Player{
 		
 		//If the AI has suit, they must follow suit...
 		if(calc.hasLead(led.getSuit(), hand)){
-			System.out.println(playerNumber + " has suit");
 			//If the AI's partner is winning this trick, play a lower card than them.
 			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
 				//FIX
@@ -183,7 +182,7 @@ public class AI implements Player{
 		TQ = new Card('q', trump);
 		T10 = new Card('0', trump);
 		T9 = new Card('9', trump);
-		
+				
 		//FIX
 		if(played[0]==null){
 			leadCard();
@@ -457,8 +456,13 @@ public class AI implements Player{
 	 * @param cards
 	 */
 	public void setPlayed(Card[] cards){
+		int x = 0;
 		for(int i=0;i<3;i++){
-			played[2-i]=cards[i];
+			if(cards[2-i] != null){
+				played[x]=cards[2-i];
+				x++;
+			}
+			
 		}
 	}
 	
