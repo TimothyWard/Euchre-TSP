@@ -15,6 +15,14 @@ public class Human implements Player{
 	private char orderSuit = 0;
 	private boolean orderUp = false;
 	private int orderedUp = 0;
+	private int playerID = (int)(Math.random()*5000);
+	
+	public int getPlayerID() {
+		return playerID;
+	}
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
 
 	ClientNetworkManager clientManager;
 	ServerNetworkManager serverManager;
