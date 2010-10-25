@@ -36,11 +36,11 @@ public class GameBoard extends javax.swing.JFrame {
     public GameBoard(){
         initComponents();
         centerScreen();
-       /* heartsButton.setVisible(false);
+        heartsButton.setVisible(false);
         clubsButton.setVisible(false);
         diamondsButton.setVisible(false);
         spadesButton.setVisible(false);
-        suitPassButton.setVisible(false);*/
+        suitPassButton.setVisible(false);
     }
     
     /**
@@ -494,17 +494,6 @@ public class GameBoard extends javax.swing.JFrame {
                                 .addComponent(UCard5)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RCard1)
-                            .addComponent(RCard2)
-                            .addComponent(RCard3)
-                            .addComponent(RCard4)
-                            .addComponent(RCard5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabelRPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(weTricksLabel)
@@ -515,8 +504,19 @@ public class GameBoard extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelYTeamTricks)
                             .addComponent(jLabelYTeamPoints)
-                            .addComponent(weTeamNumberLabel))))
-                .addGap(28, 28, 28))
+                            .addComponent(weTeamNumberLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RCard1)
+                            .addComponent(RCard2)
+                            .addComponent(RCard3)
+                            .addComponent(RCard4)
+                            .addComponent(RCard5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabelRPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,8 +553,7 @@ public class GameBoard extends javax.swing.JFrame {
                             .addComponent(jButtonPass)
                             .addComponent(jButtonPickUp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(RCard1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RCard2)
@@ -565,7 +564,8 @@ public class GameBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RCard5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRPlayerName)))
+                        .addComponent(jLabelRPlayerName)
+                        .addGap(48, 48, 48)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -787,7 +787,8 @@ public class GameBoard extends javax.swing.JFrame {
     public void hideTrumpButtons(){
     	jButtonPass.setVisible(false);
     	jButtonPickUp.setVisible(false);
-    	TurnedCard.setVisible(false);
+    	TurnedCard.setIcon(picManager.getPicture('e', '0'));
+    	jLabelPassInfo.setVisible(false);
     	jLabelDealer.setVisible(false);
     }
     
