@@ -192,6 +192,7 @@ public class Game {
 		GB.setVisible(true);
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
+		clientSetup.dispose();
 
 	}
 
