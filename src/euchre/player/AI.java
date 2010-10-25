@@ -2,7 +2,6 @@ package euchre.player;
 
 import euchre.network.ClientNetworkManager;
 
-
 /**
  * 
  * @author Kyle Kary
@@ -10,9 +9,6 @@ import euchre.network.ClientNetworkManager;
  */
 
 
-/**
- * Imports?
- */
 
 
 public class AI implements Player{
@@ -169,6 +165,14 @@ public class AI implements Player{
 	 * @param c The card to be played by the AI.
 	 */
 	public Card playCard(){
+		
+		TRB = new Card('j', trump);
+		TLB = new Card('j', trump);
+		TA = new Card('a', trump);
+		TK = new Card('k', trump);
+		TQ = new Card('q', trump);
+		T10 = new Card('0', trump);
+		T9 = new Card('9', trump);
 		
 		//FIX
 		//Remove card from AI's hand after playing it.
@@ -443,6 +447,10 @@ public class AI implements Player{
 		for(int i=0;i<3;i++){
 			played[2-i]=cards[i];
 		}
+	}
+	
+	public void setTrump(char tr){
+		trump = tr;
 	}
 	@Override
 	public boolean isHuman() {
