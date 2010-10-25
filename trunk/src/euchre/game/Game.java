@@ -103,9 +103,10 @@ public class Game {
 		network.setGameManager(GM);
 		network.start();
 		GM.setServerNetworkManager(network);
+		GM.setHostPlayer(new Human());
+
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
-		GM.setHostPlayer(new Human());
 		//		while (hostSetup.getAIs() ==-1){
 		//			//Do nothing, user is deciding game type.
 		//			try {
@@ -178,7 +179,7 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim());
+		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim()+","+human.getPlayerID());
 		
 		while(GM.isWaiting()){
 			try {

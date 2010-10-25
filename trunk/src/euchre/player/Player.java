@@ -36,5 +36,5 @@ public interface Player {
 	
 	public int getPlayerID();
 	
-	public int setPlayerID();
+	public void setPlayerID(int i);
 }
