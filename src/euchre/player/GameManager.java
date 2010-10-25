@@ -49,26 +49,27 @@ public class GameManager {
 //			Player ai2 = new AI();
 //			Player ai3 = new AI();
 //			Player ai4 = new AI();
-//	
+//			game.p1 = ai1;
+//			game.p2 = ai2;
+//			game.p3 = ai3;
+//			game.p4 = ai4;
 //			game.setAllPlayers(ai1, ai2, ai3, ai4);
 //	
 //			game.setTeam(1, 2);
 //			game.setTeam(2, 2);
 //			game.setTeam(3, 1);
 //			game.setTeam(4, 1);
+//			
+//			//System.out.println(game.round.getTeamWhoOrdered().equals(game.teamOne));
+//	
 //			game.deal();
 //			game.setTrump();
-//	
-//			System.out.println(game.round.getTeamWhoOrdered().equals(game.teamOne));
-//			System.out.println("Upcard: " + game.upCard.suit);
-//			System.out.println("Suit picked: " + game.round.getTrumpSuit());
 //			
+//			System.out.println("Upcard: " + game.upCard);
+//			System.out.println("Trump Suit: " + game.round.getTrumpSuit());
 //			
-//			System.out.println(game.player2.playCard());
-//			System.out.println(game.player3.playCard());
-//			System.out.println(game.player4.playCard());
-//			System.out.println(game.player1.playCard());
-//			
+//			game.playRound();
+//
 //		}
 
 
@@ -238,9 +239,13 @@ public class GameManager {
 					((AI)curPlayer).setPlayed(played);
 				}
 				played[i] = curPlayer.playCard();
+				
+				System.out.println(curPlayer.getNumber() + " " + played[i]);
+				
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
+			System.out.println("------");
 
 			led=played[0].getSuit();
 
