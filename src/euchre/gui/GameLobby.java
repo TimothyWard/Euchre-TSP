@@ -21,8 +21,17 @@ public class GameLobby extends javax.swing.JFrame{
     private char player3Difficulty;
     private char player4Difficulty;
 	private int connectionsMade = 0;
+	private boolean setupComplete = false;
 	
-    /** 
+    public boolean isSetupComplete() {
+		return setupComplete;
+	}
+
+	public void setSetupComplete(boolean setupComplete) {
+		this.setupComplete = setupComplete;
+	}
+
+	/** 
      * Creates new form GameLobby 
      * 
      * @param numberOfPlayers the number of additional human players
@@ -367,8 +376,7 @@ public class GameLobby extends javax.swing.JFrame{
         	}else{
         		myManager.setTeam(4, 2);
         	}
-        	//Launch the Game Board.
-        	new GameBoard().setVisible(true);
+        	setupComplete = true;
         	if (myAIManager != null){
         		myAIManager.setVisible(false);
         		myAIManager.dispose();
