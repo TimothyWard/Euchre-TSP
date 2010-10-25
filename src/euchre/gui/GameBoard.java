@@ -95,7 +95,7 @@ public class GameBoard extends javax.swing.JFrame {
      */
     public void setGameManager(GameManager gm){
     	GM = gm;
-    	
+    	humanPlayer = (Human) GM.getPlayerIAm();
     	if(humanPlayer.getTeam() == 1){
     		if(gm.getTeamOne().getPlayerOne().getNumber() != humanPlayer.getNumber()){
     			topPlayer = gm.getTeamOne().getPlayerOne();

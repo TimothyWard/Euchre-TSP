@@ -451,6 +451,10 @@ public class GameManager {
 	public Player getDealer(){
 		return dealer;
 	}
+	
+	public Player getPlayerIAm(){
+		return playerIAm;
+	}
 
 	public Player getPlayer1(){
 		return player1;
