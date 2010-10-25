@@ -38,7 +38,22 @@ public class CardEvaluator {
 	 */
 	public static int cardValue(char trump, char lead, Card card){
 		Card TRB = new Card('j', trump);
-		Card TLB = new Card('j', trump);
+		char leftSuit;
+		switch (trump){ //To find the suit of the left Bower.
+		case 's':
+			leftSuit = 'c';
+			break;
+		case 'c':
+			leftSuit = 's';
+			break;
+		case 'd':
+			leftSuit = 'h';
+			break;
+		default: //case 'h':
+			leftSuit = 'd';
+			break;
+		}
+		Card TLB = new Card('j', leftSuit);
 		Card TA = new Card('a', trump);
 		Card TK = new Card('k', trump);
 		Card TQ = new Card('q', trump);
@@ -294,7 +309,7 @@ public class CardEvaluator {
 		int number = 0;
 		for (Card card: hand){
 			if (card != null){
-				if (card.suit == trump){
+				if (cardValue(trump, trump, card) > 6){ //lead being trump will not affect outcome.
 					number++;
 				}
 			}
@@ -303,23 +318,24 @@ public class CardEvaluator {
 	}
 	
 	/**
-	 * Returns the number of lead cards in a hand.
+	 * Returns the number of cards in a hand that are a given suite, excludes left bower if also trump.
 	 * 
-	 * @param lead The suit that is lead.
+	 * @param suit The suit to get the number of.
 	 * @param hand The array of cards that is the hand.
-	 * @return The number of lead cards.
+	 * @return The number of cards in a hand that are a given suite, excludes left bower if also trump.
 	 */
-	public static int numberOfLead(char lead, Card[] hand){
+	public static int numberOfSuit(char suit, Card[] hand){
 		int number = 0;
 		for (Card card: hand){
 			if (card != null){
-				if (card.suit == lead){
+				if (card.suit == suit){
 					number++;
 				}
 			}
 		}
 		return number;
 	}
+	
 	
 	/**
 	 * Test cases
@@ -339,7 +355,7 @@ public class CardEvaluator {
 		System.out.println("hasTrump: " + hasTrump(trump, hand));
 		System.out.println("hasLead: " + hasLead(lead, hand));
 		System.out.println("numberOfTrump: " + numberOfTrump(trump, hand));
-		System.out.println("numberOfLead: " + numberOfLead(lead, hand));
+		System.out.println("numberOfSuit (Lead): " + numberOfSuit(lead, hand));
 		System.out.println("Highest Card: " + highestCardInHand(trump, lead, hand));
 		System.out.println("Highest lead: " + highestLeadInHand(trump, lead, hand));
 		System.out.println("Lowest trump: " + lowestTrumpInHand(trump, lead, hand));
