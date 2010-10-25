@@ -15,7 +15,7 @@ public class Human implements Player{
 	private char orderSuit = 0;
 	private boolean orderUp = false;
 	private int orderedUp = 0;
-	private int playerID = (int)(Math.random()*5000);
+	private int playerID = (int)(Math.random()*5000000);
 	
 	public int getPlayerID() {
 		return playerID;
