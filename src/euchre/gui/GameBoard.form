@@ -152,21 +152,7 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="RCard1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RCard2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RCard3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RCard4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="RCard5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                              <Component id="jLabelRPlayerName" min="-2" pref="79" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="weTricksLabel" min="-2" max="-2" attributes="1"/>
@@ -182,8 +168,22 @@
                           <Component id="weTeamNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="RCard1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RCard2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RCard3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RCard4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RCard5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                              <Component id="jLabelRPlayerName" min="-2" pref="79" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -233,8 +233,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="1">
-                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="RCard1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="RCard2" min="-2" max="-2" attributes="0"/>
@@ -246,6 +245,7 @@
                       <Component id="RCard5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelRPlayerName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
