@@ -380,6 +380,8 @@ public class GameLobby extends javax.swing.JFrame{
         	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
+        
+        myManager.getServerNetworkManager().toClients("SpawnGameBoard");
     }//GEN-LAST:event_StartGame
 
     /**
