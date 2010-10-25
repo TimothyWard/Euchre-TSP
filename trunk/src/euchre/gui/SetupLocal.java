@@ -1,6 +1,8 @@
 package euchre.gui;
 import java.awt.*;
 
+import javax.swing.JOptionPane;
+
 import euchre.player.Human;
 import euchre.player.Player;
 
@@ -259,9 +261,32 @@ public class SetupLocal extends javax.swing.JFrame {
 	 * Launch a local game with the options that were selected by the user.
 	 */
     private void startGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startGame
-        setupComplete = true;
-        this.setVisible(false);
+    	if (jTextFieldPlayerName.getText().isEmpty() || jTextFieldPlayerName.getText().trim().isEmpty()){ //Invalid input (whitespace only)
+			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
+		}else if(contains(jTextFieldPlayerName.getText().trim(), ',')){
+			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
+		}else { //Valid input
+			setupComplete = true;
+			this.setVisible(false);
+		}
     }//GEN-LAST:event_startGame
+    
+    /**
+     * Checks the given string for the given character.
+     * 
+     * @param string The string to look for the character in.
+     * @param look The character to look for in the string.
+     * @return True if the character was found in the string.
+     */
+    private boolean contains(String string, char look){
+		boolean wasFound = false;
+		for (int i=0; i < string.length(); i++){
+				if (string.charAt(i) == look){
+					wasFound = true;
+				}
+		}
+    	return wasFound;	
+    }
     
     /**
      * Returns whether or not the user is done setting up the game with this window.
