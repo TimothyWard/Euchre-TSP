@@ -143,17 +143,18 @@ public class AI implements Player{
 		
 		//If the AI has suit, they must follow suit...
 		if(calc.hasLead(led.getSuit(), hand)){
+			System.out.println(playerNumber + " has suit");
 			//If the AI's partner is winning this trick, play a lower card than them.
 			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
 				//FIX
 				//Play lowest same-suit!
-				playCard = lowestCard(false);
+				playCard = calc.lowestLeadInHand(trump, led.getSuit(), hand);
 			}
 			//If the AI's partner is not winning the trick, play a higher card than them.
 			else{
 				//FIX
 				//Play highest same-suit!
-				playCard = highestCard(true);
+				playCard = calc.highestLeadInHand(trump, led.getSuit(), hand);
 			}
 		}
 		//If the AI does not have suit...
@@ -451,6 +452,10 @@ public class AI implements Player{
 		
 	}
 	
+	/**
+	 * Tells the AI what cards have been played so far this hand.
+	 * @param cards
+	 */
 	public void setPlayed(Card[] cards){
 		for(int i=0;i<3;i++){
 			played[2-i]=cards[i];
