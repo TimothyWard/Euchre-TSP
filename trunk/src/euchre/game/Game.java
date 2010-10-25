@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import euchre.gui.ClientGameSetup;
+import euchre.gui.GameBoard;
 import euchre.gui.HostGameSetup;
 import euchre.gui.SetupLocal;
 import euchre.gui.Welcome;
@@ -161,16 +162,16 @@ public class Game {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			}
+		}
 		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
-		
-		
-		
+
+
+
 		clientSetup.setGameManager(GM);
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -178,8 +179,19 @@ public class Game {
 			e.printStackTrace();
 		}
 		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim());
-
 		
+		while(GM.isWaiting()){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		GameBoard GB = new GameBoard();
+		GB.setVisible(true);
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
 
 	}
 
