@@ -3,6 +3,7 @@ package euchre.gui;
 import java.awt.*;
 import javax.swing.JOptionPane;
 import euchre.player.GameManager;
+import euchre.player.Human;
 
 /**
  * A form for the host to enter the number of human players they want in their game, as well as their player name.
@@ -124,7 +125,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Please enter a player name", "Error", JOptionPane.ERROR_MESSAGE);
 
 		}else{ //Valid input
-			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim());
+			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
 			GameLobby gl = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
 			gl.setVisible(true);
 			myManager.setLobby(gl);

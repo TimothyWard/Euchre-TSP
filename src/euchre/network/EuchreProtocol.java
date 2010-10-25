@@ -146,20 +146,25 @@ public class EuchreProtocol {
 
 
 				String host = parser.nextToken();
+				int hostID = Integer.parseInt(parser.nextToken());
 				String player1 = parser.nextToken();
+				int p1ID = Integer.parseInt(parser.nextToken());
 				String player2 = parser.nextToken();
+				int p2ID = Integer.parseInt(parser.nextToken());
 				String player3 = parser.nextToken();
+				int p3ID = Integer.parseInt(parser.nextToken());
+
 
 
 				one.setName(host);
+				one.setPlayerID(hostID);
 				two.setName(player1);
+				two.setPlayerID(p1ID);
 				three.setName(player2);
+				three.setPlayerID(p2ID);
 				four.setName(player3);
+				four.setPlayerID(p3ID);
 				manager.setAllPlayers(one, two, three, four);
-				System.out.println("Player 1 name:" + manager.getp1().getName());
-				System.out.println("Player 2 name:" + manager.getp2().getName());
-				System.out.println("Player 3 name:" + manager.getp3().getName());
-				System.out.println("Player 4 name:" + manager.getp4().getName());
 
 				
 			}
