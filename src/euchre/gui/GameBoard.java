@@ -36,7 +36,6 @@ public class GameBoard extends javax.swing.JFrame {
     public GameBoard(){
         initComponents();
         centerScreen();
-        this.setBackground(Color.GREEN);
         heartsButton.setVisible(false);
         clubsButton.setVisible(false);
         diamondsButton.setVisible(false);
