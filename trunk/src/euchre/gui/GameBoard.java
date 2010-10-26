@@ -814,8 +814,14 @@ public class GameBoard extends javax.swing.JFrame {
     public void setTheyPoints(int points){
     	jLabelOTeamPoints.setText("" + points);
     }
-        
-    public void setPlayedCard(Card c, int playerNumber){
+    
+    /**
+     * 
+     * 
+     * @param c
+     * @param playerNumber
+     */
+    public void playCard(Card c, int playerNumber){
     	if(rightPlayer.getNumber() == playerNumber){
     		RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
     	}
