@@ -9,6 +9,7 @@ import java.awt.Point;
  */
 public class HostDifficultyChange extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 1L;
 	GameLobby myLobby;
 	boolean player3 = false; //whether or not the difficulties for player 3 are adjustable (because it is a AI).
 	boolean player4 = false; //whether or not the difficulties for player 4 are adjustable (because it is a AI).
@@ -223,7 +224,6 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 			}
 		}
 		this.setVisible(false);
-		myLobby.disableStart();
 		this.dispose();
 	}//GEN-LAST:event_applyDifficultiesClicked
 }
