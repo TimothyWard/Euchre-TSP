@@ -99,9 +99,8 @@ public class Game {
 		//initialize the hosts game board
 		initializeGameBoard(GB);
 
-		//send team changes to network
+		//spawn client game boards
 		server.toClients("SpawnGameBoard");
-		//tell clients to update game boards
 		
 		int aiNumber = hostSetup.getAIs();
 		while (aiNumber!=0){
