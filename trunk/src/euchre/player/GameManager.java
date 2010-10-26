@@ -241,7 +241,7 @@ public class GameManager {
 				}
 				played[i] = curPlayer.playCard();
 				
-				board.setPlayedCard(played[i], curPlayer.getNumber());
+				board.playCard(played[i], curPlayer.getNumber());
 				
 				
 				//System.out.println(curPlayer.getNumber() + " " + played[i]);
