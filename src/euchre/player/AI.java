@@ -57,7 +57,7 @@ public class AI implements Player{
 
 	}
 	/**
-	 * FILL THIS IN
+	 * AI constructor with a reference to the client network interface
 	 * 
 	 * @param client Reference to the network interface
 	 */
@@ -367,7 +367,7 @@ public class AI implements Player{
 	}
 
 	/**
-	 * FILL THIS IN
+	 * Returns the AI's hand
 	 */
 	@Override
 	public Card[] getHand() {
@@ -385,7 +385,8 @@ public class AI implements Player{
 	}
 
 	/**
-	 * FILL THIS IN
+	 * Forces the AI to pick a suit of cards. The AI will pick the best possible suit and return it.
+	 * @return The suit that the AI picked for trump
 	 */
 	@Override
 	public char stickDealer() {
@@ -404,11 +405,10 @@ public class AI implements Player{
 	}
 	
 	/**
-	 * FILL THIS IN
+	 * Sets the AI's turn to true
 	 */
 	@Override
-	public void setTurn(boolean turn) {
-		// TODO Auto-generated method stub
+	public void setTurn(boolean turn) {	
 		
 	}
 	
