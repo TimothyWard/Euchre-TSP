@@ -133,30 +133,32 @@ public class GameBoard extends javax.swing.JFrame {
      */
     public void updateBoard(){
     	humanPlayer = (Human) GM.getPlayerIAm();
-    	int playerNum = humanPlayer.getNumber();
-    	if(playerNum > 2){
-    		playerNum = playerNum - 2;
-    	}
-    	if(humanPlayer.getTeam() == 1){
-    		if(GM.getTeamOne().getPlayerOne().getNumber() != playerNum){
-    			topPlayer = GM.getTeamOne().getPlayerOne();
-    		}else{
-    			topPlayer = GM.getTeamOne().getPlayerTwo();
-    		}
-    		leftPlayer = GM.getTeamTwo().getPlayerOne();
-    		rightPlayer = GM.getTeamTwo().getPlayerTwo();
-    		setWeTeam(GM.getTeamOne());
-    		setTheyTeam(GM.getTeamTwo());
-    	}else{
-    		if(GM.getTeamTwo().getPlayerOne().getNumber() != playerNum){
-    			topPlayer = GM.getTeamTwo().getPlayerOne();
-    		}else{
-    			topPlayer = GM.getTeamTwo().getPlayerTwo();
-    		}
-    		leftPlayer = GM.getTeamOne().getPlayerOne();
-    		rightPlayer = GM.getTeamOne().getPlayerTwo();
-    		setWeTeam(GM.getTeamTwo());
-    		setTheyTeam(GM.getTeamOne());
+    	setBottomPlayer(humanPlayer);
+    	switch(humanPlayer.getNumber()){
+	    	case 1:{
+	    		topPlayer = GM.getp3();
+	    		leftPlayer = GM.getp2();
+	    		rightPlayer = GM.getp4();
+	        	break;
+	    	}
+	    	case 2:{
+	    		topPlayer = GM.getp4();
+	    		leftPlayer = GM.getp1();
+	    		rightPlayer = GM.getp3();
+	        	break;
+	    	}
+	    	case 3:{
+	    		topPlayer = GM.getp1();
+	    		leftPlayer = GM.getp4();
+	    		rightPlayer = GM.getp2();
+	        	break;
+	    	}
+	    	case 4:{
+	    		topPlayer = GM.getp2();
+	    		leftPlayer = GM.getp3();
+	    		rightPlayer = GM.getp1();
+	        	break;
+	    	}
     	}
     	setTopPlayer(topPlayer);
     	setLeftPlayer(leftPlayer);
