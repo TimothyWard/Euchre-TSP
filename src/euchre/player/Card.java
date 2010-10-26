@@ -104,6 +104,11 @@ public class Card{
 		return 0;
 	}
 	
+	/**
+	 * FILL THIS IN
+	 * @param card
+	 * @return
+	 */
 	public boolean equals(Card card){
 		if (card.getSuit()==this.getSuit() && card.getCardValue()==this.getCardValue()){
 			return true;
@@ -112,6 +117,10 @@ public class Card{
 			return false;
 		}
 	}
+	
+	/**
+	 * FILL THIS IN
+	 */
 	public String toString(){
 		return "" + value + suit;
 	}

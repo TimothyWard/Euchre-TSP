@@ -1,8 +1,8 @@
 package euchre.player;
 
 public interface Player {
-	Card[] hand = new Card[5];
 	
+	Card[] hand = new Card[5];
 	
 	public void drawCard(Card c);
 	

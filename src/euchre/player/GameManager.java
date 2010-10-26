@@ -26,55 +26,55 @@ public class GameManager {
 	private Team teamTwo = new Team(null, null);
 	private char led;
 	private boolean teamsComplete = false;
-
 	private GameBoard board;
 	private GameLobby lobby;
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
-
-
 	private Round round = null;
 
 
-		public static void main(String[] args) {
-			GameManager game = new GameManager();
-			Round round = new Round();
-			game.setRound(round);
-			//			Player player = new Human();
-			//			Player player2 = new Human();
-			//			Player player3 = new Human();
-			//			Player player4 = new Human();
-			//			game.setAllPlayers(player, player2, player3, player4);
-			Player ai1 = new AI();
-			Player ai2 = new AI();
-			Player ai3 = new AI();
-			Player ai4 = new AI();
-			game.p1 = ai1;
-			game.p2 = ai2;
-			game.p3 = ai3;
-			game.p4 = ai4;
-			game.setAllPlayers(ai1, ai2, ai3, ai4);
-	
-			game.setTeam(1, 2);
-			game.setTeam(2, 2);
-			game.setTeam(3, 1);
-			game.setTeam(4, 1);
-			
-			game.deal();
-			game.setTrump();
-			
-			System.out.println("Upcard: " + game.upCard);
-			System.out.println("Trump Suit: " + game.round.getTrumpSuit());
-			
-			game.playRound();
+	/**
+	 * FILL THIS IN
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameManager game = new GameManager();
+		Round round = new Round();
+		game.setRound(round);
+		//			Player player = new Human();
+		//			Player player2 = new Human();
+		//			Player player3 = new Human();
+		//			Player player4 = new Human();
+		//			game.setAllPlayers(player, player2, player3, player4);
+		Player ai1 = new AI();
+		Player ai2 = new AI();
+		Player ai3 = new AI();
+		Player ai4 = new AI();
+		game.p1 = ai1;
+		game.p2 = ai2;
+		game.p3 = ai3;
+		game.p4 = ai4;
+		game.setAllPlayers(ai1, ai2, ai3, ai4);
 
-		}
+		game.setTeam(1, 2);
+		game.setTeam(2, 2);
+		game.setTeam(3, 1);
+		game.setTeam(4, 1);
 
+		game.deal();
+		game.setTrump();
 
-	public void setRound(Round round){
-		this.round = round;
+		System.out.println("Upcard: " + game.upCard);
+		System.out.println("Trump Suit: " + game.round.getTrumpSuit());
+
+		game.playRound();
+
 	}
 
+	/**
+	 * FILL THIS IN
+	 * 
+	 */
 	public GameManager() {
 
 	}
@@ -237,9 +237,9 @@ public class GameManager {
 					((AI)curPlayer).setPlayed(played);
 				}
 				played[i] = curPlayer.playCard();
-				
+
 				System.out.println(curPlayer.getNumber() + " " + played[i]);
-				
+
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
@@ -270,7 +270,7 @@ public class GameManager {
 		char trump = round.getTrumpSuit();
 		char ledSuit = cards[0].getSuit();
 		char sameColor;
-				
+
 		if(trump == 's') sameColor = 'c';
 		else if(trump == 'c') sameColor = 's';
 		else if(trump == 'd') sameColor = 'h';
@@ -292,12 +292,12 @@ public class GameManager {
 
 		int[] cardValue = {0,0,0,0};
 		Player[] players = new Player[4];
-		
+
 		players[0] = curPlayer;
 		players[1] = nextPlayer(players[0]);
 		players[2] = nextPlayer(players[1]);
 		players[3] = nextPlayer(players[2]);
-		
+
 		for (int i=0; i<4; i++){
 			Card card = cards[i];
 			if (card.equals(TRB)) cardValue[i] = 13;
@@ -374,7 +374,7 @@ public class GameManager {
 		p2=client1;
 		p3=client2;
 		p4=client3;
-		
+
 	}
 
 	/**
@@ -473,7 +473,7 @@ public class GameManager {
 	public Player getDealer(){
 		return dealer;
 	}
-	
+
 	public Player getPlayerIAm(){
 		return playerIAm;
 	}
@@ -507,6 +507,10 @@ public class GameManager {
 		return p4;
 	}
 
+	public void setRound(Round round){
+		this.round = round;
+	}
+
 	public GameLobby getLobby(){
 		return lobby;
 	}
@@ -514,15 +518,15 @@ public class GameManager {
 	public void setLobby(GameLobby gl){
 		lobby = gl;
 	}
-	
+
 	public void setGameBoard(GameBoard gb){
 		board = gb;
 	}
-	
+
 	public GameBoard getGameBoard(){
 		return board;
 	}
-	
+
 	public boolean areTeamsComplete(){
 		return teamsComplete;
 	}

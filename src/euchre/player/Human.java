@@ -16,25 +16,21 @@ public class Human implements Player{
 	private boolean orderUp = false;
 	private int orderedUp = 0;
 	private int playerID = (int)(Math.random()*5000000);
+	boolean isHost = false;
 	
-	public int getPlayerID() {
-		return playerID;
-	}
-	public void setPlayerID(int playerID) {
-		this.playerID = playerID;
-	}
-
+	EuchreProtocol protocol = new EuchreProtocol();
 	ClientNetworkManager clientManager;
 	ServerNetworkManager serverManager;
-	boolean isHost = false;
-	EuchreProtocol protocol = new EuchreProtocol();
 
+	/**
+	 * FILL THIS IN
+	 */
 	public Human(){
 
 	}
 
 	/**
-	 * 
+	 * FILL THIS IN
 	 * 
 	 * @param client Reference to the network interface as a client
 	 */
@@ -43,7 +39,7 @@ public class Human implements Player{
 	}
 
 	/**
-	 * 
+	 * FILL THIS IN
 	 * 
 	 * @param server Reference to the network interface as a host
 	 */
@@ -100,10 +96,6 @@ public class Human implements Player{
 
 	}
 
-	public void setCallSuit(char c){
-		orderSuit=c;
-	}
-
 	/**
 	 * "Order up" the up-card
 	 * @param Card c the Up-card
@@ -126,6 +118,10 @@ public class Human implements Player{
 
 	}
 
+	/**
+	 * FILL THIS IN
+	 * @param b
+	 */
 	public void setOrderUp(boolean b){
 		orderedUp = 1;
 		orderUp = b;
@@ -153,24 +149,6 @@ public class Human implements Player{
 	}
 
 	/**
-	 * Returns the number of the team the player is on
-	 * @return int The team number of the player
-	 */
-	public int getTeam() {
-
-		return team;
-	}
-
-	/**
-	 * Sets the player's team number
-	 * @param i The team number of the player
-	 */
-	public void setTeam(int i) {
-		team = i;
-
-	}
-
-	/**
 	 * Waits for the user to select a card to discard. Should only happen
 	 * if the user is the dealer and is picking up the trump card.
 	 */
@@ -192,68 +170,6 @@ public class Human implements Player{
 		activeCard = null;
 		numCards--;
 		return c;
-	}
-
-	/**
-	 * Sets the active card. The active card is either the card the player is going to play
-	 * or the card that the player is going to discard.
-	 * @param c The card to be the active card.
-	 */
-	public void setActiveCard(Card c) {
-		activeCard = c;
-	}
-
-	/**
-	 * Returns the player's hand of cards as an array of cards
-	 * @return An array of the player's cards
-	 */
-	public Card[] getHand(){
-		return hand;
-	}
-
-	/**
-	 * Returns the player's name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Set's the player's name
-	 */
-	public void setName(String n) {
-		name = n;
-	}
-
-	/**
-	 * Return's the player's number
-	 */
-	public int getNumber() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
-	 * Sets the player's number
-	 */
-	public void setNumber(int i) {
-		// TODO Auto-generated method stub	
-	}
-
-	/**
-	 * Returns whether it is the player's turn or not
-	 * @return True if it is, false if it isn't
-	 */
-	public boolean isTurn(){
-		return isTurn;
-	}
-
-	/**
-	 * Sets the players turn as either true or false
-	 * @param turn True if it is the player's turn, false if it isn't
-	 */
-	public void setTurn(boolean turn){
-		isTurn = turn;
 	}
 
 	/**
@@ -294,6 +210,55 @@ public class Human implements Player{
 	@Override
 	public boolean isHuman() {
 		return true;
+	}
+	public void setCallSuit(char c){
+		orderSuit=c;
+	}
+
+	public int getTeam() {
+		return team;
+	}
+	public void setActiveCard(Card c) {
+		activeCard = c;
+	}
+
+	public Card[] getHand(){
+		return hand;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String n) {
+		name = n;
+	}
+
+	public int getNumber() {
+		return -1;
+	}
+
+	public void setNumber(int i) {
+	}
+
+
+	public boolean isTurn(){
+		return isTurn;
+	}
+
+	public void setTurn(boolean turn){
+		isTurn = turn;
+	}
+	public void setTeam(int i) {
+		team = i;
+	}
+	public int getPlayerID() {
+		return playerID;
+	}
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
 	}
 
 
