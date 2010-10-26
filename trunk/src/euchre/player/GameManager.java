@@ -31,6 +31,7 @@ public class GameManager {
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
 	private Round round = null;
+	private boolean newRound = false;
 
 
 	/**
@@ -41,11 +42,15 @@ public class GameManager {
 //		GameManager game = new GameManager();
 //		Round round = new Round();
 //		game.setRound(round);
-//		//			Player player = new Human();
+//		//			Player player1 = new Human();
 //		//			Player player2 = new Human();
 //		//			Player player3 = new Human();
 //		//			Player player4 = new Human();
-//		//			game.setAllPlayers(player, player2, player3, player4);
+//		//			game.p1 = player1;
+//		//			game.p2 = player2;
+//		//			game.p3 = player3;
+//		//			game.p4 = player4;
+//		//			game.setAllPlayers(player1, player2, player3, player4);
 //		Player ai1 = new AI();
 //		Player ai2 = new AI();
 //		Player ai3 = new AI();
@@ -60,14 +65,10 @@ public class GameManager {
 //		game.setTeam(2, 2);
 //		game.setTeam(3, 1);
 //		game.setTeam(4, 1);
-//
-//		game.deal();
-//		game.setTrump();
-//
-//		System.out.println("Upcard: " + game.upCard);
-//		System.out.println("Trump Suit: " + game.round.getTrumpSuit());
-//
-//		game.playRound();
+//		
+//		for(int i=0;i<3;i++){
+//			game.playGame();
+//		}
 //
 //	}
 
@@ -85,11 +86,12 @@ public class GameManager {
 	 */
 	public void playGame(){
 
-		while(round != null){
 			deal();
 			setTrump();
+			System.out.println("Upcard: " + upCard);
+			System.out.println("Trump Suit: " + round.getTrumpSuit());
 			playRound();
-		}
+			System.out.println("============");
 	}
 
 
@@ -508,6 +510,7 @@ public class GameManager {
 
 	public void setRound(Round round){
 		this.round = round;
+		newRound = true;
 	}
 
 	public GameLobby getLobby(){
