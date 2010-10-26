@@ -34,7 +34,7 @@ public class GameManager {
 
 
 	/**
-	 * FILL THIS IN
+	 * Main test method for the Game Manager class.
 	 * @param args
 	 */
 //	public static void main(String[] args) {
@@ -72,7 +72,7 @@ public class GameManager {
 //	}
 
 	/**
-	 * FILL THIS IN
+	 * Constructor for the GameManager class.
 	 * 
 	 */
 	public GameManager() {

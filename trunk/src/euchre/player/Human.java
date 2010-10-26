@@ -23,14 +23,14 @@ public class Human implements Player{
 	ServerNetworkManager serverManager;
 
 	/**
-	 * FILL THIS IN
+	 * Constructor for the Human class.
 	 */
 	public Human(){
 
 	}
 
 	/**
-	 * FILL THIS IN
+	 * Constructor for the Human class with a reference to the network interface as a client.
 	 * 
 	 * @param client Reference to the network interface as a client
 	 */
@@ -39,7 +39,7 @@ public class Human implements Player{
 	}
 
 	/**
-	 * FILL THIS IN
+	 * Constructor for the Human class with a reference to the network interface as a host.
 	 * 
 	 * @param server Reference to the network interface as a host
 	 */
@@ -119,8 +119,8 @@ public class Human implements Player{
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param b
+	 * Allows the user to say that they ordered up the card
+	 * @param b True if the human ordered up the card, false if they passed.
 	 */
 	public void setOrderUp(boolean b){
 		orderedUp = 1;
