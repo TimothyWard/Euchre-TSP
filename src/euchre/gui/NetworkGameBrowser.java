@@ -19,10 +19,6 @@ public class NetworkGameBrowser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 	
-	/**
-    * Creates an object that can browse network games and join them, or launch the
-    * process for the user to host their own.
-    */
     public NetworkGameBrowser() {
         initComponents();
         centerScreen();

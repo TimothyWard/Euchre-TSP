@@ -37,10 +37,6 @@ public class SetupLocal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPlayerName;
     // End of variables declaration//GEN-END:variables
 	
-	/**
-	 * Constructs the form needed to setup a local Game.
-	 * @param player the human player playing the game
-	 */
     public SetupLocal() {
         initComponents();
         centerScreen();

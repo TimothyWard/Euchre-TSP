@@ -22,9 +22,6 @@ public class Welcome extends javax.swing.JFrame{
     private javax.swing.JLabel jLabelWelcomeBanner;
     // End of variables declaration//GEN-END:variables
 	
-	/**
-	 * Construct a welcome screen.
-	 */
     public Welcome(){
         initComponents();
         centerScreen();

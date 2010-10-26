@@ -25,11 +25,60 @@ public class GameBoard extends javax.swing.JFrame {
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
-	
-	/** 
-	 * Creates new form GameBoard
-	 * @param player the human player object being controlled from the game board
-	 */
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LCard1;
+    private javax.swing.JLabel LCard2;
+    private javax.swing.JLabel LCard3;
+    private javax.swing.JLabel LCard4;
+    private javax.swing.JLabel LCard5;
+    private javax.swing.JLabel LPlayed;
+    private javax.swing.JLabel RCard1;
+    private javax.swing.JLabel RCard2;
+    private javax.swing.JLabel RCard3;
+    private javax.swing.JLabel RCard4;
+    private javax.swing.JLabel RCard5;
+    private javax.swing.JLabel RPlayed;
+    private javax.swing.JLabel TurnedCard;
+    private javax.swing.JLabel UCard1;
+    private javax.swing.JLabel UCard2;
+    private javax.swing.JLabel UCard3;
+    private javax.swing.JLabel UCard4;
+    private javax.swing.JLabel UCard5;
+    private javax.swing.JLabel UPlayed;
+    private javax.swing.JLabel YourPlayed;
+    private javax.swing.JButton clubsButton;
+    private javax.swing.JButton diamondsButton;
+    private javax.swing.JButton heartsButton;
+    private javax.swing.JButton jButtonPass;
+    private javax.swing.JButton jButtonPickUp;
+    private javax.swing.JButton jButtonYourCard1;
+    private javax.swing.JButton jButtonYourCard2;
+    private javax.swing.JButton jButtonYourCard3;
+    private javax.swing.JButton jButtonYourCard4;
+    private javax.swing.JButton jButtonYourCard5;
+    private javax.swing.JLabel jLabelDealer;
+    private javax.swing.JLabel jLabelLPlayerName;
+    private javax.swing.JLabel jLabelOTeamPoints;
+    private javax.swing.JLabel jLabelOTeamTricks;
+    private javax.swing.JLabel jLabelPassInfo;
+    private javax.swing.JLabel jLabelRPlayerName;
+    private javax.swing.JLabel jLabelUPlayerName;
+    private javax.swing.JLabel jLabelYTeamPoints;
+    private javax.swing.JLabel jLabelYTeamTricks;
+    private javax.swing.JLabel jLabelYourName;
+    private javax.swing.JButton spadesButton;
+    private javax.swing.JButton suitPassButton;
+    private javax.swing.JLabel theyLabel;
+    private javax.swing.JLabel theyPointsLabel;
+    private javax.swing.JLabel theyTeamNumberLabel;
+    private javax.swing.JLabel theyTricksLabel;
+    private javax.swing.JLabel weLabel;
+    private javax.swing.JLabel wePointsLabel;
+    private javax.swing.JLabel weTeamNumberLabel;
+    private javax.swing.JLabel weTricksLabel;
+    // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+
     public GameBoard(){
         initComponents();
         centerScreen();
@@ -236,29 +285,19 @@ public class GameBoard extends javax.swing.JFrame {
 
         jLabelUPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelUPlayerName.setText("Player name");
-
         jLabelLPlayerName.setText("Player name");
-
         jLabelRPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelRPlayerName.setText("Player name");
-
         jLabelYTeamPoints.setText("0");
-
         weTricksLabel.setText("Tricks:");
-
         jLabelYTeamTricks.setText("0");
-
         wePointsLabel.setText("Points:");
-
         theyPointsLabel.setText("Points:");
-
         jLabelOTeamPoints.setText("0");
-
         theyTricksLabel.setText("Tricks:");
-
         jLabelOTeamTricks.setText("0");
-
         jButtonPass.setText("Pass");
+        
         jButtonPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passButtonClicked(evt);
@@ -807,58 +846,4 @@ public class GameBoard extends javax.swing.JFrame {
 	public void setTheyTeam(Team team){
 		theyTeamNumberLabel.setText("" + team.getTeamNumber());
 	}
-	
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LCard1;
-    private javax.swing.JLabel LCard2;
-    private javax.swing.JLabel LCard3;
-    private javax.swing.JLabel LCard4;
-    private javax.swing.JLabel LCard5;
-    private javax.swing.JLabel LPlayed;
-    private javax.swing.JLabel RCard1;
-    private javax.swing.JLabel RCard2;
-    private javax.swing.JLabel RCard3;
-    private javax.swing.JLabel RCard4;
-    private javax.swing.JLabel RCard5;
-    private javax.swing.JLabel RPlayed;
-    private javax.swing.JLabel TurnedCard;
-    private javax.swing.JLabel UCard1;
-    private javax.swing.JLabel UCard2;
-    private javax.swing.JLabel UCard3;
-    private javax.swing.JLabel UCard4;
-    private javax.swing.JLabel UCard5;
-    private javax.swing.JLabel UPlayed;
-    private javax.swing.JLabel YourPlayed;
-    private javax.swing.JButton clubsButton;
-    private javax.swing.JButton diamondsButton;
-    private javax.swing.JButton heartsButton;
-    private javax.swing.JButton jButtonPass;
-    private javax.swing.JButton jButtonPickUp;
-    private javax.swing.JButton jButtonYourCard1;
-    private javax.swing.JButton jButtonYourCard2;
-    private javax.swing.JButton jButtonYourCard3;
-    private javax.swing.JButton jButtonYourCard4;
-    private javax.swing.JButton jButtonYourCard5;
-    private javax.swing.JLabel jLabelDealer;
-    private javax.swing.JLabel jLabelLPlayerName;
-    private javax.swing.JLabel jLabelOTeamPoints;
-    private javax.swing.JLabel jLabelOTeamTricks;
-    private javax.swing.JLabel jLabelPassInfo;
-    private javax.swing.JLabel jLabelRPlayerName;
-    private javax.swing.JLabel jLabelUPlayerName;
-    private javax.swing.JLabel jLabelYTeamPoints;
-    private javax.swing.JLabel jLabelYTeamTricks;
-    private javax.swing.JLabel jLabelYourName;
-    private javax.swing.JButton spadesButton;
-    private javax.swing.JButton suitPassButton;
-    private javax.swing.JLabel theyLabel;
-    private javax.swing.JLabel theyPointsLabel;
-    private javax.swing.JLabel theyTeamNumberLabel;
-    private javax.swing.JLabel theyTricksLabel;
-    private javax.swing.JLabel weLabel;
-    private javax.swing.JLabel wePointsLabel;
-    private javax.swing.JLabel weTeamNumberLabel;
-    private javax.swing.JLabel weTricksLabel;
-    // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
 }
