@@ -113,8 +113,15 @@ public class GameLogic{
 	 */
 	private Team interpretHand(Round round, Hand hand, Team one, Team two){
 		char trump = round.getTrumpSuit();
+		char sameColor;
+		
+		if(trump == 's') sameColor = 'c';
+		else if(trump == 'c') sameColor = 's';
+		else if(trump == 'd') sameColor = 'h';
+		else sameColor = 'd';
+		
 		Card TRB = new Card('j', trump);
-		Card TLB = new Card('j', trump);
+		Card TLB = new Card('j', sameColor);
 		Card TA = new Card('a', trump);
 		Card TK = new Card('k', trump);
 		Card TQ = new Card('q', trump);
