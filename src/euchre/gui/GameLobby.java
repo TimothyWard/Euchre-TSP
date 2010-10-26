@@ -395,12 +395,12 @@ public class GameLobby extends javax.swing.JFrame{
         		myManager.setTeam(4, 2);
         		myManager.getServerNetworkManager().toClients("SetTeam,4,2");
         	}
-        	setupComplete = true;
         	if (myAIManager != null){
         		myAIManager.setVisible(false);
         		myAIManager.dispose();
         	}
         	finished = true;
+        	setupComplete = true;
         	this.setVisible(false);
         }
         else{
