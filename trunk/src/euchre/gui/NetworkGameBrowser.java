@@ -10,6 +10,14 @@ import java.awt.*;
 public class NetworkGameBrowser extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonJoinNetwork;
+    private javax.swing.JButton jButtonStartNetwork;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
 	
 	/**
     * Creates an object that can browse network games and join them, or launch the
@@ -126,13 +134,4 @@ public class NetworkGameBrowser extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_createGame
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonJoinNetwork;
-    private javax.swing.JButton jButtonStartNetwork;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
-
 }

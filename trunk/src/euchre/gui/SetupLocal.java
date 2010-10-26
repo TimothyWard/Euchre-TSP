@@ -16,6 +16,30 @@ public class SetupLocal extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private boolean setupComplete = false;
 	
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JButton jButtonGameStart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton jRadioButton1E;
+    private javax.swing.JRadioButton jRadioButton1H;
+    private javax.swing.JRadioButton jRadioButton1M;
+    private javax.swing.JRadioButton jRadioButton2E;
+    private javax.swing.JRadioButton jRadioButton2H;
+    private javax.swing.JRadioButton jRadioButton2M;
+    private javax.swing.JRadioButton jRadioButton3E;
+    private javax.swing.JRadioButton jRadioButton3H;
+    private javax.swing.JRadioButton jRadioButton3M;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextFieldPlayerName;
+    // End of variables declaration//GEN-END:variables
+	
 	/**
 	 * Constructs the form needed to setup a local Game.
 	 * @param player the human player playing the game
@@ -252,10 +276,6 @@ public class SetupLocal extends javax.swing.JFrame {
     	}
     }
     
-    public String getPlayerName(){
-    	return jTextFieldPlayerName.getText().trim();
-    }
-    
     /**
 	 * Launch a local game with the options that were selected by the user.
 	 */
@@ -287,37 +307,11 @@ public class SetupLocal extends javax.swing.JFrame {
     	return wasFound;	
     }
     
-    /**
-     * Returns whether or not the user is done setting up the game with this window.
-     * 
-     * @return True if the user is done with this window.
-     */
     public boolean getSetupComplete(){
     	return setupComplete;
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButtonGameStart;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton jRadioButton1E;
-    private javax.swing.JRadioButton jRadioButton1H;
-    private javax.swing.JRadioButton jRadioButton1M;
-    private javax.swing.JRadioButton jRadioButton2E;
-    private javax.swing.JRadioButton jRadioButton2H;
-    private javax.swing.JRadioButton jRadioButton2M;
-    private javax.swing.JRadioButton jRadioButton3E;
-    private javax.swing.JRadioButton jRadioButton3H;
-    private javax.swing.JRadioButton jRadioButton3M;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextFieldPlayerName;
-    // End of variables declaration//GEN-END:variables
-
+    
+    public String getPlayerName(){
+    	return jTextFieldPlayerName.getText().trim();
+    }
 }

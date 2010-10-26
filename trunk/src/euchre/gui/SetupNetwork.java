@@ -10,7 +10,50 @@ import euchre.player.Player;
  *
  */
 public class SetupNetwork extends javax.swing.JFrame {
+	
     private static final long serialVersionUID = 1L;
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton jButtonGameStart;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton1E;
+    private javax.swing.JRadioButton jRadioButton1H;
+    private javax.swing.JRadioButton jRadioButton1M;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton2E;
+    private javax.swing.JRadioButton jRadioButton2H;
+    private javax.swing.JRadioButton jRadioButton2M;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton3E;
+    private javax.swing.JRadioButton jRadioButton3H;
+    private javax.swing.JRadioButton jRadioButton3M;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextFieldPlayerName;
+    private javax.swing.JTextField jTextFieldPlayerName1;
+    private javax.swing.JTextField jTextFieldPlayerName2;
+    private javax.swing.JTextField jTextFieldPlayerName3;
+    // End of variables declaration//GEN-END:variables
+
 	/**
     * Constructs the form to interact with the setup of a network Game.
     */
@@ -327,46 +370,4 @@ public class SetupNetwork extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_launchNetworkGame
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JButton jButtonGameStart;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton1E;
-    private javax.swing.JRadioButton jRadioButton1H;
-    private javax.swing.JRadioButton jRadioButton1M;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton2E;
-    private javax.swing.JRadioButton jRadioButton2H;
-    private javax.swing.JRadioButton jRadioButton2M;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton3E;
-    private javax.swing.JRadioButton jRadioButton3H;
-    private javax.swing.JRadioButton jRadioButton3M;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextFieldPlayerName;
-    private javax.swing.JTextField jTextFieldPlayerName1;
-    private javax.swing.JTextField jTextFieldPlayerName2;
-    private javax.swing.JTextField jTextFieldPlayerName3;
-    // End of variables declaration//GEN-END:variables
-
 }

@@ -29,6 +29,61 @@ public class GameBoard extends javax.swing.JFrame {
 	private Player leftPlayer;
 	private Player rightPlayer;
 	
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LCard1;
+    private javax.swing.JLabel LCard2;
+    private javax.swing.JLabel LCard3;
+    private javax.swing.JLabel LCard4;
+    private javax.swing.JLabel LCard5;
+    private javax.swing.JLabel LPlayed;
+    private javax.swing.JLabel RCard1;
+    private javax.swing.JLabel RCard2;
+    private javax.swing.JLabel RCard3;
+    private javax.swing.JLabel RCard4;
+    private javax.swing.JLabel RCard5;
+    private javax.swing.JLabel RPlayed;
+    private javax.swing.JLabel TurnedCard;
+    private javax.swing.JLabel UCard1;
+    private javax.swing.JLabel UCard2;
+    private javax.swing.JLabel UCard3;
+    private javax.swing.JLabel UCard4;
+    private javax.swing.JLabel UCard5;
+    private javax.swing.JLabel UPlayed;
+    private javax.swing.JLabel YourPlayed;
+    private javax.swing.JButton clubsButton;
+    private javax.swing.JButton diamondsButton;
+    private javax.swing.JButton heartsButton;
+    private javax.swing.JButton jButtonPass;
+    private javax.swing.JButton jButtonPickUp;
+    private javax.swing.JButton jButtonYourCard1;
+    private javax.swing.JButton jButtonYourCard2;
+    private javax.swing.JButton jButtonYourCard3;
+    private javax.swing.JButton jButtonYourCard4;
+    private javax.swing.JButton jButtonYourCard5;
+    private javax.swing.JLabel jLabelDealer;
+    private javax.swing.JLabel jLabelLPlayerName;
+    private javax.swing.JLabel jLabelOTeamPoints;
+    private javax.swing.JLabel jLabelOTeamTricks;
+    private javax.swing.JLabel jLabelPassInfo;
+    private javax.swing.JLabel jLabelRPlayerName;
+    private javax.swing.JLabel jLabelUPlayerName;
+    private javax.swing.JLabel jLabelYTeamPoints;
+    private javax.swing.JLabel jLabelYTeamTricks;
+    private javax.swing.JLabel jLabelYourName;
+    private javax.swing.JButton spadesButton;
+    private javax.swing.JButton suitPassButton;
+    private javax.swing.JLabel theyLabel;
+    private javax.swing.JLabel theyPointsLabel;
+    private javax.swing.JLabel theyTeamNumberLabel;
+    private javax.swing.JLabel theyTricksLabel;
+    private javax.swing.JLabel weLabel;
+    private javax.swing.JLabel wePointsLabel;
+    private javax.swing.JLabel weTeamNumberLabel;
+    private javax.swing.JLabel weTricksLabel;
+    // End of variables declaration//GEN-END:variables
+    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+
+	
 	/** 
 	 * Creates new form GameBoard
 	 * @param player the human player object being controlled from the game board
@@ -78,25 +133,8 @@ public class GameBoard extends javax.swing.JFrame {
     }
     
     /**
-     * sets which player is using the gameboard
-     * 
-     * @param n player number
+     * FILL THIS IN
      */
-    public void setPlayerNumber(int n){
-    	
-    }
-    
-    
-    /**
-     * sets the game manager so gameboard can have access to the players
-     * 
-     * @param gm the game manager
-     */
-    public void setGameManager(GameManager gm){
-    	GM = gm;
-    	
-    }
-    
     public void updateBoard(){
     	humanPlayer = (Human) GM.getPlayerIAm();
     	if(humanPlayer.getTeam() == 1){
@@ -126,10 +164,10 @@ public class GameBoard extends javax.swing.JFrame {
     	setBottomPlayer(humanPlayer);
     }
     
-    private void setTopPlayer(Player player){
-    	jLabelUPlayerName.setText(player.getName());
-    }
-    
+    /**
+     * FILL THIS IN
+     * @param player
+     */
 	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
 		setCard(player.getHand()[0], 0);
@@ -137,22 +175,6 @@ public class GameBoard extends javax.swing.JFrame {
 		setCard(player.getHand()[2], 2);
 		setCard(player.getHand()[3], 3);
 		setCard(player.getHand()[4], 4);
-	}
-	
-	private void setLeftPlayer(Player player){
-		jLabelLPlayerName.setText(player.getName());
-	}
-	
-	private void setRightPlayer(Player player){
-		jLabelRPlayerName.setText(player.getName());
-	}
-    
-	public void setWeTeam(Team team){
-		weTeamNumberLabel.setText("" + team.getTeamNumber());
-	}
-	
-	public void setTheyTeam(Team team){
-		theyTeamNumberLabel.setText("" + team.getTeamNumber());
 	}
 	
     /**
@@ -643,27 +665,6 @@ public class GameBoard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public void setBottomPlayedCard(Card c){
-    	YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-    }
-    
-    public void setUpperPlayedCard(Card c){
-    	UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-    }
-
-    public void setLeftPlayedCard(Card c){
-    	LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-    }
-
-    public void setRightPlayedCard(Card c){
-    	RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-    }
-    
-    public void setTurnedCard(Card c){
-    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getSuit()));
-    }
-    
     
     private void card1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_card1Clicked
     	if(humanPlayer.isTurn()){
@@ -782,6 +783,17 @@ public class GameBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_suitPassListener
     
     /**
+     * This method is used to display the players hand to the GUI
+     * 
+     * @param card the card to be set to the specified button
+     * @param cardNumber the button to set to the specified card
+     */
+    public void setCard(Card card, int cardNumber){
+    	hand[cardNumber] = card;
+    	handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
+    }  
+    
+    /**
      * hides the buttons used during trump selection
      */
     public void hideTrumpButtons(){
@@ -808,69 +820,50 @@ public class GameBoard extends javax.swing.JFrame {
     	jLabelOTeamPoints.setText("" + points);
     }
     
-    /**
-     * used to display the players hand to the GUI
-     * 
-     * @param card the card to be set to the specified button
-     * @param cardNumber the button to set to the specified card
-     */
-    public void setCard(Card card, int cardNumber){
-    	hand[cardNumber] = card;
-    	handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
-    }    
+    public void setPlayerNumber(int n){
+    	//????????????????????????
+    }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LCard1;
-    private javax.swing.JLabel LCard2;
-    private javax.swing.JLabel LCard3;
-    private javax.swing.JLabel LCard4;
-    private javax.swing.JLabel LCard5;
-    private javax.swing.JLabel LPlayed;
-    private javax.swing.JLabel RCard1;
-    private javax.swing.JLabel RCard2;
-    private javax.swing.JLabel RCard3;
-    private javax.swing.JLabel RCard4;
-    private javax.swing.JLabel RCard5;
-    private javax.swing.JLabel RPlayed;
-    private javax.swing.JLabel TurnedCard;
-    private javax.swing.JLabel UCard1;
-    private javax.swing.JLabel UCard2;
-    private javax.swing.JLabel UCard3;
-    private javax.swing.JLabel UCard4;
-    private javax.swing.JLabel UCard5;
-    private javax.swing.JLabel UPlayed;
-    private javax.swing.JLabel YourPlayed;
-    private javax.swing.JButton clubsButton;
-    private javax.swing.JButton diamondsButton;
-    private javax.swing.JButton heartsButton;
-    private javax.swing.JButton jButtonPass;
-    private javax.swing.JButton jButtonPickUp;
-    private javax.swing.JButton jButtonYourCard1;
-    private javax.swing.JButton jButtonYourCard2;
-    private javax.swing.JButton jButtonYourCard3;
-    private javax.swing.JButton jButtonYourCard4;
-    private javax.swing.JButton jButtonYourCard5;
-    private javax.swing.JLabel jLabelDealer;
-    private javax.swing.JLabel jLabelLPlayerName;
-    private javax.swing.JLabel jLabelOTeamPoints;
-    private javax.swing.JLabel jLabelOTeamTricks;
-    private javax.swing.JLabel jLabelPassInfo;
-    private javax.swing.JLabel jLabelRPlayerName;
-    private javax.swing.JLabel jLabelUPlayerName;
-    private javax.swing.JLabel jLabelYTeamPoints;
-    private javax.swing.JLabel jLabelYTeamTricks;
-    private javax.swing.JLabel jLabelYourName;
-    private javax.swing.JButton spadesButton;
-    private javax.swing.JButton suitPassButton;
-    private javax.swing.JLabel theyLabel;
-    private javax.swing.JLabel theyPointsLabel;
-    private javax.swing.JLabel theyTeamNumberLabel;
-    private javax.swing.JLabel theyTricksLabel;
-    private javax.swing.JLabel weLabel;
-    private javax.swing.JLabel wePointsLabel;
-    private javax.swing.JLabel weTeamNumberLabel;
-    private javax.swing.JLabel weTricksLabel;
-    // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+    public void setBottomPlayedCard(Card c){
+    	YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+    
+    public void setUpperPlayedCard(Card c){
+    	UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
 
+    public void setLeftPlayedCard(Card c){
+    	LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+
+    public void setRightPlayedCard(Card c){
+    	RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    }
+    
+    public void setTurnedCard(Card c){
+    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getSuit()));
+    }
+    
+    public void setGameManager(GameManager gm){
+    	GM = gm;
+    } 
+    private void setTopPlayer(Player player){
+    	jLabelUPlayerName.setText(player.getName());
+    }
+	
+	private void setLeftPlayer(Player player){
+		jLabelLPlayerName.setText(player.getName());
+	}
+	
+	private void setRightPlayer(Player player){
+		jLabelRPlayerName.setText(player.getName());
+	}
+    
+	public void setWeTeam(Team team){
+		weTeamNumberLabel.setText("" + team.getTeamNumber());
+	}
+	
+	public void setTheyTeam(Team team){
+		theyTeamNumberLabel.setText("" + team.getTeamNumber());
+	}
 }
