@@ -89,7 +89,6 @@ public class HostDifficultyChange extends javax.swing.JFrame {
         player4Medium = new javax.swing.JRadioButton();
         applyDifficulties = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Change Computer Difficulties");
         setResizable(false);
 
@@ -180,7 +179,7 @@ public class HostDifficultyChange extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void applyDifficultiesClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyDifficultiesClicked
-        if (player3){
+    	if (player3){
     		if (player3Easy.isSelected()){
     			myLobby.setPlayer3Difficulty('e');
     		}else if(player3Medium.isSelected()){
@@ -199,6 +198,7 @@ public class HostDifficultyChange extends javax.swing.JFrame {
     		}
     	}
     	this.setVisible(false);
+    	myLobby.disableStart();
     	this.dispose();
     }//GEN-LAST:event_applyDifficultiesClicked
 

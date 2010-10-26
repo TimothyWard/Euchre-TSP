@@ -79,6 +79,12 @@ public class GameLobby extends javax.swing.JFrame{
         return player4Difficulty;
     }
 
+    public void disableStart(){
+    	if(connectionsMade < 3){
+        	startGame.setEnabled(false);
+        }
+    }
+    
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player3Difficulty = 'e';
@@ -400,6 +406,7 @@ public class GameLobby extends javax.swing.JFrame{
     private void changeAIDifficulty(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeAIDifficulty
         myAIManager = new HostDifficultyChange(this, numberOfAI);
         myAIManager.setVisible(true);
+        this.disableStart();
     }//GEN-LAST:event_changeAIDifficulty
 
 //    /**
