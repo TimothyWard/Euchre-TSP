@@ -57,11 +57,13 @@ public class Game {
 			//start the next round
 			Round currentRound = new Round();
 			GM.setRound(currentRound);
+			GM.playGame();
 
 			//wait for the current round to be over
 			while (currentRound.isRoundComplete()==false) Thread.sleep(1000);
 
-			//score the recently completed round
+			//score the recently completed round and set the game manager's round to null
+			GM.setRound(null);
 			tabulator.interpret(currentRound, one, two);
 		}
 
