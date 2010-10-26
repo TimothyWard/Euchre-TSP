@@ -134,29 +134,30 @@ public class GameBoard extends javax.swing.JFrame {
     public void updateBoard(){
     	humanPlayer = (Human) GM.getPlayerIAm();
     	setBottomPlayer(humanPlayer);
+    	
     	switch(humanPlayer.getNumber()){
 	    	case 1:{
-	    		topPlayer = GM.getp3();
-	    		leftPlayer = GM.getp2();
-	    		rightPlayer = GM.getp4();
+	    		topPlayer = GM.getPlayer3();
+	    		leftPlayer = GM.getPlayer2();
+	    		rightPlayer = GM.getPlayer4();
 	        	break;
 	    	}
 	    	case 2:{
-	    		topPlayer = GM.getp4();
-	    		leftPlayer = GM.getp1();
-	    		rightPlayer = GM.getp3();
+	    		topPlayer = GM.getPlayer4();
+	    		leftPlayer = GM.getPlayer1();
+	    		rightPlayer = GM.getPlayer3();
 	        	break;
 	    	}
 	    	case 3:{
-	    		topPlayer = GM.getp1();
-	    		leftPlayer = GM.getp4();
-	    		rightPlayer = GM.getp2();
+	    		topPlayer = GM.getPlayer1();
+	    		leftPlayer = GM.getPlayer4();
+	    		rightPlayer = GM.getPlayer2();
 	        	break;
 	    	}
 	    	case 4:{
-	    		topPlayer = GM.getp2();
-	    		leftPlayer = GM.getp3();
-	    		rightPlayer = GM.getp1();
+	    		topPlayer = GM.getPlayer2();
+	    		leftPlayer = GM.getPlayer3();
+	    		rightPlayer = GM.getPlayer1();
 	        	break;
 	    	}
     	}
@@ -816,10 +817,10 @@ public class GameBoard extends javax.swing.JFrame {
     }
     
     /**
+     * displays an indicated card played by specified player at the center of the board
      * 
-     * 
-     * @param c
-     * @param playerNumber
+     * @param c card to be played
+     * @param playerNumber number of the player playing the card
      */
     public void playCard(Card c, int playerNumber){
     	if(rightPlayer.getNumber() == playerNumber){
