@@ -89,10 +89,10 @@ public class GameManager {
 
 			deal();
 			setTrump();
-			System.out.println("Upcard: " + upCard);
-			System.out.println("Trump Suit: " + round.getTrumpSuit());
+			//System.out.println("Upcard: " + upCard);
+			//System.out.println("Trump Suit: " + round.getTrumpSuit());
 			playRound();
-			System.out.println("============");
+			//System.out.println("============");
 	}
 
 
@@ -241,12 +241,12 @@ public class GameManager {
 				}
 				played[i] = curPlayer.playCard();
 
-				System.out.println(curPlayer.getNumber() + " " + played[i]);
+				//System.out.println(curPlayer.getNumber() + " " + played[i]);
 
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
-			System.out.println("------");
+			//System.out.println("------");
 
 			led=played[0].getSuit();
 
