@@ -343,14 +343,6 @@ public class GameManager {
 
 	}
 
-	public void setHostPlayer(Player p){
-		p1=p;
-	}
-
-	public void setClientPlayer(Player p){
-		p1=p;
-	}
-
 	/**
 	 * Adds all client and host players. 
 	 * 
@@ -472,6 +464,12 @@ public class GameManager {
 		}
 	}
 
+
+
+	public void newPlayer(Player p){
+		p1=p;
+	}
+	
 	public Player getDealer(){
 		return dealer;
 	}
