@@ -149,9 +149,10 @@ public class Game {
 	 * @param GM The GameManager.
 	 * @param GB The GameBoard.
 	 */
-	private static void initializeGameBoard(GameBoard GB){
-		GB.updateBoard();
+	public static void initializeGameBoard(GameBoard GB){
 		GB.setVisible(true);
+
+		GB.updateBoard();
 	}
 	
 	/**

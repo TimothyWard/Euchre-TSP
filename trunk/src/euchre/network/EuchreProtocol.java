@@ -5,6 +5,7 @@ package euchre.network;
 
 import java.util.StringTokenizer;
 
+import euchre.game.Game;
 import euchre.player.GameManager;
 import euchre.player.Human;
 
@@ -175,8 +176,15 @@ public class EuchreProtocol {
 
 				
 			}
+			else if(token.equals("SetTeam")){
+				int player = Integer.parseInt(parser.nextToken());
+				int team = Integer.parseInt(parser.nextToken());
+				manager.setTeam(player, team);
+				System.out.println("SetTeam("+player+","+team+")");
+			}
 			else if(token.equals("SpawnGameBoard")){
-				manager.setTeamsComplete(false);
+				Game.initializeGameBoard(manager.getGameBoard());
+				manager.setTeamsComplete(true);
 			}
 
 

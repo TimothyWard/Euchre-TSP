@@ -369,23 +369,31 @@ public class GameLobby extends javax.swing.JFrame{
         	//set teams in game manager.
         	if(jRadioBPlayer1Team1.isSelected()){
         		myManager.setTeam(1, 1);
+        		myManager.getServerNetworkManager().toClients("SetTeam,1,1");
         	}else{
         		myManager.setTeam(1, 2);
+        		myManager.getServerNetworkManager().toClients("SetTeam,1,2");
         	}
         	if(jRadioBPlayer2Team1.isSelected()){
         		myManager.setTeam(2, 1);
+        		myManager.getServerNetworkManager().toClients("SetTeam,2,1");
         	}else{
         		myManager.setTeam(2, 2);
+        		myManager.getServerNetworkManager().toClients("SetTeam,2,2");
         	}
         	if(jRadioBPlayer3Team1.isSelected()){
         		myManager.setTeam(3, 1);
+        		myManager.getServerNetworkManager().toClients("SetTeam,3,1");
         	}else{
         		myManager.setTeam(3, 2);
+        		myManager.getServerNetworkManager().toClients("SetTeam,3,2");
         	}
         	if(jRadioBPlayer4Team1.isSelected()){
         		myManager.setTeam(4, 1);
+        		myManager.getServerNetworkManager().toClients("SetTeam,4,1");
         	}else{
         		myManager.setTeam(4, 2);
+        		myManager.getServerNetworkManager().toClients("SetTeam,4,2");
         	}
         	setupComplete = true;
         	if (myAIManager != null){
@@ -399,8 +407,6 @@ public class GameLobby extends javax.swing.JFrame{
         	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
-        
-        myManager.getServerNetworkManager().toClients("SpawnGameBoard");
     }//GEN-LAST:event_StartGame
 
     /**
