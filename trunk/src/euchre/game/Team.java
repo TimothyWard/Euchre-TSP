@@ -4,13 +4,14 @@ import euchre.player.Player;
 
 /**
  * @author Timothy Ward 
- * This class is simply a place holder for two player in a team object.
+ * This class is simply a place holder for two players in a team object.
  */
 public class Team {
 
-	private int teamNumber = 0;
+	//properties
 	private Player playerOne = null;
 	private Player playerTwo = null;
+	private int teamNumber = 0;
 	private int score = 0;
 	
 	public Team(Player one, Player two){
