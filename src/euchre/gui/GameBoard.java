@@ -133,8 +133,12 @@ public class GameBoard extends javax.swing.JFrame {
      */
     public void updateBoard(){
     	humanPlayer = (Human) GM.getPlayerIAm();
+    	int playerNum = humanPlayer.getNumber();
+    	if(playerNum > 2){
+    		playerNum = playerNum - 2;
+    	}
     	if(humanPlayer.getTeam() == 1){
-    		if(GM.getTeamOne().getPlayerOne().getNumber() != humanPlayer.getNumber()){
+    		if(GM.getTeamOne().getPlayerOne().getNumber() != playerNum){
     			topPlayer = GM.getTeamOne().getPlayerOne();
     		}else{
     			topPlayer = GM.getTeamOne().getPlayerTwo();
@@ -144,7 +148,7 @@ public class GameBoard extends javax.swing.JFrame {
     		setWeTeam(GM.getTeamOne());
     		setTheyTeam(GM.getTeamTwo());
     	}else{
-    		if(GM.getTeamTwo().getPlayerOne().getNumber() != humanPlayer.getNumber()){
+    		if(GM.getTeamTwo().getPlayerOne().getNumber() != playerNum){
     			topPlayer = GM.getTeamTwo().getPlayerOne();
     		}else{
     			topPlayer = GM.getTeamTwo().getPlayerTwo();
