@@ -72,6 +72,11 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 
 	}
 
+	/**
+	 * FILL THIS IN
+	 * @param s
+	 * @param hash
+	 */
 	public void toClients(String s, int hash){
 
 
@@ -82,6 +87,10 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 		}
 	}
 
+	/**
+	 * FILL THIS IN
+	 * @param s
+	 */
 	public void toClients(String s){
 
 
@@ -91,11 +100,20 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 		}
 	}
 	
+	/**
+	 * FILL THIS IN
+	 * @param message
+	 * @param hash
+	 */
 	public void parse(String message, int hash){
 		
 		protocol.serverParse(message);
 	}
 	
+	/**
+	 * FILL THIS IN
+	 * @return
+	 */
 	public EuchreProtocol getParser(){
 		return protocol;
 	}

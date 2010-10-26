@@ -29,7 +29,10 @@ public class EuchreProtocol {
 
 	}
 
-
+	/**
+	 * FILL THIS IN
+	 * @param input
+	 */
 	public void serverParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
@@ -130,6 +133,10 @@ public class EuchreProtocol {
 
 	}
 
+	/**
+	 * FILL THIS IN
+	 * @param input
+	 */
 	public void clientParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
@@ -180,11 +187,14 @@ public class EuchreProtocol {
 
 	}
 
+	/**
+	 * FILL THIS IN
+	 * @param name
+	 * @param number
+	 */
 	public void setName(String name, int number){
 		System.out.println("Player name: " + name);
 		System.out.println("Player number: " + number);
-
-
 	}
 
 	public void setGameManager(GameManager gm){
