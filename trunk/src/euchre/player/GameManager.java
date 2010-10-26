@@ -38,39 +38,40 @@ public class GameManager {
 	 * Main test method for the Game Manager class.
 	 * @param args
 	 */
-//	public static void main(String[] args) {
-//		GameManager game = new GameManager();
-//		Round round = new Round();
-//		game.setRound(round);
-//		//			Player player1 = new Human();
-//		//			Player player2 = new Human();
-//		//			Player player3 = new Human();
-//		//			Player player4 = new Human();
-//		//			game.p1 = player1;
-//		//			game.p2 = player2;
-//		//			game.p3 = player3;
-//		//			game.p4 = player4;
-//		//			game.setAllPlayers(player1, player2, player3, player4);
-//		Player ai1 = new AI();
-//		Player ai2 = new AI();
-//		Player ai3 = new AI();
-//		Player ai4 = new AI();
-//		game.p1 = ai1;
-//		game.p2 = ai2;
-//		game.p3 = ai3;
-//		game.p4 = ai4;
-//		game.setAllPlayers(ai1, ai2, ai3, ai4);
-//
-//		game.setTeam(1, 2);
-//		game.setTeam(2, 2);
-//		game.setTeam(3, 1);
-//		game.setTeam(4, 1);
-//		
-//		for(int i=0;i<3;i++){
-//			game.playGame();
-//		}
-//
-//	}
+	public static void main(String[] args) {
+		GameManager game = new GameManager();
+		Round round = new Round();
+		game.setRound(round);
+		//			Player player1 = new Human();
+		//			Player player2 = new Human();
+		//			Player player3 = new Human();
+		//			Player player4 = new Human();
+		//			game.p1 = player1;
+		//			game.p2 = player2;
+		//			game.p3 = player3;
+		//			game.p4 = player4;
+		//			game.setAllPlayers(player1, player2, player3, player4);
+		Player ai1 = new AI();
+		Player ai2 = new AI();
+		Player ai3 = new AI();
+		Player ai4 = new AI();
+		game.p1 = ai1;
+		game.p2 = ai2;
+		game.p3 = ai3;
+		game.p4 = ai4;
+		game.setAllPlayers(ai1, ai2, ai3, ai4);
+
+		game.setTeam(1, 2);
+		game.setTeam(2, 2);
+		game.setTeam(3, 1);
+		game.setTeam(4, 1);
+		
+		for(int i=0;i<5;i++){
+			System.out.println("Round " + (i+1));
+			game.playGame();
+		}
+
+	}
 
 	/**
 	 * Constructor for the GameManager class.
