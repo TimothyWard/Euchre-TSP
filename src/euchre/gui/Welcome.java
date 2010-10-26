@@ -13,7 +13,8 @@ import euchre.player.GameManager;
 public class Welcome extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
-	char choice = 'x'; // The variable storing the users gametype choice.
+	boolean windowComplete = false;
+	char gameChoice = 'x'; // The variable storing the users gametype choice.
 	
 	/**
 	 * Construct a welcome screen.
@@ -150,35 +151,33 @@ public class Welcome extends javax.swing.JFrame{
      * User chose a Local Game, so launch the setupLocal form so that they can setup their game.
      */
     private void choseLocal(java.awt.event.MouseEvent evt) {       
-    	choice = 'a';
+    	gameChoice = 'a';
+    	windowComplete = true;
     }
     
     /**
      * User chose a Host a Network Game
      */
     private void networkHost(java.awt.event.MouseEvent evt) {
-    	choice = 'h';
+    	gameChoice = 'h';
+    	windowComplete = true;
     }
     
     /**
      * User chose a be a client to a Network Game.
      */
     private void networkClient(java.awt.event.MouseEvent evt) {
-    	choice = 'c';
+    	gameChoice = 'c';
+    	windowComplete = true;
     }
     
-    /**
-     * Returns the character associated with the gametype chosen by the user.
-     * 'x' - No option has been chosen yet, the user is still deciding.
-     * 'a' - The user has chosen to start a local (AI) game.
-     * 'c' - The user has chosen to be client in a network game.
-     * 'h' - The user has chosen to host a network game.
-     * @return The character associated with the gametype chosen by the user.
-     */
-    public char getChoice(){
-		return choice;
+    public char getGameChoice(){
+		return gameChoice;
     }
 
+    public boolean isWinodwComplete(){
+		return windowComplete;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonLocalGame;

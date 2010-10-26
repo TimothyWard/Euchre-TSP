@@ -169,7 +169,7 @@ public class EuchreProtocol {
 				
 			}
 			else if(token.equals("SpawnGameBoard")){
-				manager.setGameManagerWaiting(false);
+				manager.setTeamsComplete(false);
 			}
 
 

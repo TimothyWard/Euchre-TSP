@@ -13,7 +13,7 @@ import euchre.player.Human;
  */
 public class HostGameSetup extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
-	int AIs = -1;
+	private int AIs = -1;
 	GameManager myManager;
 	GameLobby lobby;
 	
@@ -132,7 +132,6 @@ public class HostGameSetup extends javax.swing.JFrame {
 			lobby.setVisible(true);
 			myManager.setLobby(lobby);
 			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
-			System.out.println(AIs);
 			this.setVisible(false);
 		}
 	}//GEN-LAST:event_openLobby
@@ -154,11 +153,6 @@ public class HostGameSetup extends javax.swing.JFrame {
     	return wasFound;	
     }
 
-	/**
-	 * Returns the number of AI players.
-	 * 
-	 * @return The number of AI players.
-	 */
 	public int getAIs(){
 		return AIs;
 	}
