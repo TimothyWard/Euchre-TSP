@@ -13,15 +13,46 @@ import euchre.player.GameManager;
  * @author Neil MacBay(nmmacbay)
  */
 public class GameLobby extends javax.swing.JFrame{
+	
 	private static final long serialVersionUID = 1L;
+	
+	HostDifficultyChange myAIManager;
 	private GameManager myManager;
 	private boolean finished = false;
 	private int numberOfAI;
-	HostDifficultyChange myAIManager;
     private char player3Difficulty;
     private char player4Difficulty;
 	private int connectionsMade = 0;
 	private boolean setupComplete = false;
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Player1Status;
+    private javax.swing.JLabel Player2Status;
+    private javax.swing.JLabel Player3Status;
+    private javax.swing.JLabel Player4Status;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton changeComputerDifficulty;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JRadioButton jRadioBPlayer1Team1;
+    private javax.swing.JRadioButton jRadioBPlayer1Team2;
+    private javax.swing.JRadioButton jRadioBPlayer2Team1;
+    private javax.swing.JRadioButton jRadioBPlayer2Team2;
+    private javax.swing.JRadioButton jRadioBPlayer3Team1;
+    private javax.swing.JRadioButton jRadioBPlayer3Team2;
+    private javax.swing.JRadioButton jRadioBPlayer4Team1;
+    private javax.swing.JRadioButton jRadioBPlayer4Team2;
+    private javax.swing.JButton startGame;
+    // End of variables declaration//GEN-END:variables
 
 
 	/** 
@@ -51,33 +82,20 @@ public class GameLobby extends javax.swing.JFrame{
         connectionsMade = 3 - numberOfPlayers;
         startGame.setEnabled(false);
     }
-    
-    public String getHostName(){
-    	return Player1Status.getText();
-    }
 
-    public boolean getFinished(){
-    	return finished;
-    }
-    
-    public int getNumberOfAIPlayers(){
-    	return numberOfAI;
-    }
-    
-    public char getPlayer3Difficulty(){
-        return player3Difficulty;
-    }
-    
-    public char getPlayer4Difficulty(){
-        return player4Difficulty;
-    }
-
+    /**
+     * FILL THIS IN
+     */
     public void disableStart(){
     	if(connectionsMade < 3){
         	startGame.setEnabled(false);
         }
     }
     
+    /**
+     * FILL THIS IN
+     * @param difficulty
+     */
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player3Difficulty = 'e';
@@ -91,6 +109,10 @@ public class GameLobby extends javax.swing.JFrame{
        }
     }
 
+    /**
+     * FILL THIS IN
+     * @param difficulty
+     */
     public void setPlayer4Difficulty(char difficulty){
     	if (difficulty == 'e'){
      	   player4Difficulty = 'e';
@@ -469,37 +491,27 @@ public class GameLobby extends javax.swing.JFrame{
 		return setupComplete;
 	}
 
+    public String getHostName(){
+    	return Player1Status.getText();
+    }
+
+    public boolean getFinished(){
+    	return finished;
+    }
+    
+    public int getNumberOfAIPlayers(){
+    	return numberOfAI;
+    }
+    
+    public char getPlayer3Difficulty(){
+        return player3Difficulty;
+    }
+    
+    public char getPlayer4Difficulty(){
+        return player4Difficulty;
+    }
+    
 	public void setSetupComplete(boolean setupComplete) {
 		this.setupComplete = setupComplete;
 	}
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Player1Status;
-    private javax.swing.JLabel Player2Status;
-    private javax.swing.JLabel Player3Status;
-    private javax.swing.JLabel Player4Status;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JButton changeComputerDifficulty;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioBPlayer1Team1;
-    private javax.swing.JRadioButton jRadioBPlayer1Team2;
-    private javax.swing.JRadioButton jRadioBPlayer2Team1;
-    private javax.swing.JRadioButton jRadioBPlayer2Team2;
-    private javax.swing.JRadioButton jRadioBPlayer3Team1;
-    private javax.swing.JRadioButton jRadioBPlayer3Team2;
-    private javax.swing.JRadioButton jRadioBPlayer4Team1;
-    private javax.swing.JRadioButton jRadioBPlayer4Team2;
-    private javax.swing.JButton startGame;
-    // End of variables declaration//GEN-END:variables
-
 }

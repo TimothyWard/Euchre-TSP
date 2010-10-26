@@ -12,10 +12,20 @@ import euchre.player.Human;
  * @author Neil MacBay(nmmacbay)
  */
 public class HostGameSetup extends javax.swing.JFrame {
+	
 	private static final long serialVersionUID = 1L;
+	
 	private int AIs = -1;
 	GameManager myManager;
 	GameLobby lobby;
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox humanPlayerCount;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField nameInput;
+    private javax.swing.JButton openLobbyButton;
+    // End of variables declaration//GEN-END:variables
 	
 	/** 
 	 * Creates new form HostGameSetup 
@@ -160,13 +170,4 @@ public class HostGameSetup extends javax.swing.JFrame {
 	public GameLobby getGameLobby(){
 		return lobby;
 	}
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox humanPlayerCount;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField nameInput;
-    private javax.swing.JButton openLobbyButton;
-    // End of variables declaration//GEN-END:variables
-
 }

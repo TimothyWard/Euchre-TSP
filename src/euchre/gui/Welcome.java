@@ -16,6 +16,14 @@ public class Welcome extends javax.swing.JFrame{
 	boolean windowComplete = false;
 	char gameChoice = 'x'; // The variable storing the users gametype choice.
 	
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonLocalGame;
+    private javax.swing.JButton jButtonNetworkClientGame;
+    private javax.swing.JButton jButtonNetworkHostGame;
+    private javax.swing.JLabel jLabelWelcomeBanner;
+    // End of variables declaration//GEN-END:variables
+	
 	/**
 	 * Construct a welcome screen.
 	 */
@@ -178,11 +186,4 @@ public class Welcome extends javax.swing.JFrame{
     public boolean isWinodwComplete(){
 		return windowComplete;
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonLocalGame;
-    private javax.swing.JButton jButtonNetworkClientGame;
-    private javax.swing.JButton jButtonNetworkHostGame;
-    private javax.swing.JLabel jLabelWelcomeBanner;
-    // End of variables declaration//GEN-END:variables
 }
