@@ -240,7 +240,6 @@ public class GameManager {
 					((AI)curPlayer).setPlayed(played);
 				}
 				played[i] = curPlayer.playCard();
-
 				//System.out.println(curPlayer.getNumber() + " " + played[i]);
 
 				curPlayer.setTurn(false);
