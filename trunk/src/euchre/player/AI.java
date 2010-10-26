@@ -25,13 +25,6 @@ public class AI implements Player{
 	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 	private Card led = null;
 	private int playerID = (int)(Math.random()*5000000);
-	
-	public int getPlayerID() {
-		return playerID;
-	}
-	public void setPlayerID(int playerID) {
-		this.playerID = playerID;
-	}
 
 	
 	CardEvaluator calc = new CardEvaluator();
@@ -64,7 +57,7 @@ public class AI implements Player{
 
 	}
 	/**
-	 * 
+	 * FILL THIS IN
 	 * 
 	 * @param client Reference to the network interface
 	 */
@@ -372,49 +365,10 @@ public class AI implements Player{
 		return trump;
 
 	}
-	
-	/**
-	 * Returns the player's team
-	 */
-	public int getTeam() {
-		return team;
-	}
-	
-	/**
-	 * Sets the player's team
-	 */
-	public void setTeam(int team) {
-		this.team = team;
-	}
 
 	/**
-	 * Returns the name of the player
+	 * FILL THIS IN
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Sets the name of the player
-	 */
-	public void setName(String n) {
-		name = n;
-	}
-
-	/**
-	 * Returns the player's number.
-	 */
-	public int getNumber() {
-		return playerNumber;
-	}
-
-	/**
-	 * Sets the player's number.
-	 */
-	public void setNumber(int i) {
-		playerNumber = i;
-	}
-
 	@Override
 	public Card[] getHand() {
 		return hand;
@@ -430,6 +384,9 @@ public class AI implements Player{
 			clientManager.toServer(message);
 	}
 
+	/**
+	 * FILL THIS IN
+	 */
 	@Override
 	public char stickDealer() {
 		//FIX
@@ -445,6 +402,10 @@ public class AI implements Player{
 		return trump;
 		
 	}
+	
+	/**
+	 * FILL THIS IN
+	 */
 	@Override
 	public void setTurn(boolean turn) {
 		// TODO Auto-generated method stub
@@ -466,15 +427,44 @@ public class AI implements Player{
 		}
 	}
 	
+	public int getPlayerID() {
+		return playerID;
+	}
+	
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
+
 	public void setTrump(char tr){
 		trump = tr;
 	}
 	
-	/**
-	 * Self awareness?
-	 */
 	public boolean isHuman() {
 		return false;
+	}
+	
+	public int getTeam() {
+		return team;
+	}
+
+	public void setTeam(int team) {
+		this.team = team;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String n) {
+		name = n;
+	}
+
+	public int getNumber() {
+		return playerNumber;
+	}
+
+	public void setNumber(int i) {
+		playerNumber = i;
 	}
 
 }

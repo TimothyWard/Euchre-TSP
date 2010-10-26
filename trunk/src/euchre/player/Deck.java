@@ -1,7 +1,4 @@
 package euchre.player;
-
-
-
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -53,7 +50,7 @@ public class Deck{
 	 *
 	 * @return number of Cards left in the deck
 	 */
-	public int numberOfCards(){
+	public int getNumberOfCards(){
 		return cardsLeftInDeck;
 	}
 
