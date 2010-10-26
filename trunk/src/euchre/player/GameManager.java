@@ -25,7 +25,7 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
-	private boolean waiting = true;
+	private boolean teamsComplete = false;
 
 	private GameBoard board;
 	private GameLobby lobby;
@@ -446,8 +446,8 @@ public class GameManager {
 
 		teamOne = new Team(player1,player3);
 		teamTwo = new Team(player2,player4);
-
 		dealer = player1;
+		teamsComplete = true;
 	}
 
 	/**
@@ -523,51 +523,25 @@ public class GameManager {
 		return board;
 	}
 	
-	public boolean isWaiting(){
-		return waiting;
+	public boolean areTeamsComplete(){
+		return teamsComplete;
 	}
-	
-	public void setGameManagerWaiting(boolean b){
-		waiting = b;
+	public void setTeamsComplete(boolean b){
+		teamsComplete = b;
 	}
 
-
-	/**
-	 * Set reference to the network interface(server)
-	 * 
-	 * @param s
-	 * @author mdhelgen
-	 */
 	public void setServerNetworkManager(ServerNetworkManager s){
 		server = s;
 	}
 
-	/**
-	 * Set reference to the network interface (client)
-	 * 
-	 * @param c
-	 * @author mdhelgen
-	 */
 	public void setClientNetworkManager(ClientNetworkManager c){
 		client = c;
 	}
 
-	/**
-	 * Get reference to the network interface (server)
-	 * 
-	 * @return the ServerNetworkManager reference
-	 * @author mdhelgen
-	 */
 	public ServerNetworkManager getServerNetworkManager(){
 		return server;
 	}
 
-	/**
-	 * Get reference to the network interface (client)
-	 * 
-	 * @return the ClientNetworkManager reference
-	 * @author mdhelgen
-	 */
 	public ClientNetworkManager getClientNetworkManager(){
 		return client;
 	}

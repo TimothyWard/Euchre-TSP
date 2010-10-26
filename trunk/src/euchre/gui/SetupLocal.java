@@ -13,7 +13,6 @@ import euchre.player.Player;
  *
  */
 public class SetupLocal extends javax.swing.JFrame {
-	private Human humanPlayer;
 	private static final long serialVersionUID = 1L;
 	private boolean setupComplete = false;
 	
@@ -21,7 +20,7 @@ public class SetupLocal extends javax.swing.JFrame {
 	 * Constructs the form needed to setup a local Game.
 	 * @param player the human player playing the game
 	 */
-    public SetupLocal(Player player) {
+    public SetupLocal() {
         initComponents();
         centerScreen();
     }

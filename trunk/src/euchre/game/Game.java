@@ -23,69 +23,55 @@ public class Game {
 	 * responsible for instantiating all objects and running the overall program.
 	 * 
 	 * @param args A String array.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void main(String [] args){
+	public static void main(String [] args) throws InterruptedException{
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
-		//declare GUI welcome window and ask if host or client
+		//declare GUI welcome window to ask if host or client
 		Welcome GUI = new Welcome();
 		GUI.setVisible(true);
-		while (GUI.getChoice() == 'x'){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		char choice = GUI.getChoice();
+
+		//wait for the user to decide the game type
+		while (GUI.isWinodwComplete()==false) Thread.sleep(500);
+
+		//retreive the user's desired game choice and dispose of the welcome window
+		char gameChoice = GUI.getGameChoice();
 		GUI.setVisible(false);
-
-		GameBoard GB = new GameBoard();
-
-		if (choice == 'h') createHost(GM, GUI, GB);
-		else if(choice == 'c') createClient(GM, GUI, GB);
-		else if(choice == 'a') createLocalOnlyGame(GM, GB);
 		GUI.dispose();
 
+		//create the users desired player type based on the game choice
+		if (gameChoice == 'h') createHostPlayer(GM);
+		else if(gameChoice == 'c') createClientPlayer(GM);
+		else if(gameChoice == 'a') createLocalOnlyGame(GM);
+
+		//wait for all players to join and GM's to sync
+		while (GM.areTeamsComplete()==false) Thread.sleep(500);
+
 		//set teams
-		while (GM.getTeamOne().getPlayerOne() == null 
-				|| GM.getTeamOne().getPlayerTwo() == null 
-				|| GM.getTeamTwo().getPlayerOne() == null 
-				|| GM.getTeamTwo().getPlayerTwo() == null){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 		Team one = GM.getTeamOne();
 		Team two = GM.getTeamTwo();
 
-		//create a new tabulator and tell it which teams it is tabulating.
+		//create a new tabulator.
 		GameLogic tabulator = new GameLogic();
 
-
+		//if the game has not been won, continue
 		while (gameWinner(one, two) == null){
+
+			//start the next round
 			Round currentRound = new Round();
 			GM.setRound(currentRound);
-			while (currentRound.isRoundComplete()==false){
-				//Do nothing, the round is not over
-				try {
-					Thread.sleep(5000);
-				} 
-				catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
+
+			//wait for the current round to be over
+			while (currentRound.isRoundComplete()==false) Thread.sleep(1000);
+
+			//score the recently completed round
 			tabulator.interpret(currentRound, one, two);
 		}
-		GM.setRound(null);
 
+		//if the game is over, set the last round to null and display the winner
+		GM.setRound(null);
 		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 		//once game winner is determined, inform network who won to update views.
 	}
@@ -95,119 +81,82 @@ public class Game {
 	 * specified number of AI and Human players to accompany.
 	 * 
 	 * @param GM The GameManager object for the network and to pass the new host to.
-	 * @param GUI The welcome window for user input.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createHost(GameManager GM, Welcome GUI, GameBoard GB){
+	public static void createHostPlayer(GameManager GM) throws InterruptedException{
 
-		//start network connection
-		ServerNetworkManager network = new ServerNetworkManager();
-		network.setGameManager(GM);
-		network.start();
-		GM.setServerNetworkManager(network);
+		//create the new host, its game board and its server
 		GM.setHostPlayer(new Human());
+		GameBoard GB = new GameBoard();
+		ServerNetworkManager server = createNewServer(GM);
 
+		//open the window for the user to input the game data
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 
-		try {
-			Thread.sleep(5000);
-		} 
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		while (hostSetup.getGameLobby().isSetupComplete()==false){
-			//Do nothing, waiting for client connections
-			try {
-				Thread.sleep(5000);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		initializeGameBoard(GM,GB);
-		GB.updateBoard();
-		//send team changes to network
-		network.toClients("SpawnGameBoard");
-		//tell clients to update game boards
+		//wait untill the user has input name and number of additional human players	
+		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete()==false) Thread.sleep(500);
 
-		/**
-				while (hostSetup.getAIs() ==-1){
-					//Do nothing, user is deciding game type.
-					try {
-						Thread.sleep(500);
-					} 
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				int aiNumber = hostSetup.getAIs();
-				while (aiNumber!=0){
-					GM.setClientPlayer(new AI());
-					aiNumber--;
-				}
-		 **/
+		//initialize the hosts game board
+		initializeGameBoard(GM,GB);
+
+		//send team changes to network
+		server.toClients("SpawnGameBoard");
+		//tell clients to update game boards
+		
+		int aiNumber = hostSetup.getAIs();
+		while (aiNumber!=0){
+			//spawn a new copy of the software that is an AI
+			aiNumber--;
+		}
 	}
 
 	/**
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createLocalOnlyGame(GameManager GM, GameBoard GB){
-		Human human = new Human();
-		GM.setHostPlayer(human);
-		SetupLocal local = new SetupLocal(human);
+	public static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
+		
+		//set the new host to a new human
+		GM.setHostPlayer(new Human());
+		
+		//create a window to ask for name and game info
+		SetupLocal local = new SetupLocal();
 		local.setVisible(true);
-		while (local.getSetupComplete() == false){
-			//Do nothing, user is deciding game type.
-			try {
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		GM.setLocalPlayers(new AI(), new AI(), new AI());
+		
+		//wait for info
+		while (local.getSetupComplete() == false) Thread.sleep(500);
+		
+		//spawn a human and three new copies of the software as AI's
 	}
 
 	/**
 	 * This method will create a client object.
 	 * @param GM The GameManager object for the network and to pass the new client to.
 	 * @param GUI The welcome window for user input.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createClient(GameManager GM, Welcome GUI, GameBoard GB){
+	public static void createClientPlayer(GameManager GM) throws InterruptedException{
+		
+		//make a new human and pass it to the game manager
 		Human human = new Human();
 		GM.setClientPlayer(human);
-		ClientGameSetup clientSetup = new ClientGameSetup(human);
+		
+		//make a new window to ask for user input
+		ClientGameSetup clientSetup = new ClientGameSetup();
 		clientSetup.setVisible(true);
-		while(clientSetup.hasInput() == false){
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
-
-		clientSetup.setGameManager(GM);
-		GM.setClientNetworkManager(client);
-		client.setGameManager(GM);
-		client.start();
-
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
+		//wait for user to input data
+		while(clientSetup.hasInput() == false) Thread.sleep(500);
+		
+		//create new client and its network from given ip address and name
+		ClientNetworkManager client = createNewClient(GM, clientSetup);
 		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim()+","+human.getPlayerID());
 
-		while(GM.isWaiting()){
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		//wait for everyone to join before continuing
+		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 		clientSetup.dispose();
 
 	}
@@ -221,7 +170,35 @@ public class Game {
 	public static void initializeGameBoard(GameManager GM, GameBoard GB){
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
+		GB.updateBoard();
 		GB.setVisible(true);
+	}
+	
+	/**
+	 * This method creates a new server, and passes all of the needed references regarding it.
+	 * @param GM The GameManager that the server and it need a reference to and from.
+	 */
+	public static ServerNetworkManager createNewServer(GameManager GM){
+		ServerNetworkManager network = new ServerNetworkManager();
+		network.setGameManager(GM);
+		network.start();
+		GM.setServerNetworkManager(network);
+		return network;
+	}
+	
+	/**
+	 * This method creates a new server, and passes all of the needed references regarding it.
+	 * @param GM The GameManager that the server and it need a reference to and from.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	public static ClientNetworkManager createNewClient(GameManager GM, ClientGameSetup clientSetup) throws InterruptedException{
+		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
+		clientSetup.setGameManager(GM);
+		GM.setClientNetworkManager(client);
+		client.setGameManager(GM);
+		client.start();
+		Thread.sleep(500);
+		return client;
 	}
 
 	/**

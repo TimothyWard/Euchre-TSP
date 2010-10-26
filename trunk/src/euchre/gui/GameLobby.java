@@ -22,14 +22,7 @@ public class GameLobby extends javax.swing.JFrame{
     private char player4Difficulty;
 	private int connectionsMade = 0;
 	private boolean setupComplete = false;
-	
-    public boolean isSetupComplete() {
-		return setupComplete;
-	}
 
-	public void setSetupComplete(boolean setupComplete) {
-		this.setupComplete = setupComplete;
-	}
 
 	/** 
      * Creates new form GameLobby 
@@ -471,6 +464,14 @@ public class GameLobby extends javax.swing.JFrame{
         	startGame.setEnabled(true);
         }
     }
+    
+    public boolean isSetupComplete() {
+		return setupComplete;
+	}
+
+	public void setSetupComplete(boolean setupComplete) {
+		this.setupComplete = setupComplete;
+	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Player1Status;

@@ -15,7 +15,6 @@ import euchre.player.Player;
  */
 public class ClientGameSetup extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
-	private Human humanPlayer;
 	private GameManager myManager;
 	private GameBoard GB;
 	private boolean gottenInput = false;
@@ -24,11 +23,10 @@ public class ClientGameSetup extends javax.swing.JFrame{
      * Creates new form ClientGameSetup
      * @param player the client player being set up
      */
-    public ClientGameSetup(Player player){
+    public ClientGameSetup(){
         initComponents();
         centerScreen();
         jLabelWaitingStatus.setVisible(false);
-        humanPlayer = (Human) player;
     }
 
     /**
