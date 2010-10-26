@@ -1,4 +1,6 @@
 package euchre.game;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
@@ -21,6 +23,7 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
+		
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
@@ -92,6 +95,9 @@ public class Game {
 		//open the window for the user to input the game data
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
+		
+		//make the specified number of AI's
+//		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete()==false) Thread.sleep(500);
@@ -101,12 +107,56 @@ public class Game {
 
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
-		
-		int aiNumber = hostSetup.getAIs();
-		while (aiNumber!=0){
-			//spawn a new copy of the software that is an AI
-			aiNumber--;
+	}
+	
+	/**
+	 * This method creates the specified number of AIs in separate instantiations of the software.
+	 * @param numberOfAIs
+	 */
+	private static void makeAIs(int numberOfAIs){
+		Runtime runtime = Runtime.getRuntime();
+		while (numberOfAIs!=0){
+			try {
+				String commandPath = System.getProperty("user.dir");
+				String[] cmds = { commandPath, "/" };
+				String[] env = { "TERM=VT100" };
+				runtime.exec(cmds, env);
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			numberOfAIs--;
 		}
+	}
+	
+	/**
+	 * This method will create a client object.
+	 * 
+	 * @param GM The GameManager object for the network and to pass the new client to.
+	 * @param GUI The welcome window for user input.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	private static void createAIPlayer(GameManager GM) throws InterruptedException{
+
+		//make a new game board and a new human to pass to the game manager
+		AI computer = new AI();
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
+		GM.newPlayer(computer);
+
+		//create new client and its network from given ip address and name
+		ClientNetworkManager client = new ClientNetworkManager();
+		GM.setClientNetworkManager(client);
+		client.setGameManager(GM);
+		client.start();
+		
+		//join network game
+		client.toServer("RegisterPlayer,Computer One," + computer.getPlayerID());
+
+		//wait for everyone to join before continuing
+		while(GM.areTeamsComplete() == false) Thread.sleep(500);
+
 	}
 
 	/**
@@ -117,21 +167,21 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createClientPlayer(GameManager GM) throws InterruptedException{
-		
+
 		//make a new game board and a new human to pass to the game manager
 		Human human = new Human();
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
 		GM.newPlayer(human);
-		
+
 		//make a new window to ask for user input
 		ClientGameSetup clientSetup = new ClientGameSetup();
 		clientSetup.setVisible(true);
-		
+
 		//wait for user to input data
 		while(clientSetup.hasInput() == false) Thread.sleep(500);
-		
+
 		//create new client and its network from given ip address and name
 		ClientNetworkManager client = createNewClient(GM, clientSetup);
 		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim()+","+human.getPlayerID());
@@ -150,10 +200,9 @@ public class Game {
 	 */
 	public static void initializeGameBoard(GameBoard GB){
 		GB.setVisible(true);
-
 		GB.updateBoard();
 	}
-	
+
 	/**
 	 * This method creates a new server, and passes all of the needed references regarding it.
 	 * 
@@ -166,7 +215,7 @@ public class Game {
 		GM.setServerNetworkManager(network);
 		return network;
 	}
-	
+
 	/**
 	 * This method creates a new server, and passes all of the needed references regarding it.
 	 * 
@@ -211,17 +260,17 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
-		
+
 		//set the new host to a new human
 		GM.newPlayer(new Human());
-		
+
 		//create a window to ask for name and game info
 		SetupLocal local = new SetupLocal();
 		local.setVisible(true);
-		
+
 		//wait for info
 		while (local.getSetupComplete() == false) Thread.sleep(500);
-		
+
 		//spawn a human and three new copies of the software as AI's
 	}
 }
