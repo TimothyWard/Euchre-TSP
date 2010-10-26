@@ -126,7 +126,9 @@ public class Game {
 		}
 		initializeGameBoard(GM,GB);
 		GB.updateBoard();
+		//send team changes to network
 		network.toClients("SpawnGameBoard");
+		//tell clients to update game boards
 
 		/**
 				while (hostSetup.getAIs() ==-1){
