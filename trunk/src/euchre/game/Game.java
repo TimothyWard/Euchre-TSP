@@ -85,6 +85,8 @@ public class Game {
 		//create the new host, its game board and its server
 		GM.setHostPlayer(new Human());
 		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
 		ServerNetworkManager server = createNewServer(GM);
 
 		//open the window for the user to input the game data
@@ -95,7 +97,7 @@ public class Game {
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete()==false) Thread.sleep(500);
 
 		//initialize the hosts game board
-		initializeGameBoard(GM,GB);
+		initializeGameBoard(GB);
 
 		//send team changes to network
 		server.toClients("SpawnGameBoard");
@@ -139,8 +141,11 @@ public class Game {
 	 */
 	private static void createClientPlayer(GameManager GM) throws InterruptedException{
 		
-		//make a new human and pass it to the game manager
+		//make a new game board and a new human to pass to the game manager
 		Human human = new Human();
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
 		GM.setClientPlayer(human);
 		
 		//make a new window to ask for user input
@@ -166,9 +171,7 @@ public class Game {
 	 * @param GM The GameManager.
 	 * @param GB The GameBoard.
 	 */
-	private static void initializeGameBoard(GameManager GM, GameBoard GB){
-		GB.setGameManager(GM);
-		GM.setGameBoard(GB);
+	private static void initializeGameBoard(GameBoard GB){
 		GB.updateBoard();
 		GB.setVisible(true);
 	}
