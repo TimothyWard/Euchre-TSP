@@ -82,19 +82,10 @@ public class GameLobby extends javax.swing.JFrame{
         connectionsMade = 3 - numberOfPlayers;
         startGame.setEnabled(false);
     }
-
+ 
     /**
-     * FILL THIS IN
-     */
-    public void disableStart(){
-    	if(connectionsMade < 3){
-        	startGame.setEnabled(false);
-        }
-    }
-    
-    /**
-     * FILL THIS IN
-     * @param difficulty
+     * sets the AI difficulty for player 3
+     * @param difficulty e for easy, m for medium, h for hard
      */
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
@@ -110,8 +101,8 @@ public class GameLobby extends javax.swing.JFrame{
     }
 
     /**
-     * FILL THIS IN
-     * @param difficulty
+     * sets the AI difficulty for player 4
+     * @param difficulty e for easy, m for medium, h for hard
      */
     public void setPlayer4Difficulty(char difficulty){
     	if (difficulty == 'e'){
@@ -421,7 +412,6 @@ public class GameLobby extends javax.swing.JFrame{
     private void changeAIDifficulty(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeAIDifficulty
         myAIManager = new HostDifficultyChange(this, numberOfAI);
         myAIManager.setVisible(true);
-        this.disableStart();
     }//GEN-LAST:event_changeAIDifficulty
 
 //    /**
