@@ -1,8 +1,6 @@
 package euchre.game;
 
-import euchre.game.Round.*;
-import euchre.player.Card;
-import euchre.player.Human;
+import euchre.player.*;
 
 /**
  * 
@@ -113,7 +111,7 @@ public class GameLogic{
 	 * 
 	 * @return The team that took the trick for this hand.
 	 */
-	public Team interpretHand(Round round, Hand hand, Team one, Team two){
+	private Team interpretHand(Round round, Hand hand, Team one, Team two){
 		char trump = round.getTrumpSuit();
 		Card TRB = new Card('j', trump);
 		Card TLB = new Card('j', trump);
@@ -162,7 +160,7 @@ public class GameLogic{
 	 * @param array The array to find the max of.
 	 * @return The index of the maximum value of the array.
 	 */
-	public int maxIndex(int[] array) {
+	private int maxIndex(int[] array) {
 		int maximum = array[0];
 		int maxIndex = 0;
 		for (int i=1; i<array.length; i++) {
@@ -179,7 +177,7 @@ public class GameLogic{
 	 * @param team The team whose score is to be changed
 	 * @param points The number of points to be added to the specified team's score
 	 */
-	public void incrementScore(Team team, int points){
+	private void incrementScore(Team team, int points){
 		team.setScore(team.getScore() + points);	
 		System.out.println("Team " + team.getTeamNumber() + " earned " + points + " points!!!");
 	}

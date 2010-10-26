@@ -1,12 +1,6 @@
 package euchre.game;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import euchre.gui.ClientGameSetup;
-import euchre.gui.GameBoard;
-import euchre.gui.HostGameSetup;
-import euchre.gui.SetupLocal;
-import euchre.gui.Welcome;
+import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
 
@@ -30,16 +24,16 @@ public class Game {
 		GameManager GM = new GameManager();
 
 		//declare GUI welcome window to ask if host or client
-		Welcome GUI = new Welcome();
-		GUI.setVisible(true);
+		Welcome welcomeWindow = new Welcome();
+		welcomeWindow.setVisible(true);
 
 		//wait for the user to decide the game type
-		while (GUI.isWinodwComplete()==false) Thread.sleep(500);
+		while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
 
 		//retreive the user's desired game choice and dispose of the welcome window
-		char gameChoice = GUI.getGameChoice();
-		GUI.setVisible(false);
-		GUI.dispose();
+		char gameChoice = welcomeWindow.getGameChoice();
+		welcomeWindow.setVisible(false);
+		welcomeWindow.dispose();
 
 		//create the users desired player type based on the game choice
 		if (gameChoice == 'h') createHostPlayer(GM);
@@ -83,7 +77,7 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new host to.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createHostPlayer(GameManager GM) throws InterruptedException{
+	private static void createHostPlayer(GameManager GM) throws InterruptedException{
 
 		//create the new host, its game board and its server
 		GM.setHostPlayer(new Human());
@@ -117,7 +111,7 @@ public class Game {
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
+	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
 		
 		//set the new host to a new human
 		GM.setHostPlayer(new Human());
@@ -138,7 +132,7 @@ public class Game {
 	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static void createClientPlayer(GameManager GM) throws InterruptedException{
+	private static void createClientPlayer(GameManager GM) throws InterruptedException{
 		
 		//make a new human and pass it to the game manager
 		Human human = new Human();
@@ -167,7 +161,7 @@ public class Game {
 	 * @param GM The GameManager.
 	 * @param GB The GameBoard.
 	 */
-	public static void initializeGameBoard(GameManager GM, GameBoard GB){
+	private static void initializeGameBoard(GameManager GM, GameBoard GB){
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
 		GB.updateBoard();
@@ -178,7 +172,7 @@ public class Game {
 	 * This method creates a new server, and passes all of the needed references regarding it.
 	 * @param GM The GameManager that the server and it need a reference to and from.
 	 */
-	public static ServerNetworkManager createNewServer(GameManager GM){
+	private static ServerNetworkManager createNewServer(GameManager GM){
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.setGameManager(GM);
 		network.start();
@@ -191,7 +185,7 @@ public class Game {
 	 * @param GM The GameManager that the server and it need a reference to and from.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	public static ClientNetworkManager createNewClient(GameManager GM, ClientGameSetup clientSetup) throws InterruptedException{
+	private static ClientNetworkManager createNewClient(GameManager GM, ClientGameSetup clientSetup) throws InterruptedException{
 		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
 		clientSetup.setGameManager(GM);
 		GM.setClientNetworkManager(client);
@@ -209,7 +203,7 @@ public class Game {
 	 * @param two The second team.
 	 * @return Team The winning team
 	 */
-	public static Team gameWinner(Team one, Team two){
+	private static Team gameWinner(Team one, Team two){
 		if(one.getScore() >= 10){
 			return one;
 		}
