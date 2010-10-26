@@ -30,7 +30,7 @@ public class Game {
 		//wait for the user to decide the game type
 		while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
 
-		//retreive the user's desired game choice and dispose of the welcome window
+		//retrieve the user's desired game choice and dispose of the welcome window
 		char gameChoice = welcomeWindow.getGameChoice();
 		welcomeWindow.setVisible(false);
 		welcomeWindow.dispose();
