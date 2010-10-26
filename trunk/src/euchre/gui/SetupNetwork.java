@@ -7,10 +7,8 @@ import java.awt.*;
  * @author Neil MacBay(nmmacbay)
  *
  */
-public class SetupNetwork extends javax.swing.JFrame {
-	
+public class SetupNetwork extends javax.swing.JFrame{
     private static final long serialVersionUID = 1L;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -52,9 +50,6 @@ public class SetupNetwork extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPlayerName3;
     // End of variables declaration//GEN-END:variables
 
-	/**
-    * Constructs the form to interact with the setup of a network Game.
-    */
     public SetupNetwork() {
         initComponents();
         centerScreen();
