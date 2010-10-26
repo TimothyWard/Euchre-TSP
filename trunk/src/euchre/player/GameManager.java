@@ -102,7 +102,7 @@ public class GameManager {
 	 * Order of dealing is two, three, two, three, three, two, three, two
 	 * 
 	 */
-	public void deal(){
+	private void deal(){
 
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
@@ -154,7 +154,7 @@ public class GameManager {
 	 * If none do, then it asks each player if they want to call suit. If none call suit, the dealer is forced to pick
 	 * the trump suit.
 	 */
-	public void setTrump(){
+	private void setTrump(){
 
 		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
 
@@ -222,7 +222,7 @@ public class GameManager {
 	 * Plays a round of Euchre, consisting of five hands.
 	 * Determines the winner of each hand, and that player leads the next hand.
 	 */
-	public void playRound(){
+	private void playRound(){
 
 		//Set the current player to the player to the left of the dealer
 		curPlayer = nextPlayer(dealer);
@@ -266,7 +266,7 @@ public class GameManager {
 	 * @param cards An array of the cards played in the hand
 	 * @return The player who won the hand/trick
 	 */
-	public Player trickWinner(Card[] cards){
+	private Player trickWinner(Card[] cards){
 
 		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 		char trump = round.getTrumpSuit();
