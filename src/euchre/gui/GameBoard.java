@@ -2,9 +2,7 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
-
 import javax.swing.JOptionPane;
-
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
