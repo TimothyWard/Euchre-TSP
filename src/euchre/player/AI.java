@@ -95,7 +95,7 @@ public class AI implements Player{
 	/**
 	 * Determines the best card to lead and plays it.
 	 */
-	public void leadCard(){
+	private void leadCard(){
 		//FIX
 		if(calc.highestCardInHand(trump, trump, hand).equals(TRB)){
 			playCard = calc.highestCardInHand(trump, trump, hand);
@@ -121,7 +121,7 @@ public class AI implements Player{
 	/**
 	 * Determines the best card to follow with and plays it.
 	 */
-	public void followCard(){
+	private void followCard(){
 				
 		if(played[0]==null && played[1]==null){
 			led = played[2];
@@ -205,7 +205,7 @@ public class AI implements Player{
 	 * Determines if the AI has to follow suit with the lead card.
 	 * @return True if the AI has suit, false if it does not.
 	 */
-	public boolean hasSuit(char c){
+	private boolean hasSuit(char c){
 		
 		
 		return false;
@@ -215,7 +215,7 @@ public class AI implements Player{
 	 * Determines if the AI's partner is going to take the trick
 	 * @return True if the partner is going to take it, false otherwise
 	 */
-	public boolean partnerHasTrick(){
+	private boolean partnerHasTrick(){
 		return false;
 	}
 
