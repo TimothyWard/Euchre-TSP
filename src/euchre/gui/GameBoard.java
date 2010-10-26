@@ -815,20 +815,64 @@ public class GameBoard extends javax.swing.JFrame {
     	jLabelOTeamPoints.setText("" + points);
     }
         
-    public void setBottomPlayedCard(Card c){
-    	YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    public void setPlayer1PlayedCard(Card c){
+    	if(rightPlayer.getNumber() == 1){
+    		RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+    	else if(leftPlayer.getNumber() == 1){
+    		LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+		else if(topPlayer.getNumber() == 1){
+			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
+		else if(humanPlayer.getNumber() == 1){
+			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
     }
     
-    public void setUpperPlayedCard(Card c){
-    	UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    public void setPlayer2PlayedCard(Card c){
+    	if(rightPlayer.getNumber() == 2){
+    		RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+    	else if(leftPlayer.getNumber() == 2){
+    		LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+		else if(topPlayer.getNumber() == 2){
+			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
+		else if(humanPlayer.getNumber() == 2){
+			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
     }
 
-    public void setLeftPlayedCard(Card c){
-    	LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    public void setPlayer3PlayedCard(Card c){
+    	if(rightPlayer.getNumber() == 3){
+    		RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+    	else if(leftPlayer.getNumber() == 3){
+    		LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+		else if(topPlayer.getNumber() == 3){
+			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
+		else if(humanPlayer.getNumber() == 3){
+			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
     }
 
-    public void setRightPlayedCard(Card c){
-    	RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    public void setPlayer4PlayedCard(Card c){
+    	if(rightPlayer.getNumber() == 4){
+    		RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+    	else if(leftPlayer.getNumber() == 4){
+    		LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	}
+		else if(topPlayer.getNumber() == 4){
+			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
+		else if(humanPlayer.getNumber() == 4){
+			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
     }
     
     public void setTurnedCard(Card c){
