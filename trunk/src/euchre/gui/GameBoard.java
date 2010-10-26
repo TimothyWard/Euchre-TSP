@@ -126,11 +126,6 @@ public class GameBoard extends javax.swing.JFrame {
         jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
         jButtonYourCard4.setIcon(picManager.getPicture(humanPlayer.getHand()[3].getSuit(), humanPlayer.getHand()[3].getCardValue()));
         jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
-        handButtons[0] = jButtonYourCard1;
-        handButtons[1] = jButtonYourCard2;
-        handButtons[2] = jButtonYourCard3;
-        handButtons[3] = jButtonYourCard4;
-        handButtons[4] = jButtonYourCard5;
     }
     
     /**
