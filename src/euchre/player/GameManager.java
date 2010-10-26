@@ -37,39 +37,39 @@ public class GameManager {
 	 * FILL THIS IN
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		GameManager game = new GameManager();
-		Round round = new Round();
-		game.setRound(round);
-		//			Player player = new Human();
-		//			Player player2 = new Human();
-		//			Player player3 = new Human();
-		//			Player player4 = new Human();
-		//			game.setAllPlayers(player, player2, player3, player4);
-		Player ai1 = new AI();
-		Player ai2 = new AI();
-		Player ai3 = new AI();
-		Player ai4 = new AI();
-		game.p1 = ai1;
-		game.p2 = ai2;
-		game.p3 = ai3;
-		game.p4 = ai4;
-		game.setAllPlayers(ai1, ai2, ai3, ai4);
-
-		game.setTeam(1, 2);
-		game.setTeam(2, 2);
-		game.setTeam(3, 1);
-		game.setTeam(4, 1);
-
-		game.deal();
-		game.setTrump();
-
-		System.out.println("Upcard: " + game.upCard);
-		System.out.println("Trump Suit: " + game.round.getTrumpSuit());
-
-		game.playRound();
-
-	}
+//	public static void main(String[] args) {
+//		GameManager game = new GameManager();
+//		Round round = new Round();
+//		game.setRound(round);
+//		//			Player player = new Human();
+//		//			Player player2 = new Human();
+//		//			Player player3 = new Human();
+//		//			Player player4 = new Human();
+//		//			game.setAllPlayers(player, player2, player3, player4);
+//		Player ai1 = new AI();
+//		Player ai2 = new AI();
+//		Player ai3 = new AI();
+//		Player ai4 = new AI();
+//		game.p1 = ai1;
+//		game.p2 = ai2;
+//		game.p3 = ai3;
+//		game.p4 = ai4;
+//		game.setAllPlayers(ai1, ai2, ai3, ai4);
+//
+//		game.setTeam(1, 2);
+//		game.setTeam(2, 2);
+//		game.setTeam(3, 1);
+//		game.setTeam(4, 1);
+//
+//		game.deal();
+//		game.setTrump();
+//
+//		System.out.println("Upcard: " + game.upCard);
+//		System.out.println("Trump Suit: " + game.round.getTrumpSuit());
+//
+//		game.playRound();
+//
+//	}
 
 	/**
 	 * FILL THIS IN
@@ -314,7 +314,6 @@ public class GameManager {
 			else if (card.equals(L10)) cardValue[i] = 2;
 			else if (card.equals(L9)) cardValue[i] = 1;
 			else cardValue[i] = 0;
-			//System.out.println("Card: " + card + "     CardValue: " + cardValue[i]);
 		}
 
 		int maximum = cardValue[0];
