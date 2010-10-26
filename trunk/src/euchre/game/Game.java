@@ -8,6 +8,7 @@ import euchre.network.*;
 
 /**
  * @author Timothy Ward
+ * 
  * This class is the highest order class of the Euchre program. It is responsible for the highest level interactions between components.
  */
 public class Game {	
@@ -108,6 +109,7 @@ public class Game {
 	/**
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
+	 * 
 	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
@@ -128,6 +130,7 @@ public class Game {
 
 	/**
 	 * This method will create a client object.
+	 * 
 	 * @param GM The GameManager object for the network and to pass the new client to.
 	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
@@ -170,6 +173,7 @@ public class Game {
 	
 	/**
 	 * This method creates a new server, and passes all of the needed references regarding it.
+	 * 
 	 * @param GM The GameManager that the server and it need a reference to and from.
 	 */
 	private static ServerNetworkManager createNewServer(GameManager GM){
@@ -182,6 +186,7 @@ public class Game {
 	
 	/**
 	 * This method creates a new server, and passes all of the needed references regarding it.
+	 * 
 	 * @param GM The GameManager that the server and it need a reference to and from.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
