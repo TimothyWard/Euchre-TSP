@@ -83,7 +83,7 @@ public class Game {
 	private static void createHostPlayer(GameManager GM) throws InterruptedException{
 
 		//create the new host, its game board and its server
-		GM.setHostPlayer(new Human());
+		GM.newPlayer(new Human());
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
@@ -111,28 +111,6 @@ public class Game {
 	}
 
 	/**
-	 * The method will create a local only game, it is for when a user chooses to play against
-	 * three computers.
-	 * 
-	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
-	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
-	 */
-	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
-		
-		//set the new host to a new human
-		GM.setHostPlayer(new Human());
-		
-		//create a window to ask for name and game info
-		SetupLocal local = new SetupLocal();
-		local.setVisible(true);
-		
-		//wait for info
-		while (local.getSetupComplete() == false) Thread.sleep(500);
-		
-		//spawn a human and three new copies of the software as AI's
-	}
-
-	/**
 	 * This method will create a client object.
 	 * 
 	 * @param GM The GameManager object for the network and to pass the new client to.
@@ -146,7 +124,7 @@ public class Game {
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
-		GM.setClientPlayer(human);
+		GM.newPlayer(human);
 		
 		//make a new window to ask for user input
 		ClientGameSetup clientSetup = new ClientGameSetup();
@@ -225,4 +203,25 @@ public class Game {
 		}
 	}
 
+	/**
+	 * The method will create a local only game, it is for when a user chooses to play against
+	 * three computers.
+	 * 
+	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
+		
+		//set the new host to a new human
+		GM.newPlayer(new Human());
+		
+		//create a window to ask for name and game info
+		SetupLocal local = new SetupLocal();
+		local.setVisible(true);
+		
+		//wait for info
+		while (local.getSetupComplete() == false) Thread.sleep(500);
+		
+		//spawn a human and three new copies of the software as AI's
+	}
 }
