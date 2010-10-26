@@ -8,7 +8,7 @@ import euchre.network.*;
 
 /**
  * @author Timothy Ward
- * This class is the highest order class of the Euchre program. It is responsible for the highest level interactions between componenets.
+ * This class is the highest order class of the Euchre program. It is responsible for the highest level interactions between components.
  */
 public class Game {	
 
@@ -88,7 +88,7 @@ public class Game {
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 
-		//wait untill the user has input name and number of additional human players	
+		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete()==false) Thread.sleep(500);
 
 		//initialize the hosts game board
