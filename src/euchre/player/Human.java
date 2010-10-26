@@ -12,6 +12,7 @@ public class Human implements Player{
 
 	private Card activeCard = null;
 	private int numCards = 0;
+	private int playerNum;
 	private int team = 0;
 	private boolean isTurn = false;
 	private char orderSuit = 0;
@@ -239,10 +240,11 @@ public class Human implements Player{
 	}
 
 	public int getNumber() {
-		return -1;
+		return playerNum;
 	}
 
 	public void setNumber(int i) {
+		playerNum = i;
 	}
 
 
