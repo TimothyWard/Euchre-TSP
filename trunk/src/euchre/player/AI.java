@@ -14,7 +14,8 @@ import euchre.network.ClientNetworkManager;
 public class AI implements Player{
 
 	private String name = "";
-	private Card[] hand = new Card[5];
+	private Card emptyCard = new Card('a', 's');
+	private Card[] hand = {emptyCard,emptyCard,emptyCard,emptyCard,emptyCard};
 	private Card[] played = new Card[3];
 	private char trump;					//Trump suit: s=spades, h=hearts, d=diamonds, c=clubs
 	private int team;
@@ -22,40 +23,17 @@ public class AI implements Player{
 	private int playerNumber;
 	private Card playCard;
 	private ClientNetworkManager clientManager;
-	private Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
 	private Card led = null;
 	private int playerID = (int)(Math.random()*5000000);
 
-	
 	CardEvaluator calc = new CardEvaluator();
-	
-////Test for AI
-//	public static void main(String[] args) {
-//		AI aiPlayer = new AI();
-//		Deck deck = new Deck();
-//		deck.shuffle();
-//		
-//		Card[] played = new Card[4];
-//		
-//		aiPlayer.drawCard(deck.drawCard());
-//		System.out.println("Hand:");
-//		System.out.println(aiPlayer.hand[0].getSuit() + " " + aiPlayer.hand[0].getCardValue());
-//		aiPlayer.drawCard(deck.drawCard());
-//		System.out.println(aiPlayer.hand[1].getSuit() + " " + aiPlayer.hand[1].getCardValue());
-//		aiPlayer.drawCard(deck.drawCard());
-//		System.out.println(aiPlayer.hand[2].getSuit() + " " + aiPlayer.hand[2].getCardValue());
-//		aiPlayer.drawCard(deck.drawCard());
-//		System.out.println(aiPlayer.hand[3].getSuit() + " " + aiPlayer.hand[3].getCardValue());
-//		aiPlayer.drawCard(deck.drawCard());
-//		System.out.println(aiPlayer.hand[4].getSuit() + " " + aiPlayer.hand[4].getCardValue());
-//		
-//	
-//		
-//	}
+
+
 
 	public AI(){
 
 	}
+
 	/**
 	 * AI constructor with a reference to the client network interface
 	 * 
@@ -96,22 +74,30 @@ public class AI implements Player{
 	 * Determines the best card to lead and plays it.
 	 */
 	private void leadCard(){
-		//FIX
-		if(calc.highestCardInHand(trump, trump, hand).equals(TRB)){
+
+		char sameColor;
+		if(trump == 's') sameColor = 'c';
+		else if(trump == 'c') sameColor = 's';
+		else if(trump == 'd') sameColor = 'h';
+		else sameColor = 'd';
+
+		//If the AI has the Right Bower, play it
+		if(calc.highestCardInHand(trump, trump, hand).getSuit()==trump && calc.highestCardInHand(trump, trump, hand).getCardValue()=='j'){
 			playCard = calc.highestCardInHand(trump, trump, hand);
 		}
-		else if(calc.highestCardInHand(trump, trump, hand).equals(TLB)){
+		//Or if the AI has the Left Bower, play it...
+		else if(calc.highestCardInHand(trump, trump, hand).getCardValue()=='j' && calc.highestCardInHand(trump, trump, hand).getSuit()==sameColor){
 			playCard = calc.highestCardInHand(trump, trump, hand);
 		}
-//		else if(calc.){
-//			playCard = highestCard(false);
-//		}
+		//		else if(calc.){
+		//			playCard = highestCard(false);
+		//		}
 		else{
 			//FIX
 			playCard = calc.lowestCardInHand(trump, trump, hand);
 			//playCard = calc.lowestTrumpInHand(trump, trump, hand);
 		}
-		
+
 		//		if hand contains right bower, play right bower
 		//		else if hand contains left bower, play left bower
 		//		else if hand contains off-suit, play highest off-suit
@@ -122,7 +108,7 @@ public class AI implements Player{
 	 * Determines the best card to follow with and plays it.
 	 */
 	private void followCard(){
-				
+
 		if(played[2]==null && played[1]==null){
 			led = played[0];
 		}
@@ -132,8 +118,8 @@ public class AI implements Player{
 		else{
 			led = played[0];
 		}
-		
-		
+
+
 		//If the AI has suit, they must follow suit...
 		if(calc.hasLead(led.getSuit(), hand)){
 			//If the AI's partner is winning this trick, play a lower card than them.
@@ -155,13 +141,15 @@ public class AI implements Player{
 			}
 			//If the AI's partner is not winning the trick, play the lowest trump card in the AI's hand
 			else{
-				playCard = calc.lowestTrumpInHand(trump, led.getSuit(), hand);
-				if(playCard==null){
+				if(calc.hasTrump(trump, hand)){
+					playCard = calc.lowestTrumpInHand(trump, led.getSuit(), hand);
+				}
+				else{
 					playCard = calc.lowestCardInHand(trump, led.getSuit(), hand);
 				}
-				
+
 				//Eventually will need something to recognize if it is possible to beat other players. If not possible, then AI
-				//should not waste a trump card
+				//should play the lowest card.
 			}
 		}
 	}
@@ -171,15 +159,7 @@ public class AI implements Player{
 	 * @param c The card to be played by the AI.
 	 */
 	public Card playCard(){
-		
-		TRB = new Card('j', trump);
-		TLB = new Card('j', trump);
-		TA = new Card('a', trump);
-		TK = new Card('k', trump);
-		TQ = new Card('q', trump);
-		T10 = new Card('0', trump);
-		T9 = new Card('9', trump);
-				
+
 		if(played[0]==null){
 			leadCard();
 		}
@@ -197,9 +177,9 @@ public class AI implements Player{
 				return playCard;
 			}
 		}
-		
-		
-		
+
+
+
 		return playCard;
 
 	}
@@ -209,8 +189,8 @@ public class AI implements Player{
 	 * @return True if the AI has suit, false if it does not.
 	 */
 	private boolean hasSuit(char c){
-		
-		
+
+
 		return false;
 	}
 
@@ -238,7 +218,7 @@ public class AI implements Player{
 			discard();
 			hand[numCards] = c;
 		}
-		
+
 		numCards++;
 
 	}
@@ -250,7 +230,7 @@ public class AI implements Player{
 	public Card discard() {
 		numCards--;
 		return null;
-		
+
 	}
 
 	/**
@@ -295,14 +275,7 @@ public class AI implements Player{
 			trump = 0;
 			return trump;
 		}
-		
-		TRB = new Card('j', trump);
-		TLB = new Card('j', trump);
-		TA = new Card('a', trump);
-		TK = new Card('k', trump);
-		TQ = new Card('q', trump);
-		T10 = new Card('0', trump);
-		T9 = new Card('9', trump);
+
 		return trump;
 
 	}
@@ -314,15 +287,15 @@ public class AI implements Player{
 	public Card[] getHand() {
 		return hand;
 	}
-	
+
 	/**
 	 * Send a message across the network 
 	 * 
 	 * @param message The tokenized message to send across the network (formatting to be defined)
 	 */
 	public void sendNetworkMessage(String message){
-		
-			clientManager.toServer(message);
+
+		clientManager.toServer(message);
 	}
 
 	/**
@@ -333,26 +306,19 @@ public class AI implements Player{
 	public char stickDealer() {
 		//FIX
 		trump = hand[2].getSuit();
-		
-		TRB = new Card('j', trump);
-		TLB = new Card('j', trump);
-		TA = new Card('a', trump);
-		TK = new Card('k', trump);
-		TQ = new Card('q', trump);
-		T10 = new Card('0', trump);
-		T9 = new Card('9', trump);
+
 		return trump;
-		
+
 	}
-	
+
 	/**
 	 * Sets the AI's turn to true
 	 */
 	@Override
 	public void setTurn(boolean turn) {	
-		
+
 	}
-	
+
 	/**
 	 * Tells the AI what cards have been played so far this hand.
 	 * @param cards
@@ -364,14 +330,14 @@ public class AI implements Player{
 				played[x]=cards[2-i];
 				x++;
 			}
-			
+
 		}
 	}
-	
+
 	public int getPlayerID() {
 		return playerID;
 	}
-	
+
 	public void setPlayerID(int playerID) {
 		this.playerID = playerID;
 	}
@@ -379,11 +345,11 @@ public class AI implements Player{
 	public void setTrump(char tr){
 		trump = tr;
 	}
-	
+
 	public boolean isHuman() {
 		return false;
 	}
-	
+
 	public int getTeam() {
 		return team;
 	}
