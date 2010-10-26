@@ -24,118 +24,120 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	BufferedReader in;
 	EuchreProtocol protocol;
 	GameManager manager;
-	
+
 	String hostname;
 	int port = 4444;
 	boolean connecting = true;
 	boolean running = true;
 	String inputLine;
-	
+
 	/**
 	 * Create a ClientNetworkManager to connect to localhost.
 	 * 
 	 */
 	public ClientNetworkManager(){
-		
+
 		hostname = "localhost";
 		protocol = new EuchreProtocol();
-		
+
 	}
-	
+
 	/**
 	 * Create a ClientNetworkManager to connect to the specified hostname.
 	 *  
 	 * @param hostname The hostname of the server to connect to.
 	 */
 	public ClientNetworkManager(String hostname){
-		
+
 		this.hostname = hostname;
 		protocol = new EuchreProtocol();
 	}
-	
+
+	/**
+	 * FILL THIS IN
+	 * @param name
+	 * @param number
+	 */
 	public void registerPlayer(String name, int number){
-		
+
 		toServer("Name,"+name+","+number);
 	}
-	
+
+	/**
+	 * FILL THIS IN
+	 * @param tokenizedString
+	 */
 	public void toServer(String tokenizedString){
-		
+
 		out.println(tokenizedString);
 	}
-	
+
+	/**
+	 * FILL THIS IN
+	 * @param gm
+	 */
 	public void setGameManager(GameManager gm){
 		manager = gm;
 		protocol.setGameManager(gm);
 	}
-	
+
 	/**
 	 * The thread's actions. Make a socket connection to the server and send a string
 	 * 
 	 */
 	public void run(){
-		
+
 		//run this loop continually
 		while(true){
-			
-			if(connecting){
-				
-				
-					//create the new socket connection
-					try {
-						clientSocket = new Socket(hostname, port);
-					} catch (UnknownHostException e) {
-						// TODO Auto-generated catch block
-						System.out.println("Unknown Host:" + hostname);
-						running = false;
-						//e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						//e.printStackTrace();
-						System.out.println("Connection refused");
-						running = false;
-						break;
-					}
-					
-					//get reference to the output stream
-					try {
-						out = new PrintWriter(clientSocket.getOutputStream(), true);
-						in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					System.out.println("connected to server");
-					
-					//send a message to the server
-					//out.println("CLIENT");
-					connecting = false;
-				
+			if(connecting){
+
+
+				//create the new socket connection
+				try {
+					clientSocket = new Socket(hostname, port);
+				} catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Unknown Host:" + hostname);
+					running = false;
+					//e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println("Connection refused");
+					running = false;
+					break;
+				}
+
+				//get reference to the output stream
+				try {
+					out = new PrintWriter(clientSocket.getOutputStream(), true);
+					in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("connected to server");
+
+				//send a message to the server
+				//out.println("CLIENT");
+				connecting = false;
+
 			}
 			if(running){
 				try {
 					while((inputLine = in.readLine()) != null){
-						
+
 						//output the message
 						System.out.println("Message from server:");
-					    protocol.clientParse(inputLine);
+						protocol.clientParse(inputLine);
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-			}
-			
-			
-			
-			
-			
-		}
-		
-		
-		
+			}	
+		}	
 	}
-	
-	
 }

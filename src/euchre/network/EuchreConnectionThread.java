@@ -83,8 +83,11 @@ public class EuchreConnectionThread extends Thread {
 		
 	}
 	
+	/**
+	 * FILL THIS IN
+	 * @return
+	 */
 	public PrintWriter getPrintWriter(){
 		return out;
 	}
-
 }
