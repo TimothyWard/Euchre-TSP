@@ -243,21 +243,12 @@ public class AI implements Player{
 		int numDiamond = 0;
 		int numSpade = 0;
 		int numClub = 0;
+		
+		numHeart = calc.numberOfSuit('h', hand);
+		numDiamond = calc.numberOfSuit('d', hand);
+		numSpade = calc.numberOfSuit('s', hand);
+		numClub = calc.numberOfSuit('c', hand);
 
-		for(int i=0;i<hand.length;i++){
-			if(hand[i].getSuit()=='h'){
-				numHeart++;
-			}
-			else if(hand[i].getSuit()=='d'){
-				numDiamond++;
-			}
-			else if(hand[i].getSuit()=='s'){
-				numSpade++;
-			}
-			else{
-				numClub++;
-			}
-		}
 
 		if(numHeart>=3){
 			trump = 'h';
@@ -273,7 +264,6 @@ public class AI implements Player{
 		}
 		else{
 			trump = 0;
-			return trump;
 		}
 
 		return trump;
@@ -304,8 +294,24 @@ public class AI implements Player{
 	 */
 	@Override
 	public char stickDealer() {
-		//FIX
-		trump = hand[2].getSuit();
+		
+		int numHeart = 0;
+		int numDiamond = 0;
+		int numSpade = 0;
+		int numClub = 0;
+		
+		numHeart = calc.numberOfSuit('h', hand);
+		numDiamond = calc.numberOfSuit('d', hand);
+		numSpade = calc.numberOfSuit('s', hand);
+		numClub = calc.numberOfSuit('c', hand);
+		
+		int max = Math.max(numHeart, numDiamond);
+		if(max==numHeart) trump='h';
+		else trump = 'd';
+		max = Math.max(numSpade, max);
+		if(max==numSpade) trump = 's';
+		max = Math.max(numClub, max);
+		if(max==numClub) trump = 'c';
 
 		return trump;
 
