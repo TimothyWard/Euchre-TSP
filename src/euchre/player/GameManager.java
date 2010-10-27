@@ -236,13 +236,14 @@ public class GameManager {
 			//For each player, have them play a card
 			for(int i=0;i<4;i++){
 				curPlayer.setTurn(true);
+				
 				if(!curPlayer.isHuman()){
 					((AI)curPlayer).setPlayed(played);
 				}
+				
 				played[i] = curPlayer.playCard();
 				
 				board.playCard(played[i], curPlayer.getNumber());
-				
 				
 				//System.out.println(curPlayer.getNumber() + " " + played[i]);
 
