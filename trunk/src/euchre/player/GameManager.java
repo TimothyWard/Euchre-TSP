@@ -77,7 +77,7 @@ public class GameManager {
 //	}
 
 	/**
-	 * Constructor for the GameManager class.
+	 * Default Constructor for the GameManager class.
 	 * 
 	 */
 	public GameManager() {
@@ -216,8 +216,8 @@ public class GameManager {
 		}//End of picking suit
 
 		//Tells any AI what the current trump is...
+		Player temp = curPlayer;
 		for(int a=0;a<3;a++){
-			Player temp = curPlayer;
 			if(temp.isHuman()==false){
 				((AI)temp).setTrump(round.getTrumpSuit());
 				temp = nextPlayer(temp);
