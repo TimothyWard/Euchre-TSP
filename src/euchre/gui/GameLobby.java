@@ -90,13 +90,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player3Difficulty = 'e';
-    	   setPlayer3Status("...is computer player...Difficulty: Easy");
+    	   Player3Status.setText("...is computer player...Difficulty: Easy");
        }else if (difficulty == 'm'){
     	   player3Difficulty = 'm';
-    	   setPlayer3Status("...is computer player...Difficulty: Medium");
+    	   Player3Status.setText("...is computer player...Difficulty: Medium");
        }else if (difficulty == 'h'){
     	   player3Difficulty = 'h';
-    	   setPlayer3Status("...is computer player...Difficulty: Hard");
+    	   Player3Status.setText("...is computer player...Difficulty: Hard");
        }
     }
 
@@ -107,13 +107,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer4Difficulty(char difficulty){
     	if (difficulty == 'e'){
      	   player4Difficulty = 'e';
-     	   setPlayer4Status("...is computer player...Difficulty: Easy");
+     	  Player4Status.setText("...is computer player...Difficulty: Easy");
         }else if (difficulty == 'm'){
      	   player4Difficulty = 'm';
-     	   setPlayer4Status("...is computer player...Difficulty: Medium");
+     	   Player4Status.setText("...is computer player...Difficulty: Medium");
         }else if (difficulty == 'h'){
      	   player4Difficulty = 'h';
-     	   setPlayer4Status("...is computer player...Difficulty: Hard");
+     	  Player4Status.setText("...is computer player...Difficulty: Hard");
         }
     }
 
@@ -344,68 +344,71 @@ public class GameLobby extends javax.swing.JFrame{
     	//Figure out the number of players selected for each team.
         int team1Players = 0;
         int team2Players = 0;
-        if(startGame.isEnabled()){
-        if(jRadioBPlayer1Team1.isSelected()){
-        	team1Players++;
-        }else{
-        	team2Players++;
-        }
-        if(jRadioBPlayer2Team1.isSelected()){
-        	team1Players++;
-        }else{
-        	team2Players++;
-        }
-        if(jRadioBPlayer3Team1.isSelected()){
-        	team1Players++;
-        }else{
-        	team2Players++;
-        }
-        if(jRadioBPlayer4Team1.isSelected()){
-        	team1Players++;
-        }else{
-        	team2Players++;
-        }
-        if(team1Players == team2Players){ //Teams are valid.
-        	//set teams in game manager.
-        	if(jRadioBPlayer1Team1.isSelected()){
-        		myManager.setTeam(1, 1);
-        		myManager.getServerNetworkManager().toClients("SetTeam,1,1");
-        	}else{
-        		myManager.setTeam(1, 2);
-        		myManager.getServerNetworkManager().toClients("SetTeam,1,2");
-        	}
-        	if(jRadioBPlayer2Team1.isSelected()){
-        		myManager.setTeam(2, 1);
-        		myManager.getServerNetworkManager().toClients("SetTeam,2,1");
-        	}else{
-        		myManager.setTeam(2, 2);
-        		myManager.getServerNetworkManager().toClients("SetTeam,2,2");
-        	}
-        	if(jRadioBPlayer3Team1.isSelected()){
-        		myManager.setTeam(3, 1);
-        		myManager.getServerNetworkManager().toClients("SetTeam,3,1");
-        	}else{
-        		myManager.setTeam(3, 2);
-        		myManager.getServerNetworkManager().toClients("SetTeam,3,2");
-        	}
-        	if(jRadioBPlayer4Team1.isSelected()){
-        		myManager.setTeam(4, 1);
-        		myManager.getServerNetworkManager().toClients("SetTeam,4,1");
-        	}else{
-        		myManager.setTeam(4, 2);
-        		myManager.getServerNetworkManager().toClients("SetTeam,4,2");
-        	}
-        	if (myAIManager != null){
-        		myAIManager.setVisible(false);
-        		myAIManager.dispose();
-        	}
-        	finished = true;
-        	setupComplete = true;
-        	this.setVisible(false);
+        if(connectionsMade >= 3){
+	        if(jRadioBPlayer1Team1.isSelected()){
+	        	team1Players++;
+	        }else{
+	        	team2Players++;
+	        }
+	        if(jRadioBPlayer2Team1.isSelected()){
+	        	team1Players++;
+	        }else{
+	        	team2Players++;
+	        }
+	        if(jRadioBPlayer3Team1.isSelected()){
+	        	team1Players++;
+	        }else{
+	        	team2Players++;
+	        }
+	        if(jRadioBPlayer4Team1.isSelected()){
+	        	team1Players++;
+	        }else{
+	        	team2Players++;
+	        }
+	        if(team1Players == team2Players){ //Teams are valid.
+	        	//set teams in game manager.
+	        	if(jRadioBPlayer1Team1.isSelected()){
+	        		myManager.setTeam(1, 1);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,1,1");
+	        	}else{
+	        		myManager.setTeam(1, 2);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,1,2");
+	        	}
+	        	if(jRadioBPlayer2Team1.isSelected()){
+	        		myManager.setTeam(2, 1);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,2,1");
+	        	}else{
+	        		myManager.setTeam(2, 2);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,2,2");
+	        	}
+	        	if(jRadioBPlayer3Team1.isSelected()){
+	        		myManager.setTeam(3, 1);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,3,1");
+	        	}else{
+	        		myManager.setTeam(3, 2);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,3,2");
+	        	}
+	        	if(jRadioBPlayer4Team1.isSelected()){
+	        		myManager.setTeam(4, 1);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,4,1");
+	        	}else{
+	        		myManager.setTeam(4, 2);
+	        		myManager.getServerNetworkManager().toClients("SetTeam,4,2");
+	        	}
+	        	if (myAIManager != null){
+	        		myAIManager.setVisible(false);
+	        		myAIManager.dispose();
+	        	}
+	        	finished = true;
+	        	setupComplete = true;
+	        	this.setVisible(false);
+	        }
+	        else{
+	        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
+	        }
         }
         else{
-        	 JOptionPane.showMessageDialog(null, "Invalid Team Assignments.  Please set two players to each team", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        	JOptionPane.showMessageDialog(null, "Please wait until all players have connected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_StartGame
 
@@ -481,8 +484,8 @@ public class GameLobby extends javax.swing.JFrame{
         	startGame.setEnabled(true);
         }
     }
-    
-    public boolean isSetupComplete() {
+      
+    public boolean isSetupComplete(){
 		return setupComplete;
 	}
 
