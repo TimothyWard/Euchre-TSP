@@ -77,16 +77,12 @@ public class GameBoard extends javax.swing.JFrame {
     private javax.swing.JLabel weTeamNumberLabel;
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
-    private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+    private javax.swing.JButton[] handButtons;
     
     public GameBoard(){
         initComponents();
         centerScreen();
-        heartsButton.setVisible(false);
-        clubsButton.setVisible(false);
-        diamondsButton.setVisible(false);
-        spadesButton.setVisible(false);
-        suitPassButton.setVisible(false);
+        hideSuitButtons();
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
         handButtons[2] = jButtonYourCard3;
@@ -117,10 +113,7 @@ public class GameBoard extends javax.swing.JFrame {
         RCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
         RCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
         RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        jButtonPass.setVisible(true);
-		jButtonPickUp.setVisible(true);
-		TurnedCard.setVisible(true);
-		jLabelDealer.setVisible(true);
+        showTrumpButtons();
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
         jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
         jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
@@ -712,11 +705,7 @@ public class GameBoard extends javax.swing.JFrame {
     private void pickItUpButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pickItUpButtonClicked
     	if(humanPlayer.isTurn()){
 	    	this.hideTrumpButtons();
-    		heartsButton.setVisible(true);
-            clubsButton.setVisible(true);
-            diamondsButton.setVisible(true);
-            spadesButton.setVisible(true);
-            suitPassButton.setVisible(true);
+	    	showSuitButtons();
     		humanPlayer.setOrderUp(true);
     	}
 
@@ -725,44 +714,28 @@ public class GameBoard extends javax.swing.JFrame {
     private void heartsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartsListener
     	if(humanPlayer.isTurn()){
     		 humanPlayer.setCallSuit('h');
-    		 heartsButton.setVisible(false);
-    		 clubsButton.setVisible(false);
-    		 diamondsButton.setVisible(false);
-    		 spadesButton.setVisible(false);
-    		 suitPassButton.setVisible(false);
+    		 hideSuitButtons();
     	}
     }//GEN-LAST:event_heartsListener
 
     private void clubsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clubsListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('c');
-    		heartsButton.setVisible(false);
-            clubsButton.setVisible(false);
-            diamondsButton.setVisible(false);
-            spadesButton.setVisible(false);
-            suitPassButton.setVisible(false);
+    		hideSuitButtons();
     	}
     }//GEN-LAST:event_clubsListener
 
     private void diamondsListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diamondsListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('d');
-    		heartsButton.setVisible(false);
-            clubsButton.setVisible(false);
-            diamondsButton.setVisible(false);
-            spadesButton.setVisible(false);
-            suitPassButton.setVisible(false);
+    		hideSuitButtons();
     	}
     }//GEN-LAST:event_diamondsListener
 
     private void spadesListener(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spadesListener
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('s');
-    		heartsButton.setVisible(false);
-            clubsButton.setVisible(false);
-            diamondsButton.setVisible(false);
-            spadesButton.setVisible(false);
-            suitPassButton.setVisible(false);
+    		hideSuitButtons();
     	}
     }//GEN-LAST:event_spadesListener
 
@@ -792,12 +765,44 @@ public class GameBoard extends javax.swing.JFrame {
     /**
      * hides the buttons used during trump selection
      */
-    public void hideTrumpButtons(){
+    private void hideTrumpButtons(){
     	jButtonPass.setVisible(false);
     	jButtonPickUp.setVisible(false);
     	TurnedCard.setIcon(picManager.getPicture('e', '0'));
     	jLabelPassInfo.setVisible(false);
     	jLabelDealer.setVisible(false);
+    }
+    
+    /**
+     * displays the buttons used during trump selection
+     */
+    private void showTrumpButtons(){
+    	jButtonPass.setVisible(true);
+    	jButtonPickUp.setVisible(true);
+    	jLabelPassInfo.setVisible(true);
+    	jLabelDealer.setVisible(true);
+    }
+   
+    /**
+     * hides the buttons used during suit selection
+     */
+    private void hideSuitButtons(){
+    	heartsButton.setVisible(false);
+        clubsButton.setVisible(false);
+        diamondsButton.setVisible(false);
+        spadesButton.setVisible(false);
+        suitPassButton.setVisible(false);
+    }
+    
+    /**
+     * displays the buttons used during suit selection
+     */
+    private void showSuitButtons(){
+    	heartsButton.setVisible(true);
+        clubsButton.setVisible(true);
+        diamondsButton.setVisible(true);
+        spadesButton.setVisible(true);
+        suitPassButton.setVisible(true);
     }
     
     public void setWeTricks(int tricks){
