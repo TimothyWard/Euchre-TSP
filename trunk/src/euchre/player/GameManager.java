@@ -31,8 +31,11 @@ public class GameManager {
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
 	private Round round = null;
-	private boolean newRound = false;
-
+	
+	Card[] hand1 = new Card[5];
+	Card[] hand2 = new Card[5];
+	Card[] hand3 = new Card[5];
+	Card[] hand4 = new Card[5];
 
 	/**
 	 * Main test method for the Game Manager class.
@@ -101,7 +104,6 @@ public class GameManager {
 	 * deals five cards to each player, in groups of two and three.
 	 * 
 	 * Order of dealing is two, three, two, three, three, two, three, two
-	 * 
 	 */
 	private void deal(){
 
@@ -145,6 +147,11 @@ public class GameManager {
 
 		}
 
+		hand1 = player1.getHand();
+		hand2 = player2.getHand();
+		hand3 = player3.getHand();
+		hand4 = player4.getHand();
+		
 		upCard = deck.drawCard();
 
 	}
@@ -510,10 +517,25 @@ public class GameManager {
 	public Player getp4(){
 		return p4;
 	}
+	
+	public Card[] getHand1() {
+		return hand1;
+	}
+
+	public Card[] getHand2() {
+		return hand2;
+	}
+
+	public Card[] getHand3() {
+		return hand3;
+	}
+
+	public Card[] getHand4() {
+		return hand4;
+	}
 
 	public void setRound(Round round){
 		this.round = round;
-		newRound = true;
 	}
 
 	public GameLobby getLobby(){
