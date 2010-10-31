@@ -123,12 +123,12 @@ public class GameManager {
 				draw = 2;
 			}
 
-//			for(int x=0;x<draw;x++){
+//			for(int x = 0; x < draw; x++){
 //				card = deck.drawCard();
-//				if(curPlayer.getNumber()==1) hand1[x] = card;
-//				if(curPlayer.getNumber()==2) hand2[x] = card;
-//				if(curPlayer.getNumber()==3) hand3[x] = card;
-//				if(curPlayer.getNumber()==4) hand4[x] = card;
+//				if(curPlayer.getNumber() == 1) hand1[x] = card;
+//				if(curPlayer.getNumber() == 2) hand2[x] = card;
+//				if(curPlayer.getNumber() == 3) hand3[x] = card;
+//				if(curPlayer.getNumber() == 4) hand4[x] = card;
 //			}
 
 			curPlayer=nextPlayer(curPlayer);
@@ -149,12 +149,12 @@ public class GameManager {
 				draw = 2;
 			}
 
-//			for(int x=(4-draw);x<4;x++){
+//			for(int x = (4 - draw); x < 4; x++){
 //				card = deck.drawCard();
-//				if(curPlayer.getNumber()==1) hand1[x] = card;
-//				if(curPlayer.getNumber()==2) hand2[x] = card;
-//				if(curPlayer.getNumber()==3) hand3[x] = card;
-//				if(curPlayer.getNumber()==4) hand4[x] = card;
+//				if(curPlayer.getNumber() == 1) hand1[x] = card;
+//				if(curPlayer.getNumber() == 2) hand2[x] = card;
+//				if(curPlayer.getNumber() == 3) hand3[x] = card;
+//				if(curPlayer.getNumber() == 4) hand4[x] = card;
 //			}
 			
 			curPlayer = nextPlayer(curPlayer);
@@ -391,16 +391,16 @@ public class GameManager {
 	 */
 	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
 		if (p1.getPlayerID() == host.getPlayerID()){
-			playerIAm=host;
+			playerIAm = host;
 		}
 		else if (p1.getPlayerID() == client1.getPlayerID()){
-			playerIAm=client1;
+			playerIAm = client1;
 		}
 		else if (p1.getPlayerID() == client2.getPlayerID()){
-			playerIAm=client2;
+			playerIAm = client2;
 		}
 		else if (p1.getPlayerID() == client3.getPlayerID()){
-			playerIAm=client3;
+			playerIAm = client3;
 		}
 		p1 = host;
 		p2 = client1;
@@ -476,8 +476,8 @@ public class GameManager {
 			player4.setNumber(4);
 		}
 
-		teamOne = new Team(player1,player3);
-		teamTwo = new Team(player2,player4);
+		teamOne = new Team(player1, player3);
+		teamTwo = new Team(player2, player4);
 		dealer = player1;
 		teamsComplete = true;
 	}
