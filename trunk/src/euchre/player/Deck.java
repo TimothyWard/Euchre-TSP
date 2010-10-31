@@ -59,7 +59,7 @@ public class Deck{
 	 *
 	 * @param c the Card to be disCarded
 	 */
-	public void disCardCard(Card c){
+	public void discardCard(Card c){
 		for(int x = cardsLeftInDeck; x > 0; x--){
 			cardDeck[x] = cardDeck[x-1];
 		}

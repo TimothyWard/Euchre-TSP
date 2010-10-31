@@ -203,7 +203,7 @@ public class GameManager {
 					round.setTeamWhoOrdered(teamTwo);
 				}
 				round.setTrumpSuit(upCard.getSuit());
-				deck.disCardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
+				deck.discardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
 				dealer.drawCard(upCard);								//and pick up the upCard
 			}
 			else{
@@ -212,7 +212,7 @@ public class GameManager {
 		}
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer.equals(dealer)){
-			deck.disCardCard(upCard);									//...and discard the upCard...
+			deck.discardCard(upCard);									//...and discard the upCard...
 
 
 			curPlayer=nextPlayer(dealer);
