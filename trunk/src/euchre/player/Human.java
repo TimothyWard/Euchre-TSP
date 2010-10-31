@@ -108,6 +108,7 @@ public class Human implements Player{
 
 		while(orderedUp == 0){
 			//Wait until the user selects a suit
+			System.out.println("OrderedUp = " + orderedUp + ".  Waiting on Player " + playerNum + " to order up...");
 			try{
 				Thread.sleep(500);
 			} 
@@ -161,6 +162,8 @@ public class Human implements Player{
 
 		while(activeCard == null){
 			//Wait until the user clicks a card...
+			
+			System.out.println("Waiting on player " + playerNum + " to discard a card...");
 			try {
 				Thread.sleep(500);
 			} 
