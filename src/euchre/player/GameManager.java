@@ -149,22 +149,30 @@ public class GameManager {
 			player4.drawCard(hand4[i]);
 		}
 
+		upCard = deck.drawCard();
+
+		
 
 		server.toClients("SetHand,1,"+player1.getHand()[0]+","+player1.getHand()[1]+","+player1.getHand()[2]+","+
 							player1.getHand()[3]+","+player1.getHand()[4]);
+		
 		server.toClients("SetHand,2,"+player2.getHand()[0]+","+player2.getHand()[1]+","+player2.getHand()[2]+","+
 				player2.getHand()[3]+","+player2.getHand()[4]);
+		
 		server.toClients("SetHand,3,"+player3.getHand()[0]+","+player3.getHand()[1]+","+player3.getHand()[2]+","+
 				player3.getHand()[3]+","+player3.getHand()[4]);
 
 		server.toClients("SetHand,4,"+player4.getHand()[0]+","+player4.getHand()[1]+","+player4.getHand()[2]+","+
 				player4.getHand()[3]+","+player4.getHand()[4]);
-
+		
+		server.toClients("SetTurnedCard,"+upCard);
+		
+		
+		
 		Game.initializeGameBoard(board);
 		
 
 
-		upCard = deck.drawCard();
 
 	}
 
