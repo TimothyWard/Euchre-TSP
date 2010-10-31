@@ -91,33 +91,9 @@ public class GameManager {
 	public void playGame(){
 
 		if(server != null)
-			deal();
-		System.out.println("Player1 hand: ");
-		for(int i=0;i<5;i++){
-			System.out.print(player1.getHand()[i] + " ");
-		}
-		System.out.println("");
-		System.out.println("Player2 hand: ");
-		for(int i=0;i<5;i++){
-			System.out.print(player2.getHand()[i]+ " ");
-		}
-		System.out.println("");
-		System.out.println("Player3 hand: ");
-		for(int i=0;i<5;i++){
-			System.out.print(player3.getHand()[i]+ " ");
-		}
-		System.out.println("");
-		System.out.println("Player4 hand: ");
-		for(int i=0;i<5;i++){
-			System.out.print(player4.getHand()[i]+ " ");
-		}
-		System.out.println("");
-		
+			deal();	
 		setTrump();
-		//System.out.println("Upcard: " + upCard);
-		//System.out.println("Trump Suit: " + round.getTrumpSuit());
 		playRound();
-		//System.out.println("============");
 	}
 
 
@@ -132,7 +108,6 @@ public class GameManager {
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
-		Card card;
 		
 		for(int i=0;i<5;i++){
 			hand1[i]=deck.drawCard();
@@ -151,6 +126,7 @@ public class GameManager {
 
 		upCard = deck.drawCard();
 		board.setTurnedCard(upCard);
+		round.setTurnedCard(upCard);
 
 		
 
@@ -189,6 +165,7 @@ public class GameManager {
 
 		//Check to see if any of the players 'order up' the card
 		for(int i=0;i<3;i++){
+			curPlayer.setTurn(true);
 			if(curPlayer.orderUp(upCard)){
 				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 					round.setTeamWhoOrdered(teamOne);
@@ -196,13 +173,19 @@ public class GameManager {
 				else{
 					round.setTeamWhoOrdered(teamTwo);
 				}
-				round.setTrumpSuit(upCard.getSuit());
+				curPlayer.setTurn(false);
+				System.out.println("UpCard3: " + round.getTurnedCard());
+				round.setTrumpSuit(round.getTurnedCard().getSuit());
+				dealer.setTurn(true);
 				deck.discardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
 				dealer.drawCard(upCard);								//and pick up the upCard
+				dealer.setTurn(false);
 			}
 			else{
+				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
 			}
+			curPlayer.setTurn(false);
 		}
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer.equals(dealer)){
@@ -221,6 +204,8 @@ public class GameManager {
 						round.setTeamWhoOrdered(teamTwo);
 					}
 					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
+					curPlayer.setTurn(false);
+					break;
 				}
 				else{													//Otherwise, pass to the next person.
 					curPlayer=nextPlayer(curPlayer);
@@ -234,9 +219,9 @@ public class GameManager {
 							round.setTeamWhoOrdered(teamTwo);
 						}
 					}
+					curPlayer.setTurn(false);
+					break;
 				}
-				
-				curPlayer.setTurn(false);
 			}
 		}//End of picking suit
 
