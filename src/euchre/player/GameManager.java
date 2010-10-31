@@ -91,10 +91,27 @@ public class GameManager {
 	public void playGame(){
 
 		deal();
-		System.out.println("Player1 hand: " + player1.getHand());
-		System.out.println("Player2 hand: " + player2.getHand());
-		System.out.println("Player3 hand: " + player3.getHand());
-		System.out.println("Player4 hand: " + player4.getHand());
+		System.out.println("Player1 hand: ");
+		for(int i=0;i<5;i++){
+			System.out.print(player1.getHand()[i] + " ");
+		}
+		System.out.println("");
+		System.out.println("Player2 hand: ");
+		for(int i=0;i<5;i++){
+			System.out.print(player2.getHand()[i]+ " ");
+		}
+		System.out.println("");
+		System.out.println("Player3 hand: ");
+		for(int i=0;i<5;i++){
+			System.out.print(player3.getHand()[i]+ " ");
+		}
+		System.out.println("");
+		System.out.println("Player4 hand: ");
+		for(int i=0;i<5;i++){
+			System.out.print(player4.getHand()[i]+ " ");
+		}
+		System.out.println("");
+		
 		setTrump();
 		//System.out.println("Upcard: " + upCard);
 		//System.out.println("Trump Suit: " + round.getTrumpSuit());
@@ -175,7 +192,7 @@ public class GameManager {
 //
 //		}		
 		
-		for(int i=0;i<4;i++){
+		for(int i=0;i<5;i++){
 			player1.drawCard(hand1[i]);
 			player2.drawCard(hand2[i]);
 			player3.drawCard(hand3[i]);
