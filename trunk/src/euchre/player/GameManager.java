@@ -210,7 +210,9 @@ public class GameManager {
 
 
 			curPlayer=nextPlayer(dealer);
-			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
+			//...and check to see if any player picks a suit.
+			for(int x=0;x<4;x++) {
+				curPlayer.setTurn(true);
 				if(curPlayer.callSuit() != 0){
 					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 						round.setTeamWhoOrdered(teamOne);
@@ -233,6 +235,8 @@ public class GameManager {
 						}
 					}
 				}
+				
+				curPlayer.setTurn(false);
 			}
 		}//End of picking suit
 
