@@ -23,7 +23,9 @@ public class Round{
 	private Team teamWhoOrdered = null;
 	private boolean roundComplete = false;
 	private boolean alone = false;
+	private Card turnedCard;
 	
+
 	public void setHand(int hand, Card[] cardsPlayed, char suitLed){
 		if (hand == 1) hand1 = new Hand(suitLed, cardsPlayed);
 		else if (hand == 2) hand2 = new Hand(suitLed, cardsPlayed);
@@ -63,5 +65,11 @@ public class Round{
 	}
 	public void setAlone(boolean alone) {
 		this.alone = alone;
+	}
+	public Card getTurnedCard() {
+		return turnedCard;
+	}
+	public void setTurnedCard(Card turnedCard) {
+		this.turnedCard = turnedCard;
 	}
 }
