@@ -28,8 +28,8 @@ public class GameManager {
 	private boolean teamsComplete = false;
 	private GameBoard board;
 	private GameLobby lobby;
-	private ServerNetworkManager server;
-	private ClientNetworkManager client;
+	private ServerNetworkManager server = null;
+	private ClientNetworkManager client = null;
 	private Round round = null;
 
 	Card[] hand1 = new Card[5];
@@ -90,7 +90,8 @@ public class GameManager {
 	 */
 	public void playGame(){
 
-		deal();
+		if(server != null)
+			deal();
 		System.out.println("Player1 hand: ");
 		for(int i=0;i<5;i++){
 			System.out.print(player1.getHand()[i] + " ");
@@ -139,6 +140,7 @@ public class GameManager {
 			hand3[i]=deck.drawCard();
 			hand4[i]=deck.drawCard();
 		}
+
 		
 		for(int i=0;i<5;i++){
 			player1.drawCard(hand1[i]);
@@ -146,6 +148,21 @@ public class GameManager {
 			player3.drawCard(hand3[i]);
 			player4.drawCard(hand4[i]);
 		}
+
+
+		server.toClients("SetHand,1,"+player1.getHand()[0]+","+player1.getHand()[1]+","+player1.getHand()[2]+","+
+							player1.getHand()[3]+","+player1.getHand()[4]);
+		server.toClients("SetHand,2,"+player2.getHand()[0]+","+player2.getHand()[1]+","+player2.getHand()[2]+","+
+				player2.getHand()[3]+","+player2.getHand()[4]);
+		server.toClients("SetHand,3,"+player3.getHand()[0]+","+player3.getHand()[1]+","+player3.getHand()[2]+","+
+				player3.getHand()[3]+","+player3.getHand()[4]);
+
+		server.toClients("SetHand,4,"+player4.getHand()[0]+","+player4.getHand()[1]+","+player4.getHand()[2]+","+
+				player4.getHand()[3]+","+player4.getHand()[4]);
+
+		Game.initializeGameBoard(board);
+		
+
 
 		upCard = deck.drawCard();
 

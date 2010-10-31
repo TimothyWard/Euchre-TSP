@@ -37,4 +37,7 @@ public interface Player {
 	public int getPlayerID();
 	
 	public void setPlayerID(int i);
+	
+	public void setCard(int number, char value, char suit);
+
 }
