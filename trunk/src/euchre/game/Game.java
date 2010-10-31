@@ -63,7 +63,7 @@ public class Game {
 			GM.playGame();
 
 			//wait for the current round to be over
-			while (currentRound.isRoundComplete()==false) Thread.sleep(1000);
+			while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
 
 			//score the recently completed round and set the game manager's round to null
 			GM.setRound(null);
@@ -100,7 +100,7 @@ public class Game {
 //		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
-		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete()==false) Thread.sleep(500);
+		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
 
 		//initialize the hosts game board
 		initializeGameBoard(GB);
@@ -115,7 +115,7 @@ public class Game {
 	 */
 	private static void makeAIs(int numberOfAIs){
 		Runtime runtime = Runtime.getRuntime();
-		while (numberOfAIs!=0){
+		while (numberOfAIs != 0){
 			try {
 				String commandPath = System.getProperty("user.dir");
 				String[] cmds = { commandPath, "/" };
@@ -184,7 +184,7 @@ public class Game {
 
 		//create new client and its network from given ip address and name
 		ClientNetworkManager client = createNewClient(GM, clientSetup);
-		client.toServer("RegisterPlayer,"+clientSetup.getClientName().trim()+","+human.getPlayerID());
+		client.toServer("RegisterPlayer," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);

@@ -49,7 +49,7 @@ public class GameLogic{
 	public void interpret(Round round, Team one, Team two){
 		int teamOneTricks = 0;
 		int teamTwoTricks = 0;
-		for (int x=1; x<=5; x++){
+		for(int x = 1; x <= 5; x++){
 			if (interpretHand(round, round.getHand(x), one, two) == one){
 				teamOneTricks++;
 			}
@@ -59,41 +59,41 @@ public class GameLogic{
 		}
 
 		//if the round winner took 5 tricks
-		if ((teamOneTricks==5 && round.getTeamWhoOrdered()==one)||(teamTwoTricks==5 && round.getTeamWhoOrdered()==two)){
+		if((teamOneTricks == 5 && round.getTeamWhoOrdered() == one) || (teamTwoTricks == 5 && round.getTeamWhoOrdered() == two)){
 			//if the round winner took all five tricks alone 
-			if (round.alone()){
-				if (round.getTeamWhoOrdered()==one){
+			if(round.alone()){
+				if (round.getTeamWhoOrdered() == one){
 					incrementScore(one, 4);
 				}
-				else if (round.getTeamWhoOrdered()==two){
+				else if (round.getTeamWhoOrdered() == two){
 					incrementScore(two, 4);
 				}
 			}
 			//if the round winner took all five tricks as a team 
 			else{
-				if (round.getTeamWhoOrdered()==one){
+				if (round.getTeamWhoOrdered() == one){
 					incrementScore(one, 2);
 				}
-				else if (round.getTeamWhoOrdered()==two){
+				else if (round.getTeamWhoOrdered() == two){
 					incrementScore(two, 2);
 				}
 			}
 		}
 		//if the round winner took 3 or more tricks
-		else if ((teamOneTricks>=3 && round.getTeamWhoOrdered()==one)||(teamTwoTricks>=3 && round.getTeamWhoOrdered()==two)){
-			if (round.getTeamWhoOrdered()==one){
+		else if((teamOneTricks >= 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks >= 3 && round.getTeamWhoOrdered() == two)){
+			if(round.getTeamWhoOrdered() == one){
 				incrementScore(one, 1);
 			}
-			else if (round.getTeamWhoOrdered()==two){
+			else if(round.getTeamWhoOrdered() == two){
 				incrementScore(two, 1);
 			}
 		}
 		//if the round winner took less than 3 tricks
-		else if ((teamOneTricks<3 && round.getTeamWhoOrdered()==one)||(teamTwoTricks<3 && round.getTeamWhoOrdered()==two)){
-			if (round.getTeamWhoOrdered()==one){
+		else if((teamOneTricks < 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks < 3 && round.getTeamWhoOrdered() == two)){
+			if(round.getTeamWhoOrdered() == one){
 				incrementScore(two, 2);
 			}
-			else if (round.getTeamWhoOrdered()==two){
+			else if(round.getTeamWhoOrdered() == two){
 				incrementScore(one, 2);
 			}
 		}
@@ -136,24 +136,24 @@ public class GameLogic{
 
 		int[] cardValue = {0,0,0,0};
 
-		for (int i=0; i<4; i++){
+		for (int i = 0; i < 4; i++){
 			Card card = hand.getCardPlayed(i);
-			if (card.compareTo(TRB)==0) cardValue[i] = 13;
-			else if (card.compareTo(TLB)==0) cardValue[i] = 12;
-			else if (card.compareTo(TA)==0) cardValue[i] = 11;
-			else if (card.compareTo(TK)==0) cardValue[i] = 10;
-			else if (card.compareTo(TQ)==0) cardValue[i] = 9;
-			else if (card.compareTo(T10)==0) cardValue[i] = 8;
-			else if (card.compareTo(T9)==0) cardValue[i] = 7;
-			else if (card.compareTo(LA)==0) cardValue[i] = 6;
-			else if (card.compareTo(LK)==0) cardValue[i] = 5;
-			else if (card.compareTo(LQ)==0) cardValue[i] = 4;
-			else if (card.compareTo(LJ)==0) cardValue[i] = 3;
-			else if (card.compareTo(L10)==0) cardValue[i] = 2;
-			else if (card.compareTo(L9)==0) cardValue[i] = 1;
+			if (card.compareTo(TRB) == 0) cardValue[i] = 13;
+			else if (card.compareTo(TLB) == 0) cardValue[i] = 12;
+			else if (card.compareTo(TA) == 0) cardValue[i] = 11;
+			else if (card.compareTo(TK) == 0) cardValue[i] = 10;
+			else if (card.compareTo(TQ) == 0) cardValue[i] = 9;
+			else if (card.compareTo(T10) == 0) cardValue[i] = 8;
+			else if (card.compareTo(T9) == 0) cardValue[i] = 7;
+			else if (card.compareTo(LA) == 0) cardValue[i] = 6;
+			else if (card.compareTo(LK) == 0) cardValue[i] = 5;
+			else if (card.compareTo(LQ) == 0) cardValue[i] = 4;
+			else if (card.compareTo(LJ) == 0) cardValue[i] = 3;
+			else if (card.compareTo(L10) == 0) cardValue[i] = 2;
+			else if (card.compareTo(L9) == 0) cardValue[i] = 1;
 			else cardValue[i] = 0;
 		}
-		if (maxIndex(cardValue)==0 || maxIndex(cardValue)==2){
+		if (maxIndex(cardValue) == 0 || maxIndex(cardValue) == 2){
 			return one;
 		}
 		else{
@@ -170,7 +170,7 @@ public class GameLogic{
 	private int maxIndex(int[] array) {
 		int maximum = array[0];
 		int maxIndex = 0;
-		for (int i=1; i<array.length; i++) {
+		for (int i = 1; i < array.length; i++) {
 			if (array[i] > maximum) {
 				maximum = array[i]; 
 				maxIndex = i;
