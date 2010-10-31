@@ -139,58 +139,6 @@ public class GameManager {
 			hand3[i]=deck.drawCard();
 			hand4[i]=deck.drawCard();
 		}
-
-//		int draw=3;											//The number of cards to deal a player
-//
-//		for(int i=0;i<4;i++){								//Deals to each player
-//
-//			if(draw==2){									//If the previous player was dealt 2 cards,
-//				draw=3;										//deal the next player 3 cards, and vice versa
-//			}
-//			else{
-//				draw=2;
-//			}
-//
-//			//			for(int x=0;x<draw;x++){
-//			//				card = deck.drawCard();
-//			//				if(curPlayer.getNumber()==1) hand1[x] = card;
-//			//				if(curPlayer.getNumber()==2) hand2[x] = card;
-//			//				if(curPlayer.getNumber()==3) hand3[x] = card;
-//			//				if(curPlayer.getNumber()==4) hand4[x] = card;
-//			//			}
-//
-//			curPlayer=nextPlayer(curPlayer);
-//			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-//				curPlayer.drawCard(deck.drawCard());	
-//			}
-//
-//		}
-//
-//		draw = 2;
-//
-//		for(int i=0;i<4;i++){								//Deals to each player
-//
-//			if(draw==2){									//If the previous player was dealt 2 cards,
-//				draw=3;										//deal the next player 3 cards, and vice versa
-//			}
-//			else{
-//				draw=2;
-//			}
-//
-//			//			for(int x=(4-draw);x<4;x++){
-//			//				card = deck.drawCard();
-//			//				if(curPlayer.getNumber()==1) hand1[x] = card;
-//			//				if(curPlayer.getNumber()==2) hand2[x] = card;
-//			//				if(curPlayer.getNumber()==3) hand3[x] = card;
-//			//				if(curPlayer.getNumber()==4) hand4[x] = card;
-//			//			}
-//
-//			curPlayer=nextPlayer(curPlayer);
-//			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-//				curPlayer.drawCard(deck.drawCard());	
-//			}
-//
-//		}		
 		
 		for(int i=0;i<5;i++){
 			player1.drawCard(hand1[i]);
@@ -198,11 +146,6 @@ public class GameManager {
 			player3.drawCard(hand3[i]);
 			player4.drawCard(hand4[i]);
 		}
-
-//		hand1 = player1.getHand();
-//		hand2 = player2.getHand();
-//		hand3 = player3.getHand();
-//		hand4 = player4.getHand();
 
 		upCard = deck.drawCard();
 
