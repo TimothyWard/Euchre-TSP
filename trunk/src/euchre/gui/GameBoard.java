@@ -138,8 +138,8 @@ public class GameBoard extends javax.swing.JFrame{
 	    	}
 	    	case 2:{
 	    		topPlayer = GM.getPlayer4();
-	    		leftPlayer = GM.getPlayer1();
-	    		rightPlayer = GM.getPlayer3();
+	    		leftPlayer = GM.getPlayer3();
+	    		rightPlayer = GM.getPlayer1();
 	        	break;
 	    	}
 	    	case 3:{
@@ -150,8 +150,8 @@ public class GameBoard extends javax.swing.JFrame{
 	    	}
 	    	case 4:{
 	    		topPlayer = GM.getPlayer2();
-	    		leftPlayer = GM.getPlayer3();
-	    		rightPlayer = GM.getPlayer1();
+	    		leftPlayer = GM.getPlayer1();
+	    		rightPlayer = GM.getPlayer3();
 	        	break;
 	    	}
     	}
