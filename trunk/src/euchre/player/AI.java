@@ -26,9 +26,6 @@ public class AI implements Player{
 	private Card led = null;
 	private int playerID = (int)(Math.random()*5000000);
 
-	CardEvaluator calc = new CardEvaluator();
-
-
 
 	public AI(){
 
@@ -82,19 +79,19 @@ public class AI implements Player{
 		else sameColor = 'd';
 
 		//If the AI has the Right Bower, play it
-		if(calc.highestCardInHand(trump, trump, hand).getSuit()==trump && calc.highestCardInHand(trump, trump, hand).getCardValue()=='j'){
-			playCard = calc.highestCardInHand(trump, trump, hand);
+		if(CardEvaluator.highestCardInHand(trump, trump, hand).getSuit()==trump && CardEvaluator.highestCardInHand(trump, trump, hand).getCardValue()=='j'){
+			playCard = CardEvaluator.highestCardInHand(trump, trump, hand);
 		}
 		//Or if the AI has the Left Bower, play it...
-		else if(calc.highestCardInHand(trump, trump, hand).getCardValue()=='j' && calc.highestCardInHand(trump, trump, hand).getSuit()==sameColor){
-			playCard = calc.highestCardInHand(trump, trump, hand);
+		else if(CardEvaluator.highestCardInHand(trump, trump, hand).getCardValue()=='j' && CardEvaluator.highestCardInHand(trump, trump, hand).getSuit()==sameColor){
+			playCard = CardEvaluator.highestCardInHand(trump, trump, hand);
 		}
 		//		else if(calc.){
 		//			playCard = highestCard(false);
 		//		}
 		else{
 			//FIX
-			playCard = calc.lowestCardInHand(trump, trump, hand);
+			playCard = CardEvaluator.lowestCardInHand(trump, trump, hand);
 			//playCard = calc.lowestTrumpInHand(trump, trump, hand);
 		}
 
@@ -121,31 +118,31 @@ public class AI implements Player{
 
 
 		//If the AI has suit, they must follow suit...
-		if(calc.hasLead(led.getSuit(), hand)){
+		if(CardEvaluator.hasLead(led.getSuit(), hand)){
 			//If the AI's partner is winning this trick, play a lower card than them.
 			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
 				//Play lowest same-suit
-				playCard = calc.lowestLeadInHand(trump, led.getSuit(), hand);
+				playCard = CardEvaluator.lowestLeadInHand(trump, led.getSuit(), hand);
 			}
 			//If the AI's partner is not winning the trick, play a higher card than them.
 			else{
 				//Play highest same-suit!
-				playCard = calc.highestLeadInHand(trump, led.getSuit(), hand);
+				playCard = CardEvaluator.highestLeadInHand(trump, led.getSuit(), hand);
 			}
 		}
 		//If the AI does not have suit...
 		else{
 			//If the AI's partner is winning the trick, play the lowest off suit card in the AI's hand
 			if(played[2] != null && (played[1].compareTo(played[0])>0) && (played[1].compareTo(played[2])>0)){
-				playCard = calc.lowestCardInHand(trump, led.getSuit(), hand);
+				playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 			}
 			//If the AI's partner is not winning the trick, play the lowest trump card in the AI's hand
 			else{
-				if(calc.hasTrump(trump, hand)){
-					playCard = calc.lowestTrumpInHand(trump, led.getSuit(), hand);
+				if(CardEvaluator.hasTrump(trump, hand)){
+					playCard = CardEvaluator.lowestTrumpInHand(trump, led.getSuit(), hand);
 				}
 				else{
-					playCard = calc.lowestCardInHand(trump, led.getSuit(), hand);
+					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 				}
 
 				//Eventually will need something to recognize if it is possible to beat other players. If not possible, then AI
@@ -182,24 +179,6 @@ public class AI implements Player{
 
 		return playCard;
 
-	}
-
-	/**
-	 * Determines if the AI has to follow suit with the lead card.
-	 * @return True if the AI has suit, false if it does not.
-	 */
-	private boolean hasSuit(char c){
-
-
-		return false;
-	}
-
-	/**
-	 * Determines if the AI's partner is going to take the trick
-	 * @return True if the partner is going to take it, false otherwise
-	 */
-	private boolean partnerHasTrick(){
-		return false;
 	}
 
 	/**
@@ -244,10 +223,10 @@ public class AI implements Player{
 		int numSpade = 0;
 		int numClub = 0;
 		
-		numHeart = calc.numberOfSuit('h', hand);
-		numDiamond = calc.numberOfSuit('d', hand);
-		numSpade = calc.numberOfSuit('s', hand);
-		numClub = calc.numberOfSuit('c', hand);
+		numHeart = CardEvaluator.numberOfSuit('h', hand);
+		numDiamond = CardEvaluator.numberOfSuit('d', hand);
+		numSpade = CardEvaluator.numberOfSuit('s', hand);
+		numClub = CardEvaluator.numberOfSuit('c', hand);
 
 
 		if(numHeart>=3){
@@ -300,10 +279,10 @@ public class AI implements Player{
 		int numSpade = 0;
 		int numClub = 0;
 		
-		numHeart = calc.numberOfSuit('h', hand);
-		numDiamond = calc.numberOfSuit('d', hand);
-		numSpade = calc.numberOfSuit('s', hand);
-		numClub = calc.numberOfSuit('c', hand);
+		numHeart = CardEvaluator.numberOfSuit('h', hand);
+		numDiamond = CardEvaluator.numberOfSuit('d', hand);
+		numSpade = CardEvaluator.numberOfSuit('s', hand);
+		numClub = CardEvaluator.numberOfSuit('c', hand);
 		
 		int max = Math.max(numHeart, numDiamond);
 		if(max==numHeart) trump='h';
