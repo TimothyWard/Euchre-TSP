@@ -4,7 +4,7 @@ import java.util.Collections;
 
 
 /**
- * 
+ * stack object containing all cards for a proper euchre deck
  * @author sdwilke
  *
  */
@@ -15,12 +15,6 @@ public class Deck{
 								new Card('9','c'), new Card('0','c'), new Card('a','c'), new Card('j','c'), new Card('k','c'), new Card('q','c'), 
 								new Card('9','d'), new Card('0','d'), new Card('a','d'), new Card('j','d'), new Card('k','d'), new Card('q','d')};;
 	private int cardsLeftInDeck;
-	
-	/**
-	 * Constructor to create deck object.  Initializes a deck of card objects representing
-	 * a proper Euchre deck and performs an initial shuffle of the deck
-	 *
-	 */
 	
 	public Deck(){
 		cardsLeftInDeck = 24;

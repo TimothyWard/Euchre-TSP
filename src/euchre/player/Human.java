@@ -18,7 +18,7 @@ public class Human implements Player{
 	private char orderSuit = 0;
 	private boolean orderUp = false;
 	private int orderedUp = 0;
-	private int playerID = (int)(Math.random()*5000000);
+	private int playerID = (int)(Math.random() * 5000000);
 	boolean isHost = false;
 	
 	EuchreProtocol protocol = new EuchreProtocol();
@@ -77,9 +77,9 @@ public class Human implements Player{
 	 *  Return 0 if not calling a suit
 	 */
 	public char callSuit() {
-		while (orderSuit==0){
+		while(orderSuit == 0){
 			//Wait until the user selects a suit
-			try {
+			try{
 				Thread.sleep(500);
 			} 
 			catch (InterruptedException e) {
@@ -87,13 +87,13 @@ public class Human implements Player{
 			}
 		}
 
-		if(orderSuit=='x'){
-			orderSuit=0;
+		if(orderSuit == 'x'){
+			orderSuit = 0;
 			return 0;
 		}
 		else{
 			char temp = orderSuit;
-			orderSuit=0;
+			orderSuit = 0;
 			return temp;
 		}
 
@@ -104,14 +104,14 @@ public class Human implements Player{
 	 * @param Card c the Up-card
 	 * @return True if ordered up, false otherwise
 	 */
-	public boolean orderUp(Card c) {
+	public boolean orderUp(Card c){
 
-		while (orderedUp == 0){
+		while(orderedUp == 0){
 			//Wait until the user selects a suit
-			try {
+			try{
 				Thread.sleep(500);
 			} 
-			catch (InterruptedException e) {
+			catch (InterruptedException e){
 				e.printStackTrace();
 			}
 		}
@@ -135,13 +135,13 @@ public class Human implements Player{
 	 * @return Card the card selected by the user
 	 */
 	@Override
-	public Card playCard() {
-		while (activeCard==null){
+	public Card playCard(){
+		while(activeCard == null){
 			//Wait until the user clicks a card...
 			try {
 				Thread.sleep(500);
 			} 
-			catch (InterruptedException e) {
+			catch (InterruptedException e){
 				e.printStackTrace();
 			}
 		}
@@ -155,16 +155,16 @@ public class Human implements Player{
 	 * Waits for the user to select a card to discard. Should only happen
 	 * if the user is the dealer and is picking up the trump card.
 	 */
-	public Card discard() {
+	public Card discard(){
 
 		//Should prompt user to discard a card...
 
-		while (activeCard==null){
+		while(activeCard == null){
 			//Wait until the user clicks a card...
 			try {
 				Thread.sleep(500);
 			} 
-			catch (InterruptedException e) {
+			catch (InterruptedException e){
 				e.printStackTrace();
 			}
 		}
@@ -178,19 +178,19 @@ public class Human implements Player{
 	/**
 	 * Sticks the dealer and forces them to pick a suit for trump. Dealer cannot pass.
 	 */
-	public char stickDealer() {
-		while (orderSuit==0){
+	public char stickDealer(){
+		while(orderSuit == 0){
 			//Wait until the user selects a suit
 			try {
 				Thread.sleep(500);
 			} 
-			catch (InterruptedException e) {
+			catch (InterruptedException e){
 				e.printStackTrace();
 			}
 		}
 
 		char temp = orderSuit;
-		orderSuit=0;
+		orderSuit = 0;
 		return temp;
 
 	}
@@ -211,17 +211,17 @@ public class Human implements Player{
 	}
 
 	@Override
-	public boolean isHuman() {
+	public boolean isHuman(){
 		return true;
 	}
 	public void setCallSuit(char c){
 		orderSuit=c;
 	}
 
-	public int getTeam() {
+	public int getTeam(){
 		return team;
 	}
-	public void setActiveCard(Card c) {
+	public void setActiveCard(Card c){
 		activeCard = c;
 	}
 
@@ -230,12 +230,12 @@ public class Human implements Player{
 	}
 
 
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
 
-	public void setName(String n) {
+	public void setName(String n){
 		name = n;
 	}
 
@@ -243,7 +243,7 @@ public class Human implements Player{
 		return playerNum;
 	}
 
-	public void setNumber(int i) {
+	public void setNumber(int i){
 		playerNum = i;
 	}
 
@@ -255,13 +255,13 @@ public class Human implements Player{
 	public void setTurn(boolean turn){
 		isTurn = turn;
 	}
-	public void setTeam(int i) {
+	public void setTeam(int i){
 		team = i;
 	}
-	public int getPlayerID() {
+	public int getPlayerID(){
 		return playerID;
 	}
-	public void setPlayerID(int playerID) {
+	public void setPlayerID(int playerID){
 		this.playerID = playerID;
 	}
 
