@@ -112,15 +112,15 @@ public class GameManager {
 		curPlayer = dealer;
 		Card card;
 
-		int draw=3;											//The number of cards to deal a player
+		int draw = 3;											//The number of cards to deal a player
 
-		for(int i=0;i<4;i++){								//Deals to each player
+		for(int i = 0; i < 4; i++){								//Deals to each player
 
-			if(draw==2){									//If the previous player was dealt 2 cards,
-				draw=3;										//deal the next player 3 cards, and vice versa
+			if(draw == 2){									//If the previous player was dealt 2 cards,
+				draw = 3;										//deal the next player 3 cards, and vice versa
 			}
 			else{
-				draw=2;
+				draw = 2;
 			}
 
 //			for(int x=0;x<draw;x++){
@@ -132,7 +132,7 @@ public class GameManager {
 //			}
 
 			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+			for(int x = 0; x < draw; x++){						//Deals the appropriate number of cards to each player
 				curPlayer.drawCard(deck.drawCard());	
 			}
 
@@ -140,13 +140,13 @@ public class GameManager {
 
 		draw = 2;
 
-		for(int i=0;i<4;i++){								//Deals to each player
+		for(int i = 0; i < 4; i++){								//Deals to each player
 
-			if(draw==2){									//If the previous player was dealt 2 cards,
-				draw=3;										//deal the next player 3 cards, and vice versa
+			if(draw == 2){									//If the previous player was dealt 2 cards,
+				draw = 3;										//deal the next player 3 cards, and vice versa
 			}
 			else{
-				draw=2;
+				draw = 2;
 			}
 
 //			for(int x=(4-draw);x<4;x++){
@@ -157,8 +157,8 @@ public class GameManager {
 //				if(curPlayer.getNumber()==4) hand4[x] = card;
 //			}
 			
-			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+			curPlayer = nextPlayer(curPlayer);
+			for(int x = 0; x < draw; x++){						//Deals the appropriate number of cards to each player
 				curPlayer.drawCard(deck.drawCard());	
 			}
 
@@ -167,7 +167,7 @@ public class GameManager {
 		hand3 = player3.getHand();
 		hand4 = player4.getHand();
 		
-		for(int i=0;i<4;i++){
+		for(int i = 0; i < 4; i++){
 			player1.drawCard(hand1[i]);
 			player2.drawCard(hand2[i]);
 			player3.drawCard(hand3[i]);
@@ -194,9 +194,9 @@ public class GameManager {
 		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
 
 		//Check to see if any of the players 'order up' the card
-		for(int i=0;i<3;i++){
+		for(int i = 0;i < 3; i++){
 			if(curPlayer.orderUp(upCard)){
-				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+				if(teamOne.getPlayerOne() == curPlayer || teamOne.getPlayerTwo() == curPlayer){
 					round.setTeamWhoOrdered(teamOne);
 				}
 				else{
@@ -207,7 +207,7 @@ public class GameManager {
 				dealer.drawCard(upCard);								//and pick up the upCard
 			}
 			else{
-				curPlayer=nextPlayer(curPlayer);
+				curPlayer = nextPlayer(curPlayer);
 			}
 		}
 		//If no one has ordered up the upCard, ask them to pick a suit
@@ -216,9 +216,9 @@ public class GameManager {
 
 
 			curPlayer=nextPlayer(dealer);
-			for(int x=0;x<4;x++){										//...and check to see if any player picks a suit.
+			for(int x = 0; x < 4; x++){										//...and check to see if any player picks a suit.
 				if(curPlayer.callSuit() != 0){
-					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+					if(teamOne.getPlayerOne() == curPlayer || teamOne.getPlayerTwo() == curPlayer){
 						round.setTeamWhoOrdered(teamOne);
 					}
 					else{
@@ -228,10 +228,10 @@ public class GameManager {
 				}
 				else{													//Otherwise, pass to the next person.
 					curPlayer=nextPlayer(curPlayer);
-					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
+					if(curPlayer == dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 
 						round.setTrumpSuit(curPlayer.stickDealer());
-						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+						if(teamOne.getPlayerOne() == curPlayer || teamOne.getPlayerTwo() == curPlayer){
 							round.setTeamWhoOrdered(teamOne);
 						}
 						else{
@@ -244,8 +244,8 @@ public class GameManager {
 
 		//Tells any AI what the current trump is...
 		Player temp = curPlayer;
-		for(int a=0;a<3;a++){
-			if(temp.isHuman()==false){
+		for(int a = 0; a < 3; a++){
+			if(temp.isHuman() == false){
 				((AI)temp).setTrump(round.getTrumpSuit());
 				temp = nextPlayer(temp);
 			}
@@ -264,11 +264,11 @@ public class GameManager {
 		round.setRoundComplete(false);
 
 		//Play five hands...
-		for(int h=1;h<6;h++){
+		for(int h = 1; h < 6; h++){
 			Card[] played = new Card[4];
 
 			//For each player, have them play a card
-			for(int i=0;i<4;i++){
+			for(int i = 0; i < 4; i++){
 				curPlayer.setTurn(true);
 
 				if(!curPlayer.isHuman()){
@@ -366,13 +366,13 @@ public class GameManager {
 			}
 		}
 
-		if(maxIndex==0){
+		if(maxIndex == 0){
 			return players[0];
 		}
-		else if(maxIndex==1){
+		else if(maxIndex == 1){
 			return players[1];
 		}
-		else if(maxIndex==2){
+		else if(maxIndex == 2){
 			return players[2];
 		}
 		else{
@@ -390,22 +390,22 @@ public class GameManager {
 	 * @param client3 The third player that is going to be a client in the game.
 	 */
 	public void setAllPlayers(Player host, Player client1, Player client2, Player client3){
-		if (p1.getPlayerID()==host.getPlayerID()){
+		if (p1.getPlayerID() == host.getPlayerID()){
 			playerIAm=host;
 		}
-		else if (p1.getPlayerID()==client1.getPlayerID()){
+		else if (p1.getPlayerID() == client1.getPlayerID()){
 			playerIAm=client1;
 		}
-		else if (p1.getPlayerID()==client2.getPlayerID()){
+		else if (p1.getPlayerID() == client2.getPlayerID()){
 			playerIAm=client2;
 		}
-		else if (p1.getPlayerID()==client3.getPlayerID()){
+		else if (p1.getPlayerID() == client3.getPlayerID()){
 			playerIAm=client3;
 		}
-		p1=host;
-		p2=client1;
-		p3=client2;
-		p4=client3;
+		p1 = host;
+		p2 = client1;
+		p3 = client2;
+		p4 = client3;
 
 	}
 
@@ -417,9 +417,9 @@ public class GameManager {
 	 * @param p The AI player that is going to be a client in the game. 
 	 */
 	public void setLocalPlayers(Player playerOne, Player playerTwo, Player playerThree){
-		p1=playerOne;
-		p2=playerTwo;
-		p3=playerThree;
+		p1 = playerOne;
+		p2 = playerTwo;
+		p3 = playerThree;
 	}
 
 
@@ -440,13 +440,13 @@ public class GameManager {
 		Player play;
 
 		//Determines which player object is being referred to
-		if(player==1){
+		if(player == 1){
 			play = p1;
 		}
-		else if(player==2){
+		else if(player == 2){
 			play = p2;
 		}
-		else if(player==3){
+		else if(player == 3){
 			play = p3;
 		}
 		else{
@@ -455,22 +455,22 @@ public class GameManager {
 
 		//Sets the given player on the given team by putting that player in the corresponding "seat"
 		//and then setting all of the appropriate team references
-		if(team==1 && player1==null){
+		if(team == 1 && player1 == null){
 			player1=play;
 			player1.setTeam(1);
 			player1.setNumber(1);
 		}
-		else if(team==1 && player1!=null){
+		else if(team == 1 && player1 != null){
 			player3=play;
 			player3.setTeam(1);
 			player3.setNumber(3);
 		}
-		else if(team==2 && player2==null){
+		else if(team == 2 && player2 == null){
 			player2=play;
 			player2.setTeam(2);
 			player2.setNumber(2);
 		}
-		else if(team==2 && player2!=null){
+		else if(team == 2 && player2 != null){
 			player4=play;
 			player4.setTeam(2);
 			player4.setNumber(4);
@@ -488,13 +488,13 @@ public class GameManager {
 	 * @return The player after the given player
 	 */
 	public Player nextPlayer(Player p) {
-		if(p==player1){
+		if(p == player1){
 			return player2;
 		}
-		else if(p==player2){
+		else if(p == player2){
 			return player3;
 		}
-		else if(p==player3){
+		else if(p == player3){
 			return player4;
 		}
 		else{
@@ -505,7 +505,7 @@ public class GameManager {
 
 
 	public void newPlayer(Player p){
-		p1=p;
+		p1 = p;
 	}
 
 	public Player getDealer(){
