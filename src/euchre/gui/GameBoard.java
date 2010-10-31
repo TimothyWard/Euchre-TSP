@@ -167,6 +167,7 @@ public class GameBoard extends javax.swing.JFrame {
      */
 	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
+		
 		setCard(player.getHand()[0], 0);
 		setCard(player.getHand()[1], 1);
 		setCard(player.getHand()[2], 2);
