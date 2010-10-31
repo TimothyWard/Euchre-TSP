@@ -150,6 +150,7 @@ public class GameManager {
 		}
 
 		upCard = deck.drawCard();
+		board.setTurnedCard(upCard);
 
 		
 

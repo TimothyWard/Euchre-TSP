@@ -876,7 +876,7 @@ public class GameBoard extends javax.swing.JFrame{
     }
     
     public void setTurnedCard(Card c){
-    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getSuit()));
+    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
     }
     
     public void setGameManager(GameManager gm){
