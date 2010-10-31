@@ -3,6 +3,9 @@ package euchre.gui;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.JOptionPane;
 import euchre.player.GameManager;
 
@@ -24,6 +27,7 @@ public class GameLobby extends javax.swing.JFrame{
     private char player4Difficulty;
 	private int connectionsMade = 0;
 	private boolean setupComplete = false;
+	private String ip;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Player1Status;
@@ -81,6 +85,14 @@ public class GameLobby extends javax.swing.JFrame{
         }
         connectionsMade = 3 - numberOfPlayers;
         startGame.setEnabled(false);
+		
+		try {
+			ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
     }
  
     /**
