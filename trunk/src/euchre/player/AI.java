@@ -8,9 +8,6 @@ import euchre.network.ClientNetworkManager;
  *
  */
 
-
-
-
 public class AI implements Player{
 
 	private String name = "";
@@ -86,13 +83,14 @@ public class AI implements Player{
 		else if(CardEvaluator.highestCardInHand(trump, trump, hand).getCardValue()=='j' && CardEvaluator.highestCardInHand(trump, trump, hand).getSuit()==sameColor){
 			playCard = CardEvaluator.highestCardInHand(trump, trump, hand);
 		}
-		//		else if(calc.){
-		//			playCard = highestCard(false);
-		//		}
+		//Or if the AI has at least 3 trump, play the lowest trump card...
+		else if(CardEvaluator.numberOfTrump(trump, hand)>=3){
+			playCard = CardEvaluator.lowestTrumpInHand(trump, trump, hand);
+		}
+		//Otherwise, play the lowest card in the hand.
 		else{
 			//FIX
 			playCard = CardEvaluator.lowestCardInHand(trump, trump, hand);
-			//playCard = calc.lowestTrumpInHand(trump, trump, hand);
 		}
 
 		//		if hand contains right bower, play right bower
@@ -142,6 +140,11 @@ public class AI implements Player{
 					playCard = CardEvaluator.lowestTrumpInHand(trump, led.getSuit(), hand);
 				}
 				else{
+					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
+				}
+				
+				//If the card to be played (playCard) will not beat the current winning card, play the lowest card in hand
+				if(CardEvaluator.cardValue(trump, led.getSuit(), playCard) < CardEvaluator.cardValue(trump, led.getSuit(), CardEvaluator.highestCardInHand(trump, led.getSuit(), played))){
 					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 				}
 
