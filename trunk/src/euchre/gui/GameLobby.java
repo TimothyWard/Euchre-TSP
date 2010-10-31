@@ -344,6 +344,9 @@ public class GameLobby extends javax.swing.JFrame{
     	//Figure out the number of players selected for each team.
         int team1Players = 0;
         int team2Players = 0;
+        if (!startGame.isEnabled()){
+        	return;
+        }
         if(connectionsMade >= 3){
 	        if(jRadioBPlayer1Team1.isSelected()){
 	        	team1Players++;
