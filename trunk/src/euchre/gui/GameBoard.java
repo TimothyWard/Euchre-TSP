@@ -162,7 +162,6 @@ public class GameBoard extends javax.swing.JFrame{
     	
     	if(humanPlayer.isTurn()){
     		JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
-    		//once game winner is determined, inform network who won to update views.
     	}
     	
     }
