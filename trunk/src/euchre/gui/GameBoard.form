@@ -47,8 +47,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelOTeamTricks" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelOTeamPoints" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="theyTeamTricksLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="theyTeamPointsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="theyTeamNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -167,8 +167,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelYTeamTricks" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelYTeamPoints" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="weTeamTricksLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="weTeamPointsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="weTeamNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -196,7 +196,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace pref="74" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -264,13 +264,13 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelYTeamPoints" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="weTeamPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="wePointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="weTricksLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelYTeamTricks" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="weTeamTricksLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -305,11 +305,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="theyPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelOTeamPoints" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="theyTeamPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelOTeamTricks" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="theyTeamTricksLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="theyTricksLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -423,7 +423,7 @@
         <Property name="text" type="java.lang.String" value="Player name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelYTeamPoints">
+    <Component class="javax.swing.JLabel" name="weTeamPointsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
@@ -433,7 +433,7 @@
         <Property name="text" type="java.lang.String" value="Tricks:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelYTeamTricks">
+    <Component class="javax.swing.JLabel" name="weTeamTricksLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
@@ -448,7 +448,7 @@
         <Property name="text" type="java.lang.String" value="Points:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelOTeamPoints">
+    <Component class="javax.swing.JLabel" name="theyTeamPointsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
@@ -458,7 +458,7 @@
         <Property name="text" type="java.lang.String" value="Tricks:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelOTeamTricks">
+    <Component class="javax.swing.JLabel" name="theyTeamTricksLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
