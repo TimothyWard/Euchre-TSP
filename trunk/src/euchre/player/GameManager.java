@@ -597,5 +597,9 @@ public class GameManager {
 	public ClientNetworkManager getClientNetworkManager(){
 		return client;
 	}
+	
+	public Round getRound(){
+		return round;
+	}
 
 }
