@@ -84,6 +84,7 @@ public class GameBoard extends javax.swing.JFrame{
         initComponents();
         centerScreen();
         hideSuitButtons();
+        turnLabel.setVisible(false);
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
         handButtons[2] = jButtonYourCard3;
