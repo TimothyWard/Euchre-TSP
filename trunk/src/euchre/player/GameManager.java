@@ -31,7 +31,7 @@ public class GameManager {
 	private ServerNetworkManager server;
 	private ClientNetworkManager client;
 	private Round round = null;
-	
+
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
 	Card[] hand3 = new Card[5];
@@ -41,40 +41,40 @@ public class GameManager {
 	 * Main test method for the Game Manager class.
 	 * @param args
 	 */
-//	public static void main(String[] args) {
-//		GameManager game = new GameManager();
-//		Round round = new Round();
-//		game.setRound(round);
-//		//			Player player1 = new Human();
-//		//			Player player2 = new Human();
-//		//			Player player3 = new Human();
-//		//			Player player4 = new Human();
-//		//			game.p1 = player1;
-//		//			game.p2 = player2;
-//		//			game.p3 = player3;
-//		//			game.p4 = player4;
-//		//			game.setAllPlayers(player1, player2, player3, player4);
-//		Player ai1 = new AI();
-//		Player ai2 = new AI();
-//		Player ai3 = new AI();
-//		Player ai4 = new AI();
-//		game.p1 = ai1;
-//		game.p2 = ai2;
-//		game.p3 = ai3;
-//		game.p4 = ai4;
-//		game.setAllPlayers(ai1, ai2, ai3, ai4);
-//
-//		game.setTeam(1, 2);
-//		game.setTeam(2, 2);
-//		game.setTeam(3, 1);
-//		game.setTeam(4, 1);
-//		
-//		for(int i=0;i<5;i++){
-//			System.out.println("Round " + (i+1));
-//			game.playGame();
-//		}
-//
-//	}
+	//	public static void main(String[] args) {
+	//		GameManager game = new GameManager();
+	//		Round round = new Round();
+	//		game.setRound(round);
+	//		//			Player player1 = new Human();
+	//		//			Player player2 = new Human();
+	//		//			Player player3 = new Human();
+	//		//			Player player4 = new Human();
+	//		//			game.p1 = player1;
+	//		//			game.p2 = player2;
+	//		//			game.p3 = player3;
+	//		//			game.p4 = player4;
+	//		//			game.setAllPlayers(player1, player2, player3, player4);
+	//		Player ai1 = new AI();
+	//		Player ai2 = new AI();
+	//		Player ai3 = new AI();
+	//		Player ai4 = new AI();
+	//		game.p1 = ai1;
+	//		game.p2 = ai2;
+	//		game.p3 = ai3;
+	//		game.p4 = ai4;
+	//		game.setAllPlayers(ai1, ai2, ai3, ai4);
+	//
+	//		game.setTeam(1, 2);
+	//		game.setTeam(2, 2);
+	//		game.setTeam(3, 1);
+	//		game.setTeam(4, 1);
+	//		
+	//		for(int i=0;i<5;i++){
+	//			System.out.println("Round " + (i+1));
+	//			game.playGame();
+	//		}
+	//
+	//	}
 
 	/**
 	 * Default Constructor for the GameManager class.
@@ -90,12 +90,12 @@ public class GameManager {
 	 */
 	public void playGame(){
 
-			deal();
-			setTrump();
-			//System.out.println("Upcard: " + upCard);
-			//System.out.println("Trump Suit: " + round.getTrumpSuit());
-			playRound();
-			//System.out.println("============");
+		deal();
+		setTrump();
+		//System.out.println("Upcard: " + upCard);
+		//System.out.println("Trump Suit: " + round.getTrumpSuit());
+		playRound();
+		//System.out.println("============");
 	}
 
 
@@ -110,6 +110,7 @@ public class GameManager {
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
+		Card card;
 
 		int draw=3;											//The number of cards to deal a player
 
@@ -122,10 +123,18 @@ public class GameManager {
 				draw=2;
 			}
 
-			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-				curPlayer.drawCard(deck.drawCard());	
+			for(int x=0;x<draw;x++){
+				card = deck.drawCard();
+				if(curPlayer.getNumber()==1) hand1[x] = card;
+				if(curPlayer.getNumber()==2) hand2[x] = card;
+				if(curPlayer.getNumber()==3) hand3[x] = card;
+				if(curPlayer.getNumber()==4) hand4[x] = card;
 			}
+
+//			curPlayer=nextPlayer(curPlayer);
+//			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+//				curPlayer.drawCard(deck.drawCard());	
+//			}
 
 		}
 
@@ -140,18 +149,33 @@ public class GameManager {
 				draw=2;
 			}
 
-			curPlayer=nextPlayer(curPlayer);
-			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
-				curPlayer.drawCard(deck.drawCard());	
+			for(int x=(4-draw);x<4;x++){
+				card = deck.drawCard();
+				if(curPlayer.getNumber()==1) hand1[x] = card;
+				if(curPlayer.getNumber()==2) hand2[x] = card;
+				if(curPlayer.getNumber()==3) hand3[x] = card;
+				if(curPlayer.getNumber()==4) hand4[x] = card;
 			}
+			
+//			curPlayer=nextPlayer(curPlayer);
+//			for(int x=0;x<draw;x++){						//Deals the appropriate number of cards to each player
+//				curPlayer.drawCard(deck.drawCard());	
+//			}
 
 		}
-
-		hand1 = player1.getHand();
-		hand2 = player2.getHand();
-		hand3 = player3.getHand();
-		hand4 = player4.getHand();
 		
+		for(int i=0;i<4;i++){
+			player1.drawCard(hand1[i]);
+			player2.drawCard(hand2[i]);
+			player3.drawCard(hand3[i]);
+			player4.drawCard(hand4[i]);
+		}
+
+//		hand1 = player1.getHand();
+//		hand2 = player2.getHand();
+//		hand3 = player3.getHand();
+//		hand4 = player4.getHand();
+
 		upCard = deck.drawCard();
 
 	}
@@ -243,15 +267,15 @@ public class GameManager {
 			//For each player, have them play a card
 			for(int i=0;i<4;i++){
 				curPlayer.setTurn(true);
-				
+
 				if(!curPlayer.isHuman()){
 					((AI)curPlayer).setPlayed(played);
 				}
-				
+
 				played[i] = curPlayer.playCard();
-				
+
 				board.playCard(played[i], curPlayer.getNumber());
-				
+
 				//System.out.println(curPlayer.getNumber() + " " + played[i]);
 
 				curPlayer.setTurn(false);
@@ -480,7 +504,7 @@ public class GameManager {
 	public void newPlayer(Player p){
 		p1=p;
 	}
-	
+
 	public Player getDealer(){
 		return dealer;
 	}
@@ -517,7 +541,7 @@ public class GameManager {
 	public Player getp4(){
 		return p4;
 	}
-	
+
 	public Card[] getHand1() {
 		return hand1;
 	}
