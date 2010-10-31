@@ -70,7 +70,7 @@ public class GameBoard extends javax.swing.JFrame{
     private javax.swing.JLabel theyTeamPointsLabel;
     private javax.swing.JLabel theyTeamTricksLabel;
     private javax.swing.JLabel theyTricksLabel;
-    private javax.swing.JLabel turnLabel;
+    private javax.swing.JLabel trumpLabel;
     private javax.swing.JLabel weLabel;
     private javax.swing.JLabel wePointsLabel;
     private javax.swing.JLabel weTeamNumberLabel;
@@ -84,7 +84,6 @@ public class GameBoard extends javax.swing.JFrame{
         initComponents();
         centerScreen();
         hideSuitButtons();
-        turnLabel.setVisible(false);
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
         handButtons[2] = jButtonYourCard3;
@@ -160,7 +159,12 @@ public class GameBoard extends javax.swing.JFrame{
     	setLeftPlayer(leftPlayer);
     	setRightPlayer(rightPlayer);
     	setBottomPlayer(humanPlayer);
-    	updateTurnLabel();
+    	
+    	if(humanPlayer.isTurn()){
+    		JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
+    		//once game winner is determined, inform network who won to update views.
+    	}
+    	
     }
     
     /**
@@ -249,7 +253,7 @@ public class GameBoard extends javax.swing.JFrame{
         UCard4 = new javax.swing.JLabel();
         UCard5 = new javax.swing.JLabel();
         RPlayed = new javax.swing.JLabel();
-        turnLabel = new javax.swing.JLabel();
+        trumpLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
@@ -422,9 +426,7 @@ public class GameBoard extends javax.swing.JFrame{
 
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
 
-        turnLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
-        turnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        turnLabel.setText("Your Turn");
+        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -467,7 +469,8 @@ public class GameBoard extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(clubsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(spadesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(spadesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -518,10 +521,7 @@ public class GameBoard extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(UCard4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(UCard5))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(turnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(UCard5)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -578,9 +578,7 @@ public class GameBoard extends javax.swing.JFrame{
                                         .addGap(30, 30, 30))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(RPlayed)
-                                        .addGap(136, 136, 136)
-                                        .addComponent(turnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)))
+                                        .addGap(196, 196, 196)))
                                 .addComponent(jLabelPassInfo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -670,10 +668,11 @@ public class GameBoard extends javax.swing.JFrame{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(diamondsButton)
                                     .addComponent(spadesButton))))
-                        .addGap(75, 75, 75)))
+                        .addGap(18, 18, 18)
+                        .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelYourName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -845,15 +844,6 @@ public class GameBoard extends javax.swing.JFrame{
     	theyTeamPointsLabel.setText("" + points);
     }
     
-    public void updateTurnLabel(){
-    	if(humanPlayer.isTurn()){
-    		turnLabel.setVisible(true);
-    	}
-    	else{
-    		turnLabel.setVisible(false);
-    	}
-    }
-    
     /**
      * displays an indicated card played by specified player at the center of the board
      * 
@@ -900,5 +890,25 @@ public class GameBoard extends javax.swing.JFrame{
 	
 	public void setTheyTeam(Team team){
 		theyTeamNumberLabel.setText("" + team.getTeamNumber());
+	}
+	
+	public void setTrumpLabel(char suit){
+		switch(suit){
+			case 'c':{
+				trumpLabel.setText("Trump is: Clubs");
+			}
+			case 'd':{
+				trumpLabel.setText("Trump is: Diamonds");
+			}
+			case 's':{
+				trumpLabel.setText("Trump is: Spades");
+			}
+			case 'h':{
+				trumpLabel.setText("Trump is: Hearts");
+			}
+			default:{
+				trumpLabel.setText("Trump is: -");
+			}
+		}
 	}
 }
