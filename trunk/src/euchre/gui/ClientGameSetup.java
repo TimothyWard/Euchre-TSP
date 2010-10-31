@@ -53,12 +53,12 @@ public class ClientGameSetup extends javax.swing.JFrame{
 	 * Moves the jFrame to the center of the screen
 	 */
 	private void centerScreen(){
-		int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
-		int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+		int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
+		int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
 		int xSize = this.getSize().width;
 		int ySize = this.getSize().height;
 		Point p = new Point();
-		p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+		p.setLocation(xCenter - xSize / 2, yCenter - ySize / 2);
 		this.setLocation(p);
 	}
 
@@ -155,8 +155,9 @@ public class ClientGameSetup extends javax.swing.JFrame{
 			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE); 
 		}else{ //Valid input, maybe
 
-			if(playerName.getText().trim().isEmpty() == false)
+			if(playerName.getText().trim().isEmpty() == false){
 				gottenInput = true;
+			}
 			jLabelWaitingStatus.setVisible(true);
 			StartButton.setVisible(false);
 			playerName.setEditable(false);
@@ -173,7 +174,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 	 */
 	private boolean contains(String string, char look){
 		boolean wasFound = false;
-		for (int i=0; i < string.length(); i++){
+		for (int i = 0; i < string.length(); i++){
 			if (string.charAt(i) == look){
 				wasFound = true;
 			}
@@ -186,7 +187,6 @@ public class ClientGameSetup extends javax.swing.JFrame{
 	 * @return true if there is input, false if it is still waiting
 	 */
 	public boolean hasInput(){
-
 		return gottenInput;
 	}
 

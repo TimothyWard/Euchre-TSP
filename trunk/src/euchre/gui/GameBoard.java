@@ -184,7 +184,7 @@ public class GameBoard extends javax.swing.JFrame{
         int xSize = this.getSize().width;
         int ySize = this.getSize().height;
         Point p = new Point();
-        p.setLocation(xCenter - xSize / 2, yCenter - ySize/2);
+        p.setLocation(xCenter - xSize / 2, yCenter - ySize / 2);
         this.setLocation(p);
     }
     
