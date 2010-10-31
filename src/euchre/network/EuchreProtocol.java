@@ -186,6 +186,29 @@ public class EuchreProtocol {
 				Game.initializeGameBoard(manager.getGameBoard());
 				manager.setTeamsComplete(true);
 			}
+			else if(token.equals("SetHand")){
+				int playernum = Integer.parseInt(parser.nextToken());
+	
+				
+				char cardvalue;
+				char cardsuit;
+				for(int i = 0;i < 5; i++)
+				{
+					String card = parser.nextToken();
+					cardvalue = card.charAt(0);
+					cardsuit = card.charAt(1);
+					if(playernum == 1)
+						manager.getPlayer1().setCard(i,cardvalue,cardsuit);
+					if(playernum == 2)
+						manager.getPlayer2().setCard(i,cardvalue,cardsuit);
+					if(playernum == 3)
+						manager.getPlayer3().setCard(i, cardvalue, cardsuit);
+					if(playernum == 4)
+						manager.getPlayer4().setCard(i, cardvalue, cardsuit);
+				}
+				
+				Game.initializeGameBoard(manager.getGameBoard());
+			}
 
 
 

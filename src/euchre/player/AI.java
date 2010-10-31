@@ -361,5 +361,10 @@ public class AI implements Player{
 	public void setNumber(int i) {
 		playerNumber = i;
 	}
+	
+	public void setCard(int number, char value, char suit){
+		hand[number] = new Card(value, suit);
+	}
+
 
 }
