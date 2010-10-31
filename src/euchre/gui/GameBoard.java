@@ -179,12 +179,12 @@ public class GameBoard extends javax.swing.JFrame{
      * Moves the jFrame to the center of the screen
      */
     private void centerScreen(){
-        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
-        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+        int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
+        int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
         int xSize = this.getSize().width;
         int ySize = this.getSize().height;
         Point p = new Point();
-        p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+        p.setLocation(xCenter - xSize / 2, yCenter - ySize/2);
         this.setLocation(p);
     }
     
