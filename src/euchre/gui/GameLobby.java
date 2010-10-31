@@ -69,7 +69,6 @@ public class GameLobby extends javax.swing.JFrame{
     public GameLobby(int numberOfPlayers, String hostName, GameManager inManager){
         initComponents();
         centerScreen();
-        Player1Status.setText(hostName);
         myManager = inManager;
         if (numberOfPlayers == 1){
         	setPlayer4Difficulty('m');
@@ -89,10 +88,10 @@ public class GameLobby extends javax.swing.JFrame{
 		try {
 			ip = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		Player1Status.setText(hostName + "...Your Host Address: \"" + ip + "\"");
     }
  
     /**
