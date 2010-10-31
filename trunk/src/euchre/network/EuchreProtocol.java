@@ -6,6 +6,7 @@ package euchre.network;
 import java.util.StringTokenizer;
 
 import euchre.game.Game;
+import euchre.player.Card;
 import euchre.player.GameManager;
 import euchre.player.Human;
 
@@ -208,6 +209,18 @@ public class EuchreProtocol {
 				}
 				
 				Game.initializeGameBoard(manager.getGameBoard());
+			}
+			else if(token.equals("SetTurnedCard")){
+				char cardvalue;
+				char cardsuit;
+				String card = parser.nextToken();
+				cardvalue = card.charAt(0);
+				cardsuit = card.charAt(1);
+				manager.getGameBoard().setTurnedCard(new Card(cardvalue,cardsuit));
+				Game.initializeGameBoard(manager.getGameBoard());
+
+				
+				
 			}
 
 
