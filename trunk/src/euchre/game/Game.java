@@ -23,30 +23,48 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
+		System.out.println(args.length);
 		
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
+		
+		//if this process is an AI, spawn that
+		if(args.length==0){
+			//declare GUI welcome window to ask if host or client
+			Welcome welcomeWindow = new Welcome();
+			welcomeWindow.setVisible(true);
 
-		//declare GUI welcome window to ask if host or client
-		Welcome welcomeWindow = new Welcome();
-		welcomeWindow.setVisible(true);
+			//wait for the user to decide the game type
+			while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
 
-		//wait for the user to decide the game type
-		while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
+			//retrieve the user's desired game choice and dispose of the welcome window
+			char gameChoice = welcomeWindow.getGameChoice();
+			welcomeWindow.setVisible(false);
+			welcomeWindow.dispose();
 
-		//retrieve the user's desired game choice and dispose of the welcome window
-		char gameChoice = welcomeWindow.getGameChoice();
-		welcomeWindow.setVisible(false);
-		welcomeWindow.dispose();
+			//create the users desired player type based on the game choice
+			if (gameChoice == 'h') createHostPlayer(GM);
+			else if(gameChoice == 'c') createClientPlayer(GM);
+			else if(gameChoice == 'a') createLocalOnlyGame(GM);
+		}
 
-		//create the users desired player type based on the game choice
-		if (gameChoice == 'h') createHostPlayer(GM);
-		else if(gameChoice == 'c') createClientPlayer(GM);
-		else if(gameChoice == 'a') createLocalOnlyGame(GM);
+//		else if (args.length >0){
+//			try{
+//				if (args[0]=="-ai"){
+//					createAIPlayer(GM);
+//				}
+//			}
+//			catch(Exception exc){
+//				System.out.println("Invalid Argument Passed to Program");
+//			}
+//		}
 
 		//wait for all players to join and GM's to sync
 		while (GM.areTeamsComplete()==false) Thread.sleep(500);
 
+		//wait for any AI's to finish spawning
+		Thread.sleep(5000);
+		
 		//set teams
 		Team one = GM.getTeamOne();
 		Team two = GM.getTeamTwo();
@@ -95,9 +113,9 @@ public class Game {
 		//open the window for the user to input the game data
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
-		
+
 		//make the specified number of AI's
-//		makeAIs(hostSetup.getAIs());
+		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
@@ -108,19 +126,20 @@ public class Game {
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
 	}
-	
+
 	/**
 	 * This method creates the specified number of AIs in separate instantiations of the software.
+	 * 
 	 * @param numberOfAIs
+	 * @throws InterruptedException Throws the exception for when the AI number is not determined yet.
 	 */
-	private static void makeAIs(int numberOfAIs){
+	private static void makeAIs(int numberOfAIs) throws InterruptedException{
+		while (numberOfAIs==-1) Thread.sleep(500);
 		Runtime runtime = Runtime.getRuntime();
 		while (numberOfAIs != 0){
 			try {
-				String commandPath = System.getProperty("user.dir");
-				String[] cmds = { commandPath, "/" };
-				String[] env = { "TERM=VT100" };
-				runtime.exec(cmds, env);
+				String[] cmds = { "java, -ai" };
+				Process process = runtime.exec(cmds);
 			} 
 			catch (IOException e) {
 				e.printStackTrace();
@@ -128,7 +147,7 @@ public class Game {
 			numberOfAIs--;
 		}
 	}
-	
+
 	/**
 	 * This method will create a client object.
 	 * 
@@ -150,7 +169,7 @@ public class Game {
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
-		
+
 		//join network game
 		client.toServer("RegisterPlayer,Computer One," + computer.getPlayerID());
 
