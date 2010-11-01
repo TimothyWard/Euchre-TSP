@@ -17,7 +17,7 @@ public class Human implements Player{
 	private boolean isTurn = false;
 	private char orderSuit = 0;
 	private boolean orderUp = false;
-	private int orderedUp = 0;
+	private boolean responded = false;
 	private int cardRemoved;
 	private int playerID = (int)(Math.random() * 5000000);
 	boolean isHost = false;
@@ -105,10 +105,11 @@ public class Human implements Player{
 	 * @return True if ordered up, false otherwise
 	 */
 	public boolean orderUp(Card c){
-
+		
+		orderUp = false;
 		System.out.println("Waiting on " + name + " to order up or pass...");
-		System.out.println("Is turn? " + isTurn);
-		while(orderedUp == 0){
+		System.out.println("Is " + name + "'s turn? " + isTurn);
+		while(responded == false){
 			//Wait until the user selects a suit
 			try{
 				Thread.sleep(500);
@@ -117,8 +118,14 @@ public class Human implements Player{
 				e.printStackTrace();
 			}
 		}
+		if(orderUp=true){
+			System.out.println(name + " ordered up the " + c + ".");
+		}
+		else{
+			System.out.println(name + " passed.");
+		}
 
-		orderedUp = 0;
+		responded = false;
 		return orderUp;
 
 	}
@@ -128,7 +135,7 @@ public class Human implements Player{
 	 * @param b True if the human ordered up the card, false if they passed.
 	 */
 	public void setOrderUp(boolean b){
-		orderedUp = 1;
+		responded = true;
 		orderUp = b;
 	}
 
@@ -161,7 +168,9 @@ public class Human implements Player{
 
 		//Should prompt user to discard a card...
 
-		System.out.println("Waiting on player " + playerNum + " to discard a card...");
+		System.out.println("Waiting on player " + name + " to discard a card...");
+		System.out.println("Is " + name + "'s turn? " + isTurn);
+		
 		while(activeCard == null){
 			//Wait until the user clicks a card...
 			
