@@ -185,6 +185,9 @@ public class Human implements Player{
 		Card c = activeCard;
 		activeCard = null;
 		
+		System.out.println("Going to discard " + c);
+		
+		
 		for(int i=0;i<5;i++){
 			if(hand[i].equals(c)){
 				cardRemoved = i;
