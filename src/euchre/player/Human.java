@@ -18,6 +18,7 @@ public class Human implements Player{
 	private char orderSuit = 0;
 	private boolean orderUp = false;
 	private int orderedUp = 0;
+	private int cardRemoved;
 	private int playerID = (int)(Math.random() * 5000000);
 	boolean isHost = false;
 	
@@ -64,8 +65,7 @@ public class Human implements Player{
 			hand[numCards] = c;
 		}
 		else if(numCards == 5){
-			discard();
-			hand[numCards] = c;
+			hand[cardRemoved]=c;
 		}
 
 		numCards++;
@@ -106,7 +106,8 @@ public class Human implements Player{
 	 */
 	public boolean orderUp(Card c){
 
-		System.out.println("OrderedUp = " + orderedUp + ".  Waiting on Player " + playerNum + " to order up...");
+		System.out.println("Waiting on " + name + " to order up or pass...");
+		System.out.println("Is turn? " + isTurn);
 		while(orderedUp == 0){
 			//Wait until the user selects a suit
 			try{
@@ -175,12 +176,11 @@ public class Human implements Player{
 		Card c = activeCard;
 		activeCard = null;
 		
-		int cardRemoved;
-		
 		for(int i=0;i<5;i++){
 			if(hand[i].equals(c)){
 				cardRemoved = i;
 				hand[i]=null;
+				System.out.println("Dealer discarded " + c);
 			}
 			
 		}
