@@ -893,6 +893,10 @@ public class GameBoard extends javax.swing.JFrame{
 		theyTeamNumberLabel.setText("" + team.getTeamNumber());
 	}
 	
+	public Card getTurnedCard(){
+		return turnedCard;
+	}
+	
 	public void setTrumpLabel(char suit){
 		switch(suit){
 			case 'c':{
