@@ -728,7 +728,6 @@ public class GameBoard extends javax.swing.JFrame{
     private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
     	if(humanPlayer.isTurn()){
 	    	this.hideTrumpButtons();
-	    	showSuitButtons();
     		humanPlayer.setOrderUp(true);
     	}
 
@@ -867,7 +866,7 @@ public class GameBoard extends javax.swing.JFrame{
     
     public void setTurnedCard(Card c){
     	turnedCard = c;
-	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
     }
     
     public void setGameManager(GameManager gm){
