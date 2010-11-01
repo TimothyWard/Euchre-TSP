@@ -90,10 +90,11 @@ public class GameManager {
 	 */
 	public void playGame(){
 
-		if(server != null)
+		if(server != null){
 			deal();	
-		setTrump();
-		playRound();
+			setTrump();
+			playRound();
+		}
 	}
 
 
