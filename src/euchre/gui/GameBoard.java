@@ -25,7 +25,8 @@ public class GameBoard extends javax.swing.JFrame{
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+   	private Card turnedCard;
+   //Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
     private javax.swing.JLabel LCard3;
@@ -865,7 +866,8 @@ public class GameBoard extends javax.swing.JFrame{
     }
     
     public void setTurnedCard(Card c){
-    	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+    	turnedCard = c;
+	TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
     }
     
     public void setGameManager(GameManager gm){
