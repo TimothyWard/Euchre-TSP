@@ -25,7 +25,9 @@ public class GameBoard extends javax.swing.JFrame{
 	private Player topPlayer;
 	private Player leftPlayer;
 	private Player rightPlayer;
-   	private Card turnedCard;
+   	private Card turnedCard = new Card('e', 'x');
+   	private boolean pickUpPassed = false;
+   	private boolean suitButtonsUsed = false;
    //Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
@@ -114,8 +116,9 @@ public class GameBoard extends javax.swing.JFrame{
         RCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
         RCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
         RCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
+        RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/picturesuitButtonsUseds/back_sideways.png")));
         showTrumpButtons();
+        hideSuitButtons();
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
         jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
         jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
@@ -163,6 +166,13 @@ public class GameBoard extends javax.swing.JFrame{
     	
     	if(humanPlayer.isTurn()){
     		JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	
+    	if(turnedCard.getSuit() != 'e' && !jButtonPickUp.isVisible() && pickUpPassed && !suitButtonsUsed){
+    		showSuitButtons();
+    	}
+    	else{
+    		hideSuitButtons();
     	}
     	
     }
@@ -720,8 +730,9 @@ public class GameBoard extends javax.swing.JFrame{
 
     private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
     	if(humanPlayer.isTurn()){
+    		this.hideTrumpButtons();
     		humanPlayer.setOrderUp(false);
-    		
+    		pickUpPassed = true;
     	}
     }//GEN-LAST:event_passButtonClicked
 
@@ -737,6 +748,7 @@ public class GameBoard extends javax.swing.JFrame{
     	if(humanPlayer.isTurn()){
     		 humanPlayer.setCallSuit('h');
     		 hideSuitButtons();
+    		 suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_heartsListener
 
@@ -744,6 +756,7 @@ public class GameBoard extends javax.swing.JFrame{
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('c');
     		hideSuitButtons();
+    		suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_clubsListener
 
@@ -751,6 +764,7 @@ public class GameBoard extends javax.swing.JFrame{
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('d');
     		hideSuitButtons();
+    		suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_diamondsListener
 
@@ -758,6 +772,7 @@ public class GameBoard extends javax.swing.JFrame{
     	if(humanPlayer.isTurn()){
     		humanPlayer.setCallSuit('s');
     		hideSuitButtons();
+    		suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_spadesListener
 
@@ -769,7 +784,8 @@ public class GameBoard extends javax.swing.JFrame{
     		}
     		else{
     			humanPlayer.setCallSuit('x');
-    		}    		
+    		} 
+    		suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_suitPassListener
     
