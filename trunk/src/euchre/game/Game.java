@@ -29,7 +29,7 @@ public class Game {
 		GameManager GM = new GameManager();
 		
 		//if this process is an AI, spawn that
-		if(args.length==0){
+//		if(args.length==0){
 			//declare GUI welcome window to ask if host or client
 			Welcome welcomeWindow = new Welcome();
 			welcomeWindow.setVisible(true);
@@ -46,7 +46,7 @@ public class Game {
 			if (gameChoice == 'h') createHostPlayer(GM);
 			else if(gameChoice == 'c') createClientPlayer(GM);
 			else if(gameChoice == 'a') createLocalOnlyGame(GM);
-		}
+//		}
 
 //		else if (args.length >0){
 //			try{
@@ -115,7 +115,7 @@ public class Game {
 		hostSetup.setVisible(true);
 
 		//make the specified number of AI's
-		makeAIs(hostSetup.getAIs());
+//		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
