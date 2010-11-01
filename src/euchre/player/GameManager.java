@@ -174,11 +174,11 @@ public class GameManager {
 					round.setTeamWhoOrdered(teamTwo);
 				}
 				curPlayer.setTurn(false);
-				System.out.println("UpCard3: " + round.getTurnedCard());
-				round.setTrumpSuit(round.getTurnedCard().getSuit());
+				round.setTrumpSuit(board.getTurnedCard().getSuit());
+				System.out.println("Dealer is " + dealer.getNumber() + " " + dealer.getName());
 				dealer.setTurn(true);
-				deck.discardCard(dealer.discard());						//If a player orders it up, the dealer must discard a card
-				dealer.drawCard(upCard);								//and pick up the upCard
+				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
+				dealer.drawCard(board.getTurnedCard());								//and pick up the upCard
 				dealer.setTurn(false);
 			}
 			else{
@@ -187,6 +187,7 @@ public class GameManager {
 			}
 			curPlayer.setTurn(false);
 		}
+		
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(curPlayer.equals(dealer)){
 			deck.discardCard(upCard);									//...and discard the upCard...
@@ -220,7 +221,6 @@ public class GameManager {
 						}
 					}
 					curPlayer.setTurn(false);
-					break;
 				}
 			}
 		}//End of picking suit
@@ -261,8 +261,6 @@ public class GameManager {
 				played[i] = curPlayer.playCard();
 
 				board.playCard(played[i], curPlayer.getNumber());
-
-				//System.out.println(curPlayer.getNumber() + " " + played[i]);
 
 				curPlayer.setTurn(false);
 				curPlayer=nextPlayer(curPlayer);
