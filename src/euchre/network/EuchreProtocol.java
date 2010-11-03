@@ -218,7 +218,19 @@ public class EuchreProtocol {
 				cardsuit = card.charAt(1);
 				manager.getGameBoard().setTurnedCard(new Card(cardvalue,cardsuit));
 				Game.initializeGameBoard(manager.getGameBoard());
-
+			}
+			else if(token.equals("SetPlayerTurn")){
+				int id = Integer.parseInt(parser.nextToken());
+				
+				if(id == manager.getPlayer1().getPlayerID())
+					System.out.println(manager.getPlayer1().getName() + "'s turn");
+				if(id == manager.getPlayer2().getPlayerID())
+					System.out.println(manager.getPlayer2().getName() + "'s turn");
+				if(id == manager.getPlayer3().getPlayerID())
+					System.out.println(manager.getPlayer3().getName() + "'s turn");
+				if(id == manager.getPlayer4().getPlayerID())
+					System.out.println(manager.getPlayer4().getName() + "'s turn");
+				
 				
 				
 			}

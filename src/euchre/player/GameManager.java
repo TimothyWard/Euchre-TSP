@@ -92,8 +92,9 @@ public class GameManager {
 
 		if(server != null){
 			deal();	
-			setTrump();
-			playRound();
+			System.out.println(nextPlayer(dealer).getName());
+			//setTrump();
+			//playRound();
 		}
 	}
 
@@ -148,6 +149,8 @@ public class GameManager {
 		
 		
 		Game.initializeGameBoard(board);
+		
+		server.toClients("SetPlayerTurn," + nextPlayer(dealer).getPlayerID());
 		
 
 
