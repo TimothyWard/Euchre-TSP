@@ -31,6 +31,7 @@ public class GameBoard extends javax.swing.JFrame{
 
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
+	private boolean gameplay = false;
 
 
 
@@ -744,6 +745,9 @@ public class GameBoard extends javax.swing.JFrame{
 				}
 				else
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				pickItUp=false;
+				gameplay=true;
+				turnOver();
 				
 			}
 
@@ -758,6 +762,15 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonYourCard2.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
+					GM.setTrump(c.getSuit());
+				}
+				else
+					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				pickItUp=false;
+				gameplay=true;
+				turnOver();
 			}
 		}
 
@@ -771,6 +784,15 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonYourCard3.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
+					GM.setTrump(c.getSuit());
+				}
+				else
+					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				pickItUp=false;
+				gameplay=true;
+				turnOver();
 			}
 		}
 
@@ -784,6 +806,15 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonYourCard4.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
+					GM.setTrump(c.getSuit());
+				}
+				else
+					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				pickItUp=false;
+				gameplay=true;
+				turnOver();
 			}
 		}
 
@@ -797,7 +828,16 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonYourCard5.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
+					GM.setTrump(c.getSuit());
+				}
+				else
+					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
 
+				pickItUp=false;
+				gameplay=true;
+				turnOver();
 			}
 		}
 
@@ -1008,22 +1048,27 @@ public class GameBoard extends javax.swing.JFrame{
 		case 'c':{
 			trumpLabel.setText("♣");
 			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+			break;
 		}
 		case 'd':{
 			trumpLabel.setText("♦");
 			trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
+			break;
 		}
 		case 's':{
 			trumpLabel.setText("♠");
 			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+			break;
 		}
 		case 'h':{
 			trumpLabel.setText("♥");
 			trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
+			break;
 		}
 		case 'e':{
 			trumpLabel.setText("∅");
 			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+			break;
 		}
 		default:{
 			trumpLabel.setText("∅");
