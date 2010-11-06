@@ -586,21 +586,21 @@
     <Component class="javax.swing.JLabel" name="UPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="YourPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
@@ -719,7 +719,7 @@
     <Component class="javax.swing.JLabel" name="RPlayed">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/euchre/gui/pictures/back.png"/>
+          <Image iconType="3" name="/euchre/gui/pictures/empty.png"/>
         </Property>
       </Properties>
     </Component>
