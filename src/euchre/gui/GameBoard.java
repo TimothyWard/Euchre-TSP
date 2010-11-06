@@ -183,17 +183,17 @@ public class GameBoard extends javax.swing.JFrame{
 		if(GM.isMyTurn()){
 			//JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
 			jLabelTurn.setVisible(true);
+			
 			if(!settingSuit){
 				jButtonPass.setVisible(true);
 				jButtonPickUp.setVisible(true);
 			}
-			if(settingSuit)
-				showSuitButtons();
-			if(pickItUp && GM.isDealer())
-			{
+			if(gameplay){
 				jButtonPass.setVisible(false);
 				jButtonPickUp.setVisible(false);
 			}
+			if(settingSuit)
+				showSuitButtons();
 		}
 		else{
 			jLabelTurn.setVisible(false);
@@ -764,7 +764,10 @@ public class GameBoard extends javax.swing.JFrame{
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
-				
+			}
+			else if(gameplay){
+				playCard(GM.getPlayerIAm().getHand()[0], GM.getPlayerIAm().getNumber());
+				turnOver();
 			}
 
 		}
@@ -1177,7 +1180,7 @@ public class GameBoard extends javax.swing.JFrame{
 			TurnedCard.setVisible(false);
 			jLabelDealer.setVisible(false);
 		}
-		
+
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
