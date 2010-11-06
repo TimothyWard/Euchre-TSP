@@ -19,6 +19,8 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	int port = 4444;
 	EuchreProtocol protocol;
 	GameManager manager;
+	
+	boolean debug = true;
 
 	//contains references to all of the communication threads for socket connections
 	LinkedList<EuchreConnectionThread> threads = new LinkedList<EuchreConnectionThread>();
@@ -72,47 +74,36 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 
 	}
 
+	
 	/**
-	 * FILL THIS IN
-	 * @param s
-	 * @param hash
+	 * Send a message to all of the clients
+	 * 
+	 * @param tokenizedString The message to send to the clients, to be interpreted by EuchreProtocol
 	 */
-	public void toClients(String s, int hash){
+	public void toClients(String tokenizedString){
 
-
-		System.out.println(s);
+		if(debug)
+			System.out.println(tokenizedString);
+		
 		for(EuchreConnectionThread t : threads){
-			if(hash != t.hashCode())
-				t.getPrintWriter().println(s);
-		}
-	}
-
-	/**
-	 * FILL THIS IN
-	 * @param s
-	 */
-	public void toClients(String s){
-
-
-		System.out.println(s);
-		for(EuchreConnectionThread t : threads){
-			t.getPrintWriter().println(s);
+			t.getPrintWriter().println(tokenizedString);
 		}
 	}
 	
 	/**
-	 * FILL THIS IN
-	 * @param message
-	 * @param hash
+	 * Send a message to the parser in EuchreProtocol
+	 * 
+	 * @param message The message to be parsed by EuchreProtocol
 	 */
-	public void parse(String message, int hash){
+	public void parse(String message){
 		
 		protocol.serverParse(message);
 	}
 	
 	/**
-	 * FILL THIS IN
-	 * @return
+	 * Get reference to the parser object
+	 * 
+	 * @return The EuchreProtocol object
 	 */
 	public EuchreProtocol getParser(){
 		return protocol;
