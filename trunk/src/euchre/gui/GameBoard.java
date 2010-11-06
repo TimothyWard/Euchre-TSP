@@ -31,7 +31,7 @@ public class GameBoard extends javax.swing.JFrame{
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
-
+	private int playerCards[] = {5, 5, 5, 5};
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
@@ -87,6 +87,9 @@ public class GameBoard extends javax.swing.JFrame{
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
 	private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+	private javax.swing.JLabel RCards[] = {RCard1, RCard2, RCard3, RCard4, RCard5};
+	private javax.swing.JLabel LCards[] = {LCard1, LCard2, LCard3, LCard4, LCard5};
+	private javax.swing.JLabel UCards[] = {UCard1, UCard2, UCard3, UCard4, UCard5};
 
 	public GameBoard(){
 		initComponents();
@@ -122,7 +125,7 @@ public class GameBoard extends javax.swing.JFrame{
 		RCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
 		RCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
 		RCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-		RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/picturesuitButtonsUseds/back_sideways.png")));
+		RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
 		showTrumpButtons();
 		hideSuitButtons();
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
@@ -132,6 +135,10 @@ public class GameBoard extends javax.swing.JFrame{
 		jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
 		trumpLabel.setText("∅");
 		trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+		playerCards[0] = 5;
+		playerCards[1] = 5;
+		playerCards[2] = 5;
+		playerCards[3] = 5;
 	}
 
 	/**
@@ -1104,12 +1111,18 @@ public class GameBoard extends javax.swing.JFrame{
 	public void playCard(Card c, int playerNumber){
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+			playerCards[playerNumber - 1]--;
+			RCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(leftPlayer.getNumber() == playerNumber){
 			LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+			playerCards[playerNumber - 1]--;
+			LCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(topPlayer.getNumber() == playerNumber){
 			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+			playerCards[playerNumber - 1]--;
+			UCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(humanPlayer.getNumber() == playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
@@ -1221,8 +1234,6 @@ public class GameBoard extends javax.swing.JFrame{
 			settingSuit = false;
 			gameplay = true;
 			setPlayerTurn(GM.nextPlayer(GM.getDealer()).getPlayerID());
-
-			
 		}
 	}
 
