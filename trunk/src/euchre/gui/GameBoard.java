@@ -28,19 +28,19 @@ public class GameBoard extends javax.swing.JFrame{
 	private Card turnedCard = new Card('e', 'x');
 	private boolean pickUpPassed = false;
 	private boolean suitButtonsUsed = false;
-	
+
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel LCard1;
 	private javax.swing.JLabel LCard2;
@@ -731,15 +731,15 @@ public class GameBoard extends javax.swing.JFrame{
 
 	private void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
 		if(GM.isMyTurn()){
-			
+
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(0, c.getCardValue(), c.getSuit());
-				jButtonYourCard2.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
+				jButtonYourCard1.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
 			}
-			
+
 		}
 	}//GEN-LAST:event_card1Clicked
 
@@ -761,7 +761,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(2, c.getCardValue(), c.getSuit());
-				jButtonYourCard2.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
+				jButtonYourCard3.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
 			}
@@ -774,7 +774,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(3, c.getCardValue(), c.getSuit());
-				jButtonYourCard2.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
+				jButtonYourCard4.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
 			}
@@ -787,7 +787,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(4, c.getCardValue(), c.getSuit());
-				jButtonYourCard2.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
+				jButtonYourCard5.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
 
@@ -811,11 +811,13 @@ public class GameBoard extends javax.swing.JFrame{
 	private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
 		if(GM.isMyTurn()){
 			if(settingSuit == false){
-				if(GM.isServer())
-					GM.getServerNetworkManager().getParser().serverParse("PickItUp");
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("PickItUp");
+					pickItUp();
+				}
 				else
 					GM.getClientNetworkManager().toServer("PickItUp");
-				
+
 				setPlayerTurn(GM.getDealer().getPlayerID());
 
 			}
@@ -969,7 +971,7 @@ public class GameBoard extends javax.swing.JFrame{
 	public void setGameManager(GameManager gm){
 		GM = gm;
 	}
-	
+
 	private void setTopPlayer(Player player){
 		jLabelUPlayerName.setText(player.getName());
 	}
@@ -1055,15 +1057,19 @@ public class GameBoard extends javax.swing.JFrame{
 		this.showSuitButtons();
 		settingSuit = true;
 	}
-	
-public void pickItUp(){
-		
-		
-			jButtonPass.setVisible(false);
-			jButtonPickUp.setVisible(false);
-			pickItUp = true;
-		
-		
-		
+
+	public void pickItUp(){
+
+		if(!GM.isDealer()){
+			TurnedCard.setVisible(false);
+			jLabelDealer.setVisible(false);
+		}
+
+		jButtonPass.setVisible(false);
+		jButtonPickUp.setVisible(false);
+		pickItUp = true;
+
+
+
 	}
 }
