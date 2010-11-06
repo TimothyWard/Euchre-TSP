@@ -960,13 +960,11 @@ public class GameBoard extends javax.swing.JFrame{
 	
 	public void setPlayerTurn(int id){
 		if(GM.getServerNetworkManager() != null){
-			
 			GM.setTurnPlayerID(id);
 			GM.getServerNetworkManager().toClients("SetPlayerTurn,"+id);
    		}
 		else{
 			GM.getClientNetworkManager().toServer("SetPlayerTurn,"+id);
-
 		} 
 	}
 }
