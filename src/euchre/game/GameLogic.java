@@ -56,6 +56,9 @@ public class GameLogic{
 			else if (interpretHand(round, round.getHand(x), one, two) == two){
 				teamTwoTricks++;
 			}
+			else {
+				System.out.println("ERROR: The round winner was not determined.");
+			}
 		}
 
 		//if the round winner took 5 tricks
@@ -96,6 +99,9 @@ public class GameLogic{
 			else if(round.getTeamWhoOrdered() == two){
 				incrementScore(one, 2);
 			}
+		}
+		else{
+			System.out.println("ERROR: The round winner was not determined.");
 		}
 
 	}
@@ -156,8 +162,12 @@ public class GameLogic{
 		if (maxIndex(cardValue) == 0 || maxIndex(cardValue) == 2){
 			return one;
 		}
-		else{
+		else if (maxIndex(cardValue) == 1 || maxIndex(cardValue) == 3){
 			return two;
+		}
+		else{
+			System.out.println("ERROR: The hand winner could not be determined.");
+			return null;
 		}
 	}
 
