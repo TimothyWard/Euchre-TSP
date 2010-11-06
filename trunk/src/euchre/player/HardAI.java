@@ -1,15 +1,15 @@
 package euchre.player;
 
+import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
 /**
  * 
+ * @author Neil MacBay(nmmacbay)
  * @author Kyle Kary
  *
  */
-
-public class MediumAI implements AI{
-
+public class HardAI implements AI{
 	private String name = "";
 	private Card emptyCard = new Card('a', 's');
 	private Card[] hand = {emptyCard,emptyCard,emptyCard,emptyCard,emptyCard};
@@ -24,7 +24,7 @@ public class MediumAI implements AI{
 	private int playerID = (int)(Math.random()*5000000);
 
 
-	public MediumAI(){
+	public HardAI(){
 		
 	}
 	
@@ -33,7 +33,7 @@ public class MediumAI implements AI{
 	 * 
 	 * @param client Reference to the network interface
 	 */
-	public MediumAI(ClientNetworkManager client){
+	public HardAI(ClientNetworkManager client){
 		clientManager = client;
 	}
 
@@ -43,25 +43,127 @@ public class MediumAI implements AI{
 	 * @return True if the player orders up the suit, false if they pass
 	 */
 	public boolean orderUp(Card c){
-
+		//Implements MetalHead's point system strategy for calling
 		int numTrump = 0;
 		trump = c.getSuit();
 
-		for(int i=0;i<numCards;i++){
-			if(hand[i].getSuit()==trump){
-				numTrump++;
-			}
-		}
-
-		if(numTrump>=3){
-			trump = c.getSuit();
+		if (metalHeadPoints(hand, trump, true) >= 4){
+			//insert going alone code.
 			return true;
 		}
-		else{
-			trump = 0;
-			return false;
+		if (metalHeadPoints(hand, trump, false) >= 3){
+			return true;
 		}
-
+		return false;
+	}
+	
+	/**
+	 * A point system for calling cards, developed by the alias MetalHead and submitted on website for public use.
+	 * Reference: http://webspace.webring.com/people/nm/metalheadtlh/Stratagies.html
+	 * 
+	 * @param hand The hand the player has.
+	 * @param trump The current trump.
+	 * @return The amount of points for that given hand.
+	 */
+	private double metalHeadPoints(Card[] hand, char trump, boolean alone){
+		double currentPoints = 0;
+		char leftSuit;
+		char otherSuit1;
+		char otherSuit2;
+		switch (trump){ //To find the suit of the left Bower.
+		case 's':
+			leftSuit = 'c';
+			otherSuit1 = 'd';
+			otherSuit2 = 'h';
+			break;
+		case 'c':
+			leftSuit = 's';
+			otherSuit1 = 'd';
+			otherSuit2 = 'h';
+			break;
+		case 'd':
+			leftSuit = 'h';
+			otherSuit1 = 's';
+			otherSuit2 = 'c';
+			break;
+		default: //case 'h':
+			leftSuit = 'd';
+			otherSuit1 = 's';
+			otherSuit2 = 'c';
+			break;
+		}
+		//Evaluations for trump cards.
+		if (CardEvaluator.hasCardInHand('j', trump, hand)){
+			currentPoints++;
+		}
+		if (CardEvaluator.hasCardInHand('j', leftSuit, hand)){
+			currentPoints++;
+			if (currentPoints == 1){//left without right.
+				currentPoints = 0.5;
+			}
+		}
+		if (CardEvaluator.hasCardInHand('a', trump, hand)){
+			currentPoints++;
+		}
+		if (CardEvaluator.hasCardInHand('k', trump, hand)){
+			currentPoints += 0.5;
+		}
+		if (CardEvaluator.hasCardInHand('q', trump, hand)){
+			currentPoints += 0.5;
+		}
+		if (CardEvaluator.hasCardInHand('0', trump, hand)){
+			currentPoints += 0.25;
+		}
+		if (CardEvaluator.hasCardInHand('9', trump, hand)){
+			currentPoints += 0.25;
+		}
+		//Evaluations for numbers of a kind.
+		if ((CardEvaluator.numberOfSuit(leftSuit, hand) >= 4 && CardEvaluator.hasCardInHand('j', leftSuit, hand))
+				|| (CardEvaluator.numberOfSuit(leftSuit, hand) >= 3 && !CardEvaluator.hasCardInHand('j', leftSuit, hand))){
+			currentPoints += 0.25;
+		}
+		if (CardEvaluator.numberOfSuit(otherSuit1, hand) >= 3){
+			currentPoints += 0.25;
+		}
+		if (CardEvaluator.numberOfSuit(otherSuit2, hand) >= 3){
+			currentPoints += 0.25;
+		}
+		//Evaluations for off-suit ace cards.
+		if (CardEvaluator.hasCardInHand('a', leftSuit, hand)){
+			currentPoints += 0.5;
+		}
+		if (CardEvaluator.hasCardInHand('a', otherSuit1, hand)){
+			currentPoints += 0.5;
+		}
+		if (CardEvaluator.hasCardInHand('a', otherSuit2, hand)){
+			currentPoints += 0.5;
+		}
+		//Evaluations for who's deal it is and the turned card. Some modifications.		
+		int turnedVal = CardEvaluator.cardValue(trump, leftSuit, clientManager.getGameManager().getGameBoard().getTurnedCard());//Value of turned card.
+		boolean me = clientManager.getGameManager().getDealer().equals(clientManager.getGameManager().getPlayerIAm()); //This AI is the dealer.
+		boolean isTeam = clientManager.getGameManager().getDealer().getTeam() == clientManager.getGameManager().getPlayerIAm().getTeam(); //The dealer is on AI's Team.
+		if (turnedVal == 13 || turnedVal == 11){//Point Values of 1
+			if (me){
+				currentPoints++;
+			}else if (isTeam && !alone){
+				currentPoints++;
+			}
+		}
+		if (turnedVal == 12 || turnedVal == 10 || turnedVal == 9){//Point Values of 0.5
+			if (me){
+				currentPoints += 0.5;
+			}else if (isTeam && !alone){
+				currentPoints += 0.5;
+			}
+		}
+		if (turnedVal == 8 || turnedVal == 7){//Point Values of 0.25
+			if (me){
+				currentPoints += 0.25;
+			}else if (isTeam && !alone){
+				currentPoints += 0.25;
+			}
+		}
+		return currentPoints;
 	}
 
 	/**
@@ -223,10 +325,10 @@ public class MediumAI implements AI{
 	@Override
 	public char callSuit(Card turnedDown) {
 
-		int numHeart = 0;
-		int numDiamond = 0;
-		int numSpade = 0;
-		int numClub = 0;
+		double numHeart = metalHeadPoints(hand, 'h', false);
+		double numDiamond = 0;
+		double numSpade = 0;
+		double numClub = 0;
 		
 		numHeart = CardEvaluator.numberOfSuit('h', hand);
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
