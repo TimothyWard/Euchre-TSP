@@ -141,7 +141,7 @@ public class Game {
 			System.out.println("number of ais left = " + numberOfAIs);
 			System.out.println(System.getProperty("java.class.path"));
 			try {
-				String[] cmd = {"java", "", "/Users/unwrittenrainbow/Documents/Academics and Classes/CS/TSP/Euchre/bin/euchre/Game/Game.class", "-a"};
+				String[] cmd = {"java", System.getProperty("java.class.path") + "/euchre/Game/Game.class", "-a"};
 				Process process = runtime.exec(cmd);
 			} 
 			catch (IOException e) {
@@ -161,7 +161,7 @@ public class Game {
 	private static void createAIPlayer(GameManager GM) throws InterruptedException{
 
 		//make a new game board and a new human to pass to the game manager
-		AI computer = new AI();
+		AI computer = new MediumAI();
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
