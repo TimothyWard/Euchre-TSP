@@ -28,7 +28,7 @@ public class GameBoard extends javax.swing.JFrame{
    	private Card turnedCard = new Card('e', 'x');
    	private boolean pickUpPassed = false;
    	private boolean suitButtonsUsed = false;
-   //Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
     private javax.swing.JLabel LCard3;
@@ -61,8 +61,8 @@ public class GameBoard extends javax.swing.JFrame{
     private javax.swing.JButton jButtonYourCard5;
     private javax.swing.JLabel jLabelDealer;
     private javax.swing.JLabel jLabelLPlayerName;
-    private javax.swing.JLabel jLabelPassInfo;
     private javax.swing.JLabel jLabelRPlayerName;
+    private javax.swing.JLabel jLabelTurn;
     private javax.swing.JLabel jLabelUPlayerName;
     private javax.swing.JLabel jLabelYourName;
     private javax.swing.JButton spadesButton;
@@ -87,6 +87,7 @@ public class GameBoard extends javax.swing.JFrame{
         initComponents();
         centerScreen();
         hideSuitButtons();
+        jLabelTurn.setVisible(false);
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
         handButtons[2] = jButtonYourCard3;
@@ -165,9 +166,12 @@ public class GameBoard extends javax.swing.JFrame{
     	setBottomPlayer(humanPlayer);
     	
     	if(humanPlayer.isTurn()){
-    		JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
+    		//JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
+    		jLabelTurn.setVisible(true);
     	}
-    	
+    	else{
+    		jLabelTurn.setVisible(false);
+    	}
     	if(turnedCard.getSuit() != 'e' && !jButtonPickUp.isVisible() && pickUpPassed && !suitButtonsUsed){
     		showSuitButtons();
     	}
@@ -233,7 +237,7 @@ public class GameBoard extends javax.swing.JFrame{
         jButtonPickUp = new javax.swing.JButton();
         jLabelYourName = new javax.swing.JLabel();
         jLabelDealer = new javax.swing.JLabel();
-        jLabelPassInfo = new javax.swing.JLabel();
+        jLabelTurn = new javax.swing.JLabel();
         theyLabel = new javax.swing.JLabel();
         weLabel = new javax.swing.JLabel();
         theyTeamNumberLabel = new javax.swing.JLabel();
@@ -350,8 +354,8 @@ public class GameBoard extends javax.swing.JFrame{
 
         jLabelDealer.setText("Your Deal:");
 
-        jLabelPassInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPassInfo.setText("(Player) passed, Your call");
+        jLabelTurn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTurn.setText("Your Turn");
 
         theyLabel.setText("Team:");
 
@@ -436,7 +440,8 @@ public class GameBoard extends javax.swing.JFrame{
 
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
 
-        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
+        trumpLabel.setText("Trump Is: -");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -493,7 +498,7 @@ public class GameBoard extends javax.swing.JFrame{
                                         .addComponent(jButtonPass, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonPickUp, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelPassInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelTurn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButtonYourCard2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -589,7 +594,7 @@ public class GameBoard extends javax.swing.JFrame{
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(RPlayed)
                                         .addGap(196, 196, 196)))
-                                .addComponent(jLabelPassInfo)
+                                .addComponent(jLabelTurn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonPass)
@@ -679,7 +684,7 @@ public class GameBoard extends javax.swing.JFrame{
                                     .addComponent(diamondsButton)
                                     .addComponent(spadesButton))))
                         .addGap(18, 18, 18)
-                        .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                        .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelYourName)
                 .addContainerGap())
@@ -807,7 +812,7 @@ public class GameBoard extends javax.swing.JFrame{
     	jButtonPass.setVisible(false);
     	jButtonPickUp.setVisible(false);
     	TurnedCard.setIcon(picManager.getPicture('e', '0'));
-    	jLabelPassInfo.setVisible(false);
+    	jLabelTurn.setVisible(false);
     	jLabelDealer.setVisible(false);
     }
     
@@ -817,7 +822,7 @@ public class GameBoard extends javax.swing.JFrame{
     private void showTrumpButtons(){
     	jButtonPass.setVisible(true);
     	jButtonPickUp.setVisible(true);
-    	jLabelPassInfo.setVisible(true);
+    	jLabelTurn.setVisible(true);
     	jLabelDealer.setVisible(true);
     }
    
