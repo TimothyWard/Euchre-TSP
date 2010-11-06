@@ -3,7 +3,6 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import euchre.player.GameManager;
 
 /**
  * The game setup forms for the client. You input your name then signal that your ready.
@@ -13,8 +12,6 @@ import euchre.player.GameManager;
  */
 public class ClientGameSetup extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
-	private GameManager myManager;
-	private GameBoard GB;
 	private boolean gottenInput = false;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -202,9 +199,5 @@ public class ClientGameSetup extends javax.swing.JFrame{
 		if(serverIP.getText().trim().isEmpty())
 			return "localhost";
 		return serverIP.getText().trim();
-	}
-
-	public void setGameManager(GameManager GM){
-		myManager = GM;
 	}
 }
