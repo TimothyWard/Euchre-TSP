@@ -187,9 +187,13 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonPass.setVisible(true);
 				jButtonPickUp.setVisible(true);
 			}
-			
 			if(settingSuit)
 				showSuitButtons();
+			if(pickItUp && GM.isDealer())
+			{
+				jButtonPass.setVisible(false);
+				jButtonPickUp.setVisible(false);
+			}
 		}
 		else{
 			jLabelTurn.setVisible(false);
@@ -1173,7 +1177,7 @@ public class GameBoard extends javax.swing.JFrame{
 			TurnedCard.setVisible(false);
 			jLabelDealer.setVisible(false);
 		}
-
+		
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
