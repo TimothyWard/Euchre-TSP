@@ -59,6 +59,7 @@ public class GameBoard extends javax.swing.JFrame{
     private javax.swing.JButton jButtonYourCard3;
     private javax.swing.JButton jButtonYourCard4;
     private javax.swing.JButton jButtonYourCard5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelDealer;
     private javax.swing.JLabel jLabelLPlayerName;
     private javax.swing.JLabel jLabelRPlayerName;
@@ -125,6 +126,8 @@ public class GameBoard extends javax.swing.JFrame{
         jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
         jButtonYourCard4.setIcon(picManager.getPicture(humanPlayer.getHand()[3].getSuit(), humanPlayer.getHand()[3].getCardValue()));
         jButtonYourCard5.setIcon(picManager.getPicture(humanPlayer.getHand()[4].getSuit(), humanPlayer.getHand()[4].getCardValue()));
+        trumpLabel.setText("∅");
+        trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
     }
     
     /**
@@ -268,6 +271,7 @@ public class GameBoard extends javax.swing.JFrame{
         UCard5 = new javax.swing.JLabel();
         RPlayed = new javax.swing.JLabel();
         trumpLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Euchre Game Board");
@@ -365,28 +369,34 @@ public class GameBoard extends javax.swing.JFrame{
 
         weTeamNumberLabel.setText("2");
 
-        heartsButton.setText("Hearts");
+        heartsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        heartsButton.setForeground(new java.awt.Color(255, 0, 0));
+        heartsButton.setText("♥");
         heartsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 heartsListener(evt);
             }
         });
 
-        clubsButton.setText("Clubs");
+        clubsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        clubsButton.setText("♣");
         clubsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clubsListener(evt);
             }
         });
 
-        diamondsButton.setText("Diamonds");
+        diamondsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        diamondsButton.setForeground(new java.awt.Color(255, 0, 0));
+        diamondsButton.setText("♦");
         diamondsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 diamondsListener(evt);
             }
         });
 
-        spadesButton.setText("Spades");
+        spadesButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        spadesButton.setText("♠");
         spadesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 spadesListener(evt);
@@ -440,8 +450,12 @@ public class GameBoard extends javax.swing.JFrame{
 
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
 
-        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
-        trumpLabel.setText("Trump Is: -");
+        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        trumpLabel.setText("∅");
+
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Trump Is: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -478,14 +492,20 @@ public class GameBoard extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(suitPassButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(heartsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(diamondsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(clubsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(spadesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(diamondsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(heartsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(spadesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(clubsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(trumpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -684,7 +704,9 @@ public class GameBoard extends javax.swing.JFrame{
                                     .addComponent(diamondsButton)
                                     .addComponent(spadesButton))))
                         .addGap(18, 18, 18)
-                        .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(trumpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelYourName)
                 .addContainerGap())
@@ -801,7 +823,7 @@ public class GameBoard extends javax.swing.JFrame{
     		suitButtonsUsed = true;
     	}
     }//GEN-LAST:event_suitPassListener
-    
+
     /**
      * This method is used to display the players hand to the GUI
      * 
@@ -928,19 +950,24 @@ public class GameBoard extends javax.swing.JFrame{
 	public void setTrumpLabel(char suit){
 		switch(suit){
 			case 'c':{
-				trumpLabel.setText("Trump is: ♣");
+				trumpLabel.setText("♣");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 			}
 			case 'd':{
-				trumpLabel.setText("Trump is: ♦");
+				trumpLabel.setText("♦");
+				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
 			}
 			case 's':{
-				trumpLabel.setText("Trump is: ♠");
+				trumpLabel.setText("♠");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 			}
 			case 'h':{
-				trumpLabel.setText("Trump is: ♥");
+				trumpLabel.setText("♥");
+				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
 			}
 			default:{
-				trumpLabel.setText("Trump is: ∅");
+				trumpLabel.setText("∅");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 			}
 		}
 	}
