@@ -932,7 +932,7 @@ public class GameBoard extends javax.swing.JFrame{
 				trumpLabel.setText("Trump is: ♥");
 			}
 			default:{
-				trumpLabel.setText("Trump is: -");
+				trumpLabel.setText("Trump is: ∅");
 			}
 		}
 	}
