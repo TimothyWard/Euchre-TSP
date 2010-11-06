@@ -125,6 +125,13 @@ public class EuchreProtocol {
 			{
 				server.toClients("SetPlayers," + connectedClients);
 			}
+			else if(token.equals("SetNextPlayerTurn")){
+				
+				manager.setNextPlayerTurn();
+				server.toClients("SetNextPlayerTurn");
+				
+			}
+			
 			else{
 				System.out.println("Undefined token: " + token);
 			}
@@ -222,16 +229,11 @@ public class EuchreProtocol {
 			else if(token.equals("SetPlayerTurn")){
 				int id = Integer.parseInt(parser.nextToken());
 				
-				if(id == manager.getPlayer1().getPlayerID())
-					System.out.println(manager.getPlayer1().getName() + "'s turn");
-				if(id == manager.getPlayer2().getPlayerID())
-					System.out.println(manager.getPlayer2().getName() + "'s turn");
-				if(id == manager.getPlayer3().getPlayerID())
-					System.out.println(manager.getPlayer3().getName() + "'s turn");
-				if(id == manager.getPlayer4().getPlayerID())
-					System.out.println(manager.getPlayer4().getName() + "'s turn");
-				
-				
+				manager.setTurnPlayerID(id);
+			}
+			else if(token.equals("SetNextPlayerTurn")){
+					
+				manager.setNextPlayerTurn();
 				
 			}
 
