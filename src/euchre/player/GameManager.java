@@ -212,14 +212,14 @@ public class GameManager {
 			//...and check to see if any player picks a suit.
 			for(int x=0;x<4;x++) {
 				curPlayer.setTurn(true);
-				if(curPlayer.callSuit() != 0){
+				if(curPlayer.callSuit(upCard) != 0){
 					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 						round.setTeamWhoOrdered(teamOne);
 					}
 					else{
 						round.setTeamWhoOrdered(teamTwo);
 					}
-					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
+					round.setTrumpSuit(curPlayer.callSuit(upCard));			//If a player calls suit, set trump equal to that suit
 					board.setTrumpLabel(round.getTrumpSuit());
 					curPlayer.setTurn(false);
 					break;
@@ -228,7 +228,7 @@ public class GameManager {
 					curPlayer=nextPlayer(curPlayer);
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 
-						round.setTrumpSuit(curPlayer.stickDealer());
+						round.setTrumpSuit(curPlayer.stickDealer(upCard));
 						board.setTrumpLabel(round.getTrumpSuit());
 						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 							round.setTeamWhoOrdered(teamOne);

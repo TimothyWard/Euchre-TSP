@@ -76,7 +76,7 @@ public class Human implements Player{
 	 * @return char The suit to be trump: 's' for spades, 'h' for hearts, 'd' for diamonds, and 'c' for clubs.
 	 *  Return 0 if not calling a suit
 	 */
-	public char callSuit() {
+	public char callSuit(Card turnedDown) {
 		while(orderSuit == 0){
 			//Wait until the user selects a suit
 			try{
@@ -204,7 +204,7 @@ public class Human implements Player{
 	/**
 	 * Sticks the dealer and forces them to pick a suit for trump. Dealer cannot pass.
 	 */
-	public char stickDealer(){
+	public char stickDealer(Card turnedDown){
 		while(orderSuit == 0){
 			//Wait until the user selects a suit
 			try {
