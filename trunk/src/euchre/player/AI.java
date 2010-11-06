@@ -88,9 +88,11 @@ public class AI implements Player{
 			playCard = CardEvaluator.lowestTrumpInHand(trump, trump, hand);
 		}
 		//Otherwise, play the lowest card in the hand.
+		else if(CardEvaluator.numberOfTrump(trump, hand)==0){
+			playCard = CardEvaluator.highestCardInHand(trump, trump, hand);
+		}
 		else{
-			//FIX
-			playCard = CardEvaluator.lowestCardInHand(trump, trump, hand);
+			playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 		}
 
 		//		if hand contains right bower, play right bower
