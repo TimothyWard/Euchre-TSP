@@ -669,6 +669,7 @@ public class GameManager {
 		this.trump = trump;
 		round.setTrumpSuit(trump);
 		board.setTrumpLabel(trump);
+		board.trumpSet();
 		
 	}
 	
