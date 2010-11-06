@@ -87,7 +87,7 @@ public class GameBoard extends javax.swing.JFrame{
     public GameBoard(){
         initComponents();
         centerScreen();
-        showSuitButtons();
+        hideSuitButtons();
         jLabelTurn.setVisible(false);
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
@@ -719,17 +719,13 @@ public class GameBoard extends javax.swing.JFrame{
     	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[0]);
     		jButtonYourCard1.setIcon(picManager.getPicture('e', 'a'));
-    		
-    	}
-    	
+       	}
     }//GEN-LAST:event_card1Clicked
 
     private void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
     	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[1]);
-    		jButtonYourCard2.setIcon(picManager.getPicture('e', 'a'));
-    		
-    		
+    		jButtonYourCard2.setIcon(picManager.getPicture('e', 'a'));	
     	}
     	
     }//GEN-LAST:event_card2Clicked
@@ -738,7 +734,6 @@ public class GameBoard extends javax.swing.JFrame{
     	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[2]);
     		jButtonYourCard3.setIcon(picManager.getPicture('e', 'a'));
-    		
     	}
     	
     }//GEN-LAST:event_card3Clicked
@@ -747,7 +742,6 @@ public class GameBoard extends javax.swing.JFrame{
     	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[3]);
     		jButtonYourCard4.setIcon(picManager.getPicture('e', 'a'));
-    		
     	}
 
     }//GEN-LAST:event_card4Clicked
@@ -756,8 +750,6 @@ public class GameBoard extends javax.swing.JFrame{
     	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[4]);
     		jButtonYourCard5.setIcon(picManager.getPicture('e', 'a'));
-    		
-    		
     	}
 
     }//GEN-LAST:event_card5Clicked
