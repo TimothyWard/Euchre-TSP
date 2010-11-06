@@ -1,6 +1,6 @@
 package euchre.game;
-import java.io.IOException;
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
@@ -114,7 +114,8 @@ public class Game {
 		HostGameSetup hostSetup = new HostGameSetup(GM);
 		hostSetup.setVisible(true);
 
-		//make the specified number of AI's
+		//make the specified number of AI's once the user specifies the correct number of AIs
+//		while (hostSetup.getAIs()==-1) Thread.sleep(500);
 //		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
@@ -134,12 +135,13 @@ public class Game {
 	 * @throws InterruptedException Throws the exception for when the AI number is not determined yet.
 	 */
 	private static void makeAIs(int numberOfAIs) throws InterruptedException{
-		while (numberOfAIs==-1) Thread.sleep(500);
+		System.out.println("making AIs");
 		Runtime runtime = Runtime.getRuntime();
 		while (numberOfAIs != 0){
+			System.out.println("number of ais left = " + numberOfAIs);
+			System.out.println(System.getProperty("java.class.path"));
 			try {
-				String[] cmds = { "java, -ai" };
-				Process process = runtime.exec(cmds);
+				runtime.exec("java " + System.getProperty("java.class.path") + "/euchre/Game/Game.class");
 			} 
 			catch (IOException e) {
 				e.printStackTrace();
