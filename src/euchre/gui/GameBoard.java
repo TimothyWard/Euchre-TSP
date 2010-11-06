@@ -28,7 +28,7 @@ public class GameBoard extends javax.swing.JFrame{
    	private Card turnedCard = new Card('e', 'x');
    	private boolean pickUpPassed = false;
    	private boolean suitButtonsUsed = false;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // VariablheartsButtonActionPerformedes declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
     private javax.swing.JLabel LCard3;
@@ -966,6 +966,10 @@ public class GameBoard extends javax.swing.JFrame{
 			case 'h':{
 				trumpLabel.setText("♥");
 				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
+			}
+			case 'e':{
+				trumpLabel.setText("∅");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 			}
 			default:{
 				trumpLabel.setText("∅");
