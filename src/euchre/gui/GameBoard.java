@@ -920,7 +920,8 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public void setGameManager(GameManager gm){
 		GM = gm;
-	} 
+	}
+	
 	private void setTopPlayer(Player player){
 		jLabelUPlayerName.setText(player.getName());
 	}
