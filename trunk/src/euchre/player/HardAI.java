@@ -1,5 +1,7 @@
 package euchre.player;
 
+import java.util.Arrays;
+
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -325,35 +327,73 @@ public class HardAI implements AI{
 	@Override
 	public char callSuit(Card turnedDown) {
 
-		double numHeart = metalHeadPoints(hand, 'h', false);
-		double numDiamond = 0;
-		double numSpade = 0;
-		double numClub = 0;
+		double pHeart = 0;
+		double pDiamond = 0;
+		double pSpade = 0;
+		double pClub = 0;
 		
-		numHeart = CardEvaluator.numberOfSuit('h', hand);
-		numDiamond = CardEvaluator.numberOfSuit('d', hand);
-		numSpade = CardEvaluator.numberOfSuit('s', hand);
-		numClub = CardEvaluator.numberOfSuit('c', hand);
+		if (turnedDown.getSuit() != 'h'){
+			pHeart = metalHeadPoints(hand, 'h', false);
+		}
+		if (turnedDown.getSuit() != 'd'){
+			pDiamond = metalHeadPoints(hand, 'd', false);
+		}
+		if (turnedDown.getSuit() != 's'){
+			pSpade = metalHeadPoints(hand, 's', false);
+		}
+		if (turnedDown.getSuit() != 'c'){
+			pClub = metalHeadPoints(hand, 'c', false);
+		}
 
-
-		if(numHeart>=3){
-			trump = 'h';
+		double[] tmpArr = {pHeart, pDiamond, pSpade, pClub};
+		Arrays.sort(tmpArr);
+		
+		if (tmpArr[3] == pHeart){
+			if (metalHeadPoints(hand, 'h', true) >= 4){
+				//insert going alone code.
+				return 'h';
+			}
+			if (pHeart >= 3){
+				return 'h';
+			}else{
+				return 0;
+			}
 		}
-		else if(numDiamond>=3){
-			trump = 'd';
+		if (tmpArr[3] == pDiamond){
+			if (metalHeadPoints(hand, 'd', true) >= 4){
+				//insert going alone code.
+				return 'd';
+			}
+			if (pHeart >= 3){
+				return 'd';
+			}else{
+				return 0;
+			}
 		}
-		else if(numSpade>=3){
-			trump = 's';
+		if (tmpArr[3] == pSpade){
+			if (metalHeadPoints(hand, 's', true) >= 4){
+				//insert going alone code.
+				return 's';
+			}
+			if (pHeart >= 3){
+				return 's';
+			}else{
+				return 0;
+			}
 		}
-		else if(numClub>=3){
-			trump = 'c';
-		}
-		else{
-			trump = 0;
+		if (tmpArr[3] == pClub){
+			if (metalHeadPoints(hand, 'c', true) >= 4){
+				//insert going alone code.
+				return 'c';
+			}
+			if (pHeart >= 3){
+				return 'c';
+			}else{
+				return 0;
+			}
 		}
 
 		return trump;
-
 	}
 
 	/**
@@ -381,23 +421,51 @@ public class HardAI implements AI{
 	@Override
 	public char stickDealer(Card turnedDown) {
 		
-		int numHeart = 0;
-		int numDiamond = 0;
-		int numSpade = 0;
-		int numClub = 0;
+		double pHeart = 0;
+		double pDiamond = 0;
+		double pSpade = 0;
+		double pClub = 0;
 		
-		numHeart = CardEvaluator.numberOfSuit('h', hand);
-		numDiamond = CardEvaluator.numberOfSuit('d', hand);
-		numSpade = CardEvaluator.numberOfSuit('s', hand);
-		numClub = CardEvaluator.numberOfSuit('c', hand);
+		if (turnedDown.getSuit() != 'h'){
+			pHeart = metalHeadPoints(hand, 'h', false);
+		}
+		if (turnedDown.getSuit() != 'd'){
+			pDiamond = metalHeadPoints(hand, 'd', false);
+		}
+		if (turnedDown.getSuit() != 's'){
+			pSpade = metalHeadPoints(hand, 's', false);
+		}
+		if (turnedDown.getSuit() != 'c'){
+			pClub = metalHeadPoints(hand, 'c', false);
+		}
+
+		double[] tmpArr = {pHeart, pDiamond, pSpade, pClub};
+		Arrays.sort(tmpArr);
 		
-		int max = Math.max(numHeart, numDiamond);
-		if(max==numHeart) trump='h';
-		else trump = 'd';
-		max = Math.max(numSpade, max);
-		if(max==numSpade) trump = 's';
-		max = Math.max(numClub, max);
-		if(max==numClub) trump = 'c';
+		if (tmpArr[3] == pHeart){
+			if (metalHeadPoints(hand, 'h', true) >= 4){
+				//insert going alone code.
+			}
+			return 'h';
+		}
+		if (tmpArr[3] == pDiamond){
+			if (metalHeadPoints(hand, 'd', true) >= 4){
+				//insert going alone code.
+			}
+			return 'd';
+		}
+		if (tmpArr[3] == pSpade){
+			if (metalHeadPoints(hand, 's', true) >= 4){
+				//insert going alone code.
+			}
+			return 's';
+		}
+		if (tmpArr[3] == pClub){
+			if (metalHeadPoints(hand, 'c', true) >= 4){
+				//insert going alone code.
+			}
+			return 'c';
+		}
 
 		return trump;
 
