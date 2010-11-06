@@ -757,6 +757,8 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
+				
+				jButtonYourCard1.setIcon(picManager.getPicture('e','0'));
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[0];
@@ -792,6 +794,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
+				jButtonYourCard2.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[1];
@@ -827,6 +830,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
+				jButtonYourCard3.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[2];
@@ -862,6 +866,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
+				jButtonYourCard4.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[3];
@@ -898,6 +903,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
+				jButtonYourCard5.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[4];
