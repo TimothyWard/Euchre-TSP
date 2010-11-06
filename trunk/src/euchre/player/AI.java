@@ -56,7 +56,7 @@ public interface AI extends Player{
 	 * Forces the AI to pick a suit of cards. The AI will pick the best possible suit and return it.
 	 * @return The suit that the AI picked for trump
 	 */
-	public char stickDealer();
+	public char stickDealer(Card turnedDown);
 
 	/**
 	 * Sets the AI's turn to true

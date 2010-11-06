@@ -277,7 +277,7 @@ public class MediumAI implements AI{
 	 * @return The suit that the AI picked for trump
 	 */
 	@Override
-	public char stickDealer() {
+	public char stickDealer(Card turnedDown) {
 		
 		int numHeart = 0;
 		int numDiamond = 0;

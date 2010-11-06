@@ -8,7 +8,7 @@ public interface Player {
 	
 	public boolean orderUp(Card c);
 
-	public char callSuit();
+	public char callSuit(Card turnedDown);
 	
 	public Card playCard();
 
@@ -28,7 +28,7 @@ public interface Player {
 	
 	public Card[] getHand();
 	
-	public char stickDealer();
+	public char stickDealer(Card turnedDown);
 	
 	public boolean isHuman();
 	
