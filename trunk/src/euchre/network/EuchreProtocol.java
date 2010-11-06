@@ -141,6 +141,16 @@ public class EuchreProtocol {
 				manager.setTrump(trump);
 				server.toClients("SetTrump,"+trump);
 			}
+			else if(token.equals("PlayCard")){
+				String card = parser.nextToken();
+				int playernum = Integer.parseInt(parser.nextToken());
+				
+				Card c = new Card(card.charAt(0), card.charAt(1));
+				manager.getGameBoard().playCard(c, playernum);
+				
+				server.toClients("PlayCard,"+card+","+playernum);
+
+			}
 			
 			
 			else{
@@ -257,6 +267,13 @@ public class EuchreProtocol {
 			else if(token.equals("SetTrump")){
 				char trump = parser.nextToken().charAt(0);
 				manager.setTrump(trump);
+			}
+			else if(token.equals("PlayCard")){
+				String card = parser.nextToken();
+				int playernum = Integer.parseInt(parser.nextToken());
+				
+				Card c = new Card(card.charAt(0), card.charAt(1));
+				manager.getGameBoard().playCard(c, playernum);
 			}
 
 
