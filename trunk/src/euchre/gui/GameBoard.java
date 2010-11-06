@@ -1112,7 +1112,8 @@ public class GameBoard extends javax.swing.JFrame{
 	 * @param c card to be played
 	 * @param playerNumber number of the player playing the card
 	 */
-public void playCard(Card c, int playerNumber){	
+public void playCard(Card c, int playerNumber){
+		
 		if (cardsPlayed == 4){
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1123,18 +1124,12 @@ public void playCard(Card c, int playerNumber){
 		}
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-			playerCards[playerNumber - 1]--;
-			RCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(leftPlayer.getNumber() == playerNumber){
 			LPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-			playerCards[playerNumber - 1]--;
-			LCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(topPlayer.getNumber() == playerNumber){
 			UPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-			playerCards[playerNumber - 1]--;
-			UCards[playerCards[playerNumber - 1]].setIcon(picManager.getPicture('e', '0'));
 		}
 		else if(humanPlayer.getNumber() == playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
