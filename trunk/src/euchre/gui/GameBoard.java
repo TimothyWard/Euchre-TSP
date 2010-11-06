@@ -28,17 +28,9 @@ public class GameBoard extends javax.swing.JFrame{
 	private Card turnedCard = new Card('e', 'x');
 	private boolean pickUpPassed = false;
 	private boolean suitButtonsUsed = false;
-
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
-
-
-
-
-
-
-
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JLabel LCard1;
@@ -211,7 +203,6 @@ public class GameBoard extends javax.swing.JFrame{
 		else{
 			hideSuitButtons();
 		}*/
-
 	}
 
 	/**
@@ -994,7 +985,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else
 				GM.getClientNetworkManager().toServer("SetTrump,d");
 			hideSuitButtons();
-
 		}
 	}//GEN-LAST:event_diamondsListener
 
@@ -1022,8 +1012,7 @@ public class GameBoard extends javax.swing.JFrame{
 			}
 			else{
 				humanPlayer.setCallSuit('x');
-			} 
-			
+			} 	
 			*/
 			suitButtonsUsed = true;
 		}
@@ -1190,7 +1179,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	public void turnOver(){
-
 		if(GM.getServerNetworkManager() != null){
 			GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
 			GM.setNextPlayerTurn();
@@ -1202,7 +1190,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	public void setPlayerTurn(int id){
-
 		if(GM.isServer()){
 
 			GM.setTurnPlayerID(id);
@@ -1212,11 +1199,9 @@ public class GameBoard extends javax.swing.JFrame{
 			GM.getClientNetworkManager().toServer("SetPlayerTurn,"+id);
 
 		} 
-
 	}
 
 	public void settingSuit(){
-
 		this.hideTrumpButtons();
 		this.showSuitButtons();
 		jLabelDealer.setVisible(false);
@@ -1233,21 +1218,15 @@ public class GameBoard extends javax.swing.JFrame{
 
 			
 		}
-		
 	}
 
 	public void pickItUp(){
-
 		if(!GM.isDealer()){
 			TurnedCard.setVisible(false);
 			jLabelDealer.setVisible(false);
 		}
-
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
-
-
-
 	}
 }
