@@ -744,7 +744,7 @@ public class GameBoard extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
 	private void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[0].getSuit() != 'e'){
 
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -776,6 +776,7 @@ public class GameBoard extends javax.swing.JFrame{
 					Card c = GM.getPlayerIAm().getHand()[0];
 					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 				}
+				GM.getPlayerIAm().setCard(0, '0', 'e');
 				turnOver();
 			}
 
@@ -783,7 +784,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_card1Clicked
 
 	private void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[1].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(1, c.getCardValue(), c.getSuit());
@@ -801,7 +802,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
-				jButtonYourCard2.setVisible(false);
+				jButtonYourCard2.setIcon(picManager.getPicture('e','0'));
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[1];
@@ -812,6 +813,7 @@ public class GameBoard extends javax.swing.JFrame{
 					Card c = GM.getPlayerIAm().getHand()[1];
 					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 				}
+				GM.getPlayerIAm().setCard(1, '0', 'e');
 				turnOver();
 			}
 		}
@@ -819,7 +821,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_card2Clicked
 
 	private void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[2].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(2, c.getCardValue(), c.getSuit());
@@ -837,7 +839,7 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
-				jButtonYourCard3.setVisible(false);
+				jButtonYourCard3.setIcon(picManager.getPicture('e','0'));
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[2];
@@ -848,6 +850,7 @@ public class GameBoard extends javax.swing.JFrame{
 					Card c = GM.getPlayerIAm().getHand()[2];
 					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 				}
+				GM.getPlayerIAm().setCard(2, '0', 'e');
 				turnOver();
 			}
 		}
@@ -855,7 +858,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_card3Clicked
 
 	private void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[3].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(3, c.getCardValue(), c.getSuit());
@@ -873,7 +876,6 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
-				jButtonYourCard4.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[3];
@@ -884,6 +886,7 @@ public class GameBoard extends javax.swing.JFrame{
 					Card c = GM.getPlayerIAm().getHand()[3];
 					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 				}
+				GM.getPlayerIAm().setCard(3, '0', 'e');
 				turnOver();
 			}
 		}
@@ -891,7 +894,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_card4Clicked
 
 	private void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[4].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(4, c.getCardValue(), c.getSuit());
@@ -910,7 +913,6 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
-				jButtonYourCard5.setVisible(false);
 				if(GM.isServer()){
 					
 					Card c = GM.getPlayerIAm().getHand()[4];
@@ -921,6 +923,7 @@ public class GameBoard extends javax.swing.JFrame{
 					Card c = GM.getPlayerIAm().getHand()[4];
 					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 				}
+				GM.getPlayerIAm().setCard(4, '0', 'e');
 				turnOver();
 			}
 		}
