@@ -32,7 +32,10 @@ public class GameManager {
 	private ClientNetworkManager client = null;
 	private Round round = null;
 	private int currentTurnPlayerID;
+	private char trump;
 	
+
+
 
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
@@ -656,6 +659,15 @@ public class GameManager {
 	
 	public boolean isDealer(){
 		return playerIAm.getPlayerID() == dealer.getPlayerID();
+	}
+	
+	public char getTrump() {
+		return trump;
+	}
+
+	public void setTrump(char trump) {
+		this.trump = trump;
+		round.setTrumpSuit(trump);
 	}
 	
 
