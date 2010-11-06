@@ -23,13 +23,13 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
-		System.out.println(args.length);
+		System.out.println("size of args string: " + args.length);
 		
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 		
 		//if this process is an AI, spawn that
-//		if(args.length==0){
+		if(args.length==0){
 			//declare GUI welcome window to ask if host or client
 			Welcome welcomeWindow = new Welcome();
 			welcomeWindow.setVisible(true);
@@ -46,18 +46,18 @@ public class Game {
 			if (gameChoice == 'h') createHostPlayer(GM);
 			else if(gameChoice == 'c') createClientPlayer(GM);
 			else if(gameChoice == 'a') createLocalOnlyGame(GM);
-//		}
+		}
 
-//		else if (args.length >0){
-//			try{
-//				if (args[0]=="-ai"){
-//					createAIPlayer(GM);
-//				}
-//			}
-//			catch(Exception exc){
-//				System.out.println("Invalid Argument Passed to Program");
-//			}
-//		}
+		else if (args.length >0){
+			try{
+				if (args[0]=="-ai"){
+					createAIPlayer(GM);
+				}
+			}
+			catch(Exception exc){
+				System.out.println("Invalid Argument Passed to Program");
+			}
+		}
 
 		//wait for all players to join and GM's to sync
 		while (GM.areTeamsComplete()==false) Thread.sleep(500);
@@ -141,7 +141,8 @@ public class Game {
 			System.out.println("number of ais left = " + numberOfAIs);
 			System.out.println(System.getProperty("java.class.path"));
 			try {
-				runtime.exec("java " + System.getProperty("java.class.path") + "/euchre/Game/Game.class");
+				String[] cmd = {"java", "", "/Users/unwrittenrainbow/Documents/Academics and Classes/CS/TSP/Euchre/bin/euchre/Game/Game.class", "-a"};
+				Process process = runtime.exec(cmd);
 			} 
 			catch (IOException e) {
 				e.printStackTrace();
