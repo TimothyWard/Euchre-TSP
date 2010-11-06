@@ -138,6 +138,7 @@ public class EuchreProtocol {
 				server.toClients("SetPlayerTurn,"+id);
 			}
 			
+			
 			else{
 				System.out.println("Undefined token: " + token);
 			}
@@ -241,6 +242,9 @@ public class EuchreProtocol {
 					
 				manager.setNextPlayerTurn();
 				
+			}
+			else if(token.equals("SettingSuit")){
+				manager.getGameBoard().settingSuit();
 			}
 
 
