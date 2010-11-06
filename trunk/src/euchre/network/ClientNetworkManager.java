@@ -12,7 +12,9 @@ import euchre.player.GameManager;
 
 
 /**
- * A thread to manage the client's network connection
+ * A thread to manage the client's network connection. A socket is created to the server, and hangs the thread
+ * waiting for input. Any received input is then passed to the EuchreProtocol, which will take the appropriate
+ * action based on the formatted string.
  * 
  * @author mdhelgen
  *
@@ -54,18 +56,21 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param name
-	 * @param number
+	 * Register a player with the server
+	 * This will create a player object with the server and associate its connection to the player id.
+	 * 
+	 * @param name The name of the player
+	 * @param id The random id of the player
 	 */
-	public void registerPlayer(String name, int number){
+	public void registerPlayer(String name, int id){
 
-		toServer("Name,"+name+","+number);
+		toServer("Name,"+name+","+id);
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param tokenizedString
+	 * Send a tokenized message to the server. 
+	 * 
+	 * @param tokenizedString A comma delimited message to be interpreted by EuchreProtocol by the server
 	 */
 	public void toServer(String tokenizedString){
 
@@ -73,8 +78,9 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param gm
+	 * Set reference to game manager
+	 * 
+	 * @param gm The game manager
 	 */
 	public void setGameManager(GameManager gm){
 		manager = gm;
@@ -82,7 +88,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	}
 
 	/**
-	 * The thread's actions. Make a socket connection to the server and send a string
+	 * The thread's actions. Make a socket connection to the server and process any input
 	 * 
 	 */
 	public void run(){

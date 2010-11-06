@@ -131,6 +131,12 @@ public class EuchreProtocol {
 				server.toClients("SetNextPlayerTurn");
 				
 			}
+			else if(token.equals("SetPlayerTurn")){
+				int id = Integer.parseInt(parser.nextToken());
+			
+				manager.setTurnPlayerID(id);
+				server.toClients("SetPlayerTurn,"+id);
+			}
 			
 			else{
 				System.out.println("Undefined token: " + token);

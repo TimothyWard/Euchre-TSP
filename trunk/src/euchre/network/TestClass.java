@@ -1,5 +1,7 @@
 package euchre.network;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class TestClass {
 
@@ -11,7 +13,18 @@ public class TestClass {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 
-
+		
+		
+		try {
+			String ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+/*
 		boolean isClient = true;
 
 
