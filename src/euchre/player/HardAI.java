@@ -67,7 +67,7 @@ public class HardAI implements AI{
 	 * @param trump The current trump.
 	 * @return The amount of points for that given hand.
 	 */
-	private double metalHeadPoints(Card[] hand, char trump, boolean alone){
+	public double metalHeadPoints(Card[] hand, char trump, boolean alone){
 		double currentPoints = 0;
 		char leftSuit;
 		char otherSuit1;
@@ -140,6 +140,10 @@ public class HardAI implements AI{
 		if (CardEvaluator.hasCardInHand('a', otherSuit2, hand)){
 			currentPoints += 0.5;
 		}
+		//Counting on partner for one trick.
+		if (!alone){
+			currentPoints += 0.25;
+		}
 		//Evaluations for who's deal it is and the turned card. Some modifications.		
 		int turnedVal = CardEvaluator.cardValue(trump, leftSuit, clientManager.getGameManager().getGameBoard().getTurnedCard());//Value of turned card.
 		boolean me = clientManager.getGameManager().getDealer().equals(clientManager.getGameManager().getPlayerIAm()); //This AI is the dealer.
@@ -149,6 +153,8 @@ public class HardAI implements AI{
 				currentPoints++;
 			}else if (isTeam && !alone){
 				currentPoints++;
+			}else if (!isTeam){
+				currentPoints--;
 			}
 		}
 		if (turnedVal == 12 || turnedVal == 10 || turnedVal == 9){//Point Values of 0.5
@@ -156,6 +162,8 @@ public class HardAI implements AI{
 				currentPoints += 0.5;
 			}else if (isTeam && !alone){
 				currentPoints += 0.5;
+			}else if (!isTeam){
+				currentPoints -= 0.5;
 			}
 		}
 		if (turnedVal == 8 || turnedVal == 7){//Point Values of 0.25
@@ -163,8 +171,11 @@ public class HardAI implements AI{
 				currentPoints += 0.25;
 			}else if (isTeam && !alone){
 				currentPoints += 0.25;
+			}else if (!isTeam){
+				currentPoints -= 0.25;
 			}
 		}
+		System.out.println("Metal Head Points: " + currentPoints);
 		return currentPoints;
 	}
 
