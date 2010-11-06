@@ -177,14 +177,17 @@ public class GameManager {
 		for(int i=0;i<4;i++){
 			curPlayer.setTurn(true);
 			if(curPlayer.orderUp(board.getTurnedCard())){
+				
 				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 					round.setTeamWhoOrdered(teamOne);
 				}
 				else{
 					round.setTeamWhoOrdered(teamTwo);
 				}
+				
 				curPlayer.setTurn(false);
 				round.setTrumpSuit(board.getTurnedCard().getSuit());
+				board.setTrumpLabel(round.getTrumpSuit());
 				System.out.println("Dealer is " + dealer.getName());
 				dealer.setTurn(true);
 				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
@@ -202,6 +205,7 @@ public class GameManager {
 		//If no one has ordered up the upCard, ask them to pick a suit
 		if(round.getTrumpSuit()==0){
 			deck.discardCard(upCard);									//...and discard the upCard...
+			board.setTurnedCard(new Card('e','e'));
 
 
 			curPlayer=nextPlayer(dealer);
@@ -216,6 +220,7 @@ public class GameManager {
 						round.setTeamWhoOrdered(teamTwo);
 					}
 					round.setTrumpSuit(curPlayer.callSuit());			//If a player calls suit, set trump equal to that suit
+					board.setTrumpLabel(round.getTrumpSuit());
 					curPlayer.setTurn(false);
 					break;
 				}
@@ -224,6 +229,7 @@ public class GameManager {
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 
 						round.setTrumpSuit(curPlayer.stickDealer());
+						board.setTrumpLabel(round.getTrumpSuit());
 						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
 							round.setTeamWhoOrdered(teamOne);
 						}
