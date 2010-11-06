@@ -89,10 +89,7 @@ public class EuchreProtocol {
 				Human two = new Human();
 				Human three = new Human();
 				Human four = new Human();
-
-
-
-
+				
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
 				String player1 = parser.nextToken();
@@ -101,8 +98,6 @@ public class EuchreProtocol {
 				int p2ID = Integer.parseInt(parser.nextToken());
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
-
-
 
 				one.setName(host);
 				one.setPlayerID(hostID);
@@ -140,6 +135,11 @@ public class EuchreProtocol {
 			else if(token.equals("PickItUp")){
 				manager.getGameBoard().pickItUp();
 				server.toClients("PickItUp");
+			}
+			else if(token.equals("SetTrump")){
+				char trump = parser.nextToken().charAt(0);
+				manager.setTrump(trump);
+				server.toClients("SetTrump,"+trump);
 			}
 			
 			
@@ -253,6 +253,10 @@ public class EuchreProtocol {
 			else if(token.equals("PickItUp"))
 			{
 				manager.getGameBoard().pickItUp();
+			}
+			else if(token.equals("SetTrump")){
+				char trump = parser.nextToken().charAt(0);
+				manager.setTrump(trump);
 			}
 
 
