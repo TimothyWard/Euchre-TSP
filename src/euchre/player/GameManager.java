@@ -605,6 +605,10 @@ public class GameManager {
 		return round;
 	}
 	
+	public boolean isServer(){
+		return (client==null);
+	}
+	
 	public void setNextPlayerTurn(){
 		
 				
@@ -648,6 +652,10 @@ public class GameManager {
 	
 	public boolean isMyTurn(){
 		return currentTurnPlayerID == playerIAm.getPlayerID();
+	}
+	
+	public boolean isDealer(){
+		return playerIAm.getPlayerID() == dealer.getPlayerID();
 	}
 	
 
