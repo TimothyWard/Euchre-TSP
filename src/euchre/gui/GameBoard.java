@@ -31,6 +31,9 @@ public class GameBoard extends javax.swing.JFrame{
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
+	
+	int cardsPlayed = 0;
+	
 	private int playerCards[] = {5, 5, 5, 5};
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
@@ -1111,7 +1114,16 @@ public class GameBoard extends javax.swing.JFrame{
 	 * @param c card to be played
 	 * @param playerNumber number of the player playing the card
 	 */
-	public void playCard(Card c, int playerNumber){
+public void playCard(Card c, int playerNumber){
+		
+		if (cardsPlayed == 4){
+			RPlayed.setIcon(picManager.getPicture('e','0'));
+			LPlayed.setIcon(picManager.getPicture('e','0'));
+			UPlayed.setIcon(picManager.getPicture('e','0'));
+			YourPlayed.setIcon(picManager.getPicture('e','0'));
+			cardsPlayed = 0;
+
+		}
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 			playerCards[playerNumber - 1]--;
@@ -1130,6 +1142,7 @@ public class GameBoard extends javax.swing.JFrame{
 		else if(humanPlayer.getNumber() == playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
+		cardsPlayed++;
 	}
 
 	public void setTurnedCard(Card c){
