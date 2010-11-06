@@ -738,6 +738,13 @@ public class GameBoard extends javax.swing.JFrame{
 				jButtonYourCard1.setIcon(picManager.getPicture(c.getSuit(),c.getCardValue()));
 				TurnedCard.setVisible(false);
 				jLabelDealer.setVisible(false);
+				if(GM.isServer()){
+					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
+					GM.setTrump(c.getSuit());
+				}
+				else
+					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				
 			}
 
 		}

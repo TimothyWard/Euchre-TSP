@@ -668,6 +668,7 @@ public class GameManager {
 	public void setTrump(char trump) {
 		this.trump = trump;
 		round.setTrumpSuit(trump);
+		
 	}
 	
 
