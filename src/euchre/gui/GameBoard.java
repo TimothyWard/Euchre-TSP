@@ -104,21 +104,6 @@ public class GameBoard extends javax.swing.JFrame{
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
         LPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
         UPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
-        UCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
-        UCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
-        UCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
-        UCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
-        UCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png")));
-        LCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        LCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        LCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        LCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        LCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
-        RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/picturesuitButtonsUseds/back_sideways.png")));
         showTrumpButtons();
         hideSuitButtons();
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
@@ -136,7 +121,6 @@ public class GameBoard extends javax.swing.JFrame{
     public void updateBoard(){
     	humanPlayer = (Human) GM.getPlayerIAm();
     	setBottomPlayer(humanPlayer);
-    	
     	switch(humanPlayer.getNumber()){
 	    	case 1:{
 	    		topPlayer = GM.getPlayer3();
@@ -181,7 +165,6 @@ public class GameBoard extends javax.swing.JFrame{
     	else{
     		hideSuitButtons();
     	}
-    	
     }
     
     /**
@@ -191,7 +174,6 @@ public class GameBoard extends javax.swing.JFrame{
      */
 	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
-		
 		setCard(player.getHand()[0], 0);
 		setCard(player.getHand()[1], 1);
 		setCard(player.getHand()[2], 2);
@@ -727,7 +709,6 @@ public class GameBoard extends javax.swing.JFrame{
     		humanPlayer.setActiveCard(hand[1]);
     		jButtonYourCard2.setIcon(picManager.getPicture('e', 'a'));	
     	}
-    	
     }//GEN-LAST:event_card2Clicked
 
     private void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
@@ -735,7 +716,6 @@ public class GameBoard extends javax.swing.JFrame{
     		humanPlayer.setActiveCard(hand[2]);
     		jButtonYourCard3.setIcon(picManager.getPicture('e', 'a'));
     	}
-    	
     }//GEN-LAST:event_card3Clicked
 
     private void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
@@ -743,7 +723,6 @@ public class GameBoard extends javax.swing.JFrame{
     		humanPlayer.setActiveCard(hand[3]);
     		jButtonYourCard4.setIcon(picManager.getPicture('e', 'a'));
     	}
-
     }//GEN-LAST:event_card4Clicked
     
     private void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
@@ -751,7 +730,6 @@ public class GameBoard extends javax.swing.JFrame{
     		humanPlayer.setActiveCard(hand[4]);
     		jButtonYourCard5.setIcon(picManager.getPicture('e', 'a'));
     	}
-
     }//GEN-LAST:event_card5Clicked
 
     private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
@@ -769,7 +747,6 @@ public class GameBoard extends javax.swing.JFrame{
     		humanPlayer.setOrderUp(true);
     		setPlayerTurn(GM.getDealer().getPlayerID());
     	}
-
     }//GEN-LAST:event_pickItUpButtonClicked
 
     private void heartsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_heartsListener
@@ -915,7 +892,8 @@ public class GameBoard extends javax.swing.JFrame{
     
     public void setGameManager(GameManager gm){
     	GM = gm;
-    } 
+    }
+    
     private void setTopPlayer(Player player){
     	jLabelUPlayerName.setText(player.getName());
     }
@@ -970,7 +948,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 	
 	public void turnOver(){
-		
 		if(GM.getServerNetworkManager() != null){
 			GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
 			GM.setNextPlayerTurn();
@@ -982,7 +959,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 	
 	public void setPlayerTurn(int id){
-		
 		if(GM.getServerNetworkManager() != null){
 			
 			GM.setTurnPlayerID(id);
@@ -992,6 +968,5 @@ public class GameBoard extends javax.swing.JFrame{
 			GM.getClientNetworkManager().toServer("SetPlayerTurn,"+id);
 
 		} 
-		
 	}
 }
