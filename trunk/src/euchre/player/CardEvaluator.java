@@ -131,6 +131,71 @@ public class CardEvaluator {
 	}
 	
 	/**
+	 * Out of a given set of played cards, determines the highest among them.
+	 * 
+	 * @param played The set of cards that was played.
+	 * @param trump The trump suit
+	 * @param lead The lead suit
+	 * @return The highest card, unless the given set of played cards was null in which case it returns null.
+	 */
+	public static Card highestPlayed(Card[] played, char trump, char lead){
+		if (played == null){
+			return null;
+		}
+		Card high = played[1];
+		for (Card c: played){
+			if (cardValue(trump, lead, c) > cardValue(trump, lead, high)){
+				high = c;
+			}
+		}
+		return high;
+	}
+	
+	/**
+	 * Returns whether or not the given hand can beat the current set of played cards.
+	 * 
+	 * @param played The current set of played cards.
+	 * @param hand The hand to see if there is a higher value in.
+	 * @param trump The trump suit.
+	 * @param lead The lead suit.
+	 * @return True if the given hand can beat the current set of played cards, false otherwise.
+	 */
+	public static boolean canBeat(Card[] played, Card[] hand, char trump, char lead){
+		Card toBeat = highestPlayed(played, trump, lead);
+		Card highest = highestCardInHand(trump, lead, hand);
+		if (cardValue(trump, lead,toBeat) >= cardValue(trump, lead,highest)){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns the lowest card in the given hand that can beat the current set of played cards.
+	 * 
+	 * @param played
+	 * @param hand
+	 * @param trump
+	 * @param lead
+	 * @return The lowest card in hand to beat the played cards, null if there is none
+	 */
+	public static Card lowestToBeat(Card[] played, Card[] hand, char trump, char lead){
+		if (!canBeat(played, hand, trump, lead)){
+			return null;
+		}
+		Card toBeat = highestPlayed(played, trump, lead);
+		Card lowest = highestCardInHand(trump, lead, hand);
+		for (Card c: hand){
+			if (cardValue(trump, lead,toBeat) < cardValue(trump, lead, c)){
+				if (cardValue(trump, lead, lowest) > cardValue(trump, lead, c)){
+					lowest = c;
+				}
+			}
+		}
+		return lowest;
+	}
+	
+	/**
 	 * Returns whether or not the hand has a given card in it.
 	 * 
 	 * @param value The value of the card to look for.
