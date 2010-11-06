@@ -137,6 +137,10 @@ public class EuchreProtocol {
 				manager.setTurnPlayerID(id);
 				server.toClients("SetPlayerTurn,"+id);
 			}
+			else if(token.equals("PickItUp")){
+				manager.getGameBoard().pickItUp();
+				server.toClients("PickItUp");
+			}
 			
 			
 			else{
@@ -245,6 +249,10 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("SettingSuit")){
 				manager.getGameBoard().settingSuit();
+			}
+			else if(token.equals("PickItUp"))
+			{
+				manager.getGameBoard().pickItUp();
 			}
 
 
