@@ -607,25 +607,31 @@ public class GameManager {
 	
 	public void setNextPlayerTurn(){
 		
-		
-		
+				
 		if(currentTurnPlayerID == player1.getPlayerID()){
 			currentTurnPlayerID = player2.getPlayerID();
+			board.updateBoard();
 			//System.out.println("Current player turn:" + currentTurnPlayerID);
 			return;
 		}
 		if (currentTurnPlayerID == player2.getPlayerID()){
 			currentTurnPlayerID = player3.getPlayerID();
+			board.updateBoard();
+
 			//System.out.println("Current player turn:" + currentTurnPlayerID);
 			return;
 		}
 		if (currentTurnPlayerID == player3.getPlayerID()){
 			currentTurnPlayerID = player4.getPlayerID();
+			board.updateBoard();
+
 			//System.out.println("Current player turn:" + currentTurnPlayerID);
 			return;
 		}
 		if (currentTurnPlayerID == player4.getPlayerID()){
 			currentTurnPlayerID = player1.getPlayerID();
+			board.updateBoard();
+
 			//System.out.println("Current player turn:" + currentTurnPlayerID);
 			return;
 		}
@@ -633,8 +639,7 @@ public class GameManager {
 	
 	public void setTurnPlayerID(int id){
 		currentTurnPlayerID = id;
-		if(isMyTurn())
-			System.out.println("MY TURN");
+		board.updateBoard();
 	}
 	
 	public int getCurrentTurnPlayerID(){

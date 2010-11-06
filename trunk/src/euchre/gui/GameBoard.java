@@ -168,7 +168,7 @@ public class GameBoard extends javax.swing.JFrame{
     	setRightPlayer(rightPlayer);
     	setBottomPlayer(humanPlayer);
     	
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		//JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
     		jLabelTurn.setVisible(true);
     	}
@@ -975,8 +975,10 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 	
 	public void turnOver(){
+		
 		if(GM.getServerNetworkManager() != null){
 			GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
+			GM.setNextPlayerTurn();
    		}
 		else{
 			GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
