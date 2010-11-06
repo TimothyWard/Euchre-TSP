@@ -87,7 +87,7 @@ public class GameBoard extends javax.swing.JFrame{
     public GameBoard(){
         initComponents();
         centerScreen();
-        hideSuitButtons();
+        showSuitButtons();
         jLabelTurn.setVisible(false);
         handButtons[0] = jButtonYourCard1;
         handButtons[1] = jButtonYourCard2;
@@ -281,6 +281,7 @@ public class GameBoard extends javax.swing.JFrame{
         setResizable(false);
 
         jButtonYourCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
+        jButtonYourCard1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonYourCard1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 card1Clicked(evt);
@@ -358,8 +359,9 @@ public class GameBoard extends javax.swing.JFrame{
 
         jLabelDealer.setText("Your Deal:");
 
+        jLabelTurn.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabelTurn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTurn.setText("Your Turn");
+        jLabelTurn.setText("Your Turn!");
 
         theyLabel.setText("Team:");
 
@@ -378,7 +380,7 @@ public class GameBoard extends javax.swing.JFrame{
             }
         });
 
-        clubsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        clubsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         clubsButton.setText("♣");
         clubsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -386,7 +388,7 @@ public class GameBoard extends javax.swing.JFrame{
             }
         });
 
-        diamondsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        diamondsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         diamondsButton.setForeground(new java.awt.Color(255, 0, 0));
         diamondsButton.setText("♦");
         diamondsButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -395,7 +397,7 @@ public class GameBoard extends javax.swing.JFrame{
             }
         });
 
-        spadesButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        spadesButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         spadesButton.setText("♠");
         spadesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -450,10 +452,10 @@ public class GameBoard extends javax.swing.JFrame{
 
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"))); // NOI18N
 
-        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
         trumpLabel.setText("∅");
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Trump Is: ");
 
@@ -588,7 +590,7 @@ public class GameBoard extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(74, Short.MAX_VALUE)
+                        .addContainerGap(72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
