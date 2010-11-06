@@ -105,9 +105,10 @@ public class Card{
 	}
 	
 	/**
-	 * FILL THIS IN
-	 * @param card
-	 * @return
+	 * Returns whether or not this card is equal to another.
+	 * 
+	 * @param card The card to check equivalence to.
+	 * @return True, if this card is of the same suite and value as the passed value.
 	 */
 	public boolean equals(Card card){
 		if (card.getSuit()==this.getSuit() && card.getCardValue()==this.getCardValue()){
@@ -119,7 +120,10 @@ public class Card{
 	}
 	
 	/**
-	 * FILL THIS IN
+	 * Returns a string representation of the card. In the format of "(value)+(suite)"
+	 * So the 9 of hearts is 9h.
+	 * 
+	 * @return The string representation of this card.
 	 */
 	public String toString(){
 		return "" + value + suit;
