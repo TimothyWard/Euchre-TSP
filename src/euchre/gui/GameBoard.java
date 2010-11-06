@@ -920,16 +920,16 @@ public class GameBoard extends javax.swing.JFrame{
 	public void setTrumpLabel(char suit){
 		switch(suit){
 			case 'c':{
-				trumpLabel.setText("Trump is: Clubs");
+				trumpLabel.setText("Trump is: ♣");
 			}
 			case 'd':{
-				trumpLabel.setText("Trump is: Diamonds");
+				trumpLabel.setText("Trump is: ♦");
 			}
 			case 's':{
-				trumpLabel.setText("Trump is: Spades");
+				trumpLabel.setText("Trump is: ♠");
 			}
 			case 'h':{
-				trumpLabel.setText("Trump is: Hearts");
+				trumpLabel.setText("Trump is: ♥");
 			}
 			default:{
 				trumpLabel.setText("Trump is: -");
