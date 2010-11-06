@@ -800,6 +800,19 @@ public class GameBoard extends javax.swing.JFrame{
 				gameplay=true;
 				turnOver();
 			}
+			else if(gameplay){
+				if(GM.isServer()){
+					
+					Card c = GM.getPlayerIAm().getHand()[1];
+					playCard(c, GM.getPlayerIAm().getNumber());
+					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				else{
+					Card c = GM.getPlayerIAm().getHand()[1];
+					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				turnOver();
+			}
 		}
 
 	}//GEN-LAST:event_card2Clicked
@@ -820,6 +833,19 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
 				pickItUp=false;
 				gameplay=true;
+				turnOver();
+			}
+			else if(gameplay){
+				if(GM.isServer()){
+					
+					Card c = GM.getPlayerIAm().getHand()[2];
+					playCard(c, GM.getPlayerIAm().getNumber());
+					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				else{
+					Card c = GM.getPlayerIAm().getHand()[2];
+					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
 				turnOver();
 			}
 		}
@@ -844,6 +870,19 @@ public class GameBoard extends javax.swing.JFrame{
 				gameplay=true;
 				turnOver();
 			}
+			else if(gameplay){
+				if(GM.isServer()){
+					
+					Card c = GM.getPlayerIAm().getHand()[3];
+					playCard(c, GM.getPlayerIAm().getNumber());
+					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				else{
+					Card c = GM.getPlayerIAm().getHand()[3];
+					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				turnOver();
+			}
 		}
 
 	}//GEN-LAST:event_card4Clicked
@@ -865,6 +904,19 @@ public class GameBoard extends javax.swing.JFrame{
 
 				pickItUp=false;
 				gameplay=true;
+				turnOver();
+			}
+			else if(gameplay){
+				if(GM.isServer()){
+					
+					Card c = GM.getPlayerIAm().getHand()[4];
+					playCard(c, GM.getPlayerIAm().getNumber());
+					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				else{
+					Card c = GM.getPlayerIAm().getHand()[4];
+					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
 				turnOver();
 			}
 		}
