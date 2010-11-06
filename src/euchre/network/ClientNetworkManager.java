@@ -86,6 +86,15 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		manager = gm;
 		protocol.setGameManager(gm);
 	}
+	
+	/**
+	 * Get reference to game manager
+	 * 
+	 * @return The game manager
+	 */
+	public GameManager getGameManager(){
+		return manager;
+	}
 
 	/**
 	 * The thread's actions. Make a socket connection to the server and process any input
