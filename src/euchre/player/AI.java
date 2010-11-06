@@ -38,7 +38,7 @@ public interface AI extends Player{
 	/**
 	 * Asks the AI to call a suit. If the AI isn't happy with its hand, it will pass.
 	 */
-	public char callSuit();
+	public char callSuit(Card turnedDown);
 
 	/**
 	 * Returns the AI's hand

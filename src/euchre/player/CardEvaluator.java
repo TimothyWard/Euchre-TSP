@@ -131,6 +131,23 @@ public class CardEvaluator {
 	}
 	
 	/**
+	 * Returns whether or not the hand has a given card in it.
+	 * 
+	 * @param value The value of the card to look for.
+	 * @param suite The suite of the card to look for.
+	 * @param hand The hand to look for the card in.
+	 * @return True if the card was found in the hand.
+	 */
+	public static boolean hasCardInHand(char value, char suite, Card[] hand){
+		boolean hasCard = false;
+		for (Card c: hand){
+			if (c.equals(new Card(value, suite)))
+				hasCard = true;
+		}
+		return hasCard;
+	}
+	
+	/**
 	 * Given an array of cards(represents a hand) along with the trump and lead suits, picks the highest value card. Or null if hand is empty.
 	 * 
 	 * @param trump The suite that is trump.
@@ -318,11 +335,11 @@ public class CardEvaluator {
 	}
 	
 	/**
-	 * Returns the number of cards in a hand that are a given suite, excludes left bower if also trump.
+	 * Returns the number of cards in a hand that are a given suite literally(visually), excludes special nature of left bower.
 	 * 
 	 * @param suit The suit to get the number of.
 	 * @param hand The array of cards that is the hand.
-	 * @return The number of cards in a hand that are a given suite, excludes left bower if also trump.
+	 * @return The number of cards in a hand that are a given suite literally(visually), excludes special nature of left bower.
 	 */
 	public static int numberOfSuit(char suit, Card[] hand){
 		int number = 0;
