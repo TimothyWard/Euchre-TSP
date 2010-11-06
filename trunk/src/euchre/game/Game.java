@@ -246,7 +246,6 @@ public class Game {
 	 */
 	private static ClientNetworkManager createNewClient(GameManager GM, ClientGameSetup clientSetup) throws InterruptedException{
 		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
-		clientSetup.setGameManager(GM);
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
