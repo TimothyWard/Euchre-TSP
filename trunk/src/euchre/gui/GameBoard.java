@@ -767,6 +767,7 @@ public class GameBoard extends javax.swing.JFrame{
     	if(GM.isMyTurn()){
 	    	this.hideTrumpButtons();
     		humanPlayer.setOrderUp(true);
+    		setPlayerTurn(GM.getDealer().getPlayerID());
     	}
 
     }//GEN-LAST:event_pickItUpButtonClicked
@@ -988,7 +989,7 @@ public class GameBoard extends javax.swing.JFrame{
 			GM.getServerNetworkManager().toClients("SetPlayerTurn,"+id);
    		}
 		else{
-			GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
+			GM.getClientNetworkManager().toServer("SetPlayerTurn,"+id);
 
 		} 
 		
