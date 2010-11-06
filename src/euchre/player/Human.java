@@ -7,7 +7,7 @@ import euchre.network.ServerNetworkManager;
 public class Human implements Player{
 	
 	private String name = "";
-	private Card emptyCard = new Card('a', 's');
+	private Card emptyCard = new Card('a', 'e');
 	private Card[] hand = {emptyCard,emptyCard,emptyCard,emptyCard,emptyCard};
 
 	private Card activeCard = null;
