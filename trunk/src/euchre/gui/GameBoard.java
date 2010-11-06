@@ -694,55 +694,63 @@ public class GameBoard extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     private void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[0]);
     		jButtonYourCard1.setIcon(picManager.getPicture('e', 'a'));
+    		
     	}
     	
     }//GEN-LAST:event_card1Clicked
 
     private void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[1]);
     		jButtonYourCard2.setIcon(picManager.getPicture('e', 'a'));
+    		
+    		
     	}
     	
     }//GEN-LAST:event_card2Clicked
 
     private void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[2]);
     		jButtonYourCard3.setIcon(picManager.getPicture('e', 'a'));
+    		
     	}
     	
     }//GEN-LAST:event_card3Clicked
 
     private void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[3]);
     		jButtonYourCard4.setIcon(picManager.getPicture('e', 'a'));
+    		
     	}
 
     }//GEN-LAST:event_card4Clicked
     
     private void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setActiveCard(hand[4]);
     		jButtonYourCard5.setIcon(picManager.getPicture('e', 'a'));
+    		
+    		
     	}
 
     }//GEN-LAST:event_card5Clicked
 
     private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
-    	if(humanPlayer.isTurn()){
-    		this.hideTrumpButtons();
-    		humanPlayer.setOrderUp(false);
-    		pickUpPassed = true;
+    	if(GM.isMyTurn()){
+    		//this.hideTrumpButtons();
+    		//humanPlayer.setOrderUp(false);
+    		//pickUpPassed = true;
+    		turnOver();
     	}
     }//GEN-LAST:event_passButtonClicked
 
     private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
 	    	this.hideTrumpButtons();
     		humanPlayer.setOrderUp(true);
     	}
@@ -750,7 +758,7 @@ public class GameBoard extends javax.swing.JFrame{
     }//GEN-LAST:event_pickItUpButtonClicked
 
     private void heartsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_heartsListener
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		 humanPlayer.setCallSuit('h');
     		 hideSuitButtons();
     		 suitButtonsUsed = true;
@@ -758,7 +766,7 @@ public class GameBoard extends javax.swing.JFrame{
     }//GEN-LAST:event_heartsListener
 
     private void clubsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_clubsListener
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setCallSuit('c');
     		hideSuitButtons();
     		suitButtonsUsed = true;
@@ -766,7 +774,7 @@ public class GameBoard extends javax.swing.JFrame{
     }//GEN-LAST:event_clubsListener
 
     private void diamondsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_diamondsListener
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setCallSuit('d');
     		hideSuitButtons();
     		suitButtonsUsed = true;
@@ -774,7 +782,7 @@ public class GameBoard extends javax.swing.JFrame{
     }//GEN-LAST:event_diamondsListener
 
     private void spadesListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_spadesListener
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		humanPlayer.setCallSuit('s');
     		hideSuitButtons();
     		suitButtonsUsed = true;
@@ -782,7 +790,7 @@ public class GameBoard extends javax.swing.JFrame{
     }//GEN-LAST:event_spadesListener
 
     private void suitPassListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_suitPassListener
-    	if(humanPlayer.isTurn()){
+    	if(GM.isMyTurn()){
     		if(GM.getDealer() == humanPlayer){
     			JOptionPane.showMessageDialog(null, "Please select a suit", "Stick the Dealer", JOptionPane.ERROR_MESSAGE);
     			suitPassButton.setVisible(false);
@@ -935,5 +943,15 @@ public class GameBoard extends javax.swing.JFrame{
 				trumpLabel.setText("Trump is: ∅");
 			}
 		}
+	}
+	
+	public void turnOver(){
+		if(GM.getServerNetworkManager() != null){
+			GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
+   		}
+		else{
+			GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
+
+		} 
 	}
 }

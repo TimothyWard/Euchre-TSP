@@ -31,6 +31,8 @@ public class GameManager {
 	private ServerNetworkManager server = null;
 	private ClientNetworkManager client = null;
 	private Round round = null;
+	private int currentTurnPlayerID;
+	
 
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
@@ -90,6 +92,10 @@ public class GameManager {
 	 */
 	public void playGame(){
 
+		
+		
+		
+		
 		if(server != null){
 			deal();	
 			System.out.println(nextPlayer(dealer).getName());
@@ -149,9 +155,9 @@ public class GameManager {
 		
 		
 		Game.initializeGameBoard(board);
-		
-		server.toClients("SetPlayerTurn," + nextPlayer(dealer).getPlayerID());
-		
+		int next = nextPlayer(dealer).getPlayerID();
+		server.toClients("SetPlayerTurn," + next);
+		currentTurnPlayerID = next;
 
 
 
@@ -591,5 +597,46 @@ public class GameManager {
 	public Round getRound(){
 		return round;
 	}
+	
+	public void setNextPlayerTurn(){
+		
+		
+		
+		if(currentTurnPlayerID == player1.getPlayerID()){
+			currentTurnPlayerID = player2.getPlayerID();
+			//System.out.println("Current player turn:" + currentTurnPlayerID);
+			return;
+		}
+		if (currentTurnPlayerID == player2.getPlayerID()){
+			currentTurnPlayerID = player3.getPlayerID();
+			//System.out.println("Current player turn:" + currentTurnPlayerID);
+			return;
+		}
+		if (currentTurnPlayerID == player3.getPlayerID()){
+			currentTurnPlayerID = player4.getPlayerID();
+			//System.out.println("Current player turn:" + currentTurnPlayerID);
+			return;
+		}
+		if (currentTurnPlayerID == player4.getPlayerID()){
+			currentTurnPlayerID = player1.getPlayerID();
+			//System.out.println("Current player turn:" + currentTurnPlayerID);
+			return;
+		}
+	}
+	
+	public void setTurnPlayerID(int id){
+		currentTurnPlayerID = id;
+		if(isMyTurn())
+			System.out.println("MY TURN");
+	}
+	
+	public int getCurrentTurnPlayerID(){
+		return currentTurnPlayerID;
+	}
+	
+	public boolean isMyTurn(){
+		return currentTurnPlayerID == playerIAm.getPlayerID();
+	}
+	
 
 }
