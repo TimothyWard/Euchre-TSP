@@ -176,12 +176,13 @@ public class GameBoard extends javax.swing.JFrame{
 		else{
 			jLabelTurn.setVisible(false);
 		}
+		/*
 		if(turnedCard.getSuit() != 'e' && !jButtonPickUp.isVisible() && pickUpPassed && !suitButtonsUsed){
 			showSuitButtons();
 		}
 		else{
 			hideSuitButtons();
-		}
+		}*/
 
 	}
 
@@ -867,6 +868,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * displays the buttons used during suit selection
 	 */
 	private void showSuitButtons(){
+		System.out.println("showsuitbuttons");
 		heartsButton.setVisible(true);
 		clubsButton.setVisible(true);
 		diamondsButton.setVisible(true);
