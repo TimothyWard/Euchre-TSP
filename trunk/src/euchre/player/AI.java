@@ -5,7 +5,7 @@ import euchre.network.ClientNetworkManager;
 /**
  * 
  * @author Kyle Kary
- *
+ * @author Neil MacBay(nmmacbay)
  */
 
 public interface AI extends Player{
