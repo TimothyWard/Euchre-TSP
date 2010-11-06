@@ -766,7 +766,16 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 			else if(gameplay){
-				playCard(GM.getPlayerIAm().getHand()[0], GM.getPlayerIAm().getNumber());
+				if(GM.isServer()){
+					
+					Card c = GM.getPlayerIAm().getHand()[0];
+					playCard(c, GM.getPlayerIAm().getNumber());
+					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
+				else{
+					Card c = GM.getPlayerIAm().getHand()[0];
+					GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
+				}
 				turnOver();
 			}
 
@@ -1125,6 +1134,7 @@ public class GameBoard extends javax.swing.JFrame{
 			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 		}
 		}
+		gameplay = true;
 	}
 
 	public void turnOver(){
