@@ -38,6 +38,7 @@ public class PictureManager {
 	private ImageIcon back;
 	private ImageIcon sidewaysBack;
 	private ImageIcon empty;
+	private ImageIcon sidewaysEmpty;
 	
 	/**
 	 * Constructs a new picture manager object.
@@ -71,6 +72,8 @@ public class PictureManager {
 		back = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back.png"));
 		sidewaysBack = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png"));
 		empty = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png"));
+		sidewaysEmpty = new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty_sideways.png"));
+				
 	}
 	
 	/**
@@ -98,7 +101,11 @@ public class PictureManager {
 	 */
 	public ImageIcon getPicture(char suit, char value){
 		if (suit == 'e'){
-			return empty;
+			if (value == 's'){
+				return sidewaysEmpty;
+			}else{
+				return empty;
+			}
 		}else if (suit == 'b'){
 			if (value == 's'){
 				return sidewaysBack;

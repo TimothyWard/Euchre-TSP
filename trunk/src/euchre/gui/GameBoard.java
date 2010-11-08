@@ -33,6 +33,11 @@ public class GameBoard extends javax.swing.JFrame{
 	private boolean gameplay = false;
 	int cardsPlayed = 0;
 	private int playerCards[] = {5, 5, 5, 5};
+	int leftPlayed = 0;
+	int rightPlayed = 0;
+	int upperPlayed = 0;
+
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
     private javax.swing.JLabel LCard2;
@@ -1114,6 +1119,10 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 public void playCard(Card c, int playerNumber){
 		
+	
+		if(playerNumber != humanPlayer.getNumber())
+			hideOpponentCard(playerNumber);
+	
 		if (cardsPlayed == 4){
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1136,6 +1145,102 @@ public void playCard(Card c, int playerNumber){
 		}
 		cardsPlayed++;
 	}
+
+public void hideOpponentCard(int playerNumber){
+	
+	if(playerNumber == leftPlayer.getNumber())
+	{
+		
+		switch(leftPlayed){
+		case 0:
+			LCard1.setIcon(picManager.getPicture('e','s'));
+			break;
+		case 1:
+			LCard2.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 2:
+			LCard3.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 3:
+			LCard4.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 4:
+			LCard5.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		}
+		leftPlayed++;
+		
+	}
+	if(playerNumber == rightPlayer.getNumber())
+	{
+		
+		switch(rightPlayed){
+		case 0:
+			RCard1.setIcon(picManager.getPicture('e','s'));
+			break;
+		case 1:
+			RCard2.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 2:
+			RCard3.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 3:
+			RCard4.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		case 4:
+			RCard5.setIcon(picManager.getPicture('e','s'));
+
+			break;
+		}
+		rightPlayed++;
+
+		
+	}
+	if(playerNumber == topPlayer.getNumber())
+	{
+		switch(upperPlayed){
+		case 0:
+			UCard1.setIcon(picManager.getPicture('e','0'));
+			break;
+		case 1:
+			UCard2.setIcon(picManager.getPicture('e','0'));
+
+			break;
+		case 2:
+			UCard3.setIcon(picManager.getPicture('e','0'));
+
+			break;
+		case 3:
+			UCard4.setIcon(picManager.getPicture('e','0'));
+
+			break;
+		case 4:
+			UCard5.setIcon(picManager.getPicture('e','0'));
+
+			break;
+		}
+		upperPlayed++;
+
+		
+		
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+}
 
 	public void setTurnedCard(Card c){
 		turnedCard = c;
