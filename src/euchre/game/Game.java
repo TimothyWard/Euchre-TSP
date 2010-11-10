@@ -1,6 +1,5 @@
 package euchre.game;
 
-import java.io.IOException;
 import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
@@ -25,9 +24,10 @@ public class Game {
 	public static void main(String [] args) throws InterruptedException{
 		System.out.println("size of args string: " + args.length);
 		
+
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
-		
+
 		//if this process is an AI, spawn that
 		if(args.length==0){
 			//declare GUI welcome window to ask if host or client
@@ -50,12 +50,12 @@ public class Game {
 
 		else if (args.length >0){
 			try{
-				if (args[0]=="-ai"){
+				if (args[0]=="-a"){
 					createAIPlayer(GM);
 				}
 			}
 			catch(Exception exc){
-				System.out.println("Invalid Argument Passed to Program");
+				System.out.println("Invalid Argument");
 			}
 		}
 
@@ -64,7 +64,7 @@ public class Game {
 
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
-		
+
 		//set teams
 		Team one = GM.getTeamOne();
 		Team two = GM.getTeamTwo();
@@ -115,8 +115,8 @@ public class Game {
 		hostSetup.setVisible(true);
 
 		//make the specified number of AI's once the user specifies the correct number of AIs
-//		while (hostSetup.getAIs()==-1) Thread.sleep(500);
-//		makeAIs(hostSetup.getAIs());
+		while (hostSetup.getAIs()==-1) Thread.sleep(500);
+		makeAIs(hostSetup.getAIs());
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
@@ -132,23 +132,25 @@ public class Game {
 	 * This method creates the specified number of AIs in separate instantiations of the software.
 	 * 
 	 * @param numberOfAIs
-	 * @throws InterruptedException Throws the exception for when the AI number is not determined yet.
 	 */
-	private static void makeAIs(int numberOfAIs) throws InterruptedException{
-		System.out.println("making AIs");
+	private static void makeAIs(int numberOfAIs){
+
 		Runtime runtime = Runtime.getRuntime();
+		Process p = null;
 		while (numberOfAIs != 0){
-			System.out.println("number of ais left = " + numberOfAIs);
-			System.out.println(System.getProperty("java.class.path"));
 			try {
-				String[] cmd = {"java", System.getProperty("java.class.path") + "/euchre/Game/Game.class", "-a"};
-				Process process = runtime.exec(cmd);
+//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -a";
+				String cmd = "java -jar ~/Desktop/Euchre.jar -a";
+				System.out.println(cmd);
+				p = runtime.exec(cmd);
 			} 
-			catch (IOException e) {
+			catch (Throwable e) {
 				e.printStackTrace();
+				System.exit(1);
 			}
 			numberOfAIs--;
 		}
+
 	}
 
 	/**
