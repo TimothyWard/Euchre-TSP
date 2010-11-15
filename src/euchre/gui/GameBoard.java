@@ -979,10 +979,10 @@ public class GameBoard extends javax.swing.JFrame{
 		if(cardsPlayed == 0){
 			return true;
 		}
-		if(suitLed == c.getSuit()){
+		if(c.getSuit() == suitLed){
 			return true;
 		}
-		if(hand[0].getSuit() != GM.getTrump() && hand[1].getSuit() != GM.getTrump() && hand[2].getSuit() != GM.getTrump() && hand[3].getSuit() != GM.getTrump() && hand[4].getSuit() != GM.getTrump()){
+		if(hand[0].getSuit() != suitLed && hand[1].getSuit() != suitLed && hand[2].getSuit() != suitLed && hand[3].getSuit() != suitLed && hand[4].getSuit() != suitLed){
 			return true;
 		}
 		return false;
