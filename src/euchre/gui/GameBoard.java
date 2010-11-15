@@ -18,7 +18,7 @@ import euchre.player.Player;
  */
 public class GameBoard extends javax.swing.JFrame{
 	private Card[] hand = new Card[5];
-	private Human humanPlayer;
+	private Player humanPlayer;
 	private PictureManager picManager = new PictureManager();
 	private static final long serialVersionUID = 1L;
 	private GameManager GM;
@@ -153,7 +153,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * used to update the board to display cards etc. after the game manager and human player have been set
 	 */
 	public void updateBoard(){
-		humanPlayer = (Human) GM.getPlayerIAm();
+		humanPlayer = GM.getPlayerIAm();
 		setBottomPlayer(humanPlayer);
 
 		switch(humanPlayer.getNumber()){
