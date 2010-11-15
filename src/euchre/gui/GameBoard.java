@@ -773,9 +773,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				if(isValidMove(GM.getPlayerIAm().getHand()[0])){
 					jButtonYourCard1.setIcon(picManager.getPicture('e','0'));
-					if(cardsPlayed == 0){
-						suitLed = GM.getPlayerIAm().getHand()[0].getSuit();
-					}
 					if(GM.isServer()){	
 						Card c = GM.getPlayerIAm().getHand()[0];
 						playCard(c, GM.getPlayerIAm().getNumber());
@@ -816,9 +813,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				if(isValidMove(GM.getPlayerIAm().getHand()[1])){
 					jButtonYourCard2.setIcon(picManager.getPicture('e','0'));
-					if(cardsPlayed == 0){
-						suitLed = GM.getPlayerIAm().getHand()[1].getSuit();
-					}
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[1];
 						playCard(c, GM.getPlayerIAm().getNumber());
@@ -860,9 +854,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				if(isValidMove(GM.getPlayerIAm().getHand()[2])){
 					jButtonYourCard3.setIcon(picManager.getPicture('e','0'));
-					if(cardsPlayed == 0){
-						suitLed = GM.getPlayerIAm().getHand()[2].getSuit();
-					}
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[2];
 						playCard(c, GM.getPlayerIAm().getNumber());
@@ -904,9 +895,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				if(isValidMove(GM.getPlayerIAm().getHand()[3])){
 					jButtonYourCard4.setIcon(picManager.getPicture('e','0'));
-					if(cardsPlayed == 0){
-						suitLed = GM.getPlayerIAm().getHand()[3].getSuit();
-					}
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[3];
 						playCard(c, GM.getPlayerIAm().getNumber());
@@ -948,9 +936,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				if(isValidMove(GM.getPlayerIAm().getHand()[4])){
 					jButtonYourCard5.setIcon(picManager.getPicture('e','0'));
-					if(cardsPlayed == 0){
-						suitLed = GM.getPlayerIAm().getHand()[4].getSuit();
-					}
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[4];
 						playCard(c, GM.getPlayerIAm().getNumber());
@@ -1187,6 +1172,9 @@ public void playCard(Card c, int playerNumber){
 		}
 		else if(humanPlayer.getNumber() == playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		}
+		if(cardsPlayed == 0){
+			suitLed = c.getSuit();
 		}
 		cardsPlayed++;
 	}
