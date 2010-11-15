@@ -37,7 +37,6 @@ public class Round{
 			hand4 = new Hand(suitLed, cardsPlayed);
 		}else if (hand == 5){
 			hand5 = new Hand(suitLed, cardsPlayed);
-			roundComplete = true; //Assumes the hands were filled out in order.
 		}else{
 			System.out.println("An invalid hand number was passed to add to this round");
 		}
