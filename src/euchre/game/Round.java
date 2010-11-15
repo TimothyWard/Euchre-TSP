@@ -21,6 +21,7 @@ public class Round{
 	private Hand hand5 = new Hand();
 	private char trumpSuit = ' ';
 	private Team teamWhoOrdered = null;
+	private Player playerLed = null;
 	private boolean roundComplete = false;
 	private boolean alone = false;
 	private Card turnedCard;
@@ -78,5 +79,11 @@ public class Round{
 	}
 	public void setTurnedCard(Card turnedCard) {
 		this.turnedCard = turnedCard;
+	}
+	public void setPlayerLed(Player playerLed) {
+		this.playerLed = playerLed;
+	}
+	public Player getPlayerLed() {
+		return playerLed;
 	}
 }

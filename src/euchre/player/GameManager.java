@@ -274,11 +274,13 @@ public class GameManager {
 			for(int i=0;i<4;i++){
 				curPlayer.setTurn(true);
 
+				if (i==0){//first to play
+					round.setPlayerLed(curPlayer);
+				}
 				if(!curPlayer.isHuman()){
 					((AI)curPlayer).setPlayed(played);
 				}
 
-				//played[i] = curPlayer.playCard();
 				played[curPlayer.getNumber()-1] = curPlayer.playCard(); //Info stored by played number as index and not order played.
 
 				
