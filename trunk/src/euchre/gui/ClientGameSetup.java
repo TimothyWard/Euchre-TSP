@@ -31,6 +31,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 		initComponents();
 		centerScreen();
 		jLabelWaitingStatus.setVisible(false);
+		playerName.grabFocus(); //Mainly here for development since we don't input other AI's.
 	}
 
 
