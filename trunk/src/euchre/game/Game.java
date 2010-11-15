@@ -23,7 +23,7 @@ public class Game {
 	 */
 	public static void main(String [] args) throws InterruptedException{
 		System.out.println("size of args string: " + args.length);
-		
+
 
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
@@ -49,14 +49,7 @@ public class Game {
 		}
 
 		else if (args.length >0){
-			try{
-				if (args[0]=="-a"){
-					createAIPlayer(GM);
-				}
-			}
-			catch(Exception exc){
-				System.out.println("Invalid Argument");
-			}
+			if (args[0]=="-a") createAIPlayer(GM);
 		}
 
 		//wait for all players to join and GM's to sync
@@ -139,7 +132,7 @@ public class Game {
 		Process p = null;
 		while (numberOfAIs != 0){
 			try {
-//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -a";
+				//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -a";
 				String cmd = "java -jar ~/Desktop/Euchre.jar -a";
 				System.out.println(cmd);
 				p = runtime.exec(cmd);
@@ -177,10 +170,6 @@ public class Game {
 
 		//join network game
 		client.toServer("RegisterPlayer,Computer One," + computer.getPlayerID());
-
-		//wait for everyone to join before continuing
-		while(GM.areTeamsComplete() == false) Thread.sleep(500);
-
 	}
 
 	/**
