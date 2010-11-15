@@ -278,8 +278,10 @@ public class GameManager {
 					((AI)curPlayer).setPlayed(played);
 				}
 
-				played[i] = curPlayer.playCard();
+				//played[i] = curPlayer.playCard();
+				played[curPlayer.getNumber()-1] = curPlayer.playCard(); //Info stored by played number as index and not order played.
 
+				
 				board.playCard(played[i], curPlayer.getNumber());
 
 				curPlayer.setTurn(false);
