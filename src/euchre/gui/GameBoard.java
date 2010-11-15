@@ -93,10 +93,12 @@ public class GameBoard extends javax.swing.JFrame{
     private javax.swing.JLabel weTricksLabel;
     // End of variables declaration//GEN-END:variables
 	private javax.swing.JButton[] handButtons = {jButtonYourCard1, jButtonYourCard2, jButtonYourCard3, jButtonYourCard4, jButtonYourCard5};
+	/*
 	private javax.swing.JLabel RCards[] = {RCard1, RCard2, RCard3, RCard4, RCard5};
 	private javax.swing.JLabel LCards[] = {LCard1, LCard2, LCard3, LCard4, LCard5};
 	private javax.swing.JLabel UCards[] = {UCard1, UCard2, UCard3, UCard4, UCard5};
-
+	*/
+	
 	public GameBoard(){
 		initComponents();
 		centerScreen();
@@ -225,7 +227,6 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 	private void setBottomPlayer(Player player){
 		jLabelYourName.setText(player.getName());
-
 		setCard(player.getHand()[0], 0);
 		setCard(player.getHand()[1], 1);
 		setCard(player.getHand()[2], 2);
@@ -751,7 +752,6 @@ public class GameBoard extends javax.swing.JFrame{
 
 	private void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[0].getSuit() != 'e'){
-
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
 				GM.getPlayerIAm().setCard(0, c.getCardValue(), c.getSuit());
@@ -762,9 +762,9 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
 					GM.setTrump(c.getSuit());
 				}
-				else
+				else{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
-				
+				}
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
@@ -801,8 +801,9 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
 					GM.setTrump(c.getSuit());
 				}
-				else
+				else{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				}
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
@@ -810,7 +811,6 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(gameplay){
 				jButtonYourCard2.setIcon(picManager.getPicture('e','0'));
 				if(GM.isServer()){
-					
 					Card c = GM.getPlayerIAm().getHand()[1];
 					playCard(c, GM.getPlayerIAm().getNumber());
 					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
@@ -838,8 +838,9 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
 					GM.setTrump(c.getSuit());
 				}
-				else
+				else{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				}
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
@@ -875,8 +876,9 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
 					GM.setTrump(c.getSuit());
 				}
-				else
+				else{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
+				}
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
@@ -911,16 +913,15 @@ public class GameBoard extends javax.swing.JFrame{
 					GM.getServerNetworkManager().toClients("SetTrump,"+c.getSuit());
 					GM.setTrump(c.getSuit());
 				}
-				else
+				else{
 					GM.getClientNetworkManager().toServer("SetTrump,"+c.getSuit());
-
+				}
 				pickItUp=false;
 				gameplay=true;
 				turnOver();
 			}
 			else if(gameplay){
-				if(GM.isServer()){
-					
+				if(GM.isServer()){	
 					Card c = GM.getPlayerIAm().getHand()[4];
 					playCard(c, GM.getPlayerIAm().getNumber());
 					GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
@@ -933,7 +934,6 @@ public class GameBoard extends javax.swing.JFrame{
 				turnOver();
 			}
 		}
-
 	}//GEN-LAST:event_card5Clicked
 
 	private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
@@ -959,14 +959,10 @@ public class GameBoard extends javax.swing.JFrame{
 				}
 				else
 					GM.getClientNetworkManager().toServer("PickItUp");
-
 				setPlayerTurn(GM.getDealer().getPlayerID());
-				
-
 			}
 			this.hideTrumpButtons();
 		}
-
 	}//GEN-LAST:event_pickItUpButtonClicked
 
 	private void heartsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_heartsListener
@@ -1117,9 +1113,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * @param c card to be played
 	 * @param playerNumber number of the player playing the card
 	 */
-public void playCard(Card c, int playerNumber){
-		
-	
+public void playCard(Card c, int playerNumber){	
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
 	
@@ -1147,99 +1141,73 @@ public void playCard(Card c, int playerNumber){
 	}
 
 public void hideOpponentCard(int playerNumber){
-	
 	if(playerNumber == leftPlayer.getNumber())
-	{
-		
+	{	
 		switch(leftPlayed){
-		case 0:
-			LCard1.setIcon(picManager.getPicture('e','s'));
-			break;
-		case 1:
-			LCard2.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 2:
-			LCard3.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 3:
-			LCard4.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 4:
-			LCard5.setIcon(picManager.getPicture('e','s'));
-
-			break;
+			case 0:
+				LCard1.setIcon(picManager.getPicture('e','s'));
+				break;
+			case 1:
+				LCard2.setIcon(picManager.getPicture('e','s'));
+	
+				break;
+			case 2:
+				LCard3.setIcon(picManager.getPicture('e','s'));
+				break;
+			case 3:
+				LCard4.setIcon(picManager.getPicture('e','s'));
+	
+				break;
+			case 4:
+				LCard5.setIcon(picManager.getPicture('e','s'));
+				break;
 		}
-		leftPlayed++;
-		
+		leftPlayed++;	
 	}
 	if(playerNumber == rightPlayer.getNumber())
-	{
-		
+	{	
 		switch(rightPlayed){
-		case 0:
-			RCard1.setIcon(picManager.getPicture('e','s'));
-			break;
-		case 1:
-			RCard2.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 2:
-			RCard3.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 3:
-			RCard4.setIcon(picManager.getPicture('e','s'));
-
-			break;
-		case 4:
-			RCard5.setIcon(picManager.getPicture('e','s'));
-
-			break;
+			case 0:
+				RCard1.setIcon(picManager.getPicture('e','s'));
+				break;
+			case 1:
+				RCard2.setIcon(picManager.getPicture('e','s'));
+				break;
+			case 2:
+				RCard3.setIcon(picManager.getPicture('e','s'));
+	
+				break;
+			case 3:
+				RCard4.setIcon(picManager.getPicture('e','s'));
+	
+				break;
+			case 4:
+				RCard5.setIcon(picManager.getPicture('e','s'));
+				break;
 		}
-		rightPlayed++;
-
-		
+		rightPlayed++;		
 	}
 	if(playerNumber == topPlayer.getNumber())
 	{
 		switch(upperPlayed){
-		case 0:
-			UCard1.setIcon(picManager.getPicture('e','0'));
-			break;
-		case 1:
-			UCard2.setIcon(picManager.getPicture('e','0'));
-
-			break;
-		case 2:
-			UCard3.setIcon(picManager.getPicture('e','0'));
-
-			break;
-		case 3:
-			UCard4.setIcon(picManager.getPicture('e','0'));
-
-			break;
-		case 4:
-			UCard5.setIcon(picManager.getPicture('e','0'));
-
-			break;
+			case 0:
+				UCard1.setIcon(picManager.getPicture('e','0'));
+				break;
+			case 1:
+				UCard2.setIcon(picManager.getPicture('e','0'));
+				break;
+			case 2:
+				UCard3.setIcon(picManager.getPicture('e','0'));
+				break;
+			case 3:
+				UCard4.setIcon(picManager.getPicture('e','0'));
+				break;
+			case 4:
+				UCard5.setIcon(picManager.getPicture('e','0'));
+				break;
 		}
-		upperPlayed++;
-
-		
-		
+		upperPlayed++;	
 	}
-	
-	
-	
-
-	
-	
-	
-	
-	
 }
 
 	public void setTurnedCard(Card c){
@@ -1277,35 +1245,35 @@ public void hideOpponentCard(int playerNumber){
 
 	public void setTrumpLabel(char suit){
 		switch(suit){
-		case 'c':{
-			trumpLabel.setText("♣");
-			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
-			break;
-		}
-		case 'd':{
-			trumpLabel.setText("♦");
-			trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
-			break;
-		}
-		case 's':{
-			trumpLabel.setText("♠");
-			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
-			break;
-		}
-		case 'h':{
-			trumpLabel.setText("♥");
-			trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
-			break;
-		}
-		case 'e':{
-			trumpLabel.setText("∅");
-			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
-			break;
-		}
-		default:{
-			trumpLabel.setText("∅");
-			trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
-		}
+			case 'c':{
+				trumpLabel.setText("♣");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+				break;
+			}
+			case 'd':{
+				trumpLabel.setText("♦");
+				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
+				break;
+			}
+			case 's':{
+				trumpLabel.setText("♠");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+				break;
+			}
+			case 'h':{
+				trumpLabel.setText("♥");
+				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
+				break;
+			}
+			case 'e':{
+				trumpLabel.setText("∅");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+				break;
+			}
+			default:{
+				trumpLabel.setText("∅");
+				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
+			}
 		}
 		gameplay = true;
 	}
