@@ -27,12 +27,20 @@ public class Round{
 	
 
 	public void setHand(int hand, Card[] cardsPlayed, char suitLed){
-		if (hand == 1) hand1 = new Hand(suitLed, cardsPlayed);
-		else if (hand == 2) hand2 = new Hand(suitLed, cardsPlayed);
-		else if (hand == 3) hand3 = new Hand(suitLed, cardsPlayed);
-		else if (hand == 4) hand4 = new Hand(suitLed, cardsPlayed);
-		else if (hand == 5) hand5 = new Hand(suitLed, cardsPlayed);
-		else System.out.println("An invalid hand number was passed to add to this round");
+		if (hand == 1){
+			hand1 = new Hand(suitLed, cardsPlayed);
+		}else if (hand == 2){
+			hand2 = new Hand(suitLed, cardsPlayed);
+		}else if (hand == 3){
+			hand3 = new Hand(suitLed, cardsPlayed);
+		}else if (hand == 4){
+			hand4 = new Hand(suitLed, cardsPlayed);
+		}else if (hand == 5){
+			hand5 = new Hand(suitLed, cardsPlayed);
+			roundComplete = true; //Assumes the hands were filled out in order.
+		}else{
+			System.out.println("An invalid hand number was passed to add to this round");
+		}
 	}
 	public Hand getHand(int handNumber) {
 		if (handNumber == 1) return hand1;
