@@ -129,13 +129,12 @@ public class Game {
 	private static void makeAIs(int numberOfAIs){
 
 		Runtime runtime = Runtime.getRuntime();
-		Process p = null;
 		while (numberOfAIs != 0){
 			try {
 				//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -a";
 				String cmd = "java -jar ~/Desktop/Euchre.jar -a";
 				System.out.println(cmd);
-				p = runtime.exec(cmd);
+				Process p = runtime.exec(cmd);
 			} 
 			catch (Throwable e) {
 				e.printStackTrace();
@@ -170,6 +169,7 @@ public class Game {
 
 		//join network game
 		client.toServer("RegisterPlayer,Computer One," + computer.getPlayerID());
+
 	}
 
 	/**
@@ -273,8 +273,12 @@ public class Game {
 	 */
 	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
 
-		//set the new host to a new human
+		//create the new host, its game board and its server
 		GM.newPlayer(new Human());
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
+		ServerNetworkManager server = createNewServer(GM);
 
 		//create a window to ask for name and game info
 		SetupLocal local = new SetupLocal();
@@ -282,6 +286,17 @@ public class Game {
 
 		//wait for info
 		while (local.getSetupComplete() == false) Thread.sleep(500);
+		
+		makeAIs(3);
+		
+		Thread.sleep(500);
+
+		//initialize the hosts game board
+		initializeGameBoard(GB);
+
+		//spawn client game boards
+		server.toClients("SpawnGameBoard");
+
 
 		//spawn a human and three new copies of the software as AI's
 	}
