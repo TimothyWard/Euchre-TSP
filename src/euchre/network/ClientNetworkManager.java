@@ -33,7 +33,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	boolean running = true;
 	String inputLine;
 	
-	boolean debug = false;
+	boolean debug;
 
 	/**
 	 * Create a ClientNetworkManager to connect to localhost.
@@ -43,7 +43,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 
 		hostname = "localhost";
 		protocol = new EuchreProtocol();
-
+		this.debug = protocol.debug;
 	}
 
 	/**

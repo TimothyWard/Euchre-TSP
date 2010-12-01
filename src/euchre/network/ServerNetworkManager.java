@@ -20,7 +20,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	EuchreProtocol protocol;
 	GameManager manager;
 	
-	boolean debug = true;
+	boolean debug;
 
 	//contains references to all of the communication threads for socket connections
 	LinkedList<EuchreConnectionThread> threads = new LinkedList<EuchreConnectionThread>();
@@ -32,6 +32,7 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 	public ServerNetworkManager(){		
 		protocol = new EuchreProtocol();
 		protocol.setServerNetworkManager(this);
+		this.debug = protocol.debug;
 	}
 
 	/**
