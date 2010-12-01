@@ -3,6 +3,8 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+
+import euchre.game.Round;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
@@ -36,6 +38,7 @@ public class GameBoard extends javax.swing.JFrame{
 	int rightPlayed = 0;
 	int upperPlayed = 0;
 	char suitLed = 'e';
+	private Round round = null;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
@@ -991,6 +994,9 @@ public class GameBoard extends javax.swing.JFrame{
 		if(GM.isMyTurn()){
 			if(settingSuit == false){
 				if(GM.isServer()){
+					if(GM.getPlayerIAm().getTeam()==1){
+						round.setTeamWhoOrdered(GM.getTeamOne());
+					}
 					GM.getServerNetworkManager().toClients("PickItUp");
 					pickItUp();
 				}
@@ -1365,5 +1371,11 @@ public void hideOpponentCard(int playerNumber){
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
+	}
+	
+	public void setRound(Round round){
+		if(GM.isServer()){
+			this.round = round;
+		}
 	}
 }
