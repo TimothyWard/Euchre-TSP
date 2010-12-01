@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package euchre.network;
 
 import java.util.StringTokenizer;
@@ -24,7 +22,7 @@ public class EuchreProtocol {
 	private ServerNetworkManager server;
 	String connectedClients;
 	
-	boolean debug = false;
+	boolean debug = true;
 
 	/**
 	 * Get any necessary references
