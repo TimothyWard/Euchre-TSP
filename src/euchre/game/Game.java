@@ -168,7 +168,7 @@ public class Game {
 		client.start();
 
 		//join network game
-		client.toServer("RegisterPlayer,Computer One," + computer.getPlayerID());
+		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
 
 	}
 
@@ -197,7 +197,7 @@ public class Game {
 
 		//create new client and its network from given ip address and name
 		ClientNetworkManager client = createNewClient(GM, clientSetup);
-		client.toServer("RegisterPlayer," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
+		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);

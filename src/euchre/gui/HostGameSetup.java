@@ -135,7 +135,7 @@ public class HostGameSetup extends javax.swing.JFrame {
 		}else if(contains(nameInput.getText().trim(), ',')){
 			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else { //Valid input
-			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
+			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
 			lobby = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
 			lobby.setVisible(true);
 			myManager.setLobby(lobby);
