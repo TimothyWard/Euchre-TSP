@@ -9,6 +9,7 @@ import euchre.game.Game;
 import euchre.player.Card;
 import euchre.player.GameManager;
 import euchre.player.Human;
+import euchre.player.Player;
 
 /**
  * @author mdhelgen
@@ -22,6 +23,8 @@ public class EuchreProtocol {
 	private ClientNetworkManager client;
 	private ServerNetworkManager server;
 	String connectedClients;
+	
+	boolean debug = false;
 
 	/**
 	 * Get any necessary references
@@ -38,7 +41,8 @@ public class EuchreProtocol {
 	public void serverParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
-		System.out.println("PARSING '" + input + "'");
+		if(debug)
+			System.out.println("PARSING '" + input + "'");
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
 
@@ -49,8 +53,10 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("RegisterPlayer")){
 				String name = parser.nextToken();
+				String type = parser.nextToken();
 				int randomNum = Integer.parseInt(parser.nextToken());
-				System.out.println("Player: " + name);
+				if(debug)
+					System.out.println("Player: " + name);
 				
 				
 				if(connectedClients == null)
@@ -108,11 +114,13 @@ public class EuchreProtocol {
 				four.setName(player3);
 				four.setPlayerID(p3ID);
 				manager.setAllPlayers(one, two, three, four);
-				System.out.println("Player 1 name:" + manager.getp1().getName());
-				System.out.println("Player 2 name:" + manager.getp2().getName());
-				System.out.println("Player 3 name:" + manager.getp3().getName());
-				System.out.println("Player 4 name:" + manager.getp4().getName());
-
+				
+				if(debug){
+					System.out.println("Player 1 name:" + manager.getp1().getName());
+					System.out.println("Player 2 name:" + manager.getp2().getName());
+					System.out.println("Player 3 name:" + manager.getp3().getName());
+					System.out.println("Player 4 name:" + manager.getp4().getName());
+				}
 
 			}
 
@@ -154,7 +162,10 @@ public class EuchreProtocol {
 			
 			
 			else{
-				System.out.println("Undefined token: " + token);
+				
+				if(debug)
+					System.out.println("Undefined token: " + token);
+			
 			}
 
 
@@ -170,7 +181,10 @@ public class EuchreProtocol {
 	public void clientParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
-		System.out.println("PARSING - " + input);
+		
+		if(debug)
+			System.out.println("PARSING - " + input);
+		
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
 			if(token.equals("SetPlayers")){
@@ -209,7 +223,8 @@ public class EuchreProtocol {
 				int player = Integer.parseInt(parser.nextToken());
 				int team = Integer.parseInt(parser.nextToken());
 				manager.setTeam(player, team);
-				System.out.println("SetTeam("+player+","+team+")");
+				if(debug)
+					System.out.println("SetTeam("+player+","+team+")");
 			}
 			else if(token.equals("SpawnGameBoard")){
 				Game.initializeGameBoard(manager.getGameBoard());
@@ -279,20 +294,12 @@ public class EuchreProtocol {
 
 
 			else
-				System.out.println("Undefined token: " + token);
+				if(debug)
+					System.out.println("Undefined token: " + token);
 		}
 
 	}
 
-	/**
-	 * FILL THIS IN
-	 * @param name
-	 * @param number
-	 */
-	public void setName(String name, int number){
-		System.out.println("Player name: " + name);
-		System.out.println("Player number: " + number);
-	}
 
 	public void setGameManager(GameManager gm){
 		manager = gm;

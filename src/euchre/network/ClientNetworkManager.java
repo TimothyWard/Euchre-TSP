@@ -32,6 +32,8 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	boolean connecting = true;
 	boolean running = true;
 	String inputLine;
+	
+	boolean debug = false;
 
 	/**
 	 * Create a ClientNetworkManager to connect to localhost.
@@ -133,7 +135,8 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("connected to server");
+				if(debug)
+					System.out.println("connected to server");
 
 				//send a message to the server
 				//out.println("CLIENT");
@@ -145,7 +148,8 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 					while((inputLine = in.readLine()) != null){
 
 						//output the message
-						System.out.println("Message from server:");
+						if(debug)
+							System.out.println("Message from server:");
 						protocol.clientParse(inputLine);
 					}
 				} catch (IOException e) {

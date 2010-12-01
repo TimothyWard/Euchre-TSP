@@ -84,8 +84,9 @@ public class EuchreConnectionThread extends Thread {
 	}
 	
 	/**
-	 * FILL THIS IN
-	 * @return
+	 * Get a reference to the thread's print writer
+	 * 
+	 * @return The socket output stream for this thread
 	 */
 	public PrintWriter getPrintWriter(){
 		return out;
