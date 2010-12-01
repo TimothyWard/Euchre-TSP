@@ -1119,7 +1119,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * displays the buttons used during suit selection
 	 */
 	private void showSuitButtons(){
-		System.out.println("showsuitbuttons");
+		//System.out.println("showsuitbuttons");
 		heartsButton.setVisible(true);
 		clubsButton.setVisible(true);
 		diamondsButton.setVisible(true);
