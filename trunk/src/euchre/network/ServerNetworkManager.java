@@ -143,14 +143,16 @@ public class ServerNetworkManager extends Thread{ // extends NetworkManager { Ab
 			if(listening)
 			{
 
-				System.out.println("Listening for connections");
+				if(debug)
+					System.out.println("Listening for connections");
 				try {
 
 					//accept a connection and dispatch a new thread with that socket as a parameter
 					threads.addLast(new EuchreConnectionThread("Thread",serverSocket.accept(), this));
 					//start the thread
 					threads.getLast().start();
-					System.out.println("Connection recieved/started");
+					if(debug)
+						System.out.println("Connection recieved/started");
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
