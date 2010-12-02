@@ -49,7 +49,7 @@ public class Game {
 		}
 
 		else if (args.length >0){
-			if (args[0]=="-a") createAIPlayer(GM);
+			if (args[0]=="-a")createAIPlayer(GM);
 		}
 
 		//wait for all players to join and GM's to sync
@@ -58,33 +58,36 @@ public class Game {
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
 
-		//set teams
-		Team one = GM.getTeamOne();
-		Team two = GM.getTeamTwo();
+		//if this is the host
+		if (GM.isServer()){
 
-		//create a new tabulator.
-		GameLogic tabulator = new GameLogic();
+			//set teams
+			Team one = GM.getTeamOne();
+			Team two = GM.getTeamTwo();
 
-		//if the game has not been won, continue
-		while (gameWinner(one, two) == null){
+			//create a new tabulator.
+			GameLogic tabulator = new GameLogic();
 
-			//start the next round
-			Round currentRound = new Round();
-			GM.setRound(currentRound);
-			GM.playGame();
+			//if the game has not been won, continue
+			while (gameWinner(one, two) == null){
 
-			//wait for the current round to be over
-			while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
+				//start the next round
+				Round currentRound = new Round();
+				GM.setRound(currentRound);
+				GM.playGame();
 
-			//score the recently completed round and set the game manager's round to null
-			GM.setRound(null);
-			tabulator.interpret(currentRound, one, two);
+				//wait for the current round to be over
+				while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
+
+				//score the recently completed round and set the game manager's round to null
+				GM.setRound(null);
+				tabulator.interpret(currentRound, one, two);
+			}
+			//if the game is over, display the winner
+			JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+
 		}
-
-		//if the game is over, set the last round to null and display the winner
-		GM.setRound(null);
-		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-		//once game winner is determined, inform network who won to update views.
+		//INFORM THE NETWORK WHO THE WINNING TEAM IS	
 	}
 
 	/**
@@ -161,7 +164,7 @@ public class Game {
 		GM.setGameBoard(GB);
 		GM.newPlayer(computer);
 
-		//create new client and its network from given ip address and name
+		//create new client
 		ClientNetworkManager client = new ClientNetworkManager();
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
@@ -286,9 +289,9 @@ public class Game {
 
 		//wait for info
 		while (local.getSetupComplete() == false) Thread.sleep(500);
-		
+
 		makeAIs(3);
-		
+
 		Thread.sleep(500);
 
 		//initialize the hosts game board
