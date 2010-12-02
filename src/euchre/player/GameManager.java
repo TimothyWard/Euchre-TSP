@@ -484,6 +484,7 @@ public class GameManager {
 		teamTwo = new Team(player2,player4);
 		dealer = player1;
 		teamsComplete = true;
+		
 	}
 
 	/**
@@ -567,6 +568,7 @@ public class GameManager {
 
 	public void setRound(Round round){
 		this.round = round;
+		board.setRound(round);
 	}
 
 	public GameLobby getLobby(){
