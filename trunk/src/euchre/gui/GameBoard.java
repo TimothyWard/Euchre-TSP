@@ -33,6 +33,7 @@ public class GameBoard extends javax.swing.JFrame{
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
 	int cardsPlayed = 0;
+	int hand = 1;
 	private int playerCards[] = {5, 5, 5, 5};
 	int leftPlayed = 0;
 	int rightPlayed = 0;
@@ -994,15 +995,18 @@ public class GameBoard extends javax.swing.JFrame{
 		if(GM.isMyTurn()){
 			if(settingSuit == false){
 				if(GM.isServer()){
-					if(GM.getPlayerIAm().getTeam()==1){
-						round.setTeamWhoOrdered(GM.getTeamOne());
-					}
+					//Update Round
+					if(GM.getPlayerIAm().getTeam()==1) round.setTeamWhoOrdered(GM.getTeamOne());
+					else round.setTeamWhoOrdered(GM.getTeamTwo());
+					round.setTrumpSuit(turnedCard.getSuit());
+					
 					GM.getServerNetworkManager().toClients("PickItUp");
 					pickItUp();
 				}
 				else
+					//Need to tell host to update round
 					GM.getClientNetworkManager().toServer("PickItUp");
-				setPlayerTurn(GM.getDealer().getPlayerID());
+					setPlayerTurn(GM.getDealer().getPlayerID());
 			}
 			this.hideTrumpButtons();
 		}
@@ -1159,12 +1163,24 @@ public void playCard(Card c, int playerNumber){
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
 	
+		//FIX
+		Card[] played = new Card[4];
+		played[cardsPlayed] = c;
+		//System.out.println("Played Cards: {" + played[0] + ", " + played[1] + ", " + played[2] + ", " + played[3] + "}");
+		
 		if (cardsPlayed == 4){
+			
+			//FIX
+			if(GM.isServer()){
+				round.setHand(hand, played, suitLed);
+			}
+			else ;
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
+			hand++;
 
 		}
 		if(rightPlayer.getNumber() == playerNumber){
@@ -1181,6 +1197,9 @@ public void playCard(Card c, int playerNumber){
 		}
 		if(cardsPlayed == 0){
 			suitLed = c.getSuit();
+			//FIX
+			//if(GM.isServer()) round.setPlayerLed(playerNumber);
+			//else ;
 		}
 		cardsPlayed++;
 	}
@@ -1258,6 +1277,11 @@ public void hideOpponentCard(int playerNumber){
 	public void setTurnedCard(Card c){
 		turnedCard = c;
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		
+		//FIX
+		if(GM.isServer()) round.setTurnedCard(turnedCard);
+		else ;
+		
 	}
 
 	public void setGameManager(GameManager gm){
