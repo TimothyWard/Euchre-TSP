@@ -172,6 +172,9 @@ public class Game {
 
 		//join network game
 		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
+		
+		//wait for everyone to join before continuing
+		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 
 	}
 
@@ -291,12 +294,7 @@ public class Game {
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 
 		makeAIs(3);
-
-		Thread.sleep(500);
-
-		//initialize the hosts game board
-		initializeGameBoard(GB);
-
+		
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
 
