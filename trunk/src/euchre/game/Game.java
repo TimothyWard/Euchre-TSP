@@ -1,9 +1,14 @@
 package euchre.game;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
+import java.io.BufferedOutputStream;
 
 
 
@@ -49,7 +54,17 @@ public class Game {
 		}
 
 		else if (args.length >0){
-			if (args[0]=="-a")createAIPlayer(GM);
+			if (args[0]=="-a"){
+				try {
+					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/out.txt"))));
+				} 
+				catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				System.out.println("tester");
+				System.out.flush();
+				createAIPlayer(GM);
+			}
 		}
 
 		//wait for all players to join and GM's to sync
@@ -58,35 +73,31 @@ public class Game {
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
 
-		//if this is the host
-		if (GM.isServer()){
+		//set teams
+		Team one = GM.getTeamOne();
+		Team two = GM.getTeamTwo();
 
-			//set teams
-			Team one = GM.getTeamOne();
-			Team two = GM.getTeamTwo();
+		//create a new tabulator.
+		GameLogic tabulator = new GameLogic();
 
-			//create a new tabulator.
-			GameLogic tabulator = new GameLogic();
+		//if the game has not been won, continue
+		while (gameWinner(one, two) == null){
 
-			//if the game has not been won, continue
-			while (gameWinner(one, two) == null){
+			//start the next round
+			Round currentRound = new Round();
+			GM.setRound(currentRound);
+			GM.playGame();
 
-				//start the next round
-				Round currentRound = new Round();
-				GM.setRound(currentRound);
-				GM.playGame();
+			//wait for the current round to be over
+			while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
 
-				//wait for the current round to be over
-				while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
-
-				//score the recently completed round and set the game manager's round to null
-				GM.setRound(null);
-				tabulator.interpret(currentRound, one, two);
-			}
-			//if the game is over, display the winner
-			JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-
+			//score the recently completed round and set the game manager's round to null
+			GM.setRound(null);
+			tabulator.interpret(currentRound, one, two);
 		}
+		//if the game is over, display the winner
+		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+
 		//INFORM THE NETWORK WHO THE WINNING TEAM IS	
 	}
 
@@ -172,7 +183,7 @@ public class Game {
 
 		//join network game
 		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
-		
+
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 
@@ -294,7 +305,7 @@ public class Game {
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 
 		makeAIs(3);
-		
+
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
 
