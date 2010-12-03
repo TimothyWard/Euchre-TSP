@@ -102,7 +102,7 @@ public class GameManager {
 		if(server != null){
 			deal();	
 			//System.out.println(nextPlayer(dealer).getName());
-			//setTrump();
+			setTrump();
 			//playRound();
 		}
 	}
