@@ -101,8 +101,8 @@ public class GameManager {
 		
 		if(server != null){
 			deal();	
-			System.out.println(nextPlayer(dealer).getName());
-			setTrump();
+			//System.out.println(nextPlayer(dealer).getName());
+			//setTrump();
 			//playRound();
 		}
 	}
@@ -675,7 +675,7 @@ public class GameManager {
 
 	public void setTrump(char trump) {
 		this.trump = trump;
-		round.setTrumpSuit(trump);
+		//round.setTrumpSuit(trump);
 		board.setTrumpLabel(trump);
 		board.trumpSet();
 		
