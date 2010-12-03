@@ -70,6 +70,9 @@ public class Game {
 		//wait for all players to join and GM's to sync
 		while (GM.areTeamsComplete()==false) Thread.sleep(500);
 
+		Round currentRound = new Round();
+		GM.setRound(currentRound);
+		
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
 
@@ -84,16 +87,17 @@ public class Game {
 		while (gameWinner(one, two) == null){
 
 			//start the next round
-			Round currentRound = new Round();
-			GM.setRound(currentRound);
+			
 			GM.playGame();
 
 			//wait for the current round to be over
 			while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
-
 			//score the recently completed round and set the game manager's round to null
-			GM.setRound(null);
+			//GM.setRound(null);
 			tabulator.interpret(currentRound, one, two);
+			
+			currentRound = new Round();
+			GM.setRound(currentRound);
 		}
 		//if the game is over, display the winner
 		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
@@ -115,6 +119,7 @@ public class Game {
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
+		
 		ServerNetworkManager server = createNewServer(GM);
 
 		//open the window for the user to input the game data
