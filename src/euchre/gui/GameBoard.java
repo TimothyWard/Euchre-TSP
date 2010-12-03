@@ -1137,6 +1137,11 @@ public class GameBoard extends javax.swing.JFrame{
 		suitPassButton.setVisible(true);
 	}
 
+	/**
+	 * Sets the string above the deal to represent that the deal belongs to the given players name.
+	 * 
+	 * @param name The name of who the deal belongs to.
+	 */
 	public void setDealerName(String name){
 		String possesive = name;
 		if (name == "Your"){
