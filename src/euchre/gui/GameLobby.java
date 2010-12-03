@@ -101,13 +101,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player3Difficulty = 'e';
-    	   Player3Status.setText("...is computer player...Difficulty: Easy");
+    	   Player3Status.setText("...Computer 2...Difficulty: Easy");
        }else if (difficulty == 'm'){
     	   player3Difficulty = 'm';
-    	   Player3Status.setText("...is computer player...Difficulty: Medium");
+    	   Player3Status.setText("...Computer 2...Difficulty: Medium");
        }else if (difficulty == 'h'){
     	   player3Difficulty = 'h';
-    	   Player3Status.setText("...is computer player...Difficulty: Hard");
+    	   Player3Status.setText("...Computer 2...Difficulty: Hard");
        }
     }
 
@@ -118,13 +118,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer4Difficulty(char difficulty){
     	if (difficulty == 'e'){
      	   player4Difficulty = 'e';
-     	  Player4Status.setText("...is computer player...Difficulty: Easy");
+     	  Player4Status.setText("...Computer 1...Difficulty: Easy");
         }else if (difficulty == 'm'){
      	   player4Difficulty = 'm';
-     	   Player4Status.setText("...is computer player...Difficulty: Medium");
+     	   Player4Status.setText("...Computer 1...Difficulty: Medium");
         }else if (difficulty == 'h'){
      	   player4Difficulty = 'h';
-     	  Player4Status.setText("...is computer player...Difficulty: Hard");
+     	  Player4Status.setText("...Computer 1...Difficulty: Hard");
         }
     }
 
