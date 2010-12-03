@@ -1139,14 +1139,14 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 	public void setDealerName(String name){
 		String possesive = name;
-		if (name == "Your"){
-			//Do nothing
+		if (name == this.jLabelYourName.getText()){
+			possesive = "Your";
 		}else if(name.charAt(name.length()-1) == 's'){
 			possesive += "'";
 		}else{
-			possesive += "s";
+			possesive += "'s";
 		}
-		jLabelDealer.setText(possesive+"  deal:");
+		jLabelDealer.setText(possesive+"  Deal:");
 	}
 	
 	public void setWeTricks(int tricks){
