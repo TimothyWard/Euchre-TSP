@@ -50,8 +50,8 @@ public class EuchreProtocol {
 
 			}
 			else if(token.equals("RegisterPlayer")){
-				String name = parser.nextToken();
 				String type = parser.nextToken();
+				String name = parser.nextToken();
 				int randomNum = Integer.parseInt(parser.nextToken());
 				if(debug)
 					System.out.println("Player: " + name);
