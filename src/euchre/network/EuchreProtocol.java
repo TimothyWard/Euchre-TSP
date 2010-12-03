@@ -288,6 +288,10 @@ public class EuchreProtocol {
 				Card c = new Card(card.charAt(0), card.charAt(1));
 				manager.getGameBoard().playCard(c, playernum);
 			}
+			else if(token.equals("SetDealerName")){
+				String name = parser.nextToken();
+				manager.getGameBoard().setDealerName(name);
+			}
 
 
 
