@@ -1175,8 +1175,7 @@ public void playCard(Card c, int playerNumber){
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
 	
-		played[cardsPlayed] = c;
-		
+
 		if (cardsPlayed == 4){
 			
 			round.setHand(hand, played, suitLed);
@@ -1187,8 +1186,10 @@ public void playCard(Card c, int playerNumber){
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
 			hand++;
-
 		}
+		
+		played[cardsPlayed] = c;
+		
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1287,9 +1288,7 @@ public void hideOpponentCard(int playerNumber){
 		turnedCard = c;
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		
-		System.out.println("Round: " + round);
-		System.out.println("Turned Card: " + turnedCard);
-		
+		System.out.println("-----------------------------Round: " + round + " --------------------------------------------------------------");
 		round.setTurnedCard(turnedCard);
 		
 	}
