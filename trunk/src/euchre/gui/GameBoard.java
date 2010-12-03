@@ -1171,24 +1171,11 @@ public class GameBoard extends javax.swing.JFrame{
 	 * @param c card to be played
 	 * @param playerNumber number of the player playing the card
 	 */
-public void playCard(Card c, int playerNumber){	
+public void playCard(Card c, int playerNumber){
+	
+		
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-	
-
-		if (cardsPlayed == 4){
-			
-			round.setHand(hand, played, suitLed);
-			
-			RPlayed.setIcon(picManager.getPicture('e','0'));
-			LPlayed.setIcon(picManager.getPicture('e','0'));
-			UPlayed.setIcon(picManager.getPicture('e','0'));
-			YourPlayed.setIcon(picManager.getPicture('e','0'));
-			cardsPlayed = 0;
-			hand++;
-		}
-		
-		played[cardsPlayed] = c;
 		
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
@@ -1212,6 +1199,26 @@ public void playCard(Card c, int playerNumber){
 			
 		}
 		cardsPlayed++;
+		
+		if (cardsPlayed == 4){
+			
+			round.setHand(hand, played, suitLed);
+			hand++;
+			
+			if(hand>5){
+				round.setRoundComplete(true);
+				System.out.println("--------------------------------Round Complete---------------------------------------------");
+				
+			}
+			
+			RPlayed.setIcon(picManager.getPicture('e','0'));
+			LPlayed.setIcon(picManager.getPicture('e','0'));
+			UPlayed.setIcon(picManager.getPicture('e','0'));
+			YourPlayed.setIcon(picManager.getPicture('e','0'));
+			cardsPlayed = 0;
+		}
+		
+		played[cardsPlayed] = c;
 	}
 
 public void hideOpponentCard(int playerNumber){
@@ -1285,16 +1292,15 @@ public void hideOpponentCard(int playerNumber){
 }
 
 	public void setTurnedCard(Card c){
-		turnedCard = c;
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		
 		System.out.println("-----------------------------Round: " + round + " --------------------------------------------------------------");
-		round.setTurnedCard(turnedCard);
-		
+		round.setTurnedCard(c);
 	}
 
 	public void setGameManager(GameManager gm){
 		GM = gm;
+		round = GM.getRound();
 	}
 
 	private void setTopPlayer(Player player){
