@@ -1205,17 +1205,19 @@ public void playCard(Card c, int playerNumber){
 			round.setHand(hand, played, suitLed);
 			hand++;
 			
-			if(hand>5){
-				round.setRoundComplete(true);
-				System.out.println("--------------------------------Round Complete---------------------------------------------");
-				
-			}
-			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
+			
+			
+			if(hand>5){
+				round.setRoundComplete(true);
+				GM.playRound();
+				
+			}
+			
 		}
 		
 		played[cardsPlayed] = c;
@@ -1293,8 +1295,7 @@ public void hideOpponentCard(int playerNumber){
 
 	public void setTurnedCard(Card c){
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-		
-		System.out.println("-----------------------------Round: " + round + " --------------------------------------------------------------");
+		turnedCard = c;
 		round.setTurnedCard(c);
 	}
 
