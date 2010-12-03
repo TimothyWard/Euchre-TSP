@@ -1137,6 +1137,18 @@ public class GameBoard extends javax.swing.JFrame{
 		suitPassButton.setVisible(true);
 	}
 
+	public void setDealerName(String name){
+		String possesive = name;
+		if (name == "Your"){
+			//Do nothing
+		}else if(name.charAt(name.length()-1) == 's'){
+			possesive += "'";
+		}else{
+			possesive += "s";
+		}
+		jLabelDealer.setText(possesive+"  deal:");
+	}
+	
 	public void setWeTricks(int tricks){
 		weTeamTricksLabel.setText("" + tricks);
 	}
