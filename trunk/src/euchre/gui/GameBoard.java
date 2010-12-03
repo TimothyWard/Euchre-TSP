@@ -39,6 +39,7 @@ public class GameBoard extends javax.swing.JFrame{
 	int rightPlayed = 0;
 	int upperPlayed = 0;
 	char suitLed = 'e';
+	Card[] played = new Card[4];
 	private Round round = null;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -994,17 +995,11 @@ public class GameBoard extends javax.swing.JFrame{
 	private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
 		if(GM.isMyTurn()){
 			if(settingSuit == false){
-				if(GM.isServer()){
-					//Update Round
-					if(GM.getPlayerIAm().getTeam()==1) round.setTeamWhoOrdered(GM.getTeamOne());
-					else round.setTeamWhoOrdered(GM.getTeamTwo());
-					round.setTrumpSuit(turnedCard.getSuit());
-					
+				if(GM.isServer()){					
 					GM.getServerNetworkManager().toClients("PickItUp");
 					pickItUp();
 				}
 				else
-					//Need to tell host to update round
 					GM.getClientNetworkManager().toServer("PickItUp");
 					setPlayerTurn(GM.getDealer().getPlayerID());
 			}
@@ -1180,18 +1175,12 @@ public void playCard(Card c, int playerNumber){
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
 	
-		//FIX
-		Card[] played = new Card[4];
 		played[cardsPlayed] = c;
-		//System.out.println("Played Cards: {" + played[0] + ", " + played[1] + ", " + played[2] + ", " + played[3] + "}");
 		
 		if (cardsPlayed == 4){
 			
-			//FIX
-			if(GM.isServer()){
-				round.setHand(hand, played, suitLed);
-			}
-			else ;
+			round.setHand(hand, played, suitLed);
+			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1214,9 +1203,12 @@ public void playCard(Card c, int playerNumber){
 		}
 		if(cardsPlayed == 0){
 			suitLed = c.getSuit();
-			//FIX
-			//if(GM.isServer()) round.setPlayerLed(playerNumber);
-			//else ;
+			
+			if(playerNumber==1) round.setPlayerLed(GM.getPlayer1());
+			else if(playerNumber==2) round.setPlayerLed(GM.getPlayer2());
+			else if(playerNumber==3) round.setPlayerLed(GM.getPlayer3());
+			else if(playerNumber==4) round.setPlayerLed(GM.getPlayer4());
+			
 		}
 		cardsPlayed++;
 	}
@@ -1295,9 +1287,10 @@ public void hideOpponentCard(int playerNumber){
 		turnedCard = c;
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		
-		//FIX
-		if(GM.isServer()) round.setTurnedCard(turnedCard);
-		else ;
+		System.out.println("Round: " + round);
+		System.out.println("Turned Card: " + turnedCard);
+		
+		round.setTurnedCard(turnedCard);
 		
 	}
 
@@ -1405,6 +1398,14 @@ public void hideOpponentCard(int playerNumber){
 	}
 
 	public void pickItUp(){
+		
+		if(GM.getPlayerIAm().getTeam()==1) 
+			round.setTeamWhoOrdered(GM.getTeamOne());
+		else 
+			round.setTeamWhoOrdered(GM.getTeamTwo());
+		
+		round.setTrumpSuit(turnedCard.getSuit());
+		
 		if(!GM.isDealer()){
 			TurnedCard.setVisible(false);
 			jLabelDealer.setVisible(false);
@@ -1415,8 +1416,6 @@ public void hideOpponentCard(int playerNumber){
 	}
 	
 	public void setRound(Round round){
-		if(GM.isServer()){
-			this.round = round;
-		}
+		this.round = round;
 	}
 }
