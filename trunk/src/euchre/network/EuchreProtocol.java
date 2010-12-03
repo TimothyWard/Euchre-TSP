@@ -7,6 +7,7 @@ import euchre.game.Game;
 import euchre.player.Card;
 import euchre.player.GameManager;
 import euchre.player.Human;
+import euchre.player.MediumAI;
 import euchre.player.Player;
 
 /**
@@ -33,8 +34,9 @@ public class EuchreProtocol {
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param input
+	 * Parse the network message (server perspective)
+	 * 
+	 * @param input A comma separated list of tokens
 	 */
 	public void serverParse(String input){
 		String token;
@@ -58,9 +60,9 @@ public class EuchreProtocol {
 				
 				
 				if(connectedClients == null)
-					connectedClients = name + ","+ randomNum;
+					connectedClients = name + ","+ randomNum+","+type;
 				else{
-					connectedClients = connectedClients +"," +name + "," + randomNum;
+					connectedClients = connectedClients +"," +name + "," + randomNum+","+type;
 					numConnectedClients++;
 					if(numConnectedClients == 3){
 						server.toClients("SetPlayers,"+connectedClients);
@@ -89,20 +91,47 @@ public class EuchreProtocol {
 
 			}
 			else if(token.equals("SetPlayers")){
-				Human one = new Human();
-				Human two = new Human();
-				Human three = new Human();
-				Human four = new Human();
+				Player one;
+				Player two;
+				Player three;
+				Player four;
 				
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
+				String htype = parser.nextToken();
+				
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
+				String p1type = parser.nextToken();
+				
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
+				String p2type = parser.nextToken();
+				
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
-
+				String p3type = parser.nextToken();
+				
+				
+				if(htype.equalsIgnoreCase("human"))
+					one = new Human();
+				else
+					one = new MediumAI();
+				
+				if(p1type.equalsIgnoreCase("human"))
+					two = new Human();
+				else
+					two = new MediumAI();
+				
+				if(p2type.equalsIgnoreCase("human"))
+					three = new Human();
+				else					
+					three = new MediumAI();
+				
+				if(p3type.equalsIgnoreCase("human"))
+					four = new Human();
+				else 
+					four = new MediumAI();
 				one.setName(host);
 				one.setPlayerID(hostID);
 				two.setName(player1);
@@ -173,8 +202,9 @@ public class EuchreProtocol {
 	}
 
 	/**
-	 * FILL THIS IN
-	 * @param input
+	 * Parse the network message (client perspective)
+	 * 
+	 * @param input A comma separated list of tokens
 	 */
 	public void clientParse(String input){
 		String token;
@@ -185,24 +215,56 @@ public class EuchreProtocol {
 		
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
+			
+			/**
+			 * 
+			 */
 			if(token.equals("SetPlayers")){
-				Human one = new Human();
-				Human two = new Human();
-				Human three = new Human();
-				Human four = new Human();
+				Player one;
+				Player two;
+				Player three;
+				Player four;
 
 
 
 
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
+				String htype = parser.nextToken();
+				
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
+				String p1type = parser.nextToken();
+				
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
+				String p2type = parser.nextToken();
+				
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
+				String p3type = parser.nextToken();
 
+				
+				
+				if(htype.equalsIgnoreCase("human"))
+					one = new Human();
+				else
+					one = new MediumAI();
+				
+				if(p1type.equalsIgnoreCase("human"))
+					two = new Human();
+				else
+					two = new MediumAI();
+				
+				if(p2type.equalsIgnoreCase("human"))
+					three = new Human();
+				else					
+					three = new MediumAI();
+				
+				if(p3type.equalsIgnoreCase("human"))
+					four = new Human();
+				else 
+					four = new MediumAI();
 
 
 				one.setName(host);
