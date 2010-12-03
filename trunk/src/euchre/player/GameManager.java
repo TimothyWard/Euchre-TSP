@@ -94,10 +94,6 @@ public class GameManager {
 	 * While round has been initialized, deal cards, determine trump, and play a round of Euchre.
 	 */
 	public void playGame(){
-
-		
-		
-		
 		
 		if(server != null){
 			playRound();
@@ -259,7 +255,7 @@ public class GameManager {
 	 * Plays a round of Euchre, consisting of five hands.
 	 * Determines the winner of each hand, and that player leads the next hand.
 	 */
-	private void playRound(){
+	public void playRound(){
 
 		if(server != null && round != null){
 			deal();
