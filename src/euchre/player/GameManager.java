@@ -100,10 +100,7 @@ public class GameManager {
 		
 		
 		if(server != null){
-			deal();	
-			//System.out.println(nextPlayer(dealer).getName());
-			setTrump();
-			//playRound();
+			playRound();
 		}
 	}
 
@@ -264,45 +261,11 @@ public class GameManager {
 	 */
 	private void playRound(){
 
-		//Set the current player to the player to the left of the dealer
-		curPlayer = nextPlayer(dealer);
-		round.setRoundComplete(false);
-
-		//Play five hands...
-		for(int h=1;h<6;h++){
-			Card[] played = new Card[4];
-
-			//For each player, have them play a card
-			for(int i=0;i<4;i++){
-				curPlayer.setTurn(true);
-
-				if (i==0){//first to play
-					round.setPlayerLed(curPlayer);
-				}
-				if(!curPlayer.isHuman()){
-					((AI)curPlayer).setPlayed(played);
-				}
-
-				played[curPlayer.getNumber()-1] = curPlayer.playCard(); //Info stored by played number as index and not order played.
-
-				
-				board.playCard(played[i], curPlayer.getNumber());
-
-				curPlayer.setTurn(false);
-				curPlayer=nextPlayer(curPlayer);
-			}
-
-			led=played[0].getSuit();
-
-			round.setHand(h, played, led);
-
-			//Sets the start player to the winner of the last trick.
-			curPlayer = trickWinner(played);
-
+		if(server != null && round != null){
+			deal();
+			setTrump();
 		}
-
-		round.setRoundComplete(true);
-		dealer = nextPlayer(dealer);
+		
 	}
 
 	/**
@@ -569,6 +532,7 @@ public class GameManager {
 	}
 
 	public void setRound(Round round){
+		System.out.println("Setting Round (" + round + ") for " + playerIAm.getNumber() + "...");
 		this.round = round;
 		board.setRound(round);
 	}
