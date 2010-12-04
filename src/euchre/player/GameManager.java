@@ -105,9 +105,10 @@ public class GameManager {
 		upCard = deck.drawCard();
 		board.setTurnedCard(upCard);
 		board.setDealerName(dealer.getName());
+		board.newRound();
 		round.setTurnedCard(upCard);
 
-		
+		server.toClients("SetNewRound,");
 
 		server.toClients("SetHand,1,"+player1.getHand()[0]+","+player1.getHand()[1]+","+player1.getHand()[2]+","+
 							player1.getHand()[3]+","+player1.getHand()[4]);
