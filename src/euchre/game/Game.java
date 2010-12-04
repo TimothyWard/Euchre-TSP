@@ -52,7 +52,6 @@ public class Game {
 		}
 
 		else if (args.length >0){
-
 			if (args[0].equals("-ai")){
 				try {
 					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIOutput"))));
@@ -147,6 +146,9 @@ public class Game {
 	 * @param numberOfAIs The number of AI's to spawn.
 	 */
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
+		if(numberOfAIs == 0)
+			return;
+		
 		try {
 			if (!(difficultyOfAIOne == 'x')){
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne};
