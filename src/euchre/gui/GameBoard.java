@@ -420,7 +420,7 @@ public class GameBoard extends javax.swing.JFrame{
 
         heartsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         heartsButton.setForeground(new java.awt.Color(255, 0, 0));
-        heartsButton.setText("♥");
+        heartsButton.setText("\u2665");
         heartsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 heartsListener(evt);
@@ -428,7 +428,7 @@ public class GameBoard extends javax.swing.JFrame{
         });
 
         clubsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
-        clubsButton.setText("♣");
+        clubsButton.setText("\u2663");
         clubsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clubsListener(evt);
@@ -437,7 +437,7 @@ public class GameBoard extends javax.swing.JFrame{
 
         diamondsButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         diamondsButton.setForeground(new java.awt.Color(255, 0, 0));
-        diamondsButton.setText("♦");
+        diamondsButton.setText("\u2666");
         diamondsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 diamondsListener(evt);
@@ -445,7 +445,7 @@ public class GameBoard extends javax.swing.JFrame{
         });
 
         spadesButton.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
-        spadesButton.setText("♠");
+        spadesButton.setText("\u2660");
         spadesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 spadesListener(evt);
@@ -500,7 +500,7 @@ public class GameBoard extends javax.swing.JFrame{
         RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png"))); // NOI18N
 
         trumpLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
-        trumpLabel.setText("∅");
+        trumpLabel.setText("\u2205");
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
