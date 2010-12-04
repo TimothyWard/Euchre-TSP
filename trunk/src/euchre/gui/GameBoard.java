@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
+import euchre.game.GameLogic;
 import euchre.game.Round;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
@@ -40,8 +41,11 @@ public class GameBoard extends javax.swing.JFrame{
 	int rightPlayed = 0;
 	int upperPlayed = 0;
 	char suitLed = 'e';
+	int oneTricks = 0;
+	int twoTricks = 0;
 	Card[] played = new Card[4];
 	private Round round = null;
+	GameLogic tabulator = new GameLogic();
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
@@ -1242,6 +1246,9 @@ public void playCard(Card c, int playerNumber){
 			
 			round.setHand(hand, played, suitLed);
 			
+			//System.out.println("PLAYED CARDS:   {" + played[0].toString() + ", " + played[1].toString() + ", " + played[2].toString() + ", " + played[3].toString() + "}");
+			//tabulator.interpretHand();
+			
 			hand++;
 			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1255,7 +1262,6 @@ public void playCard(Card c, int playerNumber){
 				
 				round.setRoundComplete(true);
 				round = GM.getRound();
-				System.out.println("Round after completing: " + round);
 				//FIX
 				GM.playRound();
 				
@@ -1490,6 +1496,10 @@ public void hideOpponentCard(int playerNumber){
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
+	}
+	
+	public GameLogic getTabulator(){
+		return tabulator;
 	}
 	
 	public void setRound(Round round){
