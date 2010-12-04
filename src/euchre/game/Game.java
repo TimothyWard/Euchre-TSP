@@ -64,7 +64,7 @@ public class Game {
 					e.printStackTrace();
 				}
 				//create the AI
-				createAIPlayer(GM, args[1]);
+				createAIPlayer(GM, args[2], args[1]);
 			}
 		}
 		GM.playGame();
@@ -84,15 +84,15 @@ public class Game {
 		//if there are more than zero AIs, spawn up to three
 		try {
 			if (!(difficultyOfAIOne == 'x')){
-				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne};
+				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Computer One"};
 				Runtime.getRuntime().exec(cmdarray1);
 			}
 			if (!(difficultyOfAITwo == 'x')){
-				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo};
+				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Computer Two"};
 				Runtime.getRuntime().exec(cmdarray2);
 			}
 			if (!(difficultyOfAIThree == 'x')){
-				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree};
+				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Computer Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
 		} 
@@ -198,6 +198,18 @@ public class Game {
 
 		//wait for the AI's to finish spawning then initialize the host's game board
 		Thread.sleep(2000);
+		
+		//Team Setup.
+		/*GM.setTeam(1, 1);
+		GM.getServerNetworkManager().toClients("SetTeam,1,1");
+		GM.setTeam(2, 1);
+		GM.getServerNetworkManager().toClients("SetTeam,2,1");
+		GM.setTeam(3, 2);
+		GM.getServerNetworkManager().toClients("SetTeam,3,2");
+		GM.setTeam(4, 2);
+		GM.getServerNetworkManager().toClients("SetTeam,4,2");*/
+		
+		//initialize the host's game board
 		initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
@@ -211,7 +223,7 @@ public class Game {
 	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static void createAIPlayer(GameManager GM, String difficulty) throws InterruptedException{
+	private static void createAIPlayer(GameManager GM,String computerName, String difficulty) throws InterruptedException{
 
 		AI computer = null;
 		//make a new game board and a new human to pass to the game manager
@@ -230,7 +242,7 @@ public class Game {
 		client.start();
 
 		//join network game
-		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
+		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
