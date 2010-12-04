@@ -30,6 +30,8 @@ public class Game {
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
+		
+		
 		//if this process is an AI, spawn that
 		if(args.length==0){
 
