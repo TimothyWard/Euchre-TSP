@@ -3,7 +3,6 @@ package euchre.game;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-
 import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
@@ -27,16 +26,12 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
-	
+
 		try{
-			System.out.println(args.length);
-			System.out.println(args[0]);
 			if (args.length!=0){
-				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/HostOutput"))));
-				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/HostErrorOutput"))));
+				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostOutput"))));
+				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostErrorOutput"))));
 			}
-			System.out.println(args.length);
-			System.out.println(args[0]);
 		}
 		catch(Throwable e){}
 
@@ -45,13 +40,7 @@ public class Game {
 
 		//if this process is an AI, spawn that
 		if(args.length==0){
-			try{
-				System.out.println(args[0]);
-			}
-			catch (Exception e){
-			}
-			
-			System.out.println("standard");
+
 			//declare GUI welcome window to ask if host or client
 			Welcome welcomeWindow = new Welcome();
 			welcomeWindow.setVisible(true);
@@ -71,22 +60,17 @@ public class Game {
 		}
 
 		else if (args.length >0){
-			
-			NetworkGameBrowser test = new NetworkGameBrowser();
-			test.setVisible(true);
-			
+
 			if (args[0].equals("-ai")){
-				System.out.println("is AI");
 				try {
-					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIError"))));
 					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIOutput"))));
+					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIError"))));
 				} 
 				catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				System.out.println("testing");
+				createAIPlayer(GM, args[1]);
 				System.out.flush();
-				createAIPlayer(GM);
 			}
 		}
 
@@ -95,7 +79,7 @@ public class Game {
 
 		Round currentRound = new Round();
 		GM.setRound(currentRound);
-		
+
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
 
@@ -110,7 +94,7 @@ public class Game {
 		while (gameWinner(one, two) == null){
 
 			//start the next round
-			
+
 			GM.playGame();
 
 			//wait for the current round to be over
@@ -118,7 +102,7 @@ public class Game {
 			//score the recently completed round and set the game manager's round to null
 			//GM.setRound(null);
 			tabulator.interpret(currentRound, one, two);
-			
+
 			currentRound = new Round();
 			GM.setRound(currentRound);
 		}
@@ -142,7 +126,7 @@ public class Game {
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
-		
+
 		ServerNetworkManager server = createNewServer(GM);
 
 		//open the window for the user to input the game data
@@ -151,7 +135,7 @@ public class Game {
 
 		//make the specified number of AI's once the user specifies the correct number of AIs
 		while (hostSetup.getAIs()==-1) Thread.sleep(500);
-		makeAIs(hostSetup.getAIs());
+		spawnAIs(hostSetup.getAIs(), 'x' ,hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty());
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
@@ -166,26 +150,34 @@ public class Game {
 	/**
 	 * This method creates the specified number of AIs in separate instantiations of the software.
 	 * 
-	 * @param numberOfAIs
+	 * @param numberOfAIs The number of AI's to spawn.
 	 */
-	private static void makeAIs(int numberOfAIs){
-
-		Runtime runtime = Runtime.getRuntime();
-		while (numberOfAIs != 0){
-			try {
-				//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -ai";
-				String cmd = "java -jar ~/Desktop/Euchre.jar -ai";
-				runtime.exec(cmd);
-				System.out.println("spawned AI: " + numberOfAIs);
-				System.out.println(cmd);
-			} 
-			catch (Throwable e) {
-				e.printStackTrace();
-				System.exit(1);
+	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
+		int numOfAIs = numberOfAIs;
+		try {
+			String cmd = "";
+			//				cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -ai";
+			cmd = "java -jar /Users/unwrittenrainbow/Desktop/Euchre.jar -ai ";
+			if (difficultyOfAIOne != 'x'){
+				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAIOne);
+				Runtime.getRuntime().exec(cmd + difficultyOfAIOne);
+				numOfAIs--;
 			}
-			numberOfAIs--;
+			if (difficultyOfAITwo != 'x'){
+				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAITwo);
+				Runtime.getRuntime().exec(cmd + difficultyOfAITwo);
+				numOfAIs--;
+			}
+			if (difficultyOfAIThree != 'x'){
+				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAIThree);
+				Runtime.getRuntime().exec(cmd + difficultyOfAIThree);
+				numOfAIs--;
+			}
+		} 
+		catch (Throwable e) {
+			e.printStackTrace();
+			System.exit(1);
 		}
-
 	}
 
 	/**
@@ -195,10 +187,12 @@ public class Game {
 	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static void createAIPlayer(GameManager GM) throws InterruptedException{
-		
+	private static void createAIPlayer(GameManager GM, String difficulty) throws InterruptedException{
+
 		//make a new game board and a new human to pass to the game manager
-		AI computer = new MediumAI();
+		if (difficulty == "e") EasyAI computer = new EasyAI();
+		else if (difficulty == "m") MediumAI computer = new MediumAI();
+		else if (difficulty == "h") HardAI computer = new HardAI();
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
@@ -330,15 +324,11 @@ public class Game {
 		SetupLocal local = new SetupLocal();
 		local.setVisible(true);
 
-		//wait for info
+		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
-
-		makeAIs(3);
+		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
 		
-		//spawn client game boards
+		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
-
-
-		//spawn a human and three new copies of the software as AI's
 	}
 }
