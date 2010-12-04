@@ -285,6 +285,6 @@ public class Game {
 	 */
 	public static void initializeGameBoard(GameBoard GB){
 		GB.setVisible(true);
-//		GB.updateBoard();
+		GB.updateBoard();
 	}
 }
