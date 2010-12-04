@@ -67,7 +67,7 @@ public class Game {
 				createAIPlayer(GM, args[1]);
 			}
 		}
-
+		GM.playGame();
 		//wait for the game to end
 		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
 	}
