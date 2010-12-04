@@ -93,7 +93,7 @@ public class Game {
 			//wait for the current round to be over
 			while (currentRound.isRoundComplete() == false) Thread.sleep(1000);
 			//score the recently completed round and set the game manager's round to null
-			//GM.setRound(null);
+			GM.setRound(null);
 			tabulator.interpret(currentRound, one, two);
 
 			currentRound = new Round();
