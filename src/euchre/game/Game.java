@@ -197,7 +197,7 @@ public class Game {
 
 
 		//wait for the AI's to finish spawning then initialize the host's game board
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		//Team Setup.
 		/*GM.setTeam(1, 1);
@@ -240,6 +240,7 @@ public class Game {
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
+		Thread.sleep(500);
 
 		//join network game
 		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
@@ -285,6 +286,6 @@ public class Game {
 	 */
 	public static void initializeGameBoard(GameBoard GB){
 		GB.setVisible(true);
-		GB.updateBoard();
+//		GB.updateBoard();
 	}
 }
