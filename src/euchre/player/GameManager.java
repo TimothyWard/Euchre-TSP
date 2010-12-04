@@ -33,6 +33,8 @@ public class GameManager {
 	private Round round = null;
 	private int currentTurnPlayerID;
 	private char trump;
+	private int TeamOneScore=0;
+	private int TeamTwoScore=0;
 	
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
@@ -67,6 +69,15 @@ public class GameManager {
 	public void playRound(){
 
 		if(server != null && round != null){
+			
+			if(TeamOneScore>=10){
+				System.out.println("Team One Wins!");
+				System.exit(0);
+			}
+			else if(TeamTwoScore>=10){
+				System.out.println("Team Two Wins!");
+				System.exit(0);
+			}
 			deal();
 			setTrump();
 		}
@@ -600,6 +611,53 @@ public class GameManager {
 		board.setTrumpLabel(trump);
 		board.trumpSet();
 		
+	}
+	
+	
+	/**
+	 * 
+	 * This method accepts a round object and interprets it relative to the game.
+	 * 
+	 * @param round The round object containing all information for a specific round.
+	 * @param one The first team to be interpreted.
+	 * @param two The second team to be interpreted.
+	 */
+	public void interpretRound(int tOne,int tTwo){
+		int teamOneTricks = tOne;
+		int teamTwoTricks = tTwo;
+		
+		
+		//if the round winner took 5 tricks
+		if((teamOneTricks == 5 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks == 5 && board.getTeamWhoOrdered() == getTeamTwo())){
+				if (board.getTeamWhoOrdered() == getTeamOne()){
+					TeamOneScore=TeamOneScore+2;
+				}
+				else if (board.getTeamWhoOrdered() == getTeamTwo()){
+					TeamTwoScore=TeamTwoScore+2;
+				}
+		}
+		//if the round winner took 3 or more tricks
+		else if((teamOneTricks >= 3 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks >= 3 && board.getTeamWhoOrdered() == getTeamTwo())){
+			if(board.getTeamWhoOrdered() == getTeamOne()){
+				TeamOneScore++;
+			}
+			else if(board.getTeamWhoOrdered() == getTeamTwo()){
+				TeamTwoScore++;
+			}
+		}
+		//if the round winner took less than 3 tricks
+		else if((teamOneTricks < 3 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks < 3 && board.getTeamWhoOrdered() == getTeamTwo())){
+			if(board.getTeamWhoOrdered() == getTeamOne()){
+				TeamTwoScore=TeamTwoScore+2;
+			}
+			else if(board.getTeamWhoOrdered() == getTeamTwo()){
+				TeamOneScore=TeamOneScore+2;
+			}
+		}
+		else{
+			System.out.println("ERROR: The round winner was not determined.");
+		}
+
 	}
 	
 
