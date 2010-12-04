@@ -46,7 +46,7 @@ public class GameLogic{
 	 * @param one The first team to be interpreted.
 	 * @param two The second team to be interpreted.
 	 */
-	public void interpret(Round round, Team one, Team two){
+	public void interpretRound(Round round, Team one, Team two){
 		int teamOneTricks = 0;
 		int teamTwoTricks = 0;
 		for(int x = 1; x <= 5; x++){
@@ -197,6 +197,26 @@ public class GameLogic{
 	private void incrementScore(Team team, int points){
 		team.setScore(team.getScore() + points);	
 		System.out.println("Team " + team.getTeamNumber() + " earned " + points + " points!!!");
+	}
+	
+	/**
+	 * This method compares the scores of the two teams and returns the winning team
+	 * if there is one or null otherwise.
+	 * 
+	 * @param one The first team.
+	 * @param two The second team.
+	 * @return Team The winning team
+	 */
+	private Team gameWinner(Team one, Team two){
+		if(one.getScore() >= 10){
+			return one;
+		}
+		else if(two.getScore() >= 10){
+			return two;
+		}
+		else{
+			return null;
+		}
 	}
 
 }
