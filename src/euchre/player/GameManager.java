@@ -57,6 +57,8 @@ public class GameManager {
 	 */
 	public void playGame(){
 
+		//dealer = nextPlayer(dealer);
+		
 		if(server != null){
 			playRound();
 		}
@@ -93,6 +95,7 @@ public class GameManager {
 	 * Order of dealing is two, three, two, three, three, two, three, two
 	 */
 	private void deal(){
+		
 
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
@@ -116,10 +119,8 @@ public class GameManager {
 		upCard = deck.drawCard();
 		board.setTurnedCard(upCard);
 		board.setDealerName(dealer.getName());
-		board.newRound();
-		//round.setTurnedCard(upCard);
 
-		server.toClients("SetNewRound,");
+
 
 		server.toClients("SetHand,1,"+player1.getHand()[0]+","+player1.getHand()[1]+","+player1.getHand()[2]+","+
 				player1.getHand()[3]+","+player1.getHand()[4]);
@@ -135,7 +136,8 @@ public class GameManager {
 
 		server.toClients("SetTurnedCard,"+upCard);
 
-
+		server.toClients("SetNewRound,");
+		board.newRound();
 
 		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
@@ -428,13 +430,13 @@ public class GameManager {
 	 * @return The player after the given player
 	 */
 	public Player nextPlayer(Player p) {
-		if(p==player1){
+		if(p.equals(player1)){
 			return player2;
 		}
-		else if(p==player2){
+		else if(p.equals(player2)){
 			return player3;
 		}
-		else if(p==player3){
+		else if(p.equals(player3)){
 			return player4;
 		}
 		else{
