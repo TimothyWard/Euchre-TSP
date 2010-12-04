@@ -207,7 +207,7 @@ public class GameLogic{
 	 * @param two The second team.
 	 * @return Team The winning team
 	 */
-	private Team gameWinner(Team one, Team two){
+	public Team gameWinner(Team one, Team two){
 		if(one.getScore() >= 10){
 			return one;
 		}
