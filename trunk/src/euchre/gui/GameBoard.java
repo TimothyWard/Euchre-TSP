@@ -1230,7 +1230,11 @@ public void playCard(Card c, int playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
 		if(cardsPlayed == 0){
-			suitLed = c.getSuit();
+			int tmpCardVal = CardEvaluator.cardValue(getTrump(), c.getSuit(), c);
+			if (tmpCardVal >=7)
+				suitLed = getTrump();
+			else
+				suitLed = c.getSuit();
 			playedHand.setSuitLed(c.getSuit());
 			
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
