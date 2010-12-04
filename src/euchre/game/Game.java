@@ -71,16 +71,17 @@ public class Game {
 		//wait for the game to end
 		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
 	}
-	
+
 	/**
 	 * This method creates the specified number of AIs in separate instantiations of the software.
 	 * 
 	 * @param numberOfAIs The number of AI's to spawn.
 	 */
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
-		if(numberOfAIs == 0)
-			return;
+		//return if the number of AIs is zero
+		if(numberOfAIs == 0) return;
 
+		//if there are more than zero AIs, spawn up to three
 		try {
 			if (!(difficultyOfAIOne == 'x')){
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne};
@@ -169,7 +170,40 @@ public class Game {
 		clientSetup.dispose();
 
 	}
-	
+
+	/**
+	 * The method will create a local only game, it is for when a user chooses to play against
+	 * three computers.
+	 * 
+	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
+
+		//create the new host, its game board and its server
+		GM.newPlayer(new Human());
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
+		ServerNetworkManager server = createNewServer(GM);
+
+		//create a window to ask for name and game info
+		SetupLocal local = new SetupLocal();
+		local.setVisible(true);
+
+		//wait for ai difficulty information, then make the ai's
+		while (local.getSetupComplete() == false) Thread.sleep(500);
+		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
+
+
+		//wait for the AI's to finish spawning then initialize the host's game board
+		Thread.sleep(2000);
+		initializeGameBoard(GB);
+
+		//wait half a second for the ai's to finish spawning, then spawn the client game boards
+		server.toClients("SpawnGameBoard");
+	}
+
 	/**
 	 * This method will create a client object.
 	 * 
@@ -202,17 +236,6 @@ public class Game {
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 
 	}
-	
-	/**
-	 * This method initializes the GameBoard.
-	 * 
-	 * @param GM The GameManager.
-	 * @param GB The GameBoard.
-	 */
-	public static void initializeGameBoard(GameBoard GB){
-		GB.setVisible(true);
-		GB.updateBoard();
-	}
 
 	/**
 	 * This method creates a new server, and passes all of the needed references regarding it.
@@ -243,34 +266,13 @@ public class Game {
 	}
 
 	/**
-	 * The method will create a local only game, it is for when a user chooses to play against
-	 * three computers.
+	 * This method initializes the GameBoard.
 	 * 
-	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
-	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 * @param GM The GameManager.
+	 * @param GB The GameBoard.
 	 */
-	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
-
-		//create the new host, its game board and its server
-		GM.newPlayer(new Human());
-		GameBoard GB = new GameBoard();
-		GB.setGameManager(GM);
-		GM.setGameBoard(GB);
-		ServerNetworkManager server = createNewServer(GM);
-
-		//create a window to ask for name and game info
-		SetupLocal local = new SetupLocal();
-		local.setVisible(true);
-
-		//wait for ai difficulty information, then make the ai's
-		while (local.getSetupComplete() == false) Thread.sleep(500);
-		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
-
-
-		//		//initialize the host's game board
-		//		initializeGameBoard(GB);
-
-		//wait half a second for the ai's to finish spawning, then spawn the client game boards
-		server.toClients("SpawnGameBoard");
+	public static void initializeGameBoard(GameBoard GB){
+		GB.setVisible(true);
+		GB.updateBoard();
 	}
 }
