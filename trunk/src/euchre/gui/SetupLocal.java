@@ -3,6 +3,8 @@ import java.awt.*;
 
 import javax.swing.JOptionPane;
 
+import euchre.player.GameManager;
+
 /**
  * Screen to setup a local game of euchre played between the user and some AI.
  *
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
 public class SetupLocal extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private boolean setupComplete = false;
+	private GameManager GM;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -37,9 +40,10 @@ public class SetupLocal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPlayerName;
     // End of variables declaration//GEN-END:variables
 	
-    public SetupLocal() {
+    public SetupLocal(GameManager inManager) {
         initComponents();
         centerScreen();
+        GM = inManager;
     }
 
     /**
@@ -277,6 +281,15 @@ public class SetupLocal extends javax.swing.JFrame {
 		}else if(contains(jTextFieldPlayerName.getText().trim(), ',')){
 			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else { //Valid input
+			//Team Setup.
+			/**/GM.setTeam(1, 1);
+			GM.getServerNetworkManager().toClients("SetTeam,1,1");
+			GM.setTeam(2, 1);
+			GM.getServerNetworkManager().toClients("SetTeam,2,1");
+			GM.setTeam(3, 2);
+			GM.getServerNetworkManager().toClients("SetTeam,3,2");
+			GM.setTeam(4, 2);
+			GM.getServerNetworkManager().toClients("SetTeam,4,2");
 			setupComplete = true;
 			this.setVisible(false);
 		}
