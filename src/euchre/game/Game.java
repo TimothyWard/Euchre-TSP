@@ -27,14 +27,31 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
-		System.out.println("size of args string: " + args.length);
-
+	
+		try{
+			System.out.println(args.length);
+			System.out.println(args[0]);
+			if (args.length!=0){
+				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostOutput"))));
+				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostErrorOutput"))));
+			}
+			System.out.println(args.length);
+			System.out.println(args[0]);
+		}
+		catch(Throwable e){}
 
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
 		//if this process is an AI, spawn that
 		if(args.length==0){
+			try{
+				System.out.println(args[0]);
+			}
+			catch (Exception e){
+			}
+			
+			System.out.println("standard");
 			//declare GUI welcome window to ask if host or client
 			Welcome welcomeWindow = new Welcome();
 			welcomeWindow.setVisible(true);
@@ -54,14 +71,20 @@ public class Game {
 		}
 
 		else if (args.length >0){
-			if (args[0]=="-a"){
+			
+			NetworkGameBrowser test = new NetworkGameBrowser();
+			test.setVisible(true);
+			
+			if (args[0].equals("-ai")){
+				System.out.println("is AI");
 				try {
-					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/out.txt"))));
+					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIError"))));
+					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIOutput"))));
 				} 
 				catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				System.out.println("tester");
+				System.out.println("testing");
 				System.out.flush();
 				createAIPlayer(GM);
 			}
@@ -150,10 +173,11 @@ public class Game {
 		Runtime runtime = Runtime.getRuntime();
 		while (numberOfAIs != 0){
 			try {
-				//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -a";
-				String cmd = "java -jar ~/Desktop/Euchre.jar -a";
+				//				String cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -ai";
+				String cmd = "java -jar ~/Desktop/Euchre.jar -ai";
+				runtime.exec(cmd);
+				System.out.println("spawned AI: " + numberOfAIs);
 				System.out.println(cmd);
-				Process p = runtime.exec(cmd);
 			} 
 			catch (Throwable e) {
 				e.printStackTrace();
@@ -172,7 +196,7 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createAIPlayer(GameManager GM) throws InterruptedException{
-
+		
 		//make a new game board and a new human to pass to the game manager
 		AI computer = new MediumAI();
 		GameBoard GB = new GameBoard();
@@ -310,7 +334,7 @@ public class Game {
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 
 		makeAIs(3);
-
+		
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
 
