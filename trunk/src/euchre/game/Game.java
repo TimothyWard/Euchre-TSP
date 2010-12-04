@@ -27,14 +27,6 @@ public class Game {
 	 */
 	public static void main(String [] args) throws InterruptedException{
 
-		try{
-			if (args.length!=0){
-				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostOutput"))));
-				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostErrorOutput"))));
-			}
-		}
-		catch(Throwable e){}
-
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
@@ -63,8 +55,9 @@ public class Game {
 
 			if (args[0].equals("-ai")){
 				try {
-					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIOutput"))));
-					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/AIError"))));
+					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIOutput"))));
+					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIErrorOutput"))));
+
 				} 
 				catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -72,19 +65,22 @@ public class Game {
 				createAIPlayer(GM, args[1]);
 			}
 		}
-		
+
 		//wait for all players to join and GM's to sync
-		while (GM.areTeamsComplete()==false) Thread.sleep(500);
+		while (GM.areTeamsComplete()==false){
+			System.out.println("waiting");
+			Thread.sleep(500);
+		}
 		Round currentRound = new Round();
 		GM.setRound(currentRound);
-		
+
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
-		
+
 		//set teams
 		Team one = GM.getTeamOne();
 		Team two = GM.getTeamTwo();
-		
+
 		//create a new tabulator.
 		GameLogic tabulator = new GameLogic();
 
@@ -151,25 +147,18 @@ public class Game {
 	 * @param numberOfAIs The number of AI's to spawn.
 	 */
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
-		int numOfAIs = numberOfAIs;
 		try {
-			String cmd = "";
-			//				cmd = "java -jar " + System.getProperty("user.dir").replaceAll(" ", "\\\\ ") + "/Euchre.jar -ai";
-			cmd = "java -jar /Users/unwrittenrainbow/Desktop/Euchre.jar -ai ";
-			if (difficultyOfAIOne != 'x'){
-				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAIOne);
-				Runtime.getRuntime().exec(cmd + difficultyOfAIOne);
-				numOfAIs--;
+			if (!(difficultyOfAIOne == 'x')){
+				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne};
+				Runtime.getRuntime().exec(cmdarray1);
 			}
-			if (difficultyOfAITwo != 'x'){
-				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAITwo);
-				Runtime.getRuntime().exec(cmd + difficultyOfAITwo);
-				numOfAIs--;
+			if (!(difficultyOfAITwo == 'x')){
+				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo};
+				Runtime.getRuntime().exec(cmdarray2);
 			}
-			if (difficultyOfAIThree != 'x'){
-				System.out.println("Spawning AI number" + numOfAIs + " via command " + cmd + difficultyOfAIThree);
-				Runtime.getRuntime().exec(cmd + difficultyOfAIThree);
-				numOfAIs--;
+			if (!(difficultyOfAIThree == 'x')){
+				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree};
+				Runtime.getRuntime().exec(cmdarray3);
 			}
 		} 
 		catch (Throwable e) {
@@ -326,7 +315,7 @@ public class Game {
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
-		
+
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
 	}
