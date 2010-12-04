@@ -32,8 +32,8 @@ public class Game {
 			System.out.println(args.length);
 			System.out.println(args[0]);
 			if (args.length!=0){
-				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostOutput"))));
-				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("/Users/unwrittenrainbow/Desktop/HostErrorOutput"))));
+				System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/HostOutput"))));
+				System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/HostErrorOutput"))));
 			}
 			System.out.println(args.length);
 			System.out.println(args[0]);
