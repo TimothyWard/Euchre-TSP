@@ -58,7 +58,7 @@ public class GameManager {
 	public void playGame(){
 
 		//dealer = nextPlayer(dealer);
-		
+
 		if(server != null){
 			playRound();
 		}
@@ -95,7 +95,7 @@ public class GameManager {
 	 * Order of dealing is two, three, two, three, three, two, three, two
 	 */
 	private void deal(){
-		
+
 
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
@@ -153,91 +153,91 @@ public class GameManager {
 	 * If none do, then it asks each player if they want to call suit. If none call suit, the dealer is forced to pick
 	 * the trump suit.
 	 */
-//	private void setTrump(){
-//
-//		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
-//
-//		//Check to see if any of the players 'order up' the card
-//		for(int i=0;i<4;i++){
-//			curPlayer.setTurn(true);
-//			if(curPlayer.orderUp(board.getTurnedCard())){
-//
-//				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-//					//round.setTeamWhoOrdered(teamOne);
-//				}
-//				else{
-//					//round.setTeamWhoOrdered(teamTwo);
-//				}
-//
-//				curPlayer.setTurn(false);
-//				//round.setTrumpSuit(board.getTurnedCard().getSuit());
-//				trump=board.getTurnedCard().getSuit();
-//				board.setTrumpLabel(trump);
-//				dealer.setTurn(true);
-//				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
-//				dealer.drawCard(board.getTurnedCard());								//and pick up the upCard
-//				dealer.setTurn(false);
-//				break;
-//			}
-//			else{
-//				curPlayer.setTurn(false);
-//				curPlayer=nextPlayer(curPlayer);
-//			}
-//			curPlayer.setTurn(false);
-//		}
-//
-//		//If no one has ordered up the upCard, ask them to pick a suit
-//		if(trump==0){
-//			deck.discardCard(upCard);									//...and discard the upCard...
-//			board.setTurnedCard(new Card('e','e'));
-//
-//
-//			curPlayer=nextPlayer(dealer);
-//			//...and check to see if any player picks a suit.
-//			for(int x=0;x<4;x++) {
-//				curPlayer.setTurn(true);
-//				if(curPlayer.callSuit(upCard) != 0){
-//					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-//						//round.setTeamWhoOrdered(teamOne);
-//					}
-//					else{
-//						//round.setTeamWhoOrdered(teamTwo);
-//					}
-//					//round.setTrumpSuit(curPlayer.callSuit(upCard));			//If a player calls suit, set trump equal to that suit
-//					trump = curPlayer.callSuit(upCard);
-//					board.setTrumpLabel(trump);
-//					curPlayer.setTurn(false);
-//					break;
-//				}
-//				else{													//Otherwise, pass to the next person.
-//					curPlayer=nextPlayer(curPlayer);
-//					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
-//
-//						//round.setTrumpSuit(curPlayer.stickDealer(upCard));
-//						trump = curPlayer.stickDealer(upCard);
-//						board.setTrumpLabel(trump);
-//						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-//							//round.setTeamWhoOrdered(teamOne);
-//						}
-//						else{
-//							//round.setTeamWhoOrdered(teamTwo);
-//						}
-//					}
-//					curPlayer.setTurn(false);
-//				}
-//			}
-//		}//End of picking suit
-//
-//		//Tells any AI what the current trump is...
-//		Player temp = curPlayer;
-//		for(int a=0;a<3;a++){
-//			if(temp.isHuman()==false){
-//				((AI)temp).setTrump(trump);
-//				temp = nextPlayer(temp);
-//			}
-//		}//...end of telling AI trump
-//
-//	}//End of setTrump
+	//	private void setTrump(){
+	//
+	//		curPlayer = nextPlayer(dealer);									//The first player is the one after the dealer.
+	//
+	//		//Check to see if any of the players 'order up' the card
+	//		for(int i=0;i<4;i++){
+	//			curPlayer.setTurn(true);
+	//			if(curPlayer.orderUp(board.getTurnedCard())){
+	//
+	//				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+	//					//round.setTeamWhoOrdered(teamOne);
+	//				}
+	//				else{
+	//					//round.setTeamWhoOrdered(teamTwo);
+	//				}
+	//
+	//				curPlayer.setTurn(false);
+	//				//round.setTrumpSuit(board.getTurnedCard().getSuit());
+	//				trump=board.getTurnedCard().getSuit();
+	//				board.setTrumpLabel(trump);
+	//				dealer.setTurn(true);
+	//				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
+	//				dealer.drawCard(board.getTurnedCard());								//and pick up the upCard
+	//				dealer.setTurn(false);
+	//				break;
+	//			}
+	//			else{
+	//				curPlayer.setTurn(false);
+	//				curPlayer=nextPlayer(curPlayer);
+	//			}
+	//			curPlayer.setTurn(false);
+	//		}
+	//
+	//		//If no one has ordered up the upCard, ask them to pick a suit
+	//		if(trump==0){
+	//			deck.discardCard(upCard);									//...and discard the upCard...
+	//			board.setTurnedCard(new Card('e','e'));
+	//
+	//
+	//			curPlayer=nextPlayer(dealer);
+	//			//...and check to see if any player picks a suit.
+	//			for(int x=0;x<4;x++) {
+	//				curPlayer.setTurn(true);
+	//				if(curPlayer.callSuit(upCard) != 0){
+	//					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+	//						//round.setTeamWhoOrdered(teamOne);
+	//					}
+	//					else{
+	//						//round.setTeamWhoOrdered(teamTwo);
+	//					}
+	//					//round.setTrumpSuit(curPlayer.callSuit(upCard));			//If a player calls suit, set trump equal to that suit
+	//					trump = curPlayer.callSuit(upCard);
+	//					board.setTrumpLabel(trump);
+	//					curPlayer.setTurn(false);
+	//					break;
+	//				}
+	//				else{													//Otherwise, pass to the next person.
+	//					curPlayer=nextPlayer(curPlayer);
+	//					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
+	//
+	//						//round.setTrumpSuit(curPlayer.stickDealer(upCard));
+	//						trump = curPlayer.stickDealer(upCard);
+	//						board.setTrumpLabel(trump);
+	//						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
+	//							//round.setTeamWhoOrdered(teamOne);
+	//						}
+	//						else{
+	//							//round.setTeamWhoOrdered(teamTwo);
+	//						}
+	//					}
+	//					curPlayer.setTurn(false);
+	//				}
+	//			}
+	//		}//End of picking suit
+	//
+	//		//Tells any AI what the current trump is...
+	//		Player temp = curPlayer;
+	//		for(int a=0;a<3;a++){
+	//			if(temp.isHuman()==false){
+	//				((AI)temp).setTrump(trump);
+	//				temp = nextPlayer(temp);
+	//			}
+	//		}//...end of telling AI trump
+	//
+	//	}//End of setTrump
 
 
 
@@ -504,10 +504,10 @@ public class GameManager {
 		return hand4;
 	}
 
-//	public void setRound(Round round){
-//		this.round = round;
-//		board.setRound(round);
-//	}
+	//	public void setRound(Round round){
+	//		this.round = round;
+	//		board.setRound(round);
+	//	}
 
 	public GameLobby getLobby(){
 		return lobby;
@@ -548,9 +548,9 @@ public class GameManager {
 		return client;
 	}
 
-//	public Round getRound(){
-//		return round;
-//	}
+	//	public Round getRound(){
+	//		return round;
+	//	}
 
 	public boolean isServer(){
 		return (client==null);
@@ -616,7 +616,7 @@ public class GameManager {
 		board.trumpSet();
 
 	}
-	
+
 	public void setDealer(Player newDealer){
 		dealer = newDealer;
 	}
