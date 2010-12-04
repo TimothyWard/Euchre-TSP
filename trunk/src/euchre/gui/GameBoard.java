@@ -151,6 +151,7 @@ public class GameBoard extends javax.swing.JFrame{
 		showTrumpButtons();
 		TurnedCard.setVisible(true);
 		hideSuitButtons();
+		
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
 		jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
 		jButtonYourCard3.setIcon(picManager.getPicture(humanPlayer.getHand()[2].getSuit(), humanPlayer.getHand()[2].getCardValue()));
@@ -1277,6 +1278,12 @@ public void playCard(Card c, int playerNumber){
 			if(hand>5){
 				
 				GM.interpretRound(oneTricks, twoTricks);
+				
+				settingSuit=false;
+				pickItUp=false;
+				trump = 'e';
+				gameplay=false;
+				
 				GM.playRound();
 				
 			}
