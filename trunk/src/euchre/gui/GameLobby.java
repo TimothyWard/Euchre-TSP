@@ -183,7 +183,7 @@ public class GameLobby extends javax.swing.JFrame{
         startGame.setText("Start Game");
         startGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                StartGame(evt);
+                startGame(evt);
             }
         });
 
@@ -351,7 +351,7 @@ public class GameLobby extends javax.swing.JFrame{
      * 
      * @param evt The button-click that starts the event.
      */
-    private void StartGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartGame
+    private void startGame(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartGame
     	//Figure out the number of players selected for each team.
         int team1Players = 0;
         int team2Players = 0;
@@ -435,18 +435,6 @@ public class GameLobby extends javax.swing.JFrame{
         myAIManager = new HostDifficultyChange(this, numberOfAI);
         myAIManager.setVisible(true);
     }//GEN-LAST:event_changeAIDifficulty
-
-//    /**
-//    * @param args the command line arguments
-//    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GameLobby().setVisible(true);
-//            }
-//        });
-//      
-//    }
 
     /**
      * Sets the status of player two and how they appear to host.
