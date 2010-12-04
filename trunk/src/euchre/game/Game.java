@@ -93,8 +93,6 @@ public class Game {
 
 			//wait for the current round to be over
 			while (currentRound.isRoundComplete() == false) {
-				System.out.print("Player Who Led: " + currentRound.getPlayerLed() + " ");
-				System.out.println("Waiting for the round to complete...");
 				Thread.sleep(1000);
 			}
 			//score the recently completed round and set the game manager's round to null
