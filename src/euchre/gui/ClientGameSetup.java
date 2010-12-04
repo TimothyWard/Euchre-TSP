@@ -179,6 +179,7 @@ public class ClientGameSetup extends javax.swing.JFrame{
 		}
 		return wasFound;	
 	}
+	
 	/**
 	 * Returns whether or not we have gotten valid input from this setup window yet
 	 * 
