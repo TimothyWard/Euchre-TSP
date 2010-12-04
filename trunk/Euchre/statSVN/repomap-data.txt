@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<root>
+  <label>[root]</label>
+    <branch>
+        <label>.settings</label>
+        <leaf><label>org.eclipse.jdt.core.prefs</label><weight>12</weight><value>0.0</value></leaf>
+    </branch>
+
+    <branch>
+        <label>src</label>
+      <branch>
+          <label>euchre</label>
+        <branch>
+            <label>game</label>
+            <leaf><label>Game.java</label><weight>322</weight><value>8.385093167701864</value></leaf>
+            <leaf><label>GameLogic.java</label><weight>202</weight><value>4.9504950495049505</value></leaf>
+            <leaf><label>Hand.java</label><weight>45</weight><value>0.0</value></leaf>
+            <leaf><label>Round.java</label><weight>89</weight><value>15.730337078651685</value></leaf>
+            <leaf><label>Team.java</label><weight>53</weight><value>0.0</value></leaf>
+        </branch>
+
+        <branch>
+            <label>gui</label>
+          <branch>
+              <label>pictures</label>
+              <leaf><label>PictureManager.java</label><weight>186</weight><value>3.763440860215054</value></leaf>
+          </branch>
+            <leaf><label>ClientGameSetup.form</label><weight>113</weight><value>0.0</value></leaf>
+            <leaf><label>ClientGameSetup.java</label><weight>204</weight><value>-2.941176470588235</value></leaf>
+            <leaf><label>GameBoard.form</label><weight>744</weight><value>5.376344086021505</value></leaf>
+            <leaf><label>GameBoard.java</label><weight>1427</weight><value>34.54800280308339</value></leaf>
+            <leaf><label>GameLobby.form</label><weight>299</weight><value>0.0</value></leaf>
+            <leaf><label>GameLobby.java</label><weight>529</weight><value>0.0</value></leaf>
+            <leaf><label>HostDifficultyChange.form</label><weight>166</weight><value>0.0</value></leaf>
+            <leaf><label>HostDifficultyChange.java</label><weight>228</weight><value>0.0</value></leaf>
+            <leaf><label>HostGameSetup.form</label><weight>109</weight><value>0.0</value></leaf>
+            <leaf><label>HostGameSetup.java</label><weight>171</weight><value>0.0</value></leaf>
+            <leaf><label>NetworkGameBrowser.form</label><weight>108</weight><value>0.0</value></leaf>
+            <leaf><label>NetworkGameBrowser.java</label><weight>133</weight><value>0.0</value></leaf>
+            <leaf><label>SetupLocal.form</label><weight>275</weight><value>0.0</value></leaf>
+            <leaf><label>SetupLocal.java</label><weight>309</weight><value>0.0</value></leaf>
+            <leaf><label>SetupNetwork.form</label><weight>424</weight><value>0.0</value></leaf>
+            <leaf><label>SetupNetwork.java</label><weight>365</weight><value>0.0</value></leaf>
+            <leaf><label>Welcome.form</label><weight>120</weight><value>0.0</value></leaf>
+            <leaf><label>Welcome.java</label><weight>183</weight><value>0.0</value></leaf>
+        </branch>
+
+        <branch>
+            <label>network</label>
+            <leaf><label>ClientNetworkManager.java</label><weight>162</weight><value>11.728395061728394</value></leaf>
+            <leaf><label>EuchreConnectionThread.java</label><weight>94</weight><value>1.0638297872340425</value></leaf>
+            <leaf><label>EuchreProtocol.java</label><weight>383</weight><value>29.242819843342037</value></leaf>
+            <leaf><label>ServerNetworkManager.java</label><weight>167</weight><value>-3.592814371257485</value></leaf>
+            <leaf><label>TestClass.java</label><weight>55</weight><value>23.636363636363637</value></leaf>
+        </branch>
+
+        <branch>
+            <label>player</label>
+            <leaf><label>AI.java</label><weight>95</weight><value>-289.4736842105263</value></leaf>
+            <leaf><label>Card.java</label><weight>131</weight><value>3.0534351145038165</value></leaf>
+            <leaf><label>CardEvaluator.java</label><weight>447</weight><value>18.344519015659955</value></leaf>
+            <leaf><label>Deck.java</label><weight>64</weight><value>0.0</value></leaf>
+            <leaf><label>EasyAI.java</label><weight>355</weight><value>100.0</value></leaf>
+            <leaf><label>GameManager.java</label><weight>645</weight><value>7.751937984496124</value></leaf>
+            <leaf><label>HardAI.java</label><weight>553</weight><value>100.0</value></leaf>
+            <leaf><label>Human.java</label><weight>300</weight><value>0.0</value></leaf>
+            <leaf><label>MediumAI.java</label><weight>372</weight><value>100.0</value></leaf>
+            <leaf><label>Player.java</label><weight>43</weight><value>0.0</value></leaf>
+        </branch>
+      </branch>
+    </branch>
+
+  <branch>
+      <label>[root]</label>
+      <leaf><label>.classpath</label><weight>6</weight><value>0.0</value></leaf>
+      <leaf><label>.project</label><weight>17</weight><value>0.0</value></leaf>
+  </branch>
+</root>
