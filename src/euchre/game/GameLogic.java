@@ -46,65 +46,65 @@ public class GameLogic{
 	 * @param one The first team to be interpreted.
 	 * @param two The second team to be interpreted.
 	 */
-	public void interpretRound(Round round, Team one, Team two){
-		int teamOneTricks = 0;
-		int teamTwoTricks = 0;
-		for(int x = 1; x <= 5; x++){
-			if (interpretHand(round, round.getHand(x), one, two) == one){
-				teamOneTricks++;
-			}
-			else if (interpretHand(round, round.getHand(x), one, two) == two){
-				teamTwoTricks++;
-			}
-			else {
-				System.out.println("ERROR: The round winner was not determined.");
-			}
-		}
-
-		//if the round winner took 5 tricks
-		if((teamOneTricks == 5 && round.getTeamWhoOrdered() == one) || (teamTwoTricks == 5 && round.getTeamWhoOrdered() == two)){
-			//if the round winner took all five tricks alone 
-			if(round.alone()){
-				if (round.getTeamWhoOrdered() == one){
-					incrementScore(one, 4);
-				}
-				else if (round.getTeamWhoOrdered() == two){
-					incrementScore(two, 4);
-				}
-			}
-			//if the round winner took all five tricks as a team 
-			else{
-				if (round.getTeamWhoOrdered() == one){
-					incrementScore(one, 2);
-				}
-				else if (round.getTeamWhoOrdered() == two){
-					incrementScore(two, 2);
-				}
-			}
-		}
-		//if the round winner took 3 or more tricks
-		else if((teamOneTricks >= 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks >= 3 && round.getTeamWhoOrdered() == two)){
-			if(round.getTeamWhoOrdered() == one){
-				incrementScore(one, 1);
-			}
-			else if(round.getTeamWhoOrdered() == two){
-				incrementScore(two, 1);
-			}
-		}
-		//if the round winner took less than 3 tricks
-		else if((teamOneTricks < 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks < 3 && round.getTeamWhoOrdered() == two)){
-			if(round.getTeamWhoOrdered() == one){
-				incrementScore(two, 2);
-			}
-			else if(round.getTeamWhoOrdered() == two){
-				incrementScore(one, 2);
-			}
-		}
-		else{
-			System.out.println("ERROR: The round winner was not determined.");
-		}
-
-	}
+//	public void interpretRound(Round round, Team one, Team two){
+//		int teamOneTricks = 0;
+//		int teamTwoTricks = 0;
+//		for(int x = 1; x <= 5; x++){
+//			if (interpretHand(round, round.getHand(x), one, two) == one){
+//				teamOneTricks++;
+//			}
+//			else if (interpretHand(round, round.getHand(x), one, two) == two){
+//				teamTwoTricks++;
+//			}
+//			else {
+//				System.out.println("ERROR: The round winner was not determined.");
+//			}
+//		}
+//
+//		//if the round winner took 5 tricks
+//		if((teamOneTricks == 5 && round.getTeamWhoOrdered() == one) || (teamTwoTricks == 5 && round.getTeamWhoOrdered() == two)){
+//			//if the round winner took all five tricks alone 
+//			if(round.alone()){
+//				if (round.getTeamWhoOrdered() == one){
+//					incrementScore(one, 4);
+//				}
+//				else if (round.getTeamWhoOrdered() == two){
+//					incrementScore(two, 4);
+//				}
+//			}
+//			//if the round winner took all five tricks as a team 
+//			else{
+//				if (round.getTeamWhoOrdered() == one){
+//					incrementScore(one, 2);
+//				}
+//				else if (round.getTeamWhoOrdered() == two){
+//					incrementScore(two, 2);
+//				}
+//			}
+//		}
+//		//if the round winner took 3 or more tricks
+//		else if((teamOneTricks >= 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks >= 3 && round.getTeamWhoOrdered() == two)){
+//			if(round.getTeamWhoOrdered() == one){
+//				incrementScore(one, 1);
+//			}
+//			else if(round.getTeamWhoOrdered() == two){
+//				incrementScore(two, 1);
+//			}
+//		}
+//		//if the round winner took less than 3 tricks
+//		else if((teamOneTricks < 3 && round.getTeamWhoOrdered() == one) || (teamTwoTricks < 3 && round.getTeamWhoOrdered() == two)){
+//			if(round.getTeamWhoOrdered() == one){
+//				incrementScore(two, 2);
+//			}
+//			else if(round.getTeamWhoOrdered() == two){
+//				incrementScore(one, 2);
+//			}
+//		}
+//		else{
+//			System.out.println("ERROR: The round winner was not determined.");
+//		}
+//
+//	}
 
 	/**
 	 * This method accepts a hand containing five cards and other information pertaining to 
@@ -117,8 +117,8 @@ public class GameLogic{
 	 * 
 	 * @return The team that took the trick for this hand.
 	 */
-	private Team interpretHand(Round round, Hand hand, Team one, Team two){
-		char trump = round.getTrumpSuit();
+	public Team interpretHand(char t, Hand hand, Team one, Team two){
+		char trump = t;
 		char sameColor;
 		
 		if(trump == 's') sameColor = 'c';
