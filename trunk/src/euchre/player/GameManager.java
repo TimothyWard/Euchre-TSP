@@ -34,52 +34,12 @@ public class GameManager {
 	private int currentTurnPlayerID;
 	private char trump;
 	
-
-
-
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
 	Card[] hand3 = new Card[5];
 	Card[] hand4 = new Card[5];
 
-	/**
-	 * Main test method for the Game Manager class.
-	 * @param args
-	 */
-//			public static void main(String[] args) {
-//				GameManager game = new GameManager();
-//				Round round = new Round();
-//				game.setRound(round);
-//				//			Player player1 = new Human();
-//				//			Player player2 = new Human();
-//				//			Player player3 = new Human();
-//				//			Player player4 = new Human();
-//				//			game.p1 = player1;
-//				//			game.p2 = player2;
-//				//			game.p3 = player3;
-//				//			game.p4 = player4;
-//				//			game.setAllPlayers(player1, player2, player3, player4);
-//				Player ai1 = new AI();
-//				Player ai2 = new AI();
-//				Player ai3 = new AI();
-//				Player ai4 = new AI();
-//				game.p1 = ai1;
-//				game.p2 = ai2;
-//				game.p3 = ai3;
-//				game.p4 = ai4;
-//				game.setAllPlayers(ai1, ai2, ai3, ai4);
-//		
-//				game.setTeam(1, 2);
-//				game.setTeam(2, 2);
-//				game.setTeam(3, 1);
-//				game.setTeam(4, 1);
-//				
-//				for(int i=0;i<5;i++){
-//					System.out.println("Round " + (i+1));
-//					game.playGame();
-//				}
-//		
-//			}
+	
 
 	/**
 	 * Default Constructor for the GameManager class.
@@ -98,6 +58,20 @@ public class GameManager {
 		if(server != null){
 			playRound();
 		}
+	}
+	
+	/**
+	 * Plays a round of Euchre, consisting of five hands.
+	 * Determines the winner of each hand, and that player leads the next hand.
+	 */
+	public void playRound(){
+
+		System.out.println("Round = " + round);
+		if(server != null && round != null){
+			deal();
+			setTrump();
+		}
+		
 	}
 
 
@@ -251,18 +225,7 @@ public class GameManager {
 
 	}//End of setTrump
 
-	/**
-	 * Plays a round of Euchre, consisting of five hands.
-	 * Determines the winner of each hand, and that player leads the next hand.
-	 */
-	public void playRound(){
-
-		if(server != null && round != null){
-			deal();
-			setTrump();
-		}
-		
-	}
+	
 
 	/**
 	 * Determines the winner of a trick. This isn't used for scoring, just to keep track of who
