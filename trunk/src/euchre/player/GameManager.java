@@ -615,6 +615,10 @@ public class GameManager {
 		board.trumpSet();
 
 	}
+	
+	public void setDealer(Player newDealer){
+		dealer = newDealer;
+	}
 
 
 	/**
