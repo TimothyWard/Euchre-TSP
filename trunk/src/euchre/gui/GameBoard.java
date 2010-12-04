@@ -971,13 +971,35 @@ public class GameBoard extends javax.swing.JFrame{
 		if(cardsPlayed == 0){
 			return true;
 		}
-		if(c.getSuit() == suitLed){
+		if(isFollowingSuit(c,getTrump(),suitLed)){
 			return true;
 		}
-		if(hand[0].getSuit() != suitLed && hand[1].getSuit() != suitLed && hand[2].getSuit() != suitLed && hand[3].getSuit() != suitLed && hand[4].getSuit() != suitLed){
+		if(!isFollowingSuit(hand[0],getTrump(),suitLed) && !isFollowingSuit(hand[1],getTrump(),suitLed) && !isFollowingSuit(hand[2],getTrump(),suitLed) && !isFollowingSuit(hand[3],getTrump(),suitLed) && !isFollowingSuit(hand[4],getTrump(),suitLed)){
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Returns true if the given card is following the lead suit.
+	 * 
+	 * @param c The given card.
+	 * @param trump The trump suit.
+	 * @param led The led suit.
+	 * @return True if the given card is following the lead suit.
+	 */
+	private boolean isFollowingSuit (Card c, char trump, char led){
+		if (led == trump){
+			if (CardEvaluator.cardValue(trump, led, c) >= 7)
+				return true;
+			else
+				return false;
+		}else{
+			if(CardEvaluator.cardValue(getTrump(), suitLed, c) > 0 && CardEvaluator.cardValue(getTrump(), suitLed, c) < 7)
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
@@ -1348,6 +1370,36 @@ public void hideOpponentCard(int playerNumber){
 		return turnedCard;
 	}
 
+	/**
+	 * Gets the suit that is shown as being trump by the Trump Label.
+	 * 'c' - clubs
+	 * 'd' - diamonds
+	 * 's' - spades
+	 * 'h' - hearts
+	 * 'e' - empty-set label.
+	 * 
+	 * @return The suit that is shown as trump.
+	 */
+	private char getTrump(){
+		switch (trumpLabel.getText().charAt(0)){
+		case '♣':
+			return 'c';
+		case '♦':
+			return 'd';
+		case '♠':
+			return 's';
+		case '♥':
+			return 'h';
+		default:
+			return 'e';
+		}
+	}
+	
+	/**
+	 * Sets the trump label on the game board to the given suit.
+	 * 
+	 * @param suit The suit to show as trump.
+	 */
 	public void setTrumpLabel(char suit){
 		switch(suit){
 			case 'c':{
