@@ -30,18 +30,18 @@ public class GameManager {
 	private GameLobby lobby;
 	private ServerNetworkManager server = null;
 	private ClientNetworkManager client = null;
-	private Round round = null;
+	//private Round round = null;
 	private int currentTurnPlayerID;
 	private char trump;
 	private int TeamOneScore=0;
 	private int TeamTwoScore=0;
-	
+
 	Card[] hand1 = new Card[5];
 	Card[] hand2 = new Card[5];
 	Card[] hand3 = new Card[5];
 	Card[] hand4 = new Card[5];
 
-	
+
 
 	/**
 	 * Default Constructor for the GameManager class.
@@ -56,32 +56,32 @@ public class GameManager {
 	 * While round has been initialized, deal cards, determine trump, and play a round of Euchre.
 	 */
 	public void playGame(){
-		
+
 		if(server != null){
 			playRound();
 		}
 	}
-	
+
 	/**
 	 * Plays a round of Euchre, consisting of five hands.
 	 * Determines the winner of each hand, and that player leads the next hand.
 	 */
 	public void playRound(){
 
-		if(server != null && round != null){
-			
-			if(TeamOneScore>=10){
-				System.out.println("Team One Wins!");
-				System.exit(0);
-			}
-			else if(TeamTwoScore>=10){
-				System.out.println("Team Two Wins!");
-				System.exit(0);
-			}
-			deal();
-			setTrump();
+		System.out.println("Team One's Score:     " + TeamOneScore);
+		System.out.println("Team Two's Score:     " + TeamTwoScore);
+
+		if(TeamOneScore>=10){
+			System.out.println("Team One Wins!");
+			System.exit(0);
 		}
-		
+		else if(TeamTwoScore>=10){
+			System.out.println("Team Two Wins!");
+			System.exit(0);
+		}
+		if(server!=null) deal();
+		setTrump();
+
 	}
 
 
@@ -96,7 +96,7 @@ public class GameManager {
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
 		curPlayer = dealer;
-		
+
 		for(int i=0;i<5;i++){
 			hand1[i]=deck.drawCard();
 			hand2[i]=deck.drawCard();
@@ -104,7 +104,7 @@ public class GameManager {
 			hand4[i]=deck.drawCard();
 		}
 
-		
+
 		for(int i=0;i<5;i++){
 			player1.drawCard(hand1[i]);
 			player2.drawCard(hand2[i]);
@@ -116,26 +116,26 @@ public class GameManager {
 		board.setTurnedCard(upCard);
 		board.setDealerName(dealer.getName());
 		board.newRound();
-		round.setTurnedCard(upCard);
+		//round.setTurnedCard(upCard);
 
 		server.toClients("SetNewRound,");
 
 		server.toClients("SetHand,1,"+player1.getHand()[0]+","+player1.getHand()[1]+","+player1.getHand()[2]+","+
-							player1.getHand()[3]+","+player1.getHand()[4]);
-		
+				player1.getHand()[3]+","+player1.getHand()[4]);
+
 		server.toClients("SetHand,2,"+player2.getHand()[0]+","+player2.getHand()[1]+","+player2.getHand()[2]+","+
 				player2.getHand()[3]+","+player2.getHand()[4]);
-		
+
 		server.toClients("SetHand,3,"+player3.getHand()[0]+","+player3.getHand()[1]+","+player3.getHand()[2]+","+
 				player3.getHand()[3]+","+player3.getHand()[4]);
 
 		server.toClients("SetHand,4,"+player4.getHand()[0]+","+player4.getHand()[1]+","+player4.getHand()[2]+","+
 				player4.getHand()[3]+","+player4.getHand()[4]);
-		
+
 		server.toClients("SetTurnedCard,"+upCard);
-		
-		
-		
+
+
+
 		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetPlayerTurn," + next);
@@ -160,17 +160,18 @@ public class GameManager {
 		for(int i=0;i<4;i++){
 			curPlayer.setTurn(true);
 			if(curPlayer.orderUp(board.getTurnedCard())){
-				
+
 				if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-					round.setTeamWhoOrdered(teamOne);
+					//round.setTeamWhoOrdered(teamOne);
 				}
 				else{
-					round.setTeamWhoOrdered(teamTwo);
+					//round.setTeamWhoOrdered(teamTwo);
 				}
-				
+
 				curPlayer.setTurn(false);
-				round.setTrumpSuit(board.getTurnedCard().getSuit());
-				board.setTrumpLabel(round.getTrumpSuit());
+				//round.setTrumpSuit(board.getTurnedCard().getSuit());
+				trump=board.getTurnedCard().getSuit();
+				board.setTrumpLabel(trump);
 				dealer.setTurn(true);
 				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
 				dealer.drawCard(board.getTurnedCard());								//and pick up the upCard
@@ -183,9 +184,9 @@ public class GameManager {
 			}
 			curPlayer.setTurn(false);
 		}
-		
+
 		//If no one has ordered up the upCard, ask them to pick a suit
-		if(round.getTrumpSuit()==0){
+		if(trump==0){
 			deck.discardCard(upCard);									//...and discard the upCard...
 			board.setTurnedCard(new Card('e','e'));
 
@@ -196,13 +197,14 @@ public class GameManager {
 				curPlayer.setTurn(true);
 				if(curPlayer.callSuit(upCard) != 0){
 					if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-						round.setTeamWhoOrdered(teamOne);
+						//round.setTeamWhoOrdered(teamOne);
 					}
 					else{
-						round.setTeamWhoOrdered(teamTwo);
+						//round.setTeamWhoOrdered(teamTwo);
 					}
-					round.setTrumpSuit(curPlayer.callSuit(upCard));			//If a player calls suit, set trump equal to that suit
-					board.setTrumpLabel(round.getTrumpSuit());
+					//round.setTrumpSuit(curPlayer.callSuit(upCard));			//If a player calls suit, set trump equal to that suit
+					trump = curPlayer.callSuit(upCard);
+					board.setTrumpLabel(trump);
 					curPlayer.setTurn(false);
 					break;
 				}
@@ -210,13 +212,14 @@ public class GameManager {
 					curPlayer=nextPlayer(curPlayer);
 					if(curPlayer==dealer){								//If it has returned to the dealer, force the dealer to pick a suit.
 
-						round.setTrumpSuit(curPlayer.stickDealer(upCard));
-						board.setTrumpLabel(round.getTrumpSuit());
+						//round.setTrumpSuit(curPlayer.stickDealer(upCard));
+						trump = curPlayer.stickDealer(upCard);
+						board.setTrumpLabel(trump);
 						if(teamOne.getPlayerOne()==curPlayer || teamOne.getPlayerTwo()==curPlayer){
-							round.setTeamWhoOrdered(teamOne);
+							//round.setTeamWhoOrdered(teamOne);
 						}
 						else{
-							round.setTeamWhoOrdered(teamTwo);
+							//round.setTeamWhoOrdered(teamTwo);
 						}
 					}
 					curPlayer.setTurn(false);
@@ -228,14 +231,14 @@ public class GameManager {
 		Player temp = curPlayer;
 		for(int a=0;a<3;a++){
 			if(temp.isHuman()==false){
-				((AI)temp).setTrump(round.getTrumpSuit());
+				((AI)temp).setTrump(trump);
 				temp = nextPlayer(temp);
 			}
 		}//...end of telling AI trump
 
 	}//End of setTrump
 
-	
+
 
 	/**
 	 * Determines the winner of a trick. This isn't used for scoring, just to keep track of who
@@ -246,7 +249,6 @@ public class GameManager {
 	private Player trickWinner(Card[] cards){
 
 		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
-		char trump = round.getTrumpSuit();
 		char ledSuit = cards[0].getSuit();
 		char sameColor;
 
@@ -418,7 +420,7 @@ public class GameManager {
 		teamTwo = new Team(player2,player4);
 		dealer = player1;
 		teamsComplete = true;
-		
+
 	}
 
 	/**
@@ -500,10 +502,10 @@ public class GameManager {
 		return hand4;
 	}
 
-	public void setRound(Round round){
-		this.round = round;
-		board.setRound(round);
-	}
+//	public void setRound(Round round){
+//		this.round = round;
+//		board.setRound(round);
+//	}
 
 	public GameLobby getLobby(){
 		return lobby;
@@ -543,18 +545,18 @@ public class GameManager {
 	public ClientNetworkManager getClientNetworkManager(){
 		return client;
 	}
-	
-	public Round getRound(){
-		return round;
-	}
-	
+
+//	public Round getRound(){
+//		return round;
+//	}
+
 	public boolean isServer(){
 		return (client==null);
 	}
-	
+
 	public void setNextPlayerTurn(){
-		
-				
+
+
 		if(currentTurnPlayerID == player1.getPlayerID()){
 			currentTurnPlayerID = player2.getPlayerID();
 			board.updateBoard();
@@ -583,24 +585,24 @@ public class GameManager {
 			return;
 		}
 	}
-	
+
 	public void setTurnPlayerID(int id){
 		currentTurnPlayerID = id;
 		board.updateBoard();
 	}
-	
+
 	public int getCurrentTurnPlayerID(){
 		return currentTurnPlayerID;
 	}
-	
+
 	public boolean isMyTurn(){
 		return currentTurnPlayerID == playerIAm.getPlayerID();
 	}
-	
+
 	public boolean isDealer(){
 		return playerIAm.getPlayerID() == dealer.getPlayerID();
 	}
-	
+
 	public char getTrump() {
 		return trump;
 	}
@@ -610,10 +612,10 @@ public class GameManager {
 		//round.setTrumpSuit(trump);
 		board.setTrumpLabel(trump);
 		board.trumpSet();
-		
+
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * This method accepts a round object and interprets it relative to the game.
@@ -625,16 +627,16 @@ public class GameManager {
 	public void interpretRound(int tOne,int tTwo){
 		int teamOneTricks = tOne;
 		int teamTwoTricks = tTwo;
-		
-		
+
+
 		//if the round winner took 5 tricks
 		if((teamOneTricks == 5 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks == 5 && board.getTeamWhoOrdered() == getTeamTwo())){
-				if (board.getTeamWhoOrdered() == getTeamOne()){
-					TeamOneScore=TeamOneScore+2;
-				}
-				else if (board.getTeamWhoOrdered() == getTeamTwo()){
-					TeamTwoScore=TeamTwoScore+2;
-				}
+			if (board.getTeamWhoOrdered() == getTeamOne()){
+				TeamOneScore=TeamOneScore+2;
+			}
+			else if (board.getTeamWhoOrdered() == getTeamTwo()){
+				TeamTwoScore=TeamTwoScore+2;
+			}
 		}
 		//if the round winner took 3 or more tricks
 		else if((teamOneTricks >= 3 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks >= 3 && board.getTeamWhoOrdered() == getTeamTwo())){
@@ -659,6 +661,6 @@ public class GameManager {
 		}
 
 	}
-	
+
 
 }
