@@ -165,6 +165,11 @@ public class GameBoard extends javax.swing.JFrame{
 		playerCards[3] = 5;
 		cardsPlayed = 0;
 		suitLed = 'e';
+		settingSuit=false;
+		pickItUp=false;
+		trump = 'e';
+		gameplay=false;
+		hand = 1;
 	}
 
 	/**
@@ -1281,12 +1286,20 @@ public void playCard(Card c, int playerNumber){
 			
 			if(hand>5){
 				
+				
+				
 				GM.interpretRound(oneTricks, twoTricks);
 				
-				settingSuit=false;
-				pickItUp=false;
-				trump = 'e';
-				gameplay=false;
+				
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				
 				GM.playRound();
 				
