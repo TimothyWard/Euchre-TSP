@@ -197,6 +197,15 @@ public class Game {
 
 		//wait for the AI's to finish spawning then initialize the host's game board
 		Thread.sleep(5000);
+		//Team Setup.
+		/**/GM.setTeam(1, 1);
+		GM.getServerNetworkManager().toClients("SetTeam,1,1");
+		GM.setTeam(2, 1);
+		GM.getServerNetworkManager().toClients("SetTeam,2,1");
+		GM.setTeam(3, 2);
+		GM.getServerNetworkManager().toClients("SetTeam,3,2");
+		GM.setTeam(4, 2);
+		GM.getServerNetworkManager().toClients("SetTeam,4,2");
 		
 		//initialize the host's game board
 		initializeGameBoard(GB);
