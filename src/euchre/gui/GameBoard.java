@@ -1382,13 +1382,13 @@ public void hideOpponentCard(int playerNumber){
 	 */
 	private char getTrump(){
 		switch (trumpLabel.getText().charAt(0)){
-		case '♣':
+		case '\u2663':
 			return 'c';
-		case '♦':
+		case '\u2666':
 			return 'd';
-		case '♠':
+		case '\u2660':
 			return 's';
-		case '♥':
+		case '\u2665':
 			return 'h';
 		default:
 			return 'e';
@@ -1403,32 +1403,32 @@ public void hideOpponentCard(int playerNumber){
 	public void setTrumpLabel(char suit){
 		switch(suit){
 			case 'c':{
-				trumpLabel.setText("♣");
+				trumpLabel.setText("\u2663");
 				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 				break;
 			}
 			case 'd':{
-				trumpLabel.setText("♦");
+				trumpLabel.setText("\u2666");
 				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
 				break;
 			}
 			case 's':{
-				trumpLabel.setText("♠");
+				trumpLabel.setText("\u2660");
 				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 				break;
 			}
 			case 'h':{
-				trumpLabel.setText("♥");
+				trumpLabel.setText("\u2665");
 				trumpLabel.setForeground(new java.awt.Color(255, 0, 0));
 				break;
 			}
 			case 'e':{
-				trumpLabel.setText("∅");
+				trumpLabel.setText("\u2205");
 				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 				break;
 			}
 			default:{
-				trumpLabel.setText("∅");
+				trumpLabel.setText("\u2205");
 				trumpLabel.setForeground(new java.awt.Color(0, 0, 0));
 			}
 		}
