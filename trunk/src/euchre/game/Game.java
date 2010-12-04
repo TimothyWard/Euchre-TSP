@@ -58,10 +58,10 @@ public class Game {
 					//redirect output
 					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIOutput"))));
 					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIErrorOutput"))));
-
 				} 
-				catch (FileNotFoundException e) {
+				catch (Exception e) {
 					e.printStackTrace();
+					System.exit(1);
 				}
 				//create the AI
 				createAIPlayer(GM, args[2], args[1]);
@@ -87,17 +87,15 @@ public class Game {
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Computer One"};
 				Runtime.getRuntime().exec(cmdarray1);
 			}
-			Thread.sleep(2000);
 			if (!(difficultyOfAITwo == 'x')){
 				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Computer Two"};
 				Runtime.getRuntime().exec(cmdarray2);
 			}
-			Thread.sleep(2000);
 			if (!(difficultyOfAIThree == 'x')){
 				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Computer Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -197,7 +195,7 @@ public class Game {
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
-
+		
 		//setup the teams
 		GM.setTeam(1, 1);
 		GM.getServerNetworkManager().toClients("SetTeam,1,1");
@@ -212,6 +210,7 @@ public class Game {
 		initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
+		Thread.sleep(500);
 		server.toClients("SpawnGameBoard");
 	}
 
@@ -222,7 +221,7 @@ public class Game {
 	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static void createAIPlayer(GameManager GM,String computerName, String difficulty) throws InterruptedException{
+	private static void createAIPlayer(GameManager GM, String computerName, String difficulty) throws InterruptedException{
 
 		AI computer = null;
 		//make a new game board and a new human to pass to the game manager
@@ -233,6 +232,7 @@ public class Game {
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
 		GM.newPlayer(computer);
+		computer.setName(computerName);
 
 		//create new client
 		ClientNetworkManager client = new ClientNetworkManager();
