@@ -8,6 +8,7 @@ import euchre.game.Round;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
+import euchre.player.CardEvaluator;
 import euchre.player.GameManager;
 import euchre.player.Human;
 import euchre.player.Player;
@@ -1173,6 +1174,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 public void playCard(Card c, int playerNumber){
 	
+		played[cardsPlayed] = c;
 		
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
@@ -1202,7 +1204,21 @@ public void playCard(Card c, int playerNumber){
 		
 		if (cardsPlayed == 4){
 			
+			if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[0])) {
+				this.setPlayerTurn(round.getPlayerLed().getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[1])) {
+				this.setPlayerTurn(GM.nextPlayer(round.getPlayerLed()).getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[2])) {
+				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed())).getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[0])) {
+				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed()))).getPlayerID());
+			}
+			
 			round.setHand(hand, played, suitLed);
+			
 			hand++;
 			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1214,13 +1230,14 @@ public void playCard(Card c, int playerNumber){
 			
 			if(hand>5){
 				round.setRoundComplete(true);
+				
+				//FIX
 				GM.playRound();
 				
 			}
 			
 		}
 		
-		played[cardsPlayed] = c;
 	}
 
 public void hideOpponentCard(int playerNumber){
@@ -1370,7 +1387,6 @@ public void hideOpponentCard(int playerNumber){
 		}
 		else{
 			GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
-
 		} 
 	}
 
@@ -1424,4 +1440,5 @@ public void hideOpponentCard(int playerNumber){
 	public void setRound(Round round){
 		this.round = round;
 	}
+	
 }
