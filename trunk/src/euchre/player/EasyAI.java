@@ -9,7 +9,7 @@ import euchre.network.ClientNetworkManager;
  *
  */
 public class EasyAI implements AI{
-	private String name = "";
+	private String name = "Easy AI";
 	private Card emptyCard = new Card('a', 's');
 	private Card[] hand = {emptyCard,emptyCard,emptyCard,emptyCard,emptyCard};
 	private Card[] played = new Card[3];

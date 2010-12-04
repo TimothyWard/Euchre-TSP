@@ -12,7 +12,7 @@ import euchre.network.ClientNetworkManager;
  *
  */
 public class HardAI implements AI{
-	private String name = "";
+	private String name = "Hard AI";
 	private Card emptyCard = new Card('a', 's');
 	private Card[] hand = {emptyCard,emptyCard,emptyCard,emptyCard,emptyCard};
 	private Card[] played = new Card[3];
