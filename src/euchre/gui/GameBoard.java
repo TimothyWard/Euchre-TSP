@@ -47,9 +47,10 @@ public class GameBoard extends javax.swing.JFrame{
 	int twoTricks = 0;
 	Card[] played = new Card[4];
 	Hand playedHand = new Hand();
-	private Round round = null;
+	//private Round round = null;
 	GameLogic tabulator = new GameLogic();
 	private Team teamWhoOrdered = null;
+	private Player playerWhoLed = null;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
@@ -1231,27 +1232,27 @@ public void playCard(Card c, int playerNumber){
 			suitLed = c.getSuit();
 			playedHand.setSuitLed(c.getSuit());
 			
-			if(playerNumber==1) round.setPlayerLed(GM.getPlayer1());
-			else if(playerNumber==2) round.setPlayerLed(GM.getPlayer2());
-			else if(playerNumber==3) round.setPlayerLed(GM.getPlayer3());
-			else if(playerNumber==4) round.setPlayerLed(GM.getPlayer4());
+			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
+			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
+			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
+			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
 			
 		}
 		cardsPlayed++;
 		
 		if (cardsPlayed == 4){
 			
-			if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[0])) {
-				this.setPlayerTurn(round.getPlayerLed().getPlayerID());
+			if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
+				this.setPlayerTurn(playerWhoLed.getPlayerID());
 			}
-			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[1])) {
-				this.setPlayerTurn(GM.nextPlayer(round.getPlayerLed()).getPlayerID());
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
+				this.setPlayerTurn(GM.nextPlayer(playerWhoLed).getPlayerID());
 			}
-			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[2])) {
-				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed())).getPlayerID());
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
+				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getPlayerID());
 			}
-			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[3])) {
-				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed()))).getPlayerID());
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
+				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
 			}
 			
 			//round.setHand(hand, played, suitLed);
@@ -1260,6 +1261,9 @@ public void playCard(Card c, int playerNumber){
 			
 			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) oneTricks++;
 			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) twoTricks++;
+			
+			//FIX
+			//Update the score labels here!
 			
 			hand++;
 			
@@ -1272,7 +1276,6 @@ public void playCard(Card c, int playerNumber){
 			
 			if(hand>5){
 				
-				//FIX
 				GM.interpretRound(oneTricks, twoTricks);
 				GM.playRound();
 				
@@ -1355,12 +1358,11 @@ public void hideOpponentCard(int playerNumber){
 	public void setTurnedCard(Card c){
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		turnedCard = c;
-		round.setTurnedCard(c);
 	}
 
 	public void setGameManager(GameManager gm){
 		GM = gm;
-		round = GM.getRound();
+		//round = GM.getRound();
 	}
 
 	private void setTopPlayer(Player player){
@@ -1514,7 +1516,7 @@ public void hideOpponentCard(int playerNumber){
 	}
 	
 	public void setRound(Round round){
-		this.round = round;
+		//this.round = round;
 	}
 	
 	public int getTeamOneTricks(){
