@@ -70,23 +70,21 @@ public class Game {
 					e.printStackTrace();
 				}
 				createAIPlayer(GM, args[1]);
-				System.out.flush();
 			}
 		}
-
+		
 		//wait for all players to join and GM's to sync
 		while (GM.areTeamsComplete()==false) Thread.sleep(500);
-
 		Round currentRound = new Round();
 		GM.setRound(currentRound);
-
+		
 		//wait for any AI's to finish spawning
 		Thread.sleep(5000);
-
+		
 		//set teams
 		Team one = GM.getTeamOne();
 		Team two = GM.getTeamTwo();
-
+		
 		//create a new tabulator.
 		GameLogic tabulator = new GameLogic();
 
@@ -189,10 +187,11 @@ public class Game {
 	 */
 	private static void createAIPlayer(GameManager GM, String difficulty) throws InterruptedException{
 
+		AI computer = null;
 		//make a new game board and a new human to pass to the game manager
-		if (difficulty == "e") EasyAI computer = new EasyAI();
-		else if (difficulty == "m") MediumAI computer = new MediumAI();
-		else if (difficulty == "h") HardAI computer = new HardAI();
+		if (difficulty == "e") computer = new EasyAI();
+		else if (difficulty == "m") computer = new MediumAI();
+		else if (difficulty == "h") computer = new HardAI();
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
