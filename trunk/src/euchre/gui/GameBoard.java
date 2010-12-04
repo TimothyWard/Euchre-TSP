@@ -140,6 +140,7 @@ public class GameBoard extends javax.swing.JFrame{
 		RCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
 		RCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/back_sideways.png")));
 		showTrumpButtons();
+		TurnedCard.setVisible(true);
 		hideSuitButtons();
 		jButtonYourCard1.setIcon(picManager.getPicture(humanPlayer.getHand()[0].getSuit(), humanPlayer.getHand()[0].getCardValue()));
 		jButtonYourCard2.setIcon(picManager.getPicture(humanPlayer.getHand()[1].getSuit(), humanPlayer.getHand()[1].getCardValue()));
@@ -980,7 +981,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 	
 	private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit==false){
 				if(GM.isDealer()){
 					GM.getServerNetworkManager().toClients("SettingSuit");
@@ -994,7 +995,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_passButtonClicked
 
 	private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
-		if(GM.isMyTurn()){
+		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit == false){
 				if(GM.isServer()){					
 					GM.getServerNetworkManager().toClients("PickItUp");

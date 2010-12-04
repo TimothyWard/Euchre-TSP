@@ -354,7 +354,9 @@ public class EuchreProtocol {
 				String name = parser.nextToken();
 				manager.getGameBoard().setDealerName(name);
 			}
-
+			else if(token.equals("SetNewRound")){
+				manager.getGameBoard().newRound();
+			}
 
 
 			else
