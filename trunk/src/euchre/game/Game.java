@@ -87,14 +87,17 @@ public class Game {
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Computer One"};
 				Runtime.getRuntime().exec(cmdarray1);
 			}
+			Thread.sleep(2000);
 			if (!(difficultyOfAITwo == 'x')){
 				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Computer Two"};
 				Runtime.getRuntime().exec(cmdarray2);
 			}
+			Thread.sleep(2000);
 			if (!(difficultyOfAIThree == 'x')){
 				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Computer Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
+			Thread.sleep(4000);
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -195,10 +198,8 @@ public class Game {
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
 
-		//wait for the AI's to finish spawning then initialize the host's game board
-		Thread.sleep(5000);
-		//Team Setup.
-		/**/GM.setTeam(1, 1);
+		//setup the teams
+		GM.setTeam(1, 1);
 		GM.getServerNetworkManager().toClients("SetTeam,1,1");
 		GM.setTeam(2, 1);
 		GM.getServerNetworkManager().toClients("SetTeam,2,1");
