@@ -21,7 +21,6 @@ public class GameLobby extends javax.swing.JFrame{
 	
 	HostDifficultyChange myAIManager;
 	private GameManager myManager;
-	private boolean finished = false;
 	private int numberOfAI;
     private char player3Difficulty;
     private char player4Difficulty;
@@ -101,13 +100,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player3Difficulty = 'e';
-    	   Player3Status.setText("...Computer 2...Difficulty: Easy");
+    	   Player3Status.setText("Computer 2: Difficulty: Easy");
        }else if (difficulty == 'm'){
     	   player3Difficulty = 'm';
-    	   Player3Status.setText("...Computer 2...Difficulty: Medium");
+    	   Player3Status.setText("Computer 2: Difficulty: Medium");
        }else if (difficulty == 'h'){
     	   player3Difficulty = 'h';
-    	   Player3Status.setText("...Computer 2...Difficulty: Hard");
+    	   Player3Status.setText("Computer 2: Difficulty: Hard");
        }
     }
 
@@ -118,13 +117,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer4Difficulty(char difficulty){
     	if (difficulty == 'e'){
      	   player4Difficulty = 'e';
-     	  Player4Status.setText("...Computer 1...Difficulty: Easy");
+     	  Player4Status.setText("Computer 1: Difficulty: Easy");
         }else if (difficulty == 'm'){
      	   player4Difficulty = 'm';
-     	   Player4Status.setText("...Computer 1...Difficulty: Medium");
+     	   Player4Status.setText("Computer 1: Difficulty: Medium");
         }else if (difficulty == 'h'){
      	   player4Difficulty = 'h';
-     	  Player4Status.setText("...Computer 1...Difficulty: Hard");
+     	  Player4Status.setText("Computer 1: Difficulty: Hard");
         }
     }
 
@@ -413,7 +412,6 @@ public class GameLobby extends javax.swing.JFrame{
 	        		myAIManager.setVisible(false);
 	        		myAIManager.dispose();
 	        	}
-	        	finished = true;
 	        	setupComplete = true;
 	        	this.setVisible(false);
 	        }
@@ -493,10 +491,6 @@ public class GameLobby extends javax.swing.JFrame{
 
     public String getHostName(){
     	return Player1Status.getText();
-    }
-
-    public boolean getFinished(){
-    	return finished;
     }
     
     public int getNumberOfAIPlayers(){
