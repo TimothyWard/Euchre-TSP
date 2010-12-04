@@ -68,44 +68,10 @@ public class Game {
 			}
 		}
 
+		//wait for the game to end
 		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
 	}
-
-	/**
-	 * This method will just create a host object, and will also create the appropriately
-	 * specified number of AI and Human players to accompany.
-	 * 
-	 * @param GM The GameManager object for the network and to pass the new host to.
-	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
-	 */
-	private static void createHostPlayer(GameManager GM) throws InterruptedException{
-
-		//create the new host, its game board and its server
-		GM.newPlayer(new Human());
-		GameBoard GB = new GameBoard();
-		GB.setGameManager(GM);
-		GM.setGameBoard(GB);
-
-		ServerNetworkManager server = createNewServer(GM);
-
-		//open the window for the user to input the game data
-		HostGameSetup hostSetup = new HostGameSetup(GM);
-		hostSetup.setVisible(true);
-
-		//make the specified number of AI's once the user specifies the correct number of AIs
-		while (hostSetup.getAIs()==-1) Thread.sleep(500);
-		spawnAIs(hostSetup.getAIs(), 'x' ,hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty());
-
-		//wait until the user has input name and number of additional human players	
-		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
-
-		//initialize the hosts game board
-		initializeGameBoard(GB);
-
-		//spawn client game boards
-		server.toClients("SpawnGameBoard");
-	}
-
+	
 	/**
 	 * This method creates the specified number of AIs in separate instantiations of the software.
 	 * 
@@ -114,7 +80,7 @@ public class Game {
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
 		if(numberOfAIs == 0)
 			return;
-		
+
 		try {
 			if (!(difficultyOfAIOne == 'x')){
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne};
@@ -136,36 +102,39 @@ public class Game {
 	}
 
 	/**
-	 * This method will create a client object.
+	 * This method will just create a host object, and will also create the appropriately
+	 * specified number of AI and Human players to accompany.
 	 * 
-	 * @param GM The GameManager object for the network and to pass the new client to.
-	 * @param GUI The welcome window for user input.
+	 * @param GM The GameManager object for the network and to pass the new host to.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static void createAIPlayer(GameManager GM, String difficulty) throws InterruptedException{
+	private static void createHostPlayer(GameManager GM) throws InterruptedException{
 
-		AI computer = null;
-		//make a new game board and a new human to pass to the game manager
-		if (difficulty == "e") computer = new EasyAI();
-		else if (difficulty == "m") computer = new MediumAI();
-		else if (difficulty == "h") computer = new HardAI();
+		//create the new host and it's game board 
+		GM.newPlayer(new Human());
 		GameBoard GB = new GameBoard();
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
-		GM.newPlayer(computer);
 
-		//create new client
-		ClientNetworkManager client = new ClientNetworkManager();
-		GM.setClientNetworkManager(client);
-		client.setGameManager(GM);
-		client.start();
+		//create a new server for the host
+		ServerNetworkManager server = createNewServer(GM);
 
-		//join network game
-		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
+		//open the window for the user to input the game data
+		HostGameSetup hostSetup = new HostGameSetup(GM);
+		hostSetup.setVisible(true);
 
-		//wait for everyone to join before continuing
-		while(GM.areTeamsComplete() == false) Thread.sleep(500);
+		//make the specified number of AI's once the user specifies the correct number of AIs
+		while (hostSetup.getAIs()==-1) Thread.sleep(500);
+		spawnAIs(hostSetup.getAIs(), 'x' ,hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty());
 
+		//wait until the user has input name and number of additional human players	
+		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
+
+		//initialize the host's game board
+		initializeGameBoard(GB);
+
+		//spawn client game boards
+		server.toClients("SpawnGameBoard");
 	}
 
 	/**
@@ -200,7 +169,40 @@ public class Game {
 		clientSetup.dispose();
 
 	}
+	
+	/**
+	 * This method will create a client object.
+	 * 
+	 * @param GM The GameManager object for the network and to pass the new client to.
+	 * @param GUI The welcome window for user input.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	private static void createAIPlayer(GameManager GM, String difficulty) throws InterruptedException{
 
+		AI computer = null;
+		//make a new game board and a new human to pass to the game manager
+		if (difficulty == "e") computer = new EasyAI();
+		else if (difficulty == "m") computer = new MediumAI();
+		else if (difficulty == "h") computer = new HardAI();
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
+		GM.newPlayer(computer);
+
+		//create new client
+		ClientNetworkManager client = new ClientNetworkManager();
+		GM.setClientNetworkManager(client);
+		client.setGameManager(GM);
+		client.start();
+
+		//join network game
+		client.toServer("RegisterPlayer,AI,Computer One," + computer.getPlayerID());
+
+		//wait for everyone to join before continuing
+		while(GM.areTeamsComplete() == false) Thread.sleep(500);
+
+	}
+	
 	/**
 	 * This method initializes the GameBoard.
 	 * 
@@ -241,26 +243,6 @@ public class Game {
 	}
 
 	/**
-	 * This method compares the scores of the two teams and returns the winning team
-	 * if there is one or null otherwise.
-	 * 
-	 * @param one The first team.
-	 * @param two The second team.
-	 * @return Team The winning team
-	 */
-	private static Team gameWinner(Team one, Team two){
-		if(one.getScore() >= 10){
-			return one;
-		}
-		else if(two.getScore() >= 10){
-			return two;
-		}
-		else{
-			return null;
-		}
-	}
-
-	/**
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
 	 * 
@@ -283,6 +265,10 @@ public class Game {
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
+
+
+		//		//initialize the host's game board
+		//		initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
