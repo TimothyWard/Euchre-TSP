@@ -1229,8 +1229,10 @@ public void playCard(Card c, int playerNumber){
 			
 			
 			if(hand>5){
-				round.setRoundComplete(true);
 				
+				round.setRoundComplete(true);
+				round = GM.getRound();
+				System.out.println("Round after completing: " + round);
 				//FIX
 				GM.playRound();
 				
