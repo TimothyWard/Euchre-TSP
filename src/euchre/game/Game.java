@@ -30,9 +30,7 @@ public class Game {
 		//setup host and client objects, in a new game
 		GameManager GM = new GameManager();
 
-		
-		
-		//if this process is an AI, spawn that
+		//if this process is for a human
 		if(args.length==0){
 
 			//declare GUI welcome window to ask if host or client
@@ -53,9 +51,11 @@ public class Game {
 			else if(gameChoice == 'a') createLocalOnlyGame(GM);
 		}
 
+		//if this process if for an AI
 		else if (args.length >0){
 			if (args[0].equals("-ai")){
 				try {
+					//redirect output
 					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIOutput"))));
 					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIErrorOutput"))));
 
@@ -63,52 +63,12 @@ public class Game {
 				catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
+				//create the AI
 				createAIPlayer(GM, args[1]);
 			}
 		}
 
-		//wait for all players to join and GM's to sync
-		while (GM.areTeamsComplete()==false){
-			System.out.println("waiting");
-			Thread.sleep(500);
-		}
-		Round currentRound = new Round();
-		GM.setRound(currentRound);
-
-		//wait for any AI's to finish spawning
-		Thread.sleep(5000);
-
-		//set teams
-		Team one = GM.getTeamOne();
-		Team two = GM.getTeamTwo();
-
-		//create a new tabulator.
-		GameLogic tabulator = new GameLogic();
-
-		//if the game has not been won, continue
-		while (gameWinner(one, two) == null){
-
-			//start the next round
-
-			GM.playGame();
-
-
-			//wait for the current round to be over
-			while (currentRound.isRoundComplete() == false) {
-				Thread.sleep(1000);
-			}
-			//score the recently completed round and set the game manager's round to null
-			System.out.print("Setting the round to null...");
-			GM.setRound(null);
-			tabulator.interpret(currentRound, one, two);
-
-			currentRound = new Round();
-			GM.setRound(currentRound);
-		}
-		//if the game is over, display the winner
-		JOptionPane.showMessageDialog(null, "Team " + gameWinner(one, two).getTeamNumber() + " wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-
-		//INFORM THE NETWORK WHO THE WINNING TEAM IS	
+		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
 	}
 
 	/**
