@@ -66,7 +66,6 @@ public class GameManager {
 	 */
 	public void playRound(){
 
-		System.out.println("Round = " + round);
 		if(server != null && round != null){
 			deal();
 			setTrump();
@@ -161,7 +160,6 @@ public class GameManager {
 				curPlayer.setTurn(false);
 				round.setTrumpSuit(board.getTurnedCard().getSuit());
 				board.setTrumpLabel(round.getTrumpSuit());
-				System.out.println("Dealer is " + dealer.getName());
 				dealer.setTurn(true);
 				deck.discardCard(dealer.discard());									//If a player orders it up, the dealer must discard a card
 				dealer.drawCard(board.getTurnedCard());								//and pick up the upCard
@@ -492,7 +490,6 @@ public class GameManager {
 	}
 
 	public void setRound(Round round){
-		System.out.println("Setting Round (" + round + ") for " + playerIAm.getNumber() + "...");
 		this.round = round;
 		board.setRound(round);
 	}
