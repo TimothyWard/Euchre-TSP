@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import euchre.game.GameLogic;
 import euchre.game.Round;
 import euchre.game.Team;
+import euchre.game.Hand;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.Card;
 import euchre.player.CardEvaluator;
@@ -34,6 +35,7 @@ public class GameBoard extends javax.swing.JFrame{
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
+	char trump = 'e';
 	int cardsPlayed = 0;
 	int hand = 1;
 	private int playerCards[] = {5, 5, 5, 5};
@@ -44,8 +46,10 @@ public class GameBoard extends javax.swing.JFrame{
 	int oneTricks = 0;
 	int twoTricks = 0;
 	Card[] played = new Card[4];
+	Hand playedHand = new Hand();
 	private Round round = null;
 	GameLogic tabulator = new GameLogic();
+	private Team teamWhoOrdered = null;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LCard1;
@@ -1041,6 +1045,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(GM.isServer()){
 				GM.getServerNetworkManager().toClients("SetTrump,h");
 				GM.setTrump('h');
+				trump = 'h';
 			}
 			else
 				GM.getClientNetworkManager().toServer("SetTrump,h");
@@ -1055,6 +1060,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(GM.isServer()){
 				GM.getServerNetworkManager().toClients("SetTrump,c");
 				GM.setTrump('c');
+				trump = 'c';
 			}
 			else
 				GM.getClientNetworkManager().toServer("SetTrump,c");
@@ -1069,6 +1075,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(GM.isServer()){
 				GM.getServerNetworkManager().toClients("SetTrump,d");
 				GM.setTrump('d');
+				trump = 'd';
 			}
 			else
 				GM.getClientNetworkManager().toServer("SetTrump,d");
@@ -1082,6 +1089,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(GM.isServer()){
 				GM.getServerNetworkManager().toClients("SetTrump,s");
 				GM.setTrump('s');
+				trump = 's';
 			}
 			else
 				GM.getClientNetworkManager().toServer("SetTrump,s");
@@ -1200,8 +1208,9 @@ public class GameBoard extends javax.swing.JFrame{
 	 * @param playerNumber number of the player playing the card
 	 */
 public void playCard(Card c, int playerNumber){
-	
+
 		played[cardsPlayed] = c;
+		playedHand.setCardsPlayed(played);
 		
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
@@ -1220,6 +1229,7 @@ public void playCard(Card c, int playerNumber){
 		}
 		if(cardsPlayed == 0){
 			suitLed = c.getSuit();
+			playedHand.setSuitLed(c.getSuit());
 			
 			if(playerNumber==1) round.setPlayerLed(GM.getPlayer1());
 			else if(playerNumber==2) round.setPlayerLed(GM.getPlayer2());
@@ -1244,10 +1254,12 @@ public void playCard(Card c, int playerNumber){
 				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed()))).getPlayerID());
 			}
 			
-			round.setHand(hand, played, suitLed);
+			//round.setHand(hand, played, suitLed);
 			
 			//System.out.println("PLAYED CARDS:   {" + played[0].toString() + ", " + played[1].toString() + ", " + played[2].toString() + ", " + played[3].toString() + "}");
-			//tabulator.interpretHand();
+			
+			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) oneTricks++;
+			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) twoTricks++;
 			
 			hand++;
 			
@@ -1260,9 +1272,8 @@ public void playCard(Card c, int playerNumber){
 			
 			if(hand>5){
 				
-				round.setRoundComplete(true);
-				round = GM.getRound();
 				//FIX
+				GM.interpretRound(oneTricks, twoTricks);
 				GM.playRound();
 				
 			}
@@ -1483,11 +1494,11 @@ public void hideOpponentCard(int playerNumber){
 	public void pickItUp(){
 		
 		if(GM.getPlayerIAm().getTeam()==1) 
-			round.setTeamWhoOrdered(GM.getTeamOne());
+			teamWhoOrdered=GM.getTeamOne();
 		else 
-			round.setTeamWhoOrdered(GM.getTeamTwo());
+			teamWhoOrdered=GM.getTeamTwo();
 		
-		round.setTrumpSuit(turnedCard.getSuit());
+		trump = turnedCard.getSuit();
 		
 		if(!GM.isDealer()){
 			TurnedCard.setVisible(false);
@@ -1504,6 +1515,18 @@ public void hideOpponentCard(int playerNumber){
 	
 	public void setRound(Round round){
 		this.round = round;
+	}
+	
+	public int getTeamOneTricks(){
+		return oneTricks;
+	}
+	
+	public int getTeamTwoTricks(){
+		return twoTricks;
+	}
+	
+	public Team getTeamWhoOrdered(){
+		return teamWhoOrdered;
 	}
 	
 }
