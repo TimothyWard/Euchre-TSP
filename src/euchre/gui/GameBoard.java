@@ -1214,7 +1214,7 @@ public void playCard(Card c, int playerNumber){
 			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[2])) {
 				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed())).getPlayerID());
 			}
-			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[0])) {
+			else if(CardEvaluator.highestPlayed(played, round.getTrumpSuit(), played[0].getSuit()).equals(played[3])) {
 				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(round.getPlayerLed()))).getPlayerID());
 			}
 			
