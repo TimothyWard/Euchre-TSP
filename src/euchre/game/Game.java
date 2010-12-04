@@ -180,6 +180,10 @@ public class Game {
 	 */
 	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
 
+		//create a window to ask for name and game info
+		SetupLocal local = new SetupLocal(GM);
+		local.setVisible(true);
+		
 		//create the new host, its game board and its server
 		GM.newPlayer(new Human());
 		GameBoard GB = new GameBoard();
@@ -187,27 +191,12 @@ public class Game {
 		GM.setGameBoard(GB);
 		ServerNetworkManager server = createNewServer(GM);
 
-		//create a window to ask for name and game info
-		SetupLocal local = new SetupLocal();
-		local.setVisible(true);
-
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
 
-
 		//wait for the AI's to finish spawning then initialize the host's game board
 		Thread.sleep(5000);
-		
-		//Team Setup.
-		/*GM.setTeam(1, 1);
-		GM.getServerNetworkManager().toClients("SetTeam,1,1");
-		GM.setTeam(2, 1);
-		GM.getServerNetworkManager().toClients("SetTeam,2,1");
-		GM.setTeam(3, 2);
-		GM.getServerNetworkManager().toClients("SetTeam,3,2");
-		GM.setTeam(4, 2);
-		GM.getServerNetworkManager().toClients("SetTeam,4,2");*/
 		
 		//initialize the host's game board
 		initializeGameBoard(GB);
