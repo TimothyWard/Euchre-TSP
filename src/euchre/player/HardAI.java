@@ -40,6 +40,28 @@ public class HardAI implements AI{
 	}
 
 	/**
+	 * The AI performs the appropriate actions for his turn.
+	 */
+	public void makeTurn(){
+		GameBoard game = clientManager.getGameManager().getGameBoard();
+		String action = game.whatToDo();
+		if (action.equals("Nothing")){
+			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
+		}
+		if (action.equals("Play Card")){
+			Card toPlay = playCard();
+		}else if (action.equals("Pick Up")){
+			
+		}else if (action.equals("Call Suit")){
+			
+		}else if (action.equals("Call Order Up")){
+			
+		}else if (action.equals("Stuck Dealer")){
+			
+		}
+	}
+	
+	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
 	 * @return True if the player orders up the suit, false if they pass

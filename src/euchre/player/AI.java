@@ -11,6 +11,11 @@ import euchre.network.ClientNetworkManager;
 public interface AI extends Player{
 
 	/**
+	 * The AI performs the appropriate actions for his turn.
+	 */
+	public void makeTurn();
+	
+	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
 	 * @return True if the player orders up the suit, false if they pass
