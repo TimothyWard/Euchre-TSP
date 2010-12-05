@@ -13,6 +13,15 @@ public interface AI extends Player{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn();
+	
+	/**
+	 * Returns the index of the card to replace with the turned up card.
+	 * 
+	 * @param toPick The card to pick up.
+	 * 
+	 * @return The index of the card to replace with the turned up card.
+	 */
+	public int pickUp(Card toPick);
 
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
