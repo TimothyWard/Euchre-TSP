@@ -143,14 +143,26 @@ public class GameManager {
 		//		board.newRound();
 
 		System.out.println("Player who leads:  " + nextPlayer(dealer).getName());
-		Game.initializeGameBoard(board);
+		initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetDealerName," + dealer.getName());
 		server.toClients("SetPlayerTurn," + next);
 		setTurnPlayerID(next);
-		
+
 	}
 
+	/**
+	 * This method initializes the GameBoard.
+	 * 
+	 * @param GM The GameManager.
+	 * @param GB The GameBoard.
+	 */
+	public static void initializeGameBoard(GameBoard GB){
+		//if (GB.getGM().getPlayerIAm().isHuman()){
+		GB.setVisible(true);
+		//}
+		GB.updateBoard();
+	}
 
 	/**
 	 * Determines the trump suit for the round. First asks each player if they want the dealer to pick up the card.
