@@ -1,9 +1,5 @@
-
 package euchre.network;
-
 import java.util.StringTokenizer;
-
-import euchre.game.Game;
 import euchre.player.*;
 
 /**
@@ -290,7 +286,10 @@ public class EuchreProtocol {
 					System.out.println("SetTeam("+player+","+team+")");
 			}
 			else if(token.equals("SpawnGameBoard")){
-				Game.initializeGameBoard(manager.getGameBoard());
+				if (manager.getPlayerIAm().isHuman()){
+					manager.getGameBoard().setVisible(true);
+				}
+				manager.getGameBoard().updateBoard();
 				manager.setTeamsComplete(true);
 			}
 			else if(token.equals("SetHand")){
@@ -314,7 +313,10 @@ public class EuchreProtocol {
 						manager.getPlayer4().setCard(i, cardvalue, cardsuit);
 				}
 
-				Game.initializeGameBoard(manager.getGameBoard());
+				if (manager.getPlayerIAm().isHuman()){
+					manager.getGameBoard().setVisible(true);
+				}
+				manager.getGameBoard().updateBoard();
 			}
 			else if(token.equals("SetTurnedCard")){
 				char cardvalue;
@@ -323,7 +325,10 @@ public class EuchreProtocol {
 				cardvalue = card.charAt(0);
 				cardsuit = card.charAt(1);
 				manager.getGameBoard().setTurnedCard(new Card(cardvalue,cardsuit));
-				Game.initializeGameBoard(manager.getGameBoard());
+				if (manager.getPlayerIAm().isHuman()){
+					manager.getGameBoard().setVisible(true);
+				}
+				manager.getGameBoard().updateBoard();
 			}
 			else if(token.equals("SetPlayerTurn")){
 				int id = Integer.parseInt(parser.nextToken());

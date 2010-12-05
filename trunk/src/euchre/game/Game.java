@@ -17,7 +17,7 @@ public class Game {
 	 * This method is the first method called in the program. This method is 
 	 * responsible for instantiating all objects and running the overall program.
 	 * 
-	 * @param args A String array.
+	 * @param args The String argument array.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
@@ -86,6 +86,9 @@ public class Game {
 	 * This method creates the specified number of AIs in separate instantiations of the software.
 	 * 
 	 * @param numberOfAIs The number of AI's to spawn.
+	 * @param difficultyOfAIOne The difficulty (if any) of the first AI.
+	 * @param difficultyOfAITwo The difficulty (if any) of the second AI.
+	 * @param difficultyOfAIThree The difficulty (if any) of the third AI.
 	 */
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
 		//return if the number of AIs is zero
@@ -141,7 +144,7 @@ public class Game {
 	 * This method will just create a host object, and will also create the appropriately
 	 * specified number of AI and Human players to accompany.
 	 * 
-	 * @param GM The GameManager object for the network and to pass the new host to.
+	 * @param GM The GameManager object for the network and game board.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createHostPlayer(GameManager GM) throws InterruptedException{
@@ -168,7 +171,8 @@ public class Game {
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().setupComplete() == false) Thread.sleep(500);
 
 		//initialize the host's game board
-		initializeGameBoard(GB);
+		if (GB.getGM().getPlayerIAm().isHuman()) GB.setVisible(true);
+		GB.updateBoard();
 
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
@@ -178,7 +182,7 @@ public class Game {
 	 * The method will create a local only game, it is for when a user chooses to play against
 	 * three computers.
 	 * 
-	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 * @param GM The GameManager object for the network, and game board.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createLocalGame(GameManager GM) throws InterruptedException{
@@ -209,7 +213,8 @@ public class Game {
 		server.toClients("SetTeam,4,2");
 
 		//initialize the host game board
-		initializeGameBoard(GB);
+		if (GB.getGM().getPlayerIAm().isHuman()) GB.setVisible(true);
+		GB.updateBoard();
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
@@ -219,7 +224,6 @@ public class Game {
 	 * This method will create a client object.
 	 * 
 	 * @param GM The GameManager object for the network and to pass the new client to.
-	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createClientPlayer(GameManager GM) throws InterruptedException{
@@ -269,6 +273,7 @@ public class Game {
 	 * This method creates a new server, and passes all of the needed references regarding it.
 	 * 
 	 * @param GM The GameManager that the server and it need a reference to and from.
+	 * @param String The IP address that the client needs to connect to.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static ClientNetworkManager createNewClient(GameManager GM, String ip) throws InterruptedException{
@@ -280,18 +285,5 @@ public class Game {
 		client.start();
 		Thread.sleep(500);
 		return client;
-	}
-
-	/**
-	 * This method initializes the GameBoard.
-	 * 
-	 * @param GM The GameManager.
-	 * @param GB The GameBoard.
-	 */
-	public static void initializeGameBoard(GameBoard GB){
-		if (GB.getGM().getPlayerIAm().isHuman()){
-			GB.setVisible(true);
-		}
-		GB.updateBoard();
 	}
 }
