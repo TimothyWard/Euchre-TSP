@@ -155,7 +155,7 @@ public class GameManager {
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetPlayerTurn," + next);
 		server.toClients("SetDealerName," + dealer.getName());
-		currentTurnPlayerID = next;
+		setTurnPlayerID(next);
 
 	}
 
