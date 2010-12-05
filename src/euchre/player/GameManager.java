@@ -73,14 +73,14 @@ public class GameManager {
 		System.out.println("Team One's Score:     " + TeamOneScore);
 		System.out.println("Team Two's Score:     " + TeamTwoScore);
 
-		if(TeamOneScore>=10){
-			System.out.println("Team One Wins!");
-			System.exit(0);
-		}
-		else if(TeamTwoScore>=10){
-			System.out.println("Team Two Wins!");
-			System.exit(0);
-		}
+//		if(TeamOneScore>=10){
+//			System.out.println("Team One Wins!");
+//			System.exit(0);
+//		}
+//		else if(TeamTwoScore>=10){
+//			System.out.println("Team Two Wins!");
+//			System.exit(0);
+//		}
 
 		if(server!=null) deal();
 		//server.toClients("SetNewRound,");
@@ -431,7 +431,9 @@ public class GameManager {
 		}
 
 		teamOne = new Team(player1,player3);
+		teamOne.setTeamNumber(1);
 		teamTwo = new Team(player2,player4);
+		teamTwo.setTeamNumber(2);
 		dealer = player1;
 		teamsComplete = true;
 
