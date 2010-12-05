@@ -22,8 +22,8 @@ public class GameLobby extends javax.swing.JFrame{
 	HostDifficultyChange myAIManager;
 	private GameManager myManager;
 	private int numberOfAI;
+    private char player2Difficulty = 'x';
     private char player3Difficulty = 'x';
-    private char player4Difficulty = 'x';
 	private int connectionsMade = 0;
 	private boolean setupComplete = false;
 	private String ip;
@@ -70,18 +70,18 @@ public class GameLobby extends javax.swing.JFrame{
         centerScreen();
         myManager = inManager;
         if (numberOfPlayers == 1){
-        	setPlayer4Difficulty('m');
-        	setPlayer3Difficulty('m');
+        	player2Difficulty = 'm';
+        	player3Difficulty = 'm';
         	numberOfAI = 2;
         }else if (numberOfPlayers == 2){
-        	setPlayer4Difficulty('m');
+        	player2Difficulty = 'm';
         	numberOfAI = 1;
         }else{ //Number of players == 3
         	changeComputerDifficulty.setVisible(false);
         	this.setSize(new Dimension(688,220));
         	numberOfAI = 0;
         }
-        connectionsMade = 3 - numberOfPlayers;
+        //connectionsMade = 3 - numberOfPlayers; //adjust probably not needed, computers connect
         startGame.setEnabled(false);
 		
 		try {
@@ -94,19 +94,19 @@ public class GameLobby extends javax.swing.JFrame{
     }
  
     /**
-     * sets the AI difficulty for player 3
+     * sets the AI difficulty for player 2
      * @param difficulty e for easy, m for medium, h for hard
      */
-    public void setPlayer3Difficulty(char difficulty){
+    public void setplayer2Difficulty(char difficulty){
        if (difficulty == 'e'){
-    	   player3Difficulty = 'e';
-    	 //  Player3Status.setText("Computer 2: Difficulty: Easy");
+    	   player2Difficulty = 'e';
+    	   Player2Status.setText("Comp One: Difficulty: Easy");
        }else if (difficulty == 'm'){
-    	   player3Difficulty = 'm';
-    	 //  Player3Status.setText("Computer 2: Difficulty: Medium");
+    	   player2Difficulty = 'm';
+    	   Player2Status.setText("Comp One: Difficulty: Medium");
        }else if (difficulty == 'h'){
-    	   player3Difficulty = 'h';
-    	 //  Player3Status.setText("Computer 2: Difficulty: Hard");
+    	   player2Difficulty = 'h';
+    	   Player2Status.setText("Comp One: Difficulty: Hard");
        }
     }
 
@@ -114,16 +114,16 @@ public class GameLobby extends javax.swing.JFrame{
      * sets the AI difficulty for player 4
      * @param difficulty e for easy, m for medium, h for hard
      */
-    public void setPlayer4Difficulty(char difficulty){
+    public void setPlayer3Difficulty(char difficulty){
     	if (difficulty == 'e'){
-     	   player4Difficulty = 'e';
-     	 // Player4Status.setText("Computer 1: Difficulty: Easy");
+     	   player3Difficulty = 'e';
+     	  Player3Status.setText("Comp Two: Difficulty: Easy");
         }else if (difficulty == 'm'){
-     	   player4Difficulty = 'm';
-     	  // Player4Status.setText("Computer 1: Difficulty: Medium");
+     	   player3Difficulty = 'm';
+     	   Player3Status.setText("Comp Two: Difficulty: Medium");
         }else if (difficulty == 'h'){
-     	   player4Difficulty = 'h';
-     	 // Player4Status.setText("Computer 1: Difficulty: Hard");
+     	   player3Difficulty = 'h';
+     	  Player3Status.setText("Comp Two: Difficulty: Hard");
         }
     }
 
@@ -446,6 +446,9 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer2Status(String status){
         Player2Status.setText(status);
         connectionsMade++;
+        if (status == "Comp One"){
+        	setplayer2Difficulty('m');
+        }
         if(connectionsMade >= 3){
         	startGame.setEnabled(true);
         }
@@ -463,6 +466,9 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Status(String status){
         Player3Status.setText(status);
         connectionsMade++;
+        if (status == "Comp One"){
+        	setPlayer3Difficulty('m');
+        }
         if(connectionsMade >= 3){
         	startGame.setEnabled(true);
         }
@@ -497,11 +503,11 @@ public class GameLobby extends javax.swing.JFrame{
     	return numberOfAI;
     }
     
-    public char getPlayer3Difficulty(){
-        return player3Difficulty;
+    public char getplayer2Difficulty(){
+        return player2Difficulty;
     }
     
-    public char getPlayer4Difficulty(){
-        return player4Difficulty;
+    public char getplayer3Difficulty(){
+        return player3Difficulty;
     }
 }
