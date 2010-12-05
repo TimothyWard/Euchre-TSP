@@ -34,19 +34,6 @@ public class ClientGameSetup extends javax.swing.JFrame{
 		playerName.grabFocus(); //Mainly here for development since we don't input other Addresses that often, and clients are local.
 	}
 
-
-	//	/**
-	//	 * @param args the command line arguments
-	//	 **/
-	//	public static void main(String args[]) {
-	//		java.awt.EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				new ClientGameSetup().setVisible(true);
-	//			}
-	//		});
-	//	}
-
-
 	/**
 	 * Moves the jFrame to the center of the screen
 	 */

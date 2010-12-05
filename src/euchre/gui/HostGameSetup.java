@@ -14,7 +14,9 @@ public class HostGameSetup extends javax.swing.JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int AIs = -1;
+	private boolean setupComplete = false;
+	private String playerName = "";
+	private int numAIs = 0;
 	GameManager myManager;
 	GameLobby lobby;
 
@@ -135,11 +137,12 @@ public class HostGameSetup extends javax.swing.JFrame {
 		}else if(contains(nameInput.getText().trim(), ',')){
 			JOptionPane.showMessageDialog(null, "Please enter a player name without commas.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else { //Valid input
-			myManager.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+nameInput.getText().trim() + "," + myManager.getp1().getPlayerID());
 			lobby = new GameLobby(humanPlayerCount.getSelectedIndex()+1, nameInput.getText().trim(), myManager);
 			lobby.setVisible(true);
 			myManager.setLobby(lobby);
-			AIs = 3-(humanPlayerCount.getSelectedIndex()+1);
+			setupComplete = true;
+			playerName = nameInput.getText().trim();
+			numAIs = 3-(humanPlayerCount.getSelectedIndex()+1);
 			this.setVisible(false);
 		}
 	}//GEN-LAST:event_openLobby
@@ -161,10 +164,16 @@ public class HostGameSetup extends javax.swing.JFrame {
     	return wasFound;	
     }
 
-	public int getAIs(){
-		return AIs;
+	public boolean setupComplete(){
+		return setupComplete;
 	}
 	
+	public String getPlayerName(){
+		return playerName;
+	}
+	public int getNumAIs(){
+		return numAIs;
+	}
 	public GameLobby getGameLobby(){
 		return lobby;
 	}

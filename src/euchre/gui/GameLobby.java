@@ -86,7 +86,7 @@ public class GameLobby extends javax.swing.JFrame{
 		
 		try {
 			ip = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		
@@ -485,7 +485,7 @@ public class GameLobby extends javax.swing.JFrame{
         }
     }
       
-    public boolean isSetupComplete(){
+    public boolean setupComplete(){
 		return setupComplete;
 	}
 
@@ -504,8 +504,4 @@ public class GameLobby extends javax.swing.JFrame{
     public char getPlayer4Difficulty(){
         return player4Difficulty;
     }
-    
-	public void setSetupComplete(boolean setupComplete) {
-		this.setupComplete = setupComplete;
-	}
 }
