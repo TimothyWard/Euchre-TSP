@@ -157,7 +157,7 @@ public class GameManager {
 	 * @param GM The GameManager.
 	 * @param GB The GameBoard.
 	 */
-	public static void initializeGameBoard(GameBoard GB){
+	public void initializeGameBoard(GameBoard GB){
 		//if (GB.getGM().getPlayerIAm().isHuman()){
 		GB.setVisible(true);
 		//}

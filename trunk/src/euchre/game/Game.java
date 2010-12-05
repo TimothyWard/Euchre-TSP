@@ -171,7 +171,7 @@ public class Game {
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().setupComplete() == false) Thread.sleep(500);
 
 		//initialize the host's game board
-		initializeGameBoard(GB);
+		GM.initializeGameBoard(GB);
 
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
@@ -212,7 +212,7 @@ public class Game {
 		server.toClients("SetTeam,4,2");
 
 		//initialize the host game board
-		initializeGameBoard(GB);
+		GM.initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
@@ -286,16 +286,4 @@ public class Game {
 		return client;
 	}
 
-	/**
-	 * This method initializes the GameBoard.
-	 * 
-	 * @param GM The GameManager.
-	 * @param GB The GameBoard.
-	 */
-	public static void initializeGameBoard(GameBoard GB){
-		//if (GB.getGM().getPlayerIAm().isHuman()){
-		GB.setVisible(true);
-		//}
-		GB.updateBoard();
-	}
 }
