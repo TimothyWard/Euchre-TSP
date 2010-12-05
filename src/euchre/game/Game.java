@@ -51,21 +51,9 @@ public class Game {
 			else if(gameChoice == 'a') createLocalGame(GM);
 		}
 
-		//if this process if for an AI
+		//if this process is for an AI
 		else if (args.length > 0){
-			if (args[0].equals("-ai")){
-				try {
-					//redirect output
-					System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIOutput"))));
-					System.setErr(new PrintStream(new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "/AIErrorOutput"))));
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-					System.exit(1);
-				}
-				//create the AI
-				createAIPlayer(GM, args[2], args[1]);
-			}
+			if (args[0].equals("-ai")) createAIPlayer(GM, args[2], args[1]);
 		}
 
 		//play the game
