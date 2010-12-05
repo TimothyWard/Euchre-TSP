@@ -30,6 +30,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	String hostname;
 	int port = 4444;
 	boolean connecting = true;
+	boolean isConnected = false;
 	boolean running = true;
 	String inputLine;
 	
@@ -114,18 +115,27 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 				try {
 					clientSocket = new Socket(hostname, port);
 				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
 					System.out.println("Unknown Host:" + hostname);
 					running = false;
-					//e.printStackTrace();
+					
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
 					System.out.println("Connection refused");
 					running = false;
-					break;
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					continue;
 				}
 
+				running = true;
+				isConnected = true;
 				//get reference to the output stream
 				try {
 					out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -158,5 +168,10 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 				}
 			}	
 		}	
+	}
+	
+	public boolean isConnected(){
+		
+		return isConnected;
 	}
 }

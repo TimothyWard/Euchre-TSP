@@ -52,7 +52,7 @@ public class Game {
 		}
 
 		//if this process if for an AI
-		else if (args.length >0){
+		else if (args.length > 0){
 			if (args[0].equals("-ai")){
 				try {
 					//redirect output
@@ -207,6 +207,8 @@ public class Game {
 
 		//create new client and its network from given ip address and name
 		ClientNetworkManager client = createNewClient(GM, clientSetup.getIP());
+		
+		while(client.isConnected() == false) Thread.sleep(500);
 		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
 
 		//wait for everyone to join before continuing
