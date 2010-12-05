@@ -678,6 +678,10 @@ public class GameManager {
 		else{
 			System.out.println("ERROR: The round winner was not determined.");
 		}
+		
+		board.setWePoints(TeamOneScore);
+		board.setTheyPoints(TeamTwoScore);
+
 
 	}
 
