@@ -4,16 +4,11 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
-import euchre.game.GameLogic;
 import euchre.game.Round;
 import euchre.game.Team;
 import euchre.game.Hand;
 import euchre.gui.pictures.PictureManager;
-import euchre.player.Card;
-import euchre.player.CardEvaluator;
-import euchre.player.GameManager;
-import euchre.player.Human;
-import euchre.player.Player;
+import euchre.player.*;
 
 /**
  * The GUI that displays the euchre game to the user and allows them to play it.
@@ -30,7 +25,6 @@ public class GameBoard extends javax.swing.JFrame{
 	private Player leftPlayer;
 	private Player rightPlayer;
 	private Card turnedCard = new Card('e', 'x');
-	private boolean pickUpPassed = false;
 	private boolean suitButtonsUsed = false;
 	private boolean cannotPassSuit = false;
 	private boolean settingSuit = false;
@@ -49,7 +43,6 @@ public class GameBoard extends javax.swing.JFrame{
 	Card[] played = new Card[4];
 	Hand playedHand = new Hand();
 	//private Round round = null;
-	GameLogic tabulator = new GameLogic();
 	private Team teamWhoOrdered = null;
 	private Player playerWhoLed = null;
 
@@ -115,7 +108,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 
 	public GameBoard(){
-		
+
 		initComponents();
 		centerScreen();
 		hideSuitButtons();
@@ -126,7 +119,7 @@ public class GameBoard extends javax.swing.JFrame{
 		handButtons[3] = jButtonYourCard4;
 		handButtons[4] = jButtonYourCard5;
 	}
-	
+
 	/**
 	 * Updates the Numbers on the side of the team labels so bottom left is your team, and top right is enemy team.
 	 */
@@ -1244,10 +1237,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 		played[cardsPlayed] = c;
 		playedHand.setCardsPlayed(played);
-		
+
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-		
+
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1267,50 +1260,50 @@ public class GameBoard extends javax.swing.JFrame{
 			else
 				suitLed = c.getSuit();
 			playedHand.setSuitLed(c.getSuit());
-			
+
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
 			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
 			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
-			
+
 		}
 		cardsPlayed++;
-		
+
 		if (cardsPlayed == 4){
-			
+
 			hand++;
-			
+
 			System.out.println("Played Cards: " + played[0] + played[1] + played[2] + played[3]);
 			System.out.println("Played Cards: " + playedHand.getCardPlayed(0) + playedHand.getCardPlayed(1) + playedHand.getCardPlayed(2) + playedHand.getCardPlayed(3));
 			//System.out.println("Trick winnner:      " + tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).getTeamNumber() + "    TeamOne's number: " + GM.getTeamOne().getTeamNumber());
-			
-//			if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamOne())) {
-//				System.out.println("Team One Wins the trick!");
-//				oneTricks++;
-//				if(GM.getPlayerIAm().getTeam() == 1){
-//					setWeTricks(oneTricks);
-//					setTheyTricks(twoTricks);
-//				}
-//				if(GM.getPlayerIAm().getTeam() == 2){
-//					setWeTricks(twoTricks);
-//					setTheyTricks(oneTricks);
-//				}
-//			}
-//			else if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamTwo())) {
-//				System.out.println("Team Two wins the trick!");
-//				twoTricks++;
-//				if(GM.getPlayerIAm().getTeam() == 1){
-//					setWeTricks(oneTricks);
-//					setTheyTricks(twoTricks);
-//				}
-//				if(GM.getPlayerIAm().getTeam() == 2){
-//					setWeTricks(twoTricks);
-//					setTheyTricks(oneTricks);
-//				}
-//			}
-			
+
+			//			if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamOne())) {
+			//				System.out.println("Team One Wins the trick!");
+			//				oneTricks++;
+			//				if(GM.getPlayerIAm().getTeam() == 1){
+			//					setWeTricks(oneTricks);
+			//					setTheyTricks(twoTricks);
+			//				}
+			//				if(GM.getPlayerIAm().getTeam() == 2){
+			//					setWeTricks(twoTricks);
+			//					setTheyTricks(oneTricks);
+			//				}
+			//			}
+			//			else if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamTwo())) {
+			//				System.out.println("Team Two wins the trick!");
+			//				twoTricks++;
+			//				if(GM.getPlayerIAm().getTeam() == 1){
+			//					setWeTricks(oneTricks);
+			//					setTheyTricks(twoTricks);
+			//				}
+			//				if(GM.getPlayerIAm().getTeam() == 2){
+			//					setWeTricks(twoTricks);
+			//					setTheyTricks(oneTricks);
+			//				}
+			//			}
+
 			if(hand<=5){
-			
+
 				if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
 					System.out.println("Player who led wins trick! " + playerWhoLed.getName());
 					if(playerWhoLed.getTeam()==1) oneTricks++;
@@ -1335,7 +1328,7 @@ public class GameBoard extends javax.swing.JFrame{
 					else twoTricks++;
 					setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
 				}
-				
+
 				if(GM.getPlayerIAm().getTeam() == 1){
 					setWeTricks(oneTricks);
 					setTheyTricks(twoTricks);
@@ -1344,25 +1337,25 @@ public class GameBoard extends javax.swing.JFrame{
 					setWeTricks(twoTricks);
 					setTheyTricks(oneTricks);
 				}
-				
-			
+
+
 			}
 			else{
-				
+
 				GM.interpretRound(oneTricks, twoTricks);				
 				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				GM.playRound();
-				
+
 			}
-			
-			
+
+
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
-			
-			
+
+
 		}
 
 	}
@@ -1446,7 +1439,7 @@ public class GameBoard extends javax.swing.JFrame{
 		GM = gm;
 		//round = GM.getRound();
 	}
-	
+
 	/**
 	 * Primarily for AI Use. Gives A String telling the player what is required of them.
 	 * Phrase(string returned) - Description
@@ -1622,10 +1615,6 @@ public class GameBoard extends javax.swing.JFrame{
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
 		pickItUp = true;
-	}
-
-	public GameLogic getTabulator(){
-		return tabulator;
 	}
 
 	public void setRound(Round round){
