@@ -133,6 +133,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * resets the board to start a new round
 	 */
 	public void newRound(){
+		
 		YourPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
 		RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
 		LPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
@@ -1604,7 +1605,6 @@ public class GameBoard extends javax.swing.JFrame{
 	public int getTeamTwoTricks(){
 		return twoTricks;
 	}
-
 
 	public GameManager getGM() {
 		return GM;
