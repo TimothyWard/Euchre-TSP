@@ -4,15 +4,14 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import euchre.game.Team;
-import euchre.game.Hand;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.*;
 
 /**
- * The GUI that displays the euchre game to the user and allows them to play it.
+ * The GUI that displays the Euchre game to the user and allows them to play it.
  * 
- * @author Neil MacBay (nmmacbay)
- * @author sdwilke
+ * @author Neil MacBay
+ * @author Sam Wilke
  */
 public class GameBoard extends javax.swing.JFrame{
 	private Player humanPlayer;
@@ -39,8 +38,6 @@ public class GameBoard extends javax.swing.JFrame{
 	int oneTricks = 0;
 	int twoTricks = 0;
 	Card[] played = new Card[4];
-	Hand playedHand = new Hand();
-	//private Round round = null;
 	private Team teamWhoOrdered = null;
 	private Player playerWhoLed = null;
 
@@ -179,7 +176,6 @@ public class GameBoard extends javax.swing.JFrame{
 		gameplay=false;
 		hand = 1;
 		played = new Card[4];
-		playedHand = new Hand();
 		oneTricks = 0;
 		twoTricks = 0;
 		setWeTricks(0);
@@ -1240,7 +1236,6 @@ public class GameBoard extends javax.swing.JFrame{
 	public void playCard(Card c, int playerNumber){
 
 		played[cardsPlayed] = c;
-		playedHand.setCardsPlayed(played);
 
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
@@ -1263,7 +1258,6 @@ public class GameBoard extends javax.swing.JFrame{
 				suitLed = getTrump();
 			else
 				suitLed = c.getSuit();
-			playedHand.setSuitLed(c.getSuit());
 
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
