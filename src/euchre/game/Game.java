@@ -1,11 +1,7 @@
 package euchre.game;
-
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
-import java.io.BufferedOutputStream;
 
 import javax.swing.JOptionPane;
 
@@ -53,7 +49,27 @@ public class Game {
 
 		//if this process is for an AI
 		else if (args.length > 0){
-			if (args[0].equals("-ai")) createAIPlayer(GM, args[2], args[1]);
+			if (args[0].equals("-ai")){
+				String computerName = args[2];
+				String difficulty = args[1];
+				AI computer = new MediumAI();
+				//make a new game board and a new human to pass to the game manager
+				if (difficulty == "e") computer = new EasyAI();
+				else if (difficulty == "m") computer = new MediumAI();
+				else if (difficulty == "h") computer = new HardAI();
+				GameBoard GB = new GameBoard();
+				GB.setGameManager(GM);
+				GM.setGameBoard(GB);
+				GM.newPlayer(computer);
+				computer.setName(computerName);
+
+				//create new client and join network
+				ClientNetworkManager client = createNewClient(GM, "localhost");
+				client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
+
+				//wait for everyone to join before continuing
+				while(GM.areTeamsComplete() == false) Thread.sleep(500);
+			}
 		}
 
 		//play the game
@@ -221,35 +237,6 @@ public class Game {
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 		clientSetup.dispose();
-
-	}
-
-	/**
-	 * This method will create a client object.
-	 * 
-	 * @param GM The GameManager object for the network and to pass the new client to.
-	 * @param GUI The welcome window for user input.
-	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
-	 */
-	private static void createAIPlayer(GameManager GM, String computerName, String difficulty) throws InterruptedException{
-
-		AI computer = new MediumAI();
-		//make a new game board and a new human to pass to the game manager
-		if (difficulty == "e") computer = new EasyAI();
-		else if (difficulty == "m") computer = new MediumAI();
-		else if (difficulty == "h") computer = new HardAI();
-		GameBoard GB = new GameBoard();
-		GB.setGameManager(GM);
-		GM.setGameBoard(GB);
-		GM.newPlayer(computer);
-		computer.setName(computerName);
-
-		//create new client and join network
-		ClientNetworkManager client = createNewClient(GM, "localhost");
-		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
-
-		//wait for everyone to join before continuing
-		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 
 	}
 
