@@ -1270,14 +1270,26 @@ public class GameBoard extends javax.swing.JFrame{
 			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) {
 				System.out.println("Team One Wins the trick!");
 				oneTricks++;
-				this.setWeTricks(oneTricks);
-				this.setTheyTricks(twoTricks);
+				if(GM.getPlayerIAm().getTeam() == 1){
+					setWeTricks(oneTricks);
+					setTheyTricks(twoTricks);
+				}
+				if(GM.getPlayerIAm().getTeam() == 2){
+					setWeTricks(twoTricks);
+					setTheyTricks(oneTricks);
+				}
 			}
 			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) {
 				System.out.println("Team Two wins the trick!");
 				twoTricks++;
-				this.setWeTricks(oneTricks);
-				this.setTheyTricks(twoTricks);
+				if(GM.getPlayerIAm().getTeam() == 1){
+					setWeTricks(oneTricks);
+					setTheyTricks(twoTricks);
+				}
+				if(GM.getPlayerIAm().getTeam() == 2){
+					setWeTricks(twoTricks);
+					setTheyTricks(oneTricks);
+				}
 			}
 			
 			if(hand<=5){
