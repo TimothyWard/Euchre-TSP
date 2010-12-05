@@ -569,35 +569,34 @@ public class GameManager {
 	 * @param one The first team to be interpreted.
 	 * @param two The second team to be interpreted.
 	 */
-	public void interpretRound(int tOne,int tTwo){
+	public void interpretRound(int tOne, int tTwo){
 		int teamOneTricks = tOne;
 		int teamTwoTricks = tTwo;
 
-
 		//if the round winner took 5 tricks
-		if((teamOneTricks == 5 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks == 5 && board.getTeamWhoOrdered() == getTeamTwo())){
-			if (board.getTeamWhoOrdered() == getTeamOne()){
+		if((teamOneTricks == 5 && board.getTeamWhoOrdered().equals(getTeamOne())) || (teamTwoTricks == 5 && board.getTeamWhoOrdered().equals(getTeamTwo()))){
+			if (board.getTeamWhoOrdered().equals(getTeamOne())){
 				TeamOneScore=TeamOneScore+2;
 			}
-			else if (board.getTeamWhoOrdered() == getTeamTwo()){
+			else if (board.getTeamWhoOrdered().equals(getTeamTwo())){
 				TeamTwoScore=TeamTwoScore+2;
 			}
 		}
 		//if the round winner took 3 or more tricks
-		else if((teamOneTricks >= 3 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks >= 3 && board.getTeamWhoOrdered() == getTeamTwo())){
-			if(board.getTeamWhoOrdered() == getTeamOne()){
+		else if((teamOneTricks >= 3 && board.getTeamWhoOrdered().equals(getTeamOne())) || (teamTwoTricks >= 3 && board.getTeamWhoOrdered().equals(getTeamTwo()))){
+			if(board.getTeamWhoOrdered().equals(getTeamOne())){
 				TeamOneScore++;
 			}
-			else if(board.getTeamWhoOrdered() == getTeamTwo()){
+			else if(board.getTeamWhoOrdered().equals(getTeamTwo())){
 				TeamTwoScore++;
 			}
 		}
 		//if the round winner took less than 3 tricks
-		else if((teamOneTricks < 3 && board.getTeamWhoOrdered() == getTeamOne()) || (teamTwoTricks < 3 && board.getTeamWhoOrdered() == getTeamTwo())){
-			if(board.getTeamWhoOrdered() == getTeamOne()){
+		else if((teamOneTricks < 3 && board.getTeamWhoOrdered().equals(getTeamOne())) || (teamTwoTricks < 3 && board.getTeamWhoOrdered().equals(getTeamTwo()))){
+			if(board.getTeamWhoOrdered().equals(getTeamOne())){
 				TeamTwoScore=TeamTwoScore+2;
 			}
-			else if(board.getTeamWhoOrdered() == getTeamTwo()){
+			else if(board.getTeamWhoOrdered().equals(getTeamTwo())){
 				TeamOneScore=TeamOneScore+2;
 			}
 		}
