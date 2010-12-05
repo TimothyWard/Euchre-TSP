@@ -1,13 +1,13 @@
 package euchre.game;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import javax.swing.JOptionPane;
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
 import java.io.BufferedOutputStream;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -67,9 +67,13 @@ public class Game {
 				createAIPlayer(GM, args[2], args[1]);
 			}
 		}
+		
+		//play the game
 		GM.playGame();
-		//wait for the game to end
+		//wait for the game to end, then display the winner and exit
 		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
+		JOptionPane.showMessageDialog(null, "Team " + GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo()) + "wins!!!");
+		System.exit(0);
 	}
 
 	/**
@@ -95,7 +99,7 @@ public class Game {
 				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Comp Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
-			Thread.sleep(4000);			
+			Thread.sleep(5000);			
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -159,7 +163,7 @@ public class Game {
 		GB.setGameManager(GM);
 		GM.setGameBoard(GB);
 		ServerNetworkManager server = createNewServer(GM);
-		
+
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
 		server.getParser().serverParse("RegisterPlayer,Human,"+ local.getPlayerName() + "," + GM.getp1().getPlayerID());
@@ -178,7 +182,6 @@ public class Game {
 		initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
-		Thread.sleep(500);
 		server.toClients("SpawnGameBoard");
 	}
 
@@ -207,7 +210,7 @@ public class Game {
 
 		//create new client and its network from given ip address and name
 		ClientNetworkManager client = createNewClient(GM, clientSetup.getIP());
-		
+
 		while(client.isConnected() == false) Thread.sleep(500);
 		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
 
