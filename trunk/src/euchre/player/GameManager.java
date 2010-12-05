@@ -70,8 +70,6 @@ public class GameManager {
 	 */
 	public void playRound(){
 
-		System.out.println("Team One's Score:     " + TeamOneScore);
-		System.out.println("Team Two's Score:     " + TeamTwoScore);
 
 //		if(TeamOneScore>=10){
 //			System.out.println("Team One Wins!");
@@ -637,6 +635,7 @@ public class GameManager {
 	public void setDealer(Player newDealer){
 		dealer = newDealer;
 	}
+	
 
 
 	/**
@@ -683,7 +682,6 @@ public class GameManager {
 			System.out.println("ERROR: The round winner was not determined.");
 		}
 		
-		System.out.println("Team 1:" + TeamOneScore + "      Team 2: " + TeamTwoScore);
 		
 		if(getPlayerIAm().getTeam() == 1){
 			board.setWePoints(TeamOneScore);
@@ -695,6 +693,26 @@ public class GameManager {
 		}
 
 
+	}
+	
+	/**
+	 * This method compares the scores of the two teams and returns the winning team
+	 * if there is one or null otherwise.
+	 * 
+	 * @param one The first team.
+	 * @param two The second team.
+	 * @return Team The winning team
+	 */
+	public int gameWinner(){
+		if(TeamOneScore >= 10){
+			return 1;
+		}
+		else if(TeamTwoScore >= 10){
+			return 2;
+		}
+		else{
+			return 0;
+		}
 	}
 
 
