@@ -90,16 +90,18 @@ public class Game {
 			if (!(difficultyOfAIOne == 'x')){
 				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Comp One"};
 				Runtime.getRuntime().exec(cmdarray1);
+				Thread.sleep(250);
 			}
 			if (!(difficultyOfAITwo == 'x')){
 				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Comp Two"};
 				Runtime.getRuntime().exec(cmdarray2);
+				Thread.sleep(250);
 			}
 			if (!(difficultyOfAIThree == 'x')){
 				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Comp Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
-			Thread.sleep(5000);			
+			Thread.sleep(3500);			
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -132,6 +134,7 @@ public class Game {
 		//make the specified number of AI's once the user specifies the correct number of AIs
 		while (hostSetup.setupComplete()==false) Thread.sleep(500);
 		server.getParser().serverParse("RegisterPlayer,Human,"+ hostSetup.getPlayerName() + "," + GM.getp1().getPlayerID());
+		System.out.println("ai difficulties " + hostSetup.getGameLobby().getPlayer3Difficulty() + hostSetup.getGameLobby().getPlayer4Difficulty());
 		spawnAIs(hostSetup.getNumAIs(), hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty(), 'x');
 
 		//wait until the user has input name and number of additional human players	
