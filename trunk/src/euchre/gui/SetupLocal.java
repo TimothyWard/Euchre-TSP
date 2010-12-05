@@ -310,4 +310,5 @@ public class SetupLocal extends javax.swing.JFrame {
     public String getPlayerName(){
     	return jTextFieldPlayerName.getText().trim();
     }
+    
 }
