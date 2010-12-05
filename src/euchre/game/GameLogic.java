@@ -143,6 +143,7 @@ public class GameLogic{
 		int[] cardValue = {0,0,0,0};
 
 		for (int i = 0; i < 4; i++){
+			System.out.println(hand.getCardPlayed(i).toString() + " " + TRB.toString() + " compared: " + hand.getCardPlayed(i).compareTo(TRB));
 			Card card = hand.getCardPlayed(i);
 			if (card.compareTo(TRB) == 0) cardValue[i] = 13;
 			else if (card.compareTo(TLB) == 0) cardValue[i] = 12;
@@ -159,6 +160,7 @@ public class GameLogic{
 			else if (card.compareTo(L9) == 0) cardValue[i] = 1;
 			else cardValue[i] = 0;
 		}
+		System.out.println("Card Values: {" + cardValue[0] + cardValue[1] + cardValue[2] + cardValue[3] + "}");
 		if (maxIndex(cardValue) == 0 || maxIndex(cardValue) == 2){
 			return one;
 		}
