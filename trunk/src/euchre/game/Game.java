@@ -2,7 +2,6 @@ package euchre.game;
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
-
 import javax.swing.JOptionPane;
 
 
@@ -52,7 +51,10 @@ public class Game {
 			if (args[0].equals("-ai")){
 				String computerName = args[2];
 				String difficulty = args[1];
+
+				//make a new AI
 				AI computer = new MediumAI();
+
 				//make a new game board and a new human to pass to the game manager
 				if (difficulty == "e") computer = new EasyAI();
 				else if (difficulty == "m") computer = new MediumAI();
@@ -92,31 +94,39 @@ public class Game {
 		//if there are more than zero AIs, spawn up to three
 		try {
 			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "AI One"};
+			//if the first AI is to be spawned, spawn it and increment the command
 			if (difficultyOfAIOne != 'x'){
 				Runtime.getRuntime().exec(cmdarray);
 				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI Two"};
 				cmdarray = cmdarray2;
 				Thread.sleep(250);
 			}
+			//if the second AI is two be spawned, spawn it
 			if (difficultyOfAITwo != 'x'){
+				//if the second AI is to be spawned in position one, change the command
 				if (difficultyOfAIOne == 'x'){
 					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI One"};
 					cmdarray = cmdarray2;
 				}
+				//then spawn it and increment the command assuming it was spawned in position two
 				Runtime.getRuntime().exec(cmdarray);
 				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Three"};
 				cmdarray = cmdarray2;
 				Thread.sleep(250);
 			}
+			//if the third AI is to be spawned, spawn it
 			if (difficultyOfAIThree != 'x'){
+				//if the third AI is to be spawned in position one, change the command
 				if (difficultyOfAIOne == 'x' && difficultyOfAITwo == 'x'){
 					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI One"};
 					cmdarray = cmdarray2;
 				}
+				//if the third AI is to be spawned in position two, change the command
 				else if ((difficultyOfAIOne == 'x' && difficultyOfAITwo != 'x')  ||  (difficultyOfAIOne != 'x' && difficultyOfAITwo == 'x')){
 					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Two"};
 					cmdarray = cmdarray2;
 				}
+				//then spawn it
 				Runtime.getRuntime().exec(cmdarray);
 			}
 			Thread.sleep(3500);			
