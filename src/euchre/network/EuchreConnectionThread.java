@@ -12,9 +12,8 @@ import java.io.*;
  */
 
 public class EuchreConnectionThread extends Thread {
-	
+
 	private Socket socket = null;
-	private String threadName = "defaultname";
 	BufferedReader in;
 	private boolean running = true;
 	EuchreProtocol protocol;
@@ -22,7 +21,7 @@ public class EuchreConnectionThread extends Thread {
 	PrintWriter out = null;
 
 
-	
+
 	/**
 	 * Create a new EuchreConnectionThread.
 	 * 
@@ -31,7 +30,6 @@ public class EuchreConnectionThread extends Thread {
 	 */
 	public EuchreConnectionThread(String name, Socket s, ServerNetworkManager server) {
 		super(name);
-		threadName = name;
 		socket = s;
 		protocol = new EuchreProtocol();
 		this.server = server;
@@ -54,17 +52,17 @@ public class EuchreConnectionThread extends Thread {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 			String inputLine;
-			
+
 			//continually run this loop
 			while(true){
-				
+
 				if(running)
 					//if a message is recieved
 					while((inputLine = in.readLine()) != null){
-						
+
 						//output the message
 						server.parse(inputLine);
-					    //server.toClients(inputLine,this.hashCode());
+						//server.toClients(inputLine,this.hashCode());
 					}
 
 				try {
@@ -80,9 +78,9 @@ public class EuchreConnectionThread extends Thread {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Get a reference to the thread's print writer
 	 * 

@@ -15,7 +15,6 @@ public class EuchreProtocol {
 	private int numConnectedClients = 0;
 
 	private GameManager manager;
-	private ClientNetworkManager client;
 	private ServerNetworkManager server;
 	String connectedClients;
 
@@ -42,12 +41,7 @@ public class EuchreProtocol {
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
 
-			//"name", player name, player number
-			if(token.equals("Name")){
-				String name = parser.nextToken();
-
-			}
-			else if(token.equals("RegisterPlayer")){
+			if(token.equals("RegisterPlayer")){
 				String type = parser.nextToken();
 				String name = parser.nextToken();
 				int randomNum = Integer.parseInt(parser.nextToken());
@@ -381,10 +375,6 @@ public class EuchreProtocol {
 
 	public void setGameManager(GameManager gm){
 		manager = gm;
-	}
-
-	public void setClientNetworkManager(ClientNetworkManager c){
-		client = c;
 	}
 
 	public void setServerNetworkManager(ServerNetworkManager s){

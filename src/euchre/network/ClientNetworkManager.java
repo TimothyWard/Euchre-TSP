@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -33,7 +32,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 	boolean isConnected = false;
 	boolean running = true;
 	String inputLine;
-	
+
 	boolean debug;
 
 	/**
@@ -89,7 +88,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 		manager = gm;
 		protocol.setGameManager(gm);
 	}
-	
+
 	/**
 	 * Get reference to game manager
 	 * 
@@ -114,22 +113,22 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 				// create the new socket connection
 				try {
 					clientSocket = new Socket(hostname, port);
-					
-				// if the host can't be resolved, break the loop and kill the thread
+
+					// if the host can't be resolved, break the loop and kill the thread
 				} catch (UnknownHostException e) {
-					
+
 					System.out.println("Unknown Host:" + hostname);
 					running = false;
 					break; //while(true) loop breaks, thread finishes
-					
-				// host does not exist yet
+
+					// host does not exist yet
 				} catch (IOException e) {
 					System.out.println("Connection refused, retry in 5 seconds");
 					running = false;
 					try {
 						// wait for 5 seconds
 						Thread.sleep(5000);
-						
+
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
@@ -139,7 +138,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 
 				running = true;
 				isConnected = true;
-				
+
 				//get reference to the output stream
 				try {
 					out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -173,9 +172,9 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 			}	
 		}	
 	}
-	
+
 	public boolean isConnected(){
-		
+
 		return isConnected;
 	}
 }
