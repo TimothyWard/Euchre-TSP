@@ -21,10 +21,8 @@ public class GameManager {
 	private Player dealer = player1;
 	private Card upCard;
 	private Deck deck = new Deck();
-	private Player curPlayer;
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
-	private char led;
 	private GameLobby lobby;
 	private boolean teamsComplete = false;
 	private GameBoard board;
@@ -71,14 +69,14 @@ public class GameManager {
 	public void playRound(){
 
 
-//		if(TeamOneScore>=10){
-//			System.out.println("Team One Wins!");
-//			System.exit(0);
-//		}
-//		else if(TeamTwoScore>=10){
-//			System.out.println("Team Two Wins!");
-//			System.exit(0);
-//		}
+		//		if(TeamOneScore>=10){
+		//			System.out.println("Team One Wins!");
+		//			System.exit(0);
+		//		}
+		//		else if(TeamTwoScore>=10){
+		//			System.out.println("Team Two Wins!");
+		//			System.exit(0);
+		//		}
 
 		if(server!=null) deal();
 		//server.toClients("SetNewRound,");
@@ -248,89 +246,6 @@ public class GameManager {
 	//		}//...end of telling AI trump
 	//
 	//	}//End of setTrump
-
-
-
-	/**
-	 * Determines the winner of a trick. This isn't used for scoring, just to keep track of who
-	 * leads each hand.
-	 * @param cards An array of the cards played in the hand
-	 * @return The player who won the hand/trick
-	 */
-	private Player trickWinner(Card[] cards){
-
-		Card LA,LK,LQ,LJ,L10,L9,TRB,TLB,TA,TK,TQ,T10,T9;
-		char ledSuit = cards[0].getSuit();
-		char sameColor;
-
-		if(trump == 's') sameColor = 'c';
-		else if(trump == 'c') sameColor = 's';
-		else if(trump == 'd') sameColor = 'h';
-		else sameColor = 'd';
-
-		LA = new Card('a', ledSuit);
-		LK = new Card('k', ledSuit);
-		LQ = new Card('q', ledSuit);
-		LJ = new Card('j', ledSuit);
-		L10 = new Card('0', ledSuit);
-		L9 = new Card('9', ledSuit);
-		TRB = new Card('j', trump);
-		TLB = new Card('j', sameColor);
-		TA = new Card('a', trump);
-		TK = new Card('k', trump);
-		TQ = new Card('q', trump);
-		T10 = new Card('0', trump);
-		T9 = new Card('9', trump);
-
-		int[] cardValue = {0,0,0,0};
-		Player[] players = new Player[4];
-
-		players[0] = curPlayer;
-		players[1] = nextPlayer(players[0]);
-		players[2] = nextPlayer(players[1]);
-		players[3] = nextPlayer(players[2]);
-
-		for (int i=0; i<4; i++){
-			Card card = cards[i];
-			if (card.equals(TRB)) cardValue[i] = 13;
-			else if (card.equals(TLB)) cardValue[i] = 12;
-			else if (card.equals(TA)) cardValue[i] = 11;
-			else if (card.equals(TK)) cardValue[i] = 10;
-			else if (card.equals(TQ)) cardValue[i] = 9;
-			else if (card.equals(T10)) cardValue[i] = 8;
-			else if (card.equals(T9)) cardValue[i] = 7;
-			else if (card.equals(LA)) cardValue[i] = 6;
-			else if (card.equals(LK)) cardValue[i] = 5;
-			else if (card.equals(LQ)) cardValue[i] = 4;
-			else if (card.equals(LJ)) cardValue[i] = 3;
-			else if (card.equals(L10)) cardValue[i] = 2;
-			else if (card.equals(L9)) cardValue[i] = 1;
-			else cardValue[i] = 0;
-		}
-
-		int maximum = cardValue[0];
-		int maxIndex = 0;
-		for (int i=1; i<cardValue.length; i++) {
-			if (cardValue[i] > maximum) {
-				maximum = cardValue[i]; 
-				maxIndex = i;
-			}
-		}
-
-		if(maxIndex==0){
-			return players[0];
-		}
-		else if(maxIndex==1){
-			return players[1];
-		}
-		else if(maxIndex==2){
-			return players[2];
-		}
-		else{
-			return players[3];
-		}
-
-	}
 
 	/**
 	 * Adds all client and host players. 
@@ -635,7 +550,7 @@ public class GameManager {
 	public void setDealer(Player newDealer){
 		dealer = newDealer;
 	}
-	
+
 
 
 	/**
@@ -681,8 +596,8 @@ public class GameManager {
 		else{
 			System.out.println("ERROR: The round winner was not determined.");
 		}
-		
-		
+
+
 		if(getPlayerIAm().getTeam() == 1){
 			board.setWePoints(TeamOneScore);
 			board.setTheyPoints(TeamTwoScore);
@@ -694,7 +609,7 @@ public class GameManager {
 
 
 	}
-	
+
 	/**
 	 * This method compares the scores of the two teams and returns the winning team
 	 * if there is one or null otherwise.
