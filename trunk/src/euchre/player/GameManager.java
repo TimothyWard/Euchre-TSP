@@ -114,7 +114,6 @@ public class GameManager {
 			hand4[i]=deck.drawCard();
 		}
 
-		System.out.println("Hand 1: " + hand1[0] + " " + hand1[1] + " " + hand1[2] + " " + hand1[3] + " " + hand1[4]);
 		for(int i=0;i<5;i++){
 			player1.getHand()[i] = hand1[i];
 			player2.getHand()[i] = hand2[i];
@@ -679,8 +678,16 @@ public class GameManager {
 			System.out.println("ERROR: The round winner was not determined.");
 		}
 		
-		board.setWePoints(TeamOneScore);
-		board.setTheyPoints(TeamTwoScore);
+		System.out.println("Team 1:" + TeamOneScore + "      Team 2: " + TeamTwoScore);
+		
+		if(getPlayerIAm().getTeam() == 1){
+			board.setWePoints(TeamOneScore);
+			board.setTheyPoints(TeamTwoScore);
+		}
+		if(getPlayerIAm().getTeam() == 2){
+			board.setWePoints(TeamTwoScore);
+			board.setTheyPoints(TeamOneScore);
+		}
 
 
 	}
