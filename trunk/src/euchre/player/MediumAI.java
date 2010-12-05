@@ -1,5 +1,6 @@
 package euchre.player;
 
+import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
 /**
@@ -37,6 +38,28 @@ public class MediumAI implements AI{
 		clientManager = client;
 	}
 
+	/**
+	 * The AI performs the appropriate actions for his turn.
+	 */
+	public void makeTurn(){
+		GameBoard game = clientManager.getGameManager().getGameBoard();
+		String action = game.whatToDo();
+		if (action.equals("Nothing")){
+			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
+		}
+		if (action.equals("Play Card")){
+			Card toPlay = playCard();
+		}else if (action.equals("Pick Up")){
+			
+		}else if (action.equals("Call Suit")){
+			
+		}else if (action.equals("Call Order Up")){
+			
+		}else if (action.equals("Stuck Dealer")){
+			
+		}
+	}
+	
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
@@ -232,6 +255,20 @@ public class MediumAI implements AI{
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
 		numClub = CardEvaluator.numberOfSuit('c', hand);
+		switch(turnedDown.getSuit()){
+		case 'h':
+			numHeart = 0;
+			break;
+		case 'd':
+			numDiamond = 0;
+			break;
+		case 's':
+			numSpade = 0;
+			break;
+		default: //case 'c':
+			numClub = 0;
+			break;
+		}
 
 
 		if(numHeart>=3){
@@ -288,6 +325,20 @@ public class MediumAI implements AI{
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
 		numClub = CardEvaluator.numberOfSuit('c', hand);
+		switch(turnedDown.getSuit()){
+		case 'h':
+			numHeart = 0;
+			break;
+		case 'd':
+			numDiamond = 0;
+			break;
+		case 's':
+			numSpade = 0;
+			break;
+		default: //case 'c':
+			numClub = 0;
+			break;
+		}
 		
 		int max = Math.max(numHeart, numDiamond);
 		if(max==numHeart) trump='h';

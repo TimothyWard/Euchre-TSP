@@ -335,6 +335,9 @@ public class EuchreProtocol {
 				int id = Integer.parseInt(parser.nextToken());
 
 				manager.setTurnPlayerID(id);
+				if(!manager.getPlayerIAm().isHuman()){
+					((AI) (manager.getPlayerIAm())).makeTurn();
+				}
 			}
 			else if(token.equals("SetNextPlayerTurn")){
 

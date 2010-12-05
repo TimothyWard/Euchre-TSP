@@ -32,6 +32,7 @@ public class GameBoard extends javax.swing.JFrame{
 	private Card turnedCard = new Card('e', 'x');
 	private boolean pickUpPassed = false;
 	private boolean suitButtonsUsed = false;
+	private boolean cannotPassSuit = false;
 	private boolean settingSuit = false;
 	private boolean pickItUp = false;
 	private boolean gameplay = false;
@@ -181,6 +182,7 @@ public class GameBoard extends javax.swing.JFrame{
 		cardsPlayed = 0;
 		suitLed = 'e';
 		settingSuit=false;
+		cannotPassSuit = false;
 		pickItUp=false;
 		trump = 'e';
 		gameplay=false;
@@ -795,7 +797,7 @@ public class GameBoard extends javax.swing.JFrame{
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
+	public void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[0].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -835,7 +837,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_card1Clicked
 
-	private void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
+	public void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[1].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -876,7 +878,7 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card2Clicked
 
-	private void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
+	public void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[2].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -917,7 +919,7 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card3Clicked
 
-	private void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
+	public void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[3].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -958,7 +960,7 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card4Clicked
 
-	private void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
+	public void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[4].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
 				Card c = this.getTurnedCard();
@@ -1039,12 +1041,13 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
-	private void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
+	public void passButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_passButtonClicked
 		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit==false){
 				if(GM.isDealer()){
 					GM.getServerNetworkManager().toClients("SettingSuit");
 					settingSuit();
+					cannotPassSuit = true;
 					jLabelDealer.setVisible(false);
 					TurnedCard.setVisible(false);
 				}
@@ -1053,7 +1056,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_passButtonClicked
 
-	private void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
+	public void pickItUpButtonClicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_pickItUpButtonClicked
 		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit == false){
 				if(GM.isServer()){					
@@ -1068,7 +1071,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_pickItUpButtonClicked
 
-	private void heartsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_heartsListener
+	public void heartsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_heartsListener
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
 			if(GM.isServer()){
@@ -1083,7 +1086,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_heartsListener
 
-	private void clubsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_clubsListener
+	public void clubsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_clubsListener
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
 			if(GM.isServer()){
@@ -1098,7 +1101,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_clubsListener
 
-	private void diamondsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_diamondsListener
+	public void diamondsListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_diamondsListener
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
 			if(GM.isServer()){
@@ -1112,7 +1115,7 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_diamondsListener
 
-	private void spadesListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_spadesListener
+	public void spadesListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_spadesListener
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
 			if(GM.isServer()){
@@ -1126,8 +1129,8 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_spadesListener
 
-	private void suitPassListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_suitPassListener
-		if(GM.isMyTurn()){
+	public void suitPassListener(java.awt.event.MouseEvent evt){//GEN-FIRST:event_suitPassListener
+		if(GM.isMyTurn() && !cannotPassSuit){
 			hideSuitButtons();
 			turnOver();
 
@@ -1140,6 +1143,7 @@ public class GameBoard extends javax.swing.JFrame{
 			} 	
 			 */
 			suitButtonsUsed = true;
+			cannotPassSuit = true;
 		}
 	}//GEN-LAST:event_suitPassListener
 
@@ -1441,6 +1445,37 @@ public class GameBoard extends javax.swing.JFrame{
 	public void setGameManager(GameManager gm){
 		GM = gm;
 		//round = GM.getRound();
+	}
+	
+	/**
+	 * Primarily for AI Use. Gives A String telling the player what is required of them.
+	 * Phrase(string returned) - Description
+	 * 
+	 * Nothing - Not your turn or something is horribly wrong(especially in cases of AI).
+	 * Play Card - Play a Card.
+	 * Pick Up - Forced to pick up the card.
+	 * Call Suit - Call what suit you want.
+	 * Call Order Up - Pass or pick it up.
+	 * Stuck Dealer - forced to call suit.
+	 * 
+	 * @return The string of what the player needs to do.
+	 */
+	public String whatToDo(){
+		if (!GM.isMyTurn()){
+			return "Nothing";
+		}
+		if (gameplay){
+			return "Play Card";
+		}else if(pickItUp){
+			return "Pick Up";
+		}else if(cannotPassSuit){
+			return "Stuck Dealer";
+		}else if(jButtonPass.isVisible() && jButtonPickUp.isVisible()){
+			return "Call Order Up";
+		}else if(!suitButtonsUsed){
+			return "Call Suit";
+		}
+		return "Nothing";
 	}
 
 	private void setTopPlayer(Player player){
