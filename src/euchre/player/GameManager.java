@@ -81,8 +81,14 @@ public class GameManager {
 			System.out.println("Team Two Wins!");
 			System.exit(0);
 		}
-		//if(server!=null) deal();
-		deal();
+
+		if(server!=null) deal();
+		//server.toClients("SetNewRound,");
+		board.newRound();
+
+		//deal();
+
+
 		//setTrump();
 
 	}
@@ -99,7 +105,7 @@ public class GameManager {
 
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
-		curPlayer = dealer;
+		//curPlayer = dealer;
 
 		for(int i=0;i<5;i++){
 			hand1[i]=deck.drawCard();
@@ -108,13 +114,20 @@ public class GameManager {
 			hand4[i]=deck.drawCard();
 		}
 
-
+		System.out.println("Hand 1: " + hand1[0] + " " + hand1[1] + " " + hand1[2] + " " + hand1[3] + " " + hand1[4]);
 		for(int i=0;i<5;i++){
-			player1.drawCard(hand1[i]);
-			player2.drawCard(hand2[i]);
-			player3.drawCard(hand3[i]);
-			player4.drawCard(hand4[i]);
+			player1.getHand()[i] = hand1[i];
+			player2.getHand()[i] = hand2[i];
+			player3.getHand()[i] = hand3[i];
+			player4.getHand()[i] = hand4[i];
 		}
+
+//		for(int i=0;i<5;i++){
+//			player1.drawCard(hand1[i]);
+//			player2.drawCard(hand2[i]);
+//			player3.drawCard(hand3[i]);
+//			player4.drawCard(hand4[i]);
+//		}
 
 		upCard = deck.drawCard();
 		board.setTurnedCard(upCard);
@@ -136,8 +149,8 @@ public class GameManager {
 
 		server.toClients("SetTurnedCard,"+upCard);
 
-		server.toClients("SetNewRound,");
-		board.newRound();
+		//		server.toClients("SetNewRound,");
+		//		board.newRound();
 
 		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
