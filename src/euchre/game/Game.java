@@ -71,8 +71,8 @@ public class Game {
 		//play the game
 		GM.playGame();
 		//wait for the game to end, then display the winner and exit
-		while (GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo())==null) Thread.sleep(1000);
-		JOptionPane.showMessageDialog(null, "Team " + GM.getGameBoard().getTabulator().gameWinner(GM.getTeamOne(), GM.getTeamTwo()) + "wins!!!");
+		while (GM.gameWinner()==0) Thread.sleep(1000);
+		JOptionPane.showMessageDialog(null, "Team " + GM.gameWinner() + "wins!!!");
 		System.exit(0);
 	}
 
