@@ -124,7 +124,7 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 						e1.printStackTrace();
 					}
 				} catch (IOException e) {
-					System.out.println("Connection refused");
+					System.out.println("Connection refused, retry in 5 seconds");
 					running = false;
 					try {
 						Thread.sleep(5000);
