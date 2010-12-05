@@ -97,11 +97,10 @@ public class Card{
 				return -1;
 			}
 			else{
-				System.out.println("SOMETHING BROKE");
 				return 0;
 			}
 		}
-		return 0;
+		return 1;
 	}
 
 	/**
