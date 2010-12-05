@@ -109,6 +109,7 @@ public class GameLogic{
 	/**
 	 * This method accepts a hand containing five cards and other information pertaining to 
 	 * the hand. It then interprets what happened in the hand, and increments the score accordingly.
+	 * @param playerWhoLed 
 	 * 
 	 * @param round The object holding all five hands as well as other round information.
 	 * @param hand The object holding the five cards played in the round, and some other information.
@@ -117,7 +118,7 @@ public class GameLogic{
 	 * 
 	 * @return The team that took the trick for this hand.
 	 */
-	public Team interpretHand(char t, Hand hand, Team one, Team two){
+	public Team interpretHand(Player playerWhoLed, char t, Hand hand, Team one, Team two){
 		char trump = t;
 		char sameColor;
 		
@@ -143,7 +144,6 @@ public class GameLogic{
 		int[] cardValue = {0,0,0,0};
 
 		for (int i = 0; i < 4; i++){
-			System.out.println(hand.getCardPlayed(i).toString() + " " + TRB.toString() + " compared: " + hand.getCardPlayed(i).compareTo(TRB));
 			Card card = hand.getCardPlayed(i);
 			if (card.compareTo(TRB) == 0) cardValue[i] = 13;
 			else if (card.compareTo(TLB) == 0) cardValue[i] = 12;
@@ -160,12 +160,14 @@ public class GameLogic{
 			else if (card.compareTo(L9) == 0) cardValue[i] = 1;
 			else cardValue[i] = 0;
 		}
-		System.out.println("Card Values: {" + cardValue[0] + cardValue[1] + cardValue[2] + cardValue[3] + "}");
+
 		if (maxIndex(cardValue) == 0 || maxIndex(cardValue) == 2){
-			return one;
+			if(playerWhoLed.getTeam()==1) return one;
+			else return two;
 		}
 		else if (maxIndex(cardValue) == 1 || maxIndex(cardValue) == 3){
-			return two;
+			if(playerWhoLed.getTeam()==1) return two;
+			else return one;
 		}
 		else{
 			System.out.println("ERROR: The hand winner could not be determined.");
