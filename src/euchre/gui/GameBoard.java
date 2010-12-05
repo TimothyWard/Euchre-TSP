@@ -170,6 +170,8 @@ public class GameBoard extends javax.swing.JFrame{
 		trump = 'e';
 		gameplay=false;
 		hand = 1;
+		played = new Card[4];
+		playedHand = new Hand();
 	}
 
 	/**
@@ -1218,10 +1220,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 		played[cardsPlayed] = c;
 		playedHand.setCardsPlayed(played);
-
+		
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-
+		
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1241,70 +1243,63 @@ public class GameBoard extends javax.swing.JFrame{
 			else
 				suitLed = c.getSuit();
 			playedHand.setSuitLed(c.getSuit());
-
+			
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
 			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
 			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
-
+			
 		}
 		cardsPlayed++;
-
+		
 		if (cardsPlayed == 4){
-
-			if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
-				this.setPlayerTurn(playerWhoLed.getPlayerID());
-			}
-			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
-				this.setPlayerTurn(GM.nextPlayer(playerWhoLed).getPlayerID());
-			}
-			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
-				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getPlayerID());
-			}
-			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
-				this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
-			}
-
-			//round.setHand(hand, played, suitLed);
-
-			//System.out.println("PLAYED CARDS:   {" + played[0].toString() + ", " + played[1].toString() + ", " + played[2].toString() + ", " + played[3].toString() + "}");
-
+			
+			hand++;
+			
+//			try {
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			
 			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) oneTricks++;
 			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) twoTricks++;
-
-			//FIX
-			//Update the score labels here!
-
-			hand++;
-
+			
+			if(hand<=5){
+			
+				if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
+					this.setPlayerTurn(playerWhoLed.getPlayerID());
+				}
+				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
+					this.setPlayerTurn(GM.nextPlayer(playerWhoLed).getPlayerID());
+				}
+				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
+					this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getPlayerID());
+				}
+				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
+					this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
+				}
+			
+			}
+			else{
+				
+				System.out.println("===========================================================================================================");
+				GM.interpretRound(oneTricks, twoTricks);				
+				GM.setDealer(GM.nextPlayer(GM.getDealer()));
+				GM.playRound();
+				
+			}
+			
+			
+			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
-
-
-			if(hand>5){
-
-
-
-				GM.interpretRound(oneTricks, twoTricks);
-
-
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-
-				GM.setDealer(GM.nextPlayer(GM.getDealer()));
-
-				GM.playRound();
-
-			}
-
+			
+			
 		}
 
 	}
