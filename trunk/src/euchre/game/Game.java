@@ -236,9 +236,9 @@ public class Game {
 		computer.setName(computerName);
 
 		//create new client and join network
-		ClientNetworkManager client = createNewClient(GM, "");
+		ClientNetworkManager client = createNewClient(GM, "localhost");
 		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
-		//		GM.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+ computerName + "," + GM.getp1().getPlayerID());
+		GM.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+ computerName + "," + GM.getp1().getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
@@ -249,12 +249,14 @@ public class Game {
 	 * This method creates a new server, and passes all of the needed references regarding it.
 	 * 
 	 * @param GM The GameManager that the server and it need a reference to and from.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static ServerNetworkManager createNewServer(GameManager GM){
+	private static ServerNetworkManager createNewServer(GameManager GM) throws InterruptedException{
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.setGameManager(GM);
 		GM.setServerNetworkManager(network);
 		network.start();
+		Thread.sleep(500);
 		return network;
 	}
 
@@ -265,10 +267,13 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static ClientNetworkManager createNewClient(GameManager GM, String ip) throws InterruptedException{
-		ClientNetworkManager client = new ClientNetworkManager(ip);
+		ClientNetworkManager client;
+		if (ip.equals("localhost")) client = new ClientNetworkManager();
+		else client = new ClientNetworkManager(ip);
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
+		Thread.sleep(500);
 		return client;
 	}
 
