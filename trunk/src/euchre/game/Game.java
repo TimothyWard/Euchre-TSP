@@ -84,15 +84,15 @@ public class Game {
 		//if there are more than zero AIs, spawn up to three
 		try {
 			if (!(difficultyOfAIOne == 'x')){
-				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Computer One"};
+				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Comp One"};
 				Runtime.getRuntime().exec(cmdarray1);
 			}
 			if (!(difficultyOfAITwo == 'x')){
-				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Computer Two"};
+				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Comp Two"};
 				Runtime.getRuntime().exec(cmdarray2);
 			}
 			if (!(difficultyOfAIThree == 'x')){
-				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Computer Three"};
+				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Comp Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
 			Thread.sleep(4000);			
