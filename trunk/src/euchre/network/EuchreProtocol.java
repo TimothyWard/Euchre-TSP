@@ -4,6 +4,7 @@ package euchre.network;
 import java.util.StringTokenizer;
 
 import euchre.game.Game;
+import euchre.gui.Welcome;
 import euchre.player.Card;
 import euchre.player.GameManager;
 import euchre.player.Human;
