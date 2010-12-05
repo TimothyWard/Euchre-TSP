@@ -1280,44 +1280,65 @@ public class GameBoard extends javax.swing.JFrame{
 			System.out.println("Played Cards: " + playedHand.getCardPlayed(0) + playedHand.getCardPlayed(1) + playedHand.getCardPlayed(2) + playedHand.getCardPlayed(3));
 			//System.out.println("Trick winnner:      " + tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).getTeamNumber() + "    TeamOne's number: " + GM.getTeamOne().getTeamNumber());
 			
-			if(tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamOne())) {
-				System.out.println("TESTB Team One Wins the trick!");
-				oneTricks++;
-				if(GM.getPlayerIAm().getTeam() == 1){
-					setWeTricks(oneTricks);
-					setTheyTricks(twoTricks);
-				}
-				if(GM.getPlayerIAm().getTeam() == 2){
-					setWeTricks(twoTricks);
-					setTheyTricks(oneTricks);
-				}
-			}
-			else if(tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamTwo())) {
-				System.out.println("Team Two wins the trick!");
-				twoTricks++;
-				if(GM.getPlayerIAm().getTeam() == 1){
-					setWeTricks(oneTricks);
-					setTheyTricks(twoTricks);
-				}
-				if(GM.getPlayerIAm().getTeam() == 2){
-					setWeTricks(twoTricks);
-					setTheyTricks(oneTricks);
-				}
-			}
+//			if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamOne())) {
+//				System.out.println("Team One Wins the trick!");
+//				oneTricks++;
+//				if(GM.getPlayerIAm().getTeam() == 1){
+//					setWeTricks(oneTricks);
+//					setTheyTricks(twoTricks);
+//				}
+//				if(GM.getPlayerIAm().getTeam() == 2){
+//					setWeTricks(twoTricks);
+//					setTheyTricks(oneTricks);
+//				}
+//			}
+//			else if(tabulator.interpretHand(playerWhoLed, trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamTwo())) {
+//				System.out.println("Team Two wins the trick!");
+//				twoTricks++;
+//				if(GM.getPlayerIAm().getTeam() == 1){
+//					setWeTricks(oneTricks);
+//					setTheyTricks(twoTricks);
+//				}
+//				if(GM.getPlayerIAm().getTeam() == 2){
+//					setWeTricks(twoTricks);
+//					setTheyTricks(oneTricks);
+//				}
+//			}
 			
 			if(hand<=5){
 			
 				if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
-					this.setPlayerTurn(playerWhoLed.getPlayerID());
+					System.out.println("Player who led wins trick! " + playerWhoLed.getName());
+					if(playerWhoLed.getTeam()==1) oneTricks++;
+					else twoTricks++;
+					setPlayerTurn(playerWhoLed.getPlayerID());
 				}
 				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
-					this.setPlayerTurn(GM.nextPlayer(playerWhoLed).getPlayerID());
+					System.out.println("Player " + GM.nextPlayer(playerWhoLed).getName() + " wins the trick!");
+					if(GM.nextPlayer(playerWhoLed).getTeam()==1) oneTricks++;
+					else twoTricks++;
+					setPlayerTurn(GM.nextPlayer(playerWhoLed).getPlayerID());
 				}
 				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
-					this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getPlayerID());
+					System.out.println("Player " + GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getName() + " wins the trick!");
+					if(playerWhoLed.getTeam()==1) oneTricks++;
+					else twoTricks++;
+					setPlayerTurn(GM.nextPlayer(GM.nextPlayer(playerWhoLed)).getPlayerID());
 				}
-				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
-					this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
+				else {//if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
+					System.out.println("Player " + GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getName() + " wins the trick!");
+					if(GM.nextPlayer(playerWhoLed).getTeam()==1) oneTricks++;
+					else twoTricks++;
+					setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
+				}
+				
+				if(GM.getPlayerIAm().getTeam() == 1){
+					setWeTricks(oneTricks);
+					setTheyTricks(twoTricks);
+				}
+				if(GM.getPlayerIAm().getTeam() == 2){
+					setWeTricks(twoTricks);
+					setTheyTricks(oneTricks);
 				}
 				
 			
@@ -1329,7 +1350,6 @@ public class GameBoard extends javax.swing.JFrame{
 				GM.playRound();
 				
 			}
-			
 			
 			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
