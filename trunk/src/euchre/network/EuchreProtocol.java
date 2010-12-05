@@ -72,19 +72,22 @@ public class EuchreProtocol {
 				}
 				
 				
-
-				switch(numConnectedClients){
-				case 1:
-					manager.getLobby().setPlayer2Status(name);
-					break;
-				case 2:
-					manager.getLobby().setPlayer3Status(name);
-					break;
-				case 3:
-					manager.getLobby().setPlayer4Status(name);
-					break;
+				try{
+					switch(numConnectedClients){
+						case 1:
+							manager.getLobby().setPlayer2Status(name);
+							break;
+						case 2:
+							manager.getLobby().setPlayer3Status(name);
+							break;
+						case 3:
+							manager.getLobby().setPlayer4Status(name);
+							break;
 				}
-				
+				}
+				catch(NullPointerException e){
+					
+				}
 				
 				
 				
