@@ -134,8 +134,8 @@ public class Game {
 		//make the specified number of AI's once the user specifies the correct number of AIs
 		while (hostSetup.setupComplete()==false) Thread.sleep(500);
 		server.getParser().serverParse("RegisterPlayer,Human,"+ hostSetup.getPlayerName() + "," + GM.getp1().getPlayerID());
-		System.out.println("ai difficulties " + hostSetup.getGameLobby().getPlayer3Difficulty() + hostSetup.getGameLobby().getPlayer4Difficulty());
-		spawnAIs(hostSetup.getNumAIs(), hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty(), 'x');
+		System.out.println("ai difficulties " + hostSetup.getGameLobby().getplayer2Difficulty() + hostSetup.getGameLobby().getplayer3Difficulty());
+		spawnAIs(hostSetup.getNumAIs(), hostSetup.getGameLobby().getplayer2Difficulty(), hostSetup.getGameLobby().getplayer3Difficulty(), 'x');
 
 		//wait until the user has input name and number of additional human players	
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().setupComplete() == false) Thread.sleep(500);
