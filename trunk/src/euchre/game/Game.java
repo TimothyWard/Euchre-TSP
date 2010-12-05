@@ -170,7 +170,7 @@ public class Game {
 	private static void createLocalGame(GameManager GM) throws InterruptedException{
 
 		//create a window to ask for name and game info
-		SetupLocal local = new SetupLocal(GM);
+		SetupLocal local = new SetupLocal();
 		local.setVisible(true);
 
 		//create the new host, its game board and its server
