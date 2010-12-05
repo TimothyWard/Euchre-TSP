@@ -48,7 +48,7 @@ public class Game {
 			//create the users desired player type based on the game choice
 			if (gameChoice == 'h') createHostPlayer(GM);
 			else if(gameChoice == 'c') createClientPlayer(GM);
-			else if(gameChoice == 'a') createLocalOnlyGame(GM);
+			else if(gameChoice == 'a') createLocalGame(GM);
 		}
 
 		//if this process if for an AI
@@ -95,7 +95,7 @@ public class Game {
 				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Computer Three"};
 				Runtime.getRuntime().exec(cmdarray3);
 			}
-			Thread.sleep(5000);
+			Thread.sleep(4000);			
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -126,16 +126,59 @@ public class Game {
 		hostSetup.setVisible(true);
 
 		//make the specified number of AI's once the user specifies the correct number of AIs
-		while (hostSetup.getAIs()==-1) Thread.sleep(500);
-		spawnAIs(hostSetup.getAIs(), 'x' ,hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty());
+		while (hostSetup.setupComplete()==false) Thread.sleep(500);
+		server.getParser().serverParse("RegisterPlayer,Human,"+ hostSetup.getPlayerName() + "," + GM.getp1().getPlayerID());
+		spawnAIs(hostSetup.getNumAIs(), 'x' ,hostSetup.getGameLobby().getPlayer3Difficulty(), hostSetup.getGameLobby().getPlayer4Difficulty());
 
 		//wait until the user has input name and number of additional human players	
-		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().isSetupComplete() == false) Thread.sleep(500);
+		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().setupComplete() == false) Thread.sleep(500);
 
 		//initialize the host's game board
 		initializeGameBoard(GB);
 
 		//spawn client game boards
+		server.toClients("SpawnGameBoard");
+	}
+
+	/**
+	 * The method will create a local only game, it is for when a user chooses to play against
+	 * three computers.
+	 * 
+	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
+	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
+	 */
+	private static void createLocalGame(GameManager GM) throws InterruptedException{
+
+		//create a window to ask for name and game info
+		SetupLocal local = new SetupLocal(GM);
+		local.setVisible(true);
+
+		//create the new host, its game board and its server
+		GM.newPlayer(new Human());
+		GameBoard GB = new GameBoard();
+		GB.setGameManager(GM);
+		GM.setGameBoard(GB);
+		ServerNetworkManager server = createNewServer(GM);
+
+		//wait for ai difficulty information, then make the ai's
+		while (local.getSetupComplete() == false) Thread.sleep(500);
+		server.getParser().serverParse("RegisterPlayer,Human,"+ local.getPlayerName() + "," + GM.getp1().getPlayerID());
+		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
+
+		GM.setTeam(1, 1);
+		server.toClients("SetTeam,1,1");
+		GM.setTeam(2, 1);
+		server.toClients("SetTeam,2,1");
+		GM.setTeam(3, 2);
+		server.toClients("SetTeam,3,2");
+		GM.setTeam(4, 2);
+		server.toClients("SetTeam,4,2");
+
+		//initialize the host game board
+		initializeGameBoard(GB);
+
+		//wait half a second for the ai's to finish spawning, then spawn the client game boards
+		Thread.sleep(500);
 		server.toClients("SpawnGameBoard");
 	}
 
@@ -163,55 +206,13 @@ public class Game {
 		while(clientSetup.hasInput() == false) Thread.sleep(500);
 
 		//create new client and its network from given ip address and name
-		ClientNetworkManager client = createNewClient(GM, clientSetup);
+		ClientNetworkManager client = createNewClient(GM, clientSetup.getIP());
 		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
 		clientSetup.dispose();
 
-	}
-
-	/**
-	 * The method will create a local only game, it is for when a user chooses to play against
-	 * three computers.
-	 * 
-	 * @param GM The GameManager object for the network and to pass the new host and new AI's to.
-	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
-	 */
-	private static void createLocalOnlyGame(GameManager GM) throws InterruptedException{
-
-		//create a window to ask for name and game info
-		SetupLocal local = new SetupLocal(GM);
-		local.setVisible(true);
-		
-		//create the new host, its game board and its server
-		GM.newPlayer(new Human());
-		GameBoard GB = new GameBoard();
-		GB.setGameManager(GM);
-		GM.setGameBoard(GB);
-		ServerNetworkManager server = createNewServer(GM);
-
-		//wait for ai difficulty information, then make the ai's
-		while (local.getSetupComplete() == false) Thread.sleep(500);
-		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
-		
-		//setup the teams
-		GM.setTeam(1, 1);
-		GM.getServerNetworkManager().toClients("SetTeam,1,1");
-		GM.setTeam(2, 1);
-		GM.getServerNetworkManager().toClients("SetTeam,2,1");
-		GM.setTeam(3, 2);
-		GM.getServerNetworkManager().toClients("SetTeam,3,2");
-		GM.setTeam(4, 2);
-		GM.getServerNetworkManager().toClients("SetTeam,4,2");
-		
-		//initialize the host's game board
-		initializeGameBoard(GB);
-
-		//wait half a second for the ai's to finish spawning, then spawn the client game boards
-		Thread.sleep(500);
-		server.toClients("SpawnGameBoard");
 	}
 
 	/**
@@ -223,7 +224,7 @@ public class Game {
 	 */
 	private static void createAIPlayer(GameManager GM, String computerName, String difficulty) throws InterruptedException{
 
-		AI computer = null;
+		AI computer = new MediumAI();
 		//make a new game board and a new human to pass to the game manager
 		if (difficulty == "e") computer = new EasyAI();
 		else if (difficulty == "m") computer = new MediumAI();
@@ -234,15 +235,10 @@ public class Game {
 		GM.newPlayer(computer);
 		computer.setName(computerName);
 
-		//create new client
-		ClientNetworkManager client = new ClientNetworkManager();
-		GM.setClientNetworkManager(client);
-		client.setGameManager(GM);
-		client.start();
-		Thread.sleep(500);
-
-		//join network game
+		//create new client and join network
+		ClientNetworkManager client = createNewClient(GM, "");
 		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
+		//		GM.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+ computerName + "," + GM.getp1().getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
@@ -257,8 +253,8 @@ public class Game {
 	private static ServerNetworkManager createNewServer(GameManager GM){
 		ServerNetworkManager network = new ServerNetworkManager();
 		network.setGameManager(GM);
-		network.start();
 		GM.setServerNetworkManager(network);
+		network.start();
 		return network;
 	}
 
@@ -268,12 +264,11 @@ public class Game {
 	 * @param GM The GameManager that the server and it need a reference to and from.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
-	private static ClientNetworkManager createNewClient(GameManager GM, ClientGameSetup clientSetup) throws InterruptedException{
-		ClientNetworkManager client = new ClientNetworkManager(clientSetup.getIP());
+	private static ClientNetworkManager createNewClient(GameManager GM, String ip) throws InterruptedException{
+		ClientNetworkManager client = new ClientNetworkManager(ip);
 		GM.setClientNetworkManager(client);
 		client.setGameManager(GM);
 		client.start();
-		Thread.sleep(500);
 		return client;
 	}
 
