@@ -172,6 +172,10 @@ public class GameBoard extends javax.swing.JFrame{
 		hand = 1;
 		played = new Card[4];
 		playedHand = new Hand();
+		oneTricks = 0;
+		twoTricks = 0;
+		setWeTricks(0);
+		setTheyTricks(0);
 	}
 
 	/**
@@ -1263,8 +1267,18 @@ public class GameBoard extends javax.swing.JFrame{
 //				e.printStackTrace();
 //			}
 			
-			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) oneTricks++;
-			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) twoTricks++;
+			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) {
+				System.out.println("Team One Wins the trick!");
+				oneTricks++;
+				this.setWeTricks(oneTricks);
+				this.setTheyTricks(twoTricks);
+			}
+			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) {
+				System.out.println("Team Two wins the trick!");
+				twoTricks++;
+				this.setWeTricks(oneTricks);
+				this.setTheyTricks(twoTricks);
+			}
 			
 			if(hand<=5){
 			
@@ -1284,7 +1298,6 @@ public class GameBoard extends javax.swing.JFrame{
 			}
 			else{
 				
-				System.out.println("===========================================================================================================");
 				GM.interpretRound(oneTricks, twoTricks);				
 				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				GM.playRound();
