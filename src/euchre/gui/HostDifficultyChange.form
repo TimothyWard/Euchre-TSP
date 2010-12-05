@@ -34,24 +34,24 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="player2Difficulty" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="player3Difficulty" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="player4Difficulty" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="player2Easy" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="player2Medium" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="player2Hard" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="player3Easy" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="player3Medium" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="player3Hard" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="player4Easy" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="player4Medium" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="player4Hard" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -70,21 +70,21 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="player3Difficulty" min="-2" max="-2" attributes="0"/>
+                      <Component id="player2Difficulty" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="player4Difficulty" min="-2" max="-2" attributes="0"/>
+                      <Component id="player3Difficulty" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="player2Easy" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="player2Medium" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="player2Hard" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="player3Easy" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="player3Medium" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="player3Hard" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="player4Easy" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="player4Medium" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="player4Hard" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -96,17 +96,17 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="player2Difficulty">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Difficulty of Computer player 2:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="player3Difficulty">
       <Properties>
         <Property name="text" type="java.lang.String" value="Difficulty of Computer player 3:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="player4Difficulty">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Difficulty of Computer player 4:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="player3Easy">
+    <Component class="javax.swing.JRadioButton" name="player2Easy">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player3Group"/>
@@ -114,7 +114,7 @@
         <Property name="text" type="java.lang.String" value="Easy"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="player3Medium">
+    <Component class="javax.swing.JRadioButton" name="player2Medium">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player3Group"/>
@@ -122,7 +122,7 @@
         <Property name="text" type="java.lang.String" value="Medium"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="player3Hard">
+    <Component class="javax.swing.JRadioButton" name="player2Hard">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player3Group"/>
@@ -130,7 +130,7 @@
         <Property name="text" type="java.lang.String" value="Hard"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="player4Hard">
+    <Component class="javax.swing.JRadioButton" name="player3Hard">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player4Group"/>
@@ -138,7 +138,7 @@
         <Property name="text" type="java.lang.String" value="Hard"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="player4Easy">
+    <Component class="javax.swing.JRadioButton" name="player3Easy">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player4Group"/>
@@ -146,7 +146,7 @@
         <Property name="text" type="java.lang.String" value="Easy"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="player4Medium">
+    <Component class="javax.swing.JRadioButton" name="player3Medium">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="player4Group"/>
