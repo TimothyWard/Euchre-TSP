@@ -3,8 +3,6 @@ package euchre.gui;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-
-import euchre.game.Round;
 import euchre.game.Team;
 import euchre.game.Hand;
 import euchre.gui.pictures.PictureManager;
@@ -186,7 +184,7 @@ public class GameBoard extends javax.swing.JFrame{
 		twoTricks = 0;
 		setWeTricks(0);
 		setTheyTricks(0);
-		
+
 		updateBoard();
 	}
 
@@ -231,7 +229,7 @@ public class GameBoard extends javax.swing.JFrame{
 		jLabelTurn.setVisible(false);
 		jButtonPass.setVisible(false);
 		jButtonPickUp.setVisible(false);
-				
+
 		if(GM.isMyTurn()){
 			//JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
 			jLabelTurn.setVisible(true);
@@ -1243,10 +1241,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 		played[cardsPlayed] = c;
 		playedHand.setCardsPlayed(played);
-		
+
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-		
+
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1266,76 +1264,76 @@ public class GameBoard extends javax.swing.JFrame{
 			else
 				suitLed = c.getSuit();
 			playedHand.setSuitLed(c.getSuit());
-			
+
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
 			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
 			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
-			
+
 		}
 		cardsPlayed++;
-		
+
 		if (cardsPlayed == 4){
-			
+
 			hand++;
-			
-			
+
+
 			//if(hand<=5){
-			
-				if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
-					System.out.println("(1) Player who led wins trick! " + playerWhoLed.getName());
-					if(playerWhoLed.getTeam()==1) oneTricks++;
-					else twoTricks++;
-					setPlayerTurn(playerWhoLed.getPlayerID());
-				}
-				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
-					System.out.println("(2) Player " + (GM.nextPlayer(playerWhoLed)).getName() + " wins the trick!");
-					if((GM.nextPlayer(playerWhoLed)).getTeam()==1) oneTricks++;
-					else twoTricks++;
-					setPlayerTurn((GM.nextPlayer(playerWhoLed)).getPlayerID());
-				}
-				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
-					//THIS IS WHERE THE PROBLEM IS!!!!
-					System.out.println("(3) Player " + (GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getName() + " wins the trick!");
-					if(GM.nextPlayer((GM.nextPlayer(playerWhoLed))).getTeam()==1) oneTricks++;
-					else twoTricks++;
-					setPlayerTurn((GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
-				}
-				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
-					System.out.println("(4) Player " + (GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getName() + " wins the trick!");
-					if(GM.nextPlayer((GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getTeam()==1) oneTricks++;
-					else twoTricks++;
-					setPlayerTurn((GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getPlayerID());
-				}
-				
-				if(GM.getPlayerIAm().getTeam() == 1){
-					setWeTricks(oneTricks);
-					setTheyTricks(twoTricks);
-				}
-				if(GM.getPlayerIAm().getTeam() == 2){
-					setWeTricks(twoTricks);
-					setTheyTricks(oneTricks);
-				}
-				
+
+			if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
+				System.out.println("(1) Player who led wins trick! " + playerWhoLed.getName());
+				if(playerWhoLed.getTeam()==1) oneTricks++;
+				else twoTricks++;
+				setPlayerTurn(playerWhoLed.getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
+				System.out.println("(2) Player " + (GM.nextPlayer(playerWhoLed)).getName() + " wins the trick!");
+				if((GM.nextPlayer(playerWhoLed)).getTeam()==1) oneTricks++;
+				else twoTricks++;
+				setPlayerTurn((GM.nextPlayer(playerWhoLed)).getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
+				//THIS IS WHERE THE PROBLEM IS!!!!
+				System.out.println("(3) Player " + (GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getName() + " wins the trick!");
+				if(GM.nextPlayer((GM.nextPlayer(playerWhoLed))).getTeam()==1) oneTricks++;
+				else twoTricks++;
+				setPlayerTurn((GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
+			}
+			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
+				System.out.println("(4) Player " + (GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getName() + " wins the trick!");
+				if(GM.nextPlayer((GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getTeam()==1) oneTricks++;
+				else twoTricks++;
+				setPlayerTurn((GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getPlayerID());
+			}
+
+			if(GM.getPlayerIAm().getTeam() == 1){
+				setWeTricks(oneTricks);
+				setTheyTricks(twoTricks);
+			}
+			if(GM.getPlayerIAm().getTeam() == 2){
+				setWeTricks(twoTricks);
+				setTheyTricks(oneTricks);
+			}
+
 			//}
-			
-			
+
+
 			if(hand>5){
-				
+
 				GM.interpretRound(oneTricks, twoTricks);				
 				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				GM.playRound();
-				
+
 			}
-			
-			
+
+
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
-			
-			
+
+
 		}
 
 	}
@@ -1600,10 +1598,6 @@ public class GameBoard extends javax.swing.JFrame{
 		pickItUp = true;
 	}
 
-	public void setRound(Round round){
-		//this.round = round;
-	}
-
 	public int getTeamOneTricks(){
 		return oneTricks;
 	}
@@ -1611,7 +1605,7 @@ public class GameBoard extends javax.swing.JFrame{
 	public int getTeamTwoTricks(){
 		return twoTricks;
 	}
-	
+
 
 	public GameManager getGM() {
 		return GM;
