@@ -117,9 +117,9 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 		setTitle("Change Computer Difficulties");
 		setResizable(false);
 
-		player2Difficulty.setText("Difficulty of Computer player 2:");
+		player2Difficulty.setText("Difficulty of Computer Player 2:");
 
-		player3Difficulty.setText("Difficulty of Computer player 3:");
+		player3Difficulty.setText("Difficulty of Computer Player 3:");
 
 		player3Group.add(player2Easy);
 		player2Easy.setText("Easy");
@@ -207,10 +207,13 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 		if (player2){
 			if (player2Easy.isSelected()){
 				myLobby.setplayer2Difficulty('e');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI One,e");
 			}else if(player2Medium.isSelected()){
 				myLobby.setplayer2Difficulty('m');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI One,m");
 			}else if(player2Hard.isSelected()){
 				myLobby.setplayer2Difficulty('h');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI One,h");
 			}else{
 				System.out.println("SOMETHING FUCKED UP");
 			}
@@ -218,15 +221,17 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 		if (player3){
 			if (player3Easy.isSelected()){
 				myLobby.setPlayer3Difficulty('e');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI Two,e");
 			}else if(player3Medium.isSelected()){
 				myLobby.setPlayer3Difficulty('m');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI Two,m");
 			}else if(player3Hard.isSelected()){
 				myLobby.setPlayer3Difficulty('h');
+				myLobby.getMyManager().getServerNetworkManager().toClients("AIDifficultyChange,AI Two,h");
 			}else{
 				System.out.println("SOMETHING FUCKED UP");
 			}
 		}
-		
 		this.setVisible(false);
 		this.dispose();
 	}//GEN-LAST:event_applyDifficultiesClicked

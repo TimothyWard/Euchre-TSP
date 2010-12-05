@@ -623,6 +623,9 @@ public class GameManager {
 
 	}
 
+	public void setp1(Player player1){
+		this.p1 = player1;
+	}
 	public GameLobby getLobby() {
 		return lobby;
 	}
