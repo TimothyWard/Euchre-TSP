@@ -814,15 +814,17 @@ public class GameBoard extends javax.swing.JFrame{
 					jButtonYourCard1.setIcon(picManager.getPicture('e','0'));
 					if(GM.isServer()){	
 						Card c = GM.getPlayerIAm().getHand()[0];
+						GM.getPlayerIAm().setCard(0, '0', 'e');
 						playCard(c, GM.getPlayerIAm().getNumber());
 						GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
 					else{
 						Card c = GM.getPlayerIAm().getHand()[0];
+						GM.getPlayerIAm().setCard(0, '0', 'e');
 						GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
-					GM.getPlayerIAm().setCard(0, '0', 'e');
-					turnOver();
+					//GM.getPlayerIAm().setCard(0, '0', 'e');
+					//turnOver();
 				}else{
 					JOptionPane.showMessageDialog(null, "Please play on suit", "Invalid Play", JOptionPane.ERROR_MESSAGE);
 				}
@@ -854,15 +856,17 @@ public class GameBoard extends javax.swing.JFrame{
 					jButtonYourCard2.setIcon(picManager.getPicture('e','0'));
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[1];
+						GM.getPlayerIAm().setCard(1, '0', 'e');
 						playCard(c, GM.getPlayerIAm().getNumber());
 						GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
 					else{
 						Card c = GM.getPlayerIAm().getHand()[1];
+						GM.getPlayerIAm().setCard(1, '0', 'e');
 						GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
-					GM.getPlayerIAm().setCard(1, '0', 'e');
-					turnOver();
+					//GM.getPlayerIAm().setCard(1, '0', 'e');
+					//turnOver();
 				}else{
 					JOptionPane.showMessageDialog(null, "Please play on suit", "Invalid Play", JOptionPane.ERROR_MESSAGE);
 				}
@@ -895,15 +899,17 @@ public class GameBoard extends javax.swing.JFrame{
 					jButtonYourCard3.setIcon(picManager.getPicture('e','0'));
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[2];
+						GM.getPlayerIAm().setCard(2, '0', 'e');
 						playCard(c, GM.getPlayerIAm().getNumber());
 						GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
 					else{
 						Card c = GM.getPlayerIAm().getHand()[2];
+						GM.getPlayerIAm().setCard(2, '0', 'e');
 						GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
-					GM.getPlayerIAm().setCard(2, '0', 'e');
-					turnOver();
+					//GM.getPlayerIAm().setCard(2, '0', 'e');
+					//turnOver();
 				}else{
 					JOptionPane.showMessageDialog(null, "Please play on suit", "Invalid Play", JOptionPane.ERROR_MESSAGE);
 				}
@@ -936,15 +942,17 @@ public class GameBoard extends javax.swing.JFrame{
 					jButtonYourCard4.setIcon(picManager.getPicture('e','0'));
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[3];
+						GM.getPlayerIAm().setCard(3, '0', 'e');
 						playCard(c, GM.getPlayerIAm().getNumber());
 						GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
 					else{
 						Card c = GM.getPlayerIAm().getHand()[3];
+						GM.getPlayerIAm().setCard(3, '0', 'e');
 						GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
-					GM.getPlayerIAm().setCard(3, '0', 'e');
-					turnOver();
+					//GM.getPlayerIAm().setCard(3, '0', 'e');
+					//turnOver();
 				}else{
 					JOptionPane.showMessageDialog(null, "Please play on suit", "Invalid Play", JOptionPane.ERROR_MESSAGE);
 				}
@@ -977,15 +985,17 @@ public class GameBoard extends javax.swing.JFrame{
 					jButtonYourCard5.setIcon(picManager.getPicture('e','0'));
 					if(GM.isServer()){
 						Card c = GM.getPlayerIAm().getHand()[4];
+						GM.getPlayerIAm().setCard(4, '0', 'e');
 						playCard(c, GM.getPlayerIAm().getNumber());
 						GM.getServerNetworkManager().toClients("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
 					else{
 						Card c = GM.getPlayerIAm().getHand()[4];
+						GM.getPlayerIAm().setCard(4, '0', 'e');
 						GM.getClientNetworkManager().toServer("PlayCard,"+c.getCardValue()+c.getSuit()+","+GM.getPlayerIAm().getNumber());
 					}
-					GM.getPlayerIAm().setCard(4, '0', 'e');
-					turnOver();
+					//GM.getPlayerIAm().setCard(4, '0', 'e');
+					//turnOver();
 				}else{
 					JOptionPane.showMessageDialog(null, "Please play on suit", "Invalid Play", JOptionPane.ERROR_MESSAGE);
 				}
@@ -1236,10 +1246,12 @@ public class GameBoard extends javax.swing.JFrame{
 	public void playCard(Card c, int playerNumber){
 
 		played[cardsPlayed] = c;
-
+		
+		cardsPlayed++;
+		
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-
+		
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1252,54 +1264,51 @@ public class GameBoard extends javax.swing.JFrame{
 		else if(humanPlayer.getNumber() == playerNumber){
 			YourPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
-		if(cardsPlayed == 0){
+		if(cardsPlayed == 1){
 			int tmpCardVal = CardEvaluator.cardValue(getTrump(), c.getSuit(), c);
 			if (tmpCardVal >=7)
 				suitLed = getTrump();
 			else
 				suitLed = c.getSuit();
-
+			
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
 			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
 			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
-
+			
 		}
-		cardsPlayed++;
-
-		if (cardsPlayed == 4){
-
+		
+		if (cardsPlayed < 4){
+			if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
+			else if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
+			else if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
+			else if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
+		}
+		else if (cardsPlayed == 4){
+			
 			hand++;
-
-
-			//if(hand<=5){
-
+			
 			if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
-				System.out.println("(1) Player who led wins trick! " + playerWhoLed.getName());
 				if(playerWhoLed.getTeam()==1) oneTricks++;
 				else twoTricks++;
 				setPlayerTurn(playerWhoLed.getPlayerID());
 			}
 			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[1])) {
-				System.out.println("(2) Player " + (GM.nextPlayer(playerWhoLed)).getName() + " wins the trick!");
 				if((GM.nextPlayer(playerWhoLed)).getTeam()==1) oneTricks++;
 				else twoTricks++;
 				setPlayerTurn((GM.nextPlayer(playerWhoLed)).getPlayerID());
 			}
 			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[2])) {
-				//THIS IS WHERE THE PROBLEM IS!!!!
-				System.out.println("(3) Player " + (GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getName() + " wins the trick!");
 				if(GM.nextPlayer((GM.nextPlayer(playerWhoLed))).getTeam()==1) oneTricks++;
 				else twoTricks++;
 				setPlayerTurn((GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
 			}
 			else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
-				System.out.println("(4) Player " + (GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getName() + " wins the trick!");
 				if(GM.nextPlayer((GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getTeam()==1) oneTricks++;
 				else twoTricks++;
 				setPlayerTurn((GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getPlayerID());
 			}
-
+			
 			if(GM.getPlayerIAm().getTeam() == 1){
 				setWeTricks(oneTricks);
 				setTheyTricks(twoTricks);
@@ -1308,26 +1317,23 @@ public class GameBoard extends javax.swing.JFrame{
 				setWeTricks(twoTricks);
 				setTheyTricks(oneTricks);
 			}
-
-			//}
-
-
+			
 			if(hand>5){
-
+				
 				GM.interpretRound(oneTricks, twoTricks);				
 				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				GM.playRound();
-
+				
 			}
-
-
+			
+			
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
-
-
+			
+			
 		}
 
 	}
@@ -1533,7 +1539,7 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	public void turnOver(){
-		System.out.println("Played Cards: " + cardsPlayed);
+		//System.out.println(GM.getPlayerIAm().getName() + " sees " + cardsPlayed + " played cards");
 		if(cardsPlayed<4){
 			if(GM.getServerNetworkManager() != null){
 				GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
@@ -1547,7 +1553,6 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public void setPlayerTurn(int id){
 		if(GM.isServer()){
-
 			GM.setTurnPlayerID(id);
 			GM.getServerNetworkManager().toClients("SetPlayerTurn,"+id);
 		}
