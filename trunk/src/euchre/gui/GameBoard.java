@@ -114,6 +114,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 */
 
 	public GameBoard(){
+		
 		initComponents();
 		centerScreen();
 		hideSuitButtons();
@@ -123,6 +124,17 @@ public class GameBoard extends javax.swing.JFrame{
 		handButtons[2] = jButtonYourCard3;
 		handButtons[3] = jButtonYourCard4;
 		handButtons[4] = jButtonYourCard5;
+	}
+	
+	private void doTeamsLabels(){
+		int myTeam = GM.getPlayerIAm().getTeam();
+		if (myTeam == 1){
+			theyTeamNumberLabel.setText("2");
+			weTeamNumberLabel.setText("1");
+		}else{
+			theyTeamNumberLabel.setText("1");
+			weTeamNumberLabel.setText("2");
+		}
 	}
 
 	/**
@@ -240,6 +252,7 @@ public class GameBoard extends javax.swing.JFrame{
 			if(settingSuit)
 				hideSuitButtons();
 		}
+		doTeamsLabels();
 		/*
 		if(turnedCard.getSuit() != 'e' && !jButtonPickUp.isVisible() && pickUpPassed && !suitButtonsUsed){
 			showSuitButtons();
