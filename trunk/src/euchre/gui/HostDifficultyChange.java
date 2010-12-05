@@ -209,8 +209,10 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 				myLobby.setPlayer3Difficulty('e');
 			}else if(player3Medium.isSelected()){
 				myLobby.setPlayer3Difficulty('m');
-			}else{ //Difficulty == 'h'
+			}else if(player3Hard.isSelected()){
 				myLobby.setPlayer3Difficulty('h');
+			}else{
+				myLobby.setPlayer3Difficulty('x');
 			}
 		}
 		if (player4){
@@ -218,8 +220,10 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 				myLobby.setPlayer4Difficulty('e');
 			}else if(player4Medium.isSelected()){
 				myLobby.setPlayer4Difficulty('m');
-			}else{ //Difficulty == 'h'
+			}else if(player3Hard.isSelected()){
 				myLobby.setPlayer4Difficulty('h');
+			}else{
+				myLobby.setPlayer4Difficulty('x');
 			}
 		}
 		this.setVisible(false);
