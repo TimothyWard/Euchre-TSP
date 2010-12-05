@@ -48,15 +48,109 @@ public class EasyAI implements AI{
 		}
 		if (action.equals("Play Card")){
 			Card toPlay = playCard();
+			int cardNum = 0;
+			for (int i=0; i<5; i++){
+				if (toPlay.equals(hand[i])){
+					cardNum = i+1;
+				}
+			}
+			switch(cardNum){
+			case 1:
+				game.card1Clicked(null);
+				break;
+			case 2:
+				game.card2Clicked(null);
+				break;
+			case 3:
+				game.card3Clicked(null);
+				break;
+			case 4:
+				game.card4Clicked(null);
+				break;
+			default: //case 5:
+				game.card5Clicked(null);
+				break;
+			}
 		}else if (action.equals("Pick Up")){
-			
+			int cardNum = 1 + pickUp(game.getTurnedCard());
+			switch(cardNum){
+			case 1:
+				game.card1Clicked(null);
+				break;
+			case 2:
+				game.card2Clicked(null);
+				break;
+			case 3:
+				game.card3Clicked(null);
+				break;
+			case 4:
+				game.card4Clicked(null);
+				break;
+			default: //case 5:
+				game.card5Clicked(null);
+				break;
+			}
 		}else if (action.equals("Call Suit")){
-			
+			char suit = callSuit(game.getTurnedCard());
+			switch (suit){
+			case 'c':
+				game.clubsListener(null);
+				break;
+			case 'd':
+				game.diamondsListener(null);
+				break;
+			case 's':
+				game.spadesListener(null);
+				break;
+			case 'h':
+				game.heartsListener(null);
+				break;
+			default: //pass
+				game.suitPassListener(null);
+				break;
+			}
 		}else if (action.equals("Call Order Up")){
-			
+			boolean pickUp = orderUp(game.getTurnedCard());
+			if (pickUp){
+				game.pickItUpButtonClicked(null);
+			}else{
+				game.passButtonClicked(null);
+			}
 		}else if (action.equals("Stuck Dealer")){
-			
+			char suit = stickDealer(game.getTurnedCard());
+			switch (suit){
+			case 'c':
+				game.clubsListener(null);
+				break;
+			case 'd':
+				game.diamondsListener(null);
+				break;
+			case 's':
+				game.spadesListener(null);
+				break;
+			default: //case 'h':
+				game.heartsListener(null);
+				break;
+			}
 		}
+	}
+	
+	/**
+	 * Returns the index of the card to replace with the turned up card.
+	 * 
+	 * @param toPick The card to pick up.
+	 * 
+	 * @return The index of the card to replace with the turned up card.
+	 */
+	public int pickUp(Card toPick){
+		Card theCard = CardEvaluator.lowestCardInHand(toPick.getSuit(), toPick.getSuit(), hand);
+		int cardNum = 0;
+		for (int i=0; i<5; i++){
+			if (theCard.equals(hand[i])){
+				cardNum = i;
+			}
+		}
+		return cardNum;
 	}
 	
 	/**
