@@ -1,6 +1,5 @@
 package euchre.player;
 
-import euchre.network.ClientNetworkManager;
 
 /**
  * 
@@ -14,7 +13,7 @@ public interface AI extends Player{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn();
-	
+
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
@@ -93,7 +92,7 @@ public interface AI extends Player{
 	public int getNumber();
 
 	public void setNumber(int i);
-	
+
 	public void setCard(int number, char value, char suit);
 
 
