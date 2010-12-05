@@ -10,37 +10,37 @@ package euchre.player;
 public class Card{
 	char suit;		//h = hearts, s = spades, c = clubs, d = diamonds
 	char value;		// 9, 0 (0 = 10), a = ace, j = jack, q = queen, k = king
-	
+
 	/**
 	 * creates a card object with the value and suit indicated
 	 * 
 	 * @param cardSuit	suit of the card
 	 * @param cardValue	value on the card
 	 */
-	
+
 	public Card(char cardValue, char cardSuit){
 		suit = cardSuit;
 		value = cardValue;
 	}
-	
+
 	/**
 	 * retrieves suit of card (ie. h, s, c, d)
 	 * @return character representing suit of card
 	 */
-	
+
 	public char getSuit(){
 		return suit;
 	}
-	
+
 	/**
 	 * retrieves value on card (ie. a, 9, 0, j, q, k)
 	 * @return character representing value on card
 	 */
-	
+
 	public char getCardValue(){
 		return value;
 	}
-	
+
 	/**
 	 * 
 	 * @param c
@@ -49,7 +49,7 @@ public class Card{
 	public int compareTo(Card c){
 		int tempVal;
 		int compVal;
-		
+
 		if(value=='9'){
 			tempVal=9;
 		}
@@ -68,7 +68,7 @@ public class Card{
 		else{
 			tempVal=14;
 		}
-		
+
 		if(c.getCardValue()=='9'){
 			compVal=9;
 		}
@@ -87,9 +87,9 @@ public class Card{
 		else{
 			compVal=14;
 		}
-		
+
 		if(suit==c.getSuit()){
-			
+
 			if(tempVal>compVal){
 				return 1;
 			}
@@ -97,13 +97,13 @@ public class Card{
 				return -1;
 			}
 			else{
+				System.out.println("SOMETHING BROKE");
 				return 0;
 			}
-			
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Returns whether or not this card is equal to another.
 	 * 
@@ -118,7 +118,7 @@ public class Card{
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Returns a string representation of the card. In the format of "(value)+(suite)"
 	 * So the 9 of hearts is 9h.
