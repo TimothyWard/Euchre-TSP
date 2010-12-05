@@ -4,11 +4,7 @@ package euchre.network;
 import java.util.StringTokenizer;
 
 import euchre.game.Game;
-import euchre.player.Card;
-import euchre.player.GameManager;
-import euchre.player.Human;
-import euchre.player.MediumAI;
-import euchre.player.Player;
+import euchre.player.*;
 
 /**
  * @author mdhelgen
@@ -22,7 +18,7 @@ public class EuchreProtocol {
 	private ClientNetworkManager client;
 	private ServerNetworkManager server;
 	String connectedClients;
-	
+
 	boolean debug = true;
 
 	/**
@@ -57,8 +53,8 @@ public class EuchreProtocol {
 				int randomNum = Integer.parseInt(parser.nextToken());
 				if(debug)
 					System.out.println("Player: " + name);
-				
-				
+
+
 				if(connectedClients == null)
 					connectedClients = name + ","+ randomNum+","+type;
 				else{
@@ -70,67 +66,65 @@ public class EuchreProtocol {
 
 					}
 				}
-				
-				
+
+
 				try{
 					switch(numConnectedClients){
-						case 1:
-							manager.getLobby().setPlayer2Status(name);
-							break;
-						case 2:
-							manager.getLobby().setPlayer3Status(name);
-							break;
-						case 3:
-							manager.getLobby().setPlayer4Status(name);
-							break;
-				}
+					case 1:
+						manager.getLobby().setPlayer2Status(name);
+						break;
+					case 2:
+						manager.getLobby().setPlayer3Status(name);
+						break;
+					case 3:
+						manager.getLobby().setPlayer4Status(name);
+						break;
+					}
 				}
 				catch(NullPointerException e){
-					
-				}
-				
-				
-				
 
-			}
+				}
+
+			}			
+
 			else if(token.equals("SetPlayers")){
 				Player one;
 				Player two;
 				Player three;
 				Player four;
-				
+
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
 				String htype = parser.nextToken();
-				
+
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
 				String p1type = parser.nextToken();
-				
+
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
 				String p2type = parser.nextToken();
-				
+
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
 				String p3type = parser.nextToken();
-				
-				
+
+
 				if(htype.equalsIgnoreCase("human"))
 					one = new Human();
 				else
 					one = new MediumAI();
-				
+
 				if(p1type.equalsIgnoreCase("human"))
 					two = new Human();
 				else
 					two = new MediumAI();
-				
+
 				if(p2type.equalsIgnoreCase("human"))
 					three = new Human();
 				else					
 					three = new MediumAI();
-				
+
 				if(p3type.equalsIgnoreCase("human"))
 					four = new Human();
 				else 
@@ -144,7 +138,7 @@ public class EuchreProtocol {
 				four.setName(player3);
 				four.setPlayerID(p3ID);
 				manager.setAllPlayers(one, two, three, four);
-				
+
 				if(debug){
 					System.out.println("Player 1 name:" + manager.getp1().getName());
 					System.out.println("Player 2 name:" + manager.getp2().getName());
@@ -159,14 +153,14 @@ public class EuchreProtocol {
 				server.toClients("SetPlayers," + connectedClients);
 			}
 			else if(token.equals("SetNextPlayerTurn")){
-				
+
 				manager.setNextPlayerTurn();
 				server.toClients("SetNextPlayerTurn");
-				
+
 			}
 			else if(token.equals("SetPlayerTurn")){
 				int id = Integer.parseInt(parser.nextToken());
-			
+
 				manager.setTurnPlayerID(id);
 				server.toClients("SetPlayerTurn,"+id);
 			}
@@ -182,20 +176,20 @@ public class EuchreProtocol {
 			else if(token.equals("PlayCard")){
 				String card = parser.nextToken();
 				int playernum = Integer.parseInt(parser.nextToken());
-				
+
 				Card c = new Card(card.charAt(0), card.charAt(1));
 				manager.getGameBoard().playCard(c, playernum);
-				
+
 				server.toClients("PlayCard,"+card+","+playernum);
 
 			}
-			
-			
+
+
 			else{
-				
+
 				if(debug)
 					System.out.println("Undefined token: " + token);
-			
+
 			}
 
 
@@ -212,13 +206,13 @@ public class EuchreProtocol {
 	public void clientParse(String input){
 		String token;
 		StringTokenizer parser = new StringTokenizer(input,",");
-		
+
 		if(debug)
 			System.out.println("PARSING - " + input);
-		
+
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
-			
+
 			/**
 			 * 
 			 */
@@ -234,36 +228,36 @@ public class EuchreProtocol {
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
 				String htype = parser.nextToken();
-				
+
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
 				String p1type = parser.nextToken();
-				
+
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
 				String p2type = parser.nextToken();
-				
+
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
 				String p3type = parser.nextToken();
 
-				
-				
+
+
 				if(htype.equalsIgnoreCase("human"))
 					one = new Human();
 				else
 					one = new MediumAI();
-				
+
 				if(p1type.equalsIgnoreCase("human"))
 					two = new Human();
 				else
 					two = new MediumAI();
-				
+
 				if(p2type.equalsIgnoreCase("human"))
 					three = new Human();
 				else					
 					three = new MediumAI();
-				
+
 				if(p3type.equalsIgnoreCase("human"))
 					four = new Human();
 				else 
@@ -280,7 +274,19 @@ public class EuchreProtocol {
 				four.setPlayerID(p3ID);
 				manager.setAllPlayers(one, two, three, four);
 
-				
+
+			}
+			else if(token.equals("SetAIDifficulty")){
+				String AIName = parser.nextToken();
+				String difficulty = parser.nextToken();
+				if (AIName.equals(manager.getPlayerIAm().getName())){
+					if(difficulty.equals("e")) 
+						manager.setp1(new EasyAI());
+					if(difficulty.equals("m")) 
+						manager.setp1(new MediumAI());
+					if(difficulty.equals("h")) 
+						manager.setp1(new HardAI());
+				}
 			}
 			else if(token.equals("SetTeam")){
 				int player = Integer.parseInt(parser.nextToken());
@@ -295,8 +301,8 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("SetHand")){
 				int playernum = Integer.parseInt(parser.nextToken());
-	
-				
+
+
 				char cardvalue;
 				char cardsuit;
 				for(int i = 0;i < 5; i++)
@@ -313,7 +319,7 @@ public class EuchreProtocol {
 					if(playernum == 4)
 						manager.getPlayer4().setCard(i, cardvalue, cardsuit);
 				}
-				
+
 				Game.initializeGameBoard(manager.getGameBoard());
 			}
 			else if(token.equals("SetTurnedCard")){
@@ -327,13 +333,13 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("SetPlayerTurn")){
 				int id = Integer.parseInt(parser.nextToken());
-				
+
 				manager.setTurnPlayerID(id);
 			}
 			else if(token.equals("SetNextPlayerTurn")){
-					
+
 				manager.setNextPlayerTurn();
-				
+
 			}
 			else if(token.equals("SettingSuit")){
 				manager.getGameBoard().settingSuit();
@@ -349,7 +355,7 @@ public class EuchreProtocol {
 			else if(token.equals("PlayCard")){
 				String card = parser.nextToken();
 				int playernum = Integer.parseInt(parser.nextToken());
-				
+
 				Card c = new Card(card.charAt(0), card.charAt(1));
 				manager.getGameBoard().playCard(c, playernum);
 			}

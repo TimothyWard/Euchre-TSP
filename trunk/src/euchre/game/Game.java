@@ -260,7 +260,6 @@ public class Game {
 		//create new client and join network
 		ClientNetworkManager client = createNewClient(GM, "localhost");
 		client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
-		GM.getServerNetworkManager().getParser().serverParse("RegisterPlayer,Human,"+ computerName + "," + GM.getp1().getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
