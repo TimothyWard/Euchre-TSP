@@ -186,6 +186,8 @@ public class GameBoard extends javax.swing.JFrame{
 		twoTricks = 0;
 		setWeTricks(0);
 		setTheyTricks(0);
+		
+		updateBoard();
 	}
 
 	/**
@@ -226,6 +228,10 @@ public class GameBoard extends javax.swing.JFrame{
 		setRightPlayer(rightPlayer);
 		setBottomPlayer(humanPlayer);
 
+		jLabelTurn.setVisible(false);
+		jButtonPass.setVisible(false);
+		jButtonPickUp.setVisible(false);
+				
 		if(GM.isMyTurn()){
 			//JOptionPane.showMessageDialog(null, "Your Turn!  Play a card", "Your Turn", JOptionPane.INFORMATION_MESSAGE);
 			jLabelTurn.setVisible(true);
@@ -1604,6 +1610,11 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public int getTeamTwoTricks(){
 		return twoTricks;
+	}
+	
+
+	public GameManager getGM() {
+		return GM;
 	}
 
 	public Team getTeamWhoOrdered(){

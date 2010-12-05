@@ -304,7 +304,9 @@ public class Game {
 	 * @param GB The GameBoard.
 	 */
 	public static void initializeGameBoard(GameBoard GB){
-		GB.setVisible(true);
+		if (GB.getGM().getPlayerIAm().isHuman()){
+			GB.setVisible(true);
+		}
 		GB.updateBoard();
 	}
 }
