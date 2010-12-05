@@ -1276,15 +1276,12 @@ public class GameBoard extends javax.swing.JFrame{
 			
 			hand++;
 			
-//			try {
-//				Thread.sleep(2000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			System.out.println("Played Cards: " + played[0] + played[1] + played[2] + played[3]);
+			System.out.println("Played Cards: " + playedHand.getCardPlayed(0) + playedHand.getCardPlayed(1) + playedHand.getCardPlayed(2) + playedHand.getCardPlayed(3));
+			//System.out.println("Trick winnner:      " + tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).getTeamNumber() + "    TeamOne's number: " + GM.getTeamOne().getTeamNumber());
 			
-			if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamOne()) {
-				System.out.println("Team One Wins the trick!");
+			if(tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamOne())) {
+				System.out.println("TESTB Team One Wins the trick!");
 				oneTricks++;
 				if(GM.getPlayerIAm().getTeam() == 1){
 					setWeTricks(oneTricks);
@@ -1295,7 +1292,7 @@ public class GameBoard extends javax.swing.JFrame{
 					setTheyTricks(oneTricks);
 				}
 			}
-			else if(tabulator.interpretHand(trump, playedHand,GM.getTeamOne(),GM.getTeamTwo()) == GM.getTeamTwo()) {
+			else if(tabulator.interpretHand(trump, playedHand, GM.getTeamOne(), GM.getTeamTwo()).equals(GM.getTeamTwo())) {
 				System.out.println("Team Two wins the trick!");
 				twoTricks++;
 				if(GM.getPlayerIAm().getTeam() == 1){
@@ -1322,6 +1319,7 @@ public class GameBoard extends javax.swing.JFrame{
 				else if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[3])) {
 					this.setPlayerTurn(GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed))).getPlayerID());
 				}
+				
 			
 			}
 			else{
