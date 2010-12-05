@@ -149,8 +149,8 @@ public class GameManager {
 
 		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
-		server.toClients("SetPlayerTurn," + next);
 		server.toClients("SetDealerName," + dealer.getName());
+		server.toClients("SetPlayerTurn," + next);
 		setTurnPlayerID(next);
 		
 
