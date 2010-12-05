@@ -1,5 +1,7 @@
 package euchre.player;
 
+import java.awt.event.MouseEvent;
+
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -44,20 +46,134 @@ public class MediumAI implements AI{
 	public void makeTurn(){
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
+		MouseEvent fakeMouse = new MouseEvent(game, 0, 0, 0, 0, 0, 0, false);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}
 		if (action.equals("Play Card")){
 			Card toPlay = playCard();
+			int cardNum = 0;
+			for (int i=0; i<5; i++){
+				if (toPlay.equals(hand[i])){
+					cardNum = i+1;
+				}
+			}
+			switch(cardNum){
+			case 1:
+				game.card1Clicked(fakeMouse);
+				break;
+			case 2:
+				game.card2Clicked(null);
+				break;
+			case 3:
+				game.card3Clicked(null);
+				break;
+			case 4:
+				game.card4Clicked(null);
+				break;
+			default: //case 5:
+				game.card5Clicked(null);
+				break;
+			}
 		}else if (action.equals("Pick Up")){
-			
+			int cardNum = 1 + pickUp(game.getTurnedCard());
+			switch(cardNum){
+			case 1:
+				game.card1Clicked(null);
+				break;
+			case 2:
+				game.card2Clicked(null);
+				break;
+			case 3:
+				game.card3Clicked(null);
+				break;
+			case 4:
+				game.card4Clicked(null);
+				break;
+			default: //case 5:
+				game.card5Clicked(null);
+				break;
+			}
 		}else if (action.equals("Call Suit")){
-			
+			char suit = callSuit(game.getTurnedCard());
+			switch (suit){
+			case 'c':
+				game.clubsListener(null);
+				break;
+			case 'd':
+				game.diamondsListener(null);
+				break;
+			case 's':
+				game.spadesListener(null);
+				break;
+			case 'h':
+				game.heartsListener(null);
+				break;
+			default: //pass
+				game.suitPassListener(null);
+				break;
+			}
 		}else if (action.equals("Call Order Up")){
-			
+			boolean pickUp = orderUp(game.getTurnedCard());
+			if (pickUp){
+				game.pickItUpButtonClicked(null);
+			}else{
+				game.passButtonClicked(null);
+			}
 		}else if (action.equals("Stuck Dealer")){
-			
+			char suit = stickDealer(game.getTurnedCard());
+			switch (suit){
+			case 'c':
+				game.clubsListener(null);
+				break;
+			case 'd':
+				game.diamondsListener(null);
+				break;
+			case 's':
+				game.spadesListener(null);
+				break;
+			default: //case 'h':
+				game.heartsListener(null);
+				break;
+			}
 		}
+	}
+	
+	/**
+	 * Returns the index of the card to replace with the turned up card.
+	 * 
+	 * @param toPick The card to pick up.
+	 * 
+	 * @return The index of the card to replace with the turned up card.
+	 */
+	public int pickUp(Card toPick){
+		int numHeart = 0;
+		int numDiamond = 0;
+		int numSpade = 0;
+		int numClub = 0;
+		char tmpLed;
+		
+		numHeart = CardEvaluator.numberOfSuit('h', hand);
+		numDiamond = CardEvaluator.numberOfSuit('d', hand);
+		numSpade = CardEvaluator.numberOfSuit('s', hand);
+		numClub = CardEvaluator.numberOfSuit('c', hand);
+		
+		int max = Math.max(numHeart, numDiamond);
+		if(max==numHeart) tmpLed='h';
+		else tmpLed = 'd';
+		max = Math.max(numSpade, max);
+		if(max==numSpade) tmpLed = 's';
+		max = Math.max(numClub, max);
+		if(max==numClub) tmpLed = 'c';
+		
+		Card theCard = CardEvaluator.lowestCardInHand(toPick.getSuit(), tmpLed, hand);
+		int cardNum = 0;
+		for (int i=0; i<5; i++){
+			if (theCard.equals(hand[i])){
+				cardNum = i;
+			}
+		}
+		return cardNum;
 	}
 	
 	/**
