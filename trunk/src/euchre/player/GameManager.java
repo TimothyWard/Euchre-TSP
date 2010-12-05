@@ -25,9 +25,9 @@ public class GameManager {
 	private Team teamOne = new Team(null, null);
 	private Team teamTwo = new Team(null, null);
 	private char led;
+	private GameLobby lobby;
 	private boolean teamsComplete = false;
 	private GameBoard board;
-	private GameLobby lobby;
 	private ServerNetworkManager server = null;
 	private ClientNetworkManager client = null;
 	//private Round round = null;
@@ -122,12 +122,12 @@ public class GameManager {
 			player4.getHand()[i] = hand4[i];
 		}
 
-//		for(int i=0;i<5;i++){
-//			player1.drawCard(hand1[i]);
-//			player2.drawCard(hand2[i]);
-//			player3.drawCard(hand3[i]);
-//			player4.drawCard(hand4[i]);
-//		}
+		//		for(int i=0;i<5;i++){
+		//			player1.drawCard(hand1[i]);
+		//			player2.drawCard(hand2[i]);
+		//			player3.drawCard(hand3[i]);
+		//			player4.drawCard(hand4[i]);
+		//		}
 
 		upCard = deck.drawCard();
 		board.setTurnedCard(upCard);
@@ -522,14 +522,6 @@ public class GameManager {
 	//		board.setRound(round);
 	//	}
 
-	public GameLobby getLobby(){
-		return lobby;
-	}
-
-	public void setLobby(GameLobby gl){
-		lobby = gl;
-	}
-
 	public void setGameBoard(GameBoard gb){
 		board = gb;
 	}
@@ -628,6 +620,14 @@ public class GameManager {
 		board.setTrumpLabel(trump);
 		board.trumpSet();
 
+	}
+
+	public GameLobby getLobby() {
+		return lobby;
+	}
+
+	public void setLobby(GameLobby lobby) {
+		this.lobby = lobby;
 	}
 
 	public void setDealer(Player newDealer){
