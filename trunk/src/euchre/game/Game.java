@@ -67,7 +67,7 @@ public class Game {
 				createAIPlayer(GM, args[2], args[1]);
 			}
 		}
-		
+
 		//play the game
 		GM.playGame();
 		//wait for the game to end, then display the winner and exit
@@ -87,19 +87,33 @@ public class Game {
 
 		//if there are more than zero AIs, spawn up to three
 		try {
-			if (!(difficultyOfAIOne == 'x')){
-				String[] cmdarray1 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "Comp One"};
-				Runtime.getRuntime().exec(cmdarray1);
+			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "AI One"};
+			if (difficultyOfAIOne != 'x'){
+				Runtime.getRuntime().exec(cmdarray);
+				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI Two"};
+				cmdarray = cmdarray2;
 				Thread.sleep(250);
 			}
-			if (!(difficultyOfAITwo == 'x')){
-				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "Comp Two"};
-				Runtime.getRuntime().exec(cmdarray2);
+			if (difficultyOfAITwo != 'x'){
+				if (difficultyOfAIOne == 'x'){
+					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI One"};
+					cmdarray = cmdarray2;
+				}
+				Runtime.getRuntime().exec(cmdarray);
+				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Three"};
+				cmdarray = cmdarray2;
 				Thread.sleep(250);
 			}
-			if (!(difficultyOfAIThree == 'x')){
-				String[] cmdarray3 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "Comp Three"};
-				Runtime.getRuntime().exec(cmdarray3);
+			if (difficultyOfAIThree != 'x'){
+				if (difficultyOfAIOne == 'x' && difficultyOfAITwo == 'x'){
+					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI One"};
+					cmdarray = cmdarray2;
+				}
+				else if ((difficultyOfAIOne == 'x' && difficultyOfAITwo != 'x')  ||  (difficultyOfAIOne != 'x' && difficultyOfAITwo == 'x')){
+					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Two"};
+					cmdarray = cmdarray2;
+				}
+				Runtime.getRuntime().exec(cmdarray);
 			}
 			Thread.sleep(3500);			
 		} 
