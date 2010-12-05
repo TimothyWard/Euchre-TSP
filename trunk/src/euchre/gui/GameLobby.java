@@ -70,11 +70,11 @@ public class GameLobby extends javax.swing.JFrame{
         centerScreen();
         myManager = inManager;
         if (numberOfPlayers == 1){
-        	//setPlayer4Difficulty('m');
-        	//setPlayer3Difficulty('m');
+        	setPlayer4Difficulty('m');
+        	setPlayer3Difficulty('m');
         	numberOfAI = 2;
         }else if (numberOfPlayers == 2){
-        	//setPlayer4Difficulty('m');
+        	setPlayer4Difficulty('m');
         	numberOfAI = 1;
         }else{ //Number of players == 3
         	changeComputerDifficulty.setVisible(false);
