@@ -147,14 +147,12 @@ public class GameManager {
 		//		server.toClients("SetNewRound,");
 		//		board.newRound();
 
-
+		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetPlayerTurn," + next);
 		server.toClients("SetDealerName," + dealer.getName());
 		setTurnPlayerID(next);
-
-		if (playerIAm.isHuman()) board.setVisible(true);
-		board.updateBoard();
+		
 
 	}
 
