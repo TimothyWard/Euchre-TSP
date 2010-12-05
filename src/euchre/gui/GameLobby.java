@@ -22,8 +22,8 @@ public class GameLobby extends javax.swing.JFrame{
 	HostDifficultyChange myAIManager;
 	private GameManager myManager;
 	private int numberOfAI;
-    private char player3Difficulty;
-    private char player4Difficulty;
+    private char player3Difficulty = 'x';
+    private char player4Difficulty = 'x';
 	private int connectionsMade = 0;
 	private boolean setupComplete = false;
 	private String ip;
