@@ -82,11 +82,6 @@ public class GameManager {
 		//server.toClients("SetNewRound,");
 		board.newRound();
 
-		//deal();
-
-
-		//setTrump();
-
 	}
 
 
@@ -147,13 +142,13 @@ public class GameManager {
 		//		server.toClients("SetNewRound,");
 		//		board.newRound();
 
+		System.out.println("Player who leads:  " + nextPlayer(dealer).getName());
 		Game.initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetDealerName," + dealer.getName());
 		server.toClients("SetPlayerTurn," + next);
 		setTurnPlayerID(next);
 		
-
 	}
 
 
