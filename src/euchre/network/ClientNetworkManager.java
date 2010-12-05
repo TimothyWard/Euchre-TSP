@@ -111,31 +111,35 @@ public class ClientNetworkManager extends Thread{ // extends NetworkManager {   
 			if(connecting){
 
 
-				//create the new socket connection
+				// create the new socket connection
 				try {
 					clientSocket = new Socket(hostname, port);
+					
+				// if the host can't be resolved, break the loop and kill the thread
 				} catch (UnknownHostException e) {
+					
 					System.out.println("Unknown Host:" + hostname);
 					running = false;
+					break; //while(true) loop breaks, thread finishes
 					
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
+				// host does not exist yet
 				} catch (IOException e) {
 					System.out.println("Connection refused, retry in 5 seconds");
 					running = false;
 					try {
+						// wait for 5 seconds
 						Thread.sleep(5000);
+						
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
+					//restart the while loop
 					continue;
 				}
 
 				running = true;
 				isConnected = true;
+				
 				//get reference to the output stream
 				try {
 					out = new PrintWriter(clientSocket.getOutputStream(), true);
