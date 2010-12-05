@@ -100,13 +100,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setplayer2Difficulty(char difficulty){
        if (difficulty == 'e'){
     	   player2Difficulty = 'e';
-    	   Player2Status.setText("Comp One: Difficulty: Easy");
+    	   Player2Status.setText("AI One: Difficulty: Easy");
        }else if (difficulty == 'm'){
     	   player2Difficulty = 'm';
-    	   Player2Status.setText("Comp One: Difficulty: Medium");
+    	   Player2Status.setText("AI One: Difficulty: Medium");
        }else if (difficulty == 'h'){
     	   player2Difficulty = 'h';
-    	   Player2Status.setText("Comp One: Difficulty: Hard");
+    	   Player2Status.setText("AI One: Difficulty: Hard");
        }
     }
 
@@ -117,13 +117,13 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Difficulty(char difficulty){
     	if (difficulty == 'e'){
      	   player3Difficulty = 'e';
-     	  Player3Status.setText("Comp Two: Difficulty: Easy");
+     	  Player3Status.setText("AI Two: Difficulty: Easy");
         }else if (difficulty == 'm'){
      	   player3Difficulty = 'm';
-     	   Player3Status.setText("Comp Two: Difficulty: Medium");
+     	   Player3Status.setText("AI Two: Difficulty: Medium");
         }else if (difficulty == 'h'){
      	   player3Difficulty = 'h';
-     	  Player3Status.setText("Comp Two: Difficulty: Hard");
+     	  Player3Status.setText("AI Two: Difficulty: Hard");
         }
     }
 
@@ -446,7 +446,7 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer2Status(String status){
         Player2Status.setText(status);
         connectionsMade++;
-        if (status == "Comp One"){
+        if (status.equals("AI One")){
         	setplayer2Difficulty('m');
         }
         if(connectionsMade >= 3){
@@ -466,7 +466,7 @@ public class GameLobby extends javax.swing.JFrame{
     public void setPlayer3Status(String status){
         Player3Status.setText(status);
         connectionsMade++;
-        if (status == "Comp One"){
+        if (status.equals("AI Two")){
         	setPlayer3Difficulty('m');
         }
         if(connectionsMade >= 3){
