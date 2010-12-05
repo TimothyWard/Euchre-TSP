@@ -126,6 +126,9 @@ public class GameBoard extends javax.swing.JFrame{
 		handButtons[4] = jButtonYourCard5;
 	}
 	
+	/**
+	 * Updates the Numbers on the side of the team labels so bottom left is your team, and top right is enemy team.
+	 */
 	private void doTeamsLabels(){
 		int myTeam = GM.getPlayerIAm().getTeam();
 		if (myTeam == 1){
