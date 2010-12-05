@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 import javax.swing.JOptionPane;
 import euchre.player.GameManager;
 
