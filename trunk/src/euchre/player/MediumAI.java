@@ -46,7 +46,6 @@ public class MediumAI implements AI{
 	public void makeTurn(){
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
-		MouseEvent fakeMouse = new MouseEvent(game, 0, 0, 0, 0, 0, 0, false);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}
@@ -60,7 +59,7 @@ public class MediumAI implements AI{
 			}
 			switch(cardNum){
 			case 1:
-				game.card1Clicked(fakeMouse);
+				game.card1Clicked(null);
 				break;
 			case 2:
 				game.card2Clicked(null);
