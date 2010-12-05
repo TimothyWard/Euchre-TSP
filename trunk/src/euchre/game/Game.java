@@ -171,8 +171,7 @@ public class Game {
 		while (hostSetup.getGameLobby() == null || hostSetup.getGameLobby().setupComplete() == false) Thread.sleep(500);
 
 		//initialize the host's game board
-		if (GB.getGM().getPlayerIAm().isHuman()) GB.setVisible(true);
-		GB.updateBoard();
+		initializeGameBoard(GB);
 
 		//spawn client game boards
 		server.toClients("SpawnGameBoard");
@@ -213,8 +212,7 @@ public class Game {
 		server.toClients("SetTeam,4,2");
 
 		//initialize the host game board
-		if (GB.getGM().getPlayerIAm().isHuman()) GB.setVisible(true);
-		GB.updateBoard();
+		initializeGameBoard(GB);
 
 		//wait half a second for the ai's to finish spawning, then spawn the client game boards
 		server.toClients("SpawnGameBoard");
@@ -224,6 +222,7 @@ public class Game {
 	 * This method will create a client object.
 	 * 
 	 * @param GM The GameManager object for the network and to pass the new client to.
+	 * @param GUI The welcome window for user input.
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	private static void createClientPlayer(GameManager GM) throws InterruptedException{
@@ -285,5 +284,18 @@ public class Game {
 		client.start();
 		Thread.sleep(500);
 		return client;
+	}
+
+	/**
+	 * This method initializes the GameBoard.
+	 * 
+	 * @param GM The GameManager.
+	 * @param GB The GameBoard.
+	 */
+	public static void initializeGameBoard(GameBoard GB){
+		//if (GB.getGM().getPlayerIAm().isHuman()){
+		GB.setVisible(true);
+		//}
+		GB.updateBoard();
 	}
 }
