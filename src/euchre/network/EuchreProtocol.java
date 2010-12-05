@@ -341,6 +341,9 @@ public class EuchreProtocol {
 			else if(token.equals("SetNextPlayerTurn")){
 
 				manager.setNextPlayerTurn();
+				if(!manager.getPlayerIAm().isHuman()){
+					((AI) (manager.getPlayerIAm())).makeTurn();
+				}
 
 			}
 			else if(token.equals("SettingSuit")){
