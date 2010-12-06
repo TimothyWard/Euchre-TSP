@@ -77,10 +77,10 @@ public class GameManager {
 		//			System.out.println("Team Two Wins!");
 		//			System.exit(0);
 		//		}
-
+		board.newRound();
 		if(server!=null) deal();
 		//server.toClients("SetNewRound,");
-		board.newRound();
+		//board.newRound();
 
 	}
 
@@ -142,6 +142,7 @@ public class GameManager {
 		//		server.toClients("SetNewRound,");
 		//		board.newRound();
 
+		System.out.println("Dealer:  " + dealer.getName());
 		System.out.println("Player who leads:  " + nextPlayer(dealer).getName());
 		initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
@@ -281,7 +282,6 @@ public class GameManager {
 		p2=client1;
 		p3=client2;
 		p4=client3;
-
 	}
 
 	/**
