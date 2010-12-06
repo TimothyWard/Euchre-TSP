@@ -138,6 +138,10 @@ public class EuchreProtocol {
 
 			}
 
+			else if(token.equals("SettingSuit")){
+				manager.getGameBoard().settingSuit();
+			}
+			
 			else if(token.equals("SendPlayerList"))
 			{
 				server.toClients("SetPlayers," + connectedClients);
