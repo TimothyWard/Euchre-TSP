@@ -52,21 +52,22 @@ public class Game {
 				String computerName = args[2];
 				String difficulty = args[1];
 
+				//create new client and join network
+				ClientNetworkManager client = createNewClient(GM, "localhost");
+				
 				//make a new AI
-				AI computer = new MediumAI();
+				AI computer = new MediumAI(client);
 
 				//make a new game board and a new human to pass to the game manager
-				if (difficulty == "e") computer = new EasyAI();
-				else if (difficulty == "m") computer = new MediumAI();
-				else if (difficulty == "h") computer = new HardAI();
+				if (difficulty == "e") computer = new EasyAI(client);
+				else if (difficulty == "m") computer = new MediumAI(client);
+				else if (difficulty == "h") computer = new HardAI(client);
 				GameBoard GB = new GameBoard();
 				GB.setGameManager(GM);
 				GM.setGameBoard(GB);
 				GM.newPlayer(computer);
 				computer.setName(computerName);
-
-				//create new client and join network
-				ClientNetworkManager client = createNewClient(GM, "localhost");
+				
 				client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
 
 				//wait for everyone to join before continuing
