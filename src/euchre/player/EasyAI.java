@@ -1,11 +1,5 @@
 package euchre.player;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-
-import javax.swing.JOptionPane;
-
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -45,6 +39,14 @@ public class EasyAI implements AI{
 	public void makeTurn(){
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
+		played = new Card[3];
+		Card []tmpPlayed = game.getPlayed();
+		if (tmpPlayed[0]!=null)
+			played[0] = tmpPlayed[0];
+		if (tmpPlayed[0]!=null)
+			played[1] = tmpPlayed[1];
+		if (tmpPlayed[0]!=null)
+			played[2] = tmpPlayed[2];
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}

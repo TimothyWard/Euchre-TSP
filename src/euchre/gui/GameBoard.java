@@ -1615,6 +1615,10 @@ public class GameBoard extends javax.swing.JFrame{
 		return oneTricks;
 	}
 
+	public Card[] getPlayed() {
+		return played;
+	}
+	
 	public int getTeamTwoTricks(){
 		return twoTricks;
 	}
