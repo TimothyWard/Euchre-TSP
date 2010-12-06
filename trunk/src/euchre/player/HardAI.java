@@ -32,24 +32,10 @@ public class HardAI implements AI{
 
 
 	public HardAI(ClientNetworkManager client){
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.flush();
 		clientManager = client;
 	}
 
 	public HardAI(ClientNetworkManager client, String name2) {
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.flush();
 		name = name2;
 		clientManager = client;
 	}
@@ -58,10 +44,8 @@ public class HardAI implements AI{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
-		JOptionPane.showMessageDialog(null, "hard", "", JOptionPane.ERROR_MESSAGE);
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
-		JOptionPane.showMessageDialog(null, "Action needed: '" + action + "'", "Hard AI", JOptionPane.ERROR_MESSAGE);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}
