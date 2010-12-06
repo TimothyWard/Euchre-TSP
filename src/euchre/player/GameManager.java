@@ -155,19 +155,6 @@ public class GameManager {
 	}
 
 	/**
-	 * Adds a host and three client players for a local only game. 
-	 * 
-	 * @param p The AI player that is going to be a client in the game. 
-	 * @param p The AI player that is going to be a client in the game. 
-	 * @param p The AI player that is going to be a client in the game. 
-	 */
-	public void setLocalPlayers(Player playerOne, Player playerTwo, Player playerThree){
-		p1=playerOne;
-		p2=playerTwo;
-		p3=playerThree;
-	}
-
-	/**
 	 * Sets the given player on the given team
 	 * @param player The number of the player
 	 * @param team The team to put that player on
@@ -251,7 +238,7 @@ public class GameManager {
 		else if(teamOneTricks < 3 && board.getTeamWhoOrdered().equals(teamOne)) TeamTwoScore+=2;
 		else if(teamTwoTricks < 3 && board.getTeamWhoOrdered().equals(teamTwo)) TeamOneScore+=2;
 		else System.out.println("ERROR: THE ROUND WINNER WAS NOT CORRECTLY DETERMINED");
-		
+
 
 		if(teamOne.getPlayerOne().equals(playerIAm) || teamOne.getPlayerTwo().equals(playerIAm)){
 			board.setWePoints(TeamOneScore);
@@ -416,5 +403,24 @@ public class GameManager {
 
 	public Team getTeamTwo(){
 		return teamTwo;
+	}
+	public void setPlayerIAm(Player p){
+		if (p1.equals(playerIAm)){
+			p1 = p;
+			p1.setPlayerID(playerIAm.getPlayerID());
+		}
+		if (p2.equals(playerIAm)){
+			p2 = p;
+			p1.setPlayerID(playerIAm.getPlayerID());
+		}
+		if (p3.equals(playerIAm)){
+			p3 = p;
+			p1.setPlayerID(playerIAm.getPlayerID());
+		}
+		if (p4.equals(playerIAm)){
+			p4 = p;
+			p1.setPlayerID(playerIAm.getPlayerID());
+		}
+		playerIAm = p;
 	}
 }

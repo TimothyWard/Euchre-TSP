@@ -17,7 +17,7 @@ public class GameLobby extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
 
-	HostDifficultyChange myAIManager;
+	HostDifficultyChange myAIManager = null;
 	private GameManager myManager;
 	private int numberOfAI;
 	private char player2Difficulty = 'x';
@@ -68,10 +68,12 @@ public class GameLobby extends javax.swing.JFrame{
 		centerScreen();
 		myManager = inManager;
 		if (numberOfPlayers == 1){
+			changeComputerDifficulty.setEnabled(false);
 			player2Difficulty = 'm';
 			player3Difficulty = 'm';
 			numberOfAI = 2;
 		}else if (numberOfPlayers == 2){
+			changeComputerDifficulty.setEnabled(false);
 			player2Difficulty = 'm';
 			numberOfAI = 1;
 		}else{ //Number of players == 3
@@ -428,8 +430,10 @@ public class GameLobby extends javax.swing.JFrame{
 	 * @param evt The button-click that starts the event.
 	 */
 	private void changeAIDifficulty(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeAIDifficulty
-		myAIManager = new HostDifficultyChange(this, numberOfAI);
-		myAIManager.setVisible(true);
+		if (changeComputerDifficulty.isEnabled()){
+			myAIManager = new HostDifficultyChange(this, numberOfAI);
+			myAIManager.setVisible(true);
+		}
 	}//GEN-LAST:event_changeAIDifficulty
 
 	/**
@@ -449,6 +453,7 @@ public class GameLobby extends javax.swing.JFrame{
 		}
 		if(connectionsMade >= 3){
 			startGame.setEnabled(true);
+			changeComputerDifficulty.setEnabled(true);
 		}
 	}
 
@@ -469,6 +474,7 @@ public class GameLobby extends javax.swing.JFrame{
 		}
 		if(connectionsMade >= 3){
 			startGame.setEnabled(true);
+			changeComputerDifficulty.setEnabled(true);
 		}
 	}
 
@@ -486,6 +492,7 @@ public class GameLobby extends javax.swing.JFrame{
 		connectionsMade++;
 		if(connectionsMade >= 3){
 			startGame.setEnabled(true);
+			changeComputerDifficulty.setEnabled(true);
 		}
 	}
 

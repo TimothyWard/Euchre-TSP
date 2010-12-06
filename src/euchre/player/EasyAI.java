@@ -30,23 +30,6 @@ public class EasyAI implements AI{
 	private int playerID = (int)(Math.random()*5000000);
 
 
-	public EasyAI(){
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.println("YOU FUCKED UP");
-		System.out.flush();
-	
-	}
-
-	/**
-	 * AI constructor with a reference to the client network interface
-	 * 
-	 * @param client Reference to the network interface
-	 */
 	public EasyAI(ClientNetworkManager client){
 		try{
 			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
@@ -55,6 +38,18 @@ public class EasyAI implements AI{
 			t.printStackTrace();
 		}
 		System.out.flush();
+		clientManager = client;
+	}
+
+	public EasyAI(ClientNetworkManager client, String name2) {
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.flush();
+		name = name2;
 		clientManager = client;
 	}
 

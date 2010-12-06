@@ -14,6 +14,7 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 	boolean player2 = false; //whether or not the difficulties for player 3 are adjustable (because it is a AI).
 	boolean player3 = false; //whether or not the difficulties for player 4 are adjustable (because it is a AI).
 
+
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton applyDifficulties;
 	private javax.swing.JLabel player2Difficulty;

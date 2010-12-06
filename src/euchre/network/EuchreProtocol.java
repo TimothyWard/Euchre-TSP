@@ -41,20 +41,21 @@ public class EuchreProtocol {
 			if(token.equals("RegisterPlayer")){
 				String type = parser.nextToken();
 				String name = parser.nextToken();
+				String difficulty = parser.nextToken();
 				int randomNum = Integer.parseInt(parser.nextToken());
+
 				if(debug)
 					System.out.println("Player: " + name);
 
 
 				if(connectedClients == null)
-					connectedClients = name + ","+ randomNum+","+type;
+					connectedClients = name + ","+ randomNum+","+type+","+difficulty;
 				else{
-					connectedClients = connectedClients +"," +name + "," + randomNum+","+type;
+					connectedClients = connectedClients +"," +name + "," + randomNum+","+type+","+difficulty;
 					numConnectedClients++;
 					if(numConnectedClients == 3){
 						server.toClients("SetPlayers,"+connectedClients);
 						serverParse("SetPlayers,"+connectedClients);
-
 					}
 				}
 
@@ -87,39 +88,44 @@ public class EuchreProtocol {
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
 				String htype = parser.nextToken();
+				String dif1 = parser.nextToken();
 
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
 				String p1type = parser.nextToken();
+				String dif2 = parser.nextToken();
 
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
 				String p2type = parser.nextToken();
+				String dif3 = parser.nextToken();
 
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
 				String p3type = parser.nextToken();
+				String dif4 = parser.nextToken();
 
 
-				if(htype.equalsIgnoreCase("human"))
-					one = new Human();
-				else
-					one = new MediumAI(manager.getClientNetworkManager());
+				if(htype.equalsIgnoreCase("human")) one = new Human();
+				else if (dif1.equals("e")) one = new EasyAI(manager.getClientNetworkManager());
+				else if (dif1.equals("m")) one = new MediumAI(manager.getClientNetworkManager());
+				else one = new HardAI(manager.getClientNetworkManager());
 
-				if(p1type.equalsIgnoreCase("human"))
-					two = new Human();
-				else
-					two = new MediumAI(manager.getClientNetworkManager());
+				if(p1type.equalsIgnoreCase("human")) two = new Human();
+				else if (dif2.equals("e")) two = new EasyAI(manager.getClientNetworkManager());
+				else if (dif2.equals("m")) two = new MediumAI(manager.getClientNetworkManager());
+				else two = new HardAI(manager.getClientNetworkManager());
 
-				if(p2type.equalsIgnoreCase("human"))
-					three = new Human();
-				else					
-					three = new MediumAI(manager.getClientNetworkManager());
+				if(p2type.equalsIgnoreCase("human")) three = new Human();
+				else if (dif3.equals("e")) three = new EasyAI(manager.getClientNetworkManager());
+				else if (dif3.equals("m")) three = new MediumAI(manager.getClientNetworkManager());
+				else three = new HardAI(manager.getClientNetworkManager());
 
-				if(p3type.equalsIgnoreCase("human"))
-					four = new Human();
-				else 
-					four = new MediumAI(manager.getClientNetworkManager());
+				if(p3type.equalsIgnoreCase("human")) four = new Human();
+				else if (dif4.equals("e")) four = new EasyAI(manager.getClientNetworkManager());
+				else if (dif4.equals("m")) four = new MediumAI(manager.getClientNetworkManager());
+				else four = new HardAI(manager.getClientNetworkManager());
+
 				one.setName(host);
 				one.setPlayerID(hostID);
 				two.setName(player1);
@@ -142,7 +148,7 @@ public class EuchreProtocol {
 			else if(token.equals("SettingSuit")){
 				manager.getGameBoard().settingSuit();
 			}
-			
+
 			else if(token.equals("SendPlayerList"))
 			{
 				server.toClients("SetPlayers," + connectedClients);
@@ -214,55 +220,52 @@ public class EuchreProtocol {
 		while(parser.hasMoreTokens()){
 			token = parser.nextToken();
 
-			/**
-			 * 
-			 */
 			if(token.equals("SetPlayers")){
 				Player one;
 				Player two;
 				Player three;
 				Player four;
 
-
-
-
 				String host = parser.nextToken();
 				int hostID = Integer.parseInt(parser.nextToken());
 				String htype = parser.nextToken();
+				String dif1 = parser.nextToken();
 
 				String player1 = parser.nextToken();
 				int p1ID = Integer.parseInt(parser.nextToken());
 				String p1type = parser.nextToken();
+				String dif2 = parser.nextToken();
 
 				String player2 = parser.nextToken();
 				int p2ID = Integer.parseInt(parser.nextToken());
 				String p2type = parser.nextToken();
+				String dif3 = parser.nextToken();
 
 				String player3 = parser.nextToken();
 				int p3ID = Integer.parseInt(parser.nextToken());
 				String p3type = parser.nextToken();
+				String dif4 = parser.nextToken();
 
 
+				if(htype.equalsIgnoreCase("human")) one = new Human();
+				else if (dif1.equals("e")) one = new EasyAI(manager.getClientNetworkManager());
+				else if (dif1.equals("m")) one = new MediumAI(manager.getClientNetworkManager());
+				else one = new HardAI(manager.getClientNetworkManager());
 
-				if(htype.equalsIgnoreCase("human"))
-					one = new Human();
-				else
-					one = new MediumAI(manager.getClientNetworkManager());
+				if(p1type.equalsIgnoreCase("human")) two = new Human();
+				else if (dif2.equals("e")) two = new EasyAI(manager.getClientNetworkManager());
+				else if (dif2.equals("m")) two = new MediumAI(manager.getClientNetworkManager());
+				else two = new HardAI(manager.getClientNetworkManager());
 
-				if(p1type.equalsIgnoreCase("human"))
-					two = new Human();
-				else
-					two = new MediumAI(manager.getClientNetworkManager());
+				if(p2type.equalsIgnoreCase("human")) three = new Human();
+				else if (dif3.equals("e")) three = new EasyAI(manager.getClientNetworkManager());
+				else if (dif3.equals("m")) three = new MediumAI(manager.getClientNetworkManager());
+				else three = new HardAI(manager.getClientNetworkManager());
 
-				if(p2type.equalsIgnoreCase("human"))
-					three = new Human();
-				else					
-					three = new MediumAI(manager.getClientNetworkManager());
-
-				if(p3type.equalsIgnoreCase("human"))
-					four = new Human();
-				else 
-					four = new MediumAI(manager.getClientNetworkManager());
+				if(p3type.equalsIgnoreCase("human")) four = new Human();
+				else if (dif4.equals("e")) four = new EasyAI(manager.getClientNetworkManager());
+				else if (dif4.equals("m")) four = new MediumAI(manager.getClientNetworkManager());
+				else four = new HardAI(manager.getClientNetworkManager());
 
 
 				one.setName(host);
@@ -276,17 +279,16 @@ public class EuchreProtocol {
 				manager.setAllPlayers(one, two, three, four);
 
 
-			}
-			else if(token.equals("SetAIDifficulty")){
+			}else if(token.equals("AIDifficultyChange")){
 				String AIName = parser.nextToken();
 				String difficulty = parser.nextToken();
 				if (AIName.equals(manager.getPlayerIAm().getName())){
 					if(difficulty.equals("e")) 
-						manager.setp1(new EasyAI(manager.getClientNetworkManager()));
+						manager.setPlayerIAm(new EasyAI(manager.getClientNetworkManager(),manager.getPlayerIAm().getName()));
 					if(difficulty.equals("m")) 
-						manager.setp1(new MediumAI(manager.getClientNetworkManager()));
+						manager.setPlayerIAm(new MediumAI(manager.getClientNetworkManager(),manager.getPlayerIAm().getName()));
 					if(difficulty.equals("h")) 
-						manager.setp1(new HardAI(manager.getClientNetworkManager()));
+						manager.setPlayerIAm(new HardAI(manager.getClientNetworkManager(),manager.getPlayerIAm().getName()));
 				}
 			}
 			else if(token.equals("SetTeam")){
@@ -344,7 +346,7 @@ public class EuchreProtocol {
 				if (!manager.getPlayerIAm().isHuman()){
 					manager.getPlayerIAm().makeTurn();
 				}
-			
+
 			}
 			else if(token.equals("SetNextPlayerTurn")){
 
