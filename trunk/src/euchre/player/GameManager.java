@@ -120,9 +120,9 @@ public class GameManager {
 	 * @param GB The GameBoard.
 	 */
 	public void initializeGameBoard(GameBoard GB){
-		//if (GB.getGM().getPlayerIAm().isHuman()){
-		GB.setVisible(true);
-		//}
+		if (GB.getGM().getPlayerIAm().isHuman()){
+			GB.setVisible(true);
+		}
 		GB.updateBoard();
 	}
 
