@@ -1,9 +1,12 @@
 package euchre.player;
 
-import java.awt.event.MouseEvent;
+import java.io.*;
+
+import javax.swing.JOptionPane;
 
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
+
 
 /**
  * 
@@ -28,9 +31,9 @@ public class MediumAI implements AI{
 
 
 	public MediumAI(){
-		
+
 	}
-	
+
 	/**
 	 * AI constructor with a reference to the client network interface
 	 * 
@@ -44,11 +47,20 @@ public class MediumAI implements AI{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
+
+		System.out.println("Tester");
+		System.out.println(clientManager);
+		System.out.println(clientManager.getGameManager());
+		System.out.println(clientManager.getGameManager().getGameBoard());
 		GameBoard game = clientManager.getGameManager().getGameBoard();
+		System.out.println(game);
+		JOptionPane.showMessageDialog(null, "medium", "", JOptionPane.ERROR_MESSAGE);
 		String action = game.whatToDo();
+		JOptionPane.showMessageDialog(null, "Action needed: '" + action + "'", "Medium AI", JOptionPane.ERROR_MESSAGE);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}
+
 		if (action.equals("Play Card")){
 			Card toPlay = playCard();
 			int cardNum = 0;
@@ -136,8 +148,11 @@ public class MediumAI implements AI{
 				break;
 			}
 		}
+
 	}
-	
+
+
+
 	/**
 	 * Returns the index of the card to replace with the turned up card.
 	 * 
@@ -151,12 +166,12 @@ public class MediumAI implements AI{
 		int numSpade = 0;
 		int numClub = 0;
 		char tmpLed;
-		
+
 		numHeart = CardEvaluator.numberOfSuit('h', hand);
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
 		numClub = CardEvaluator.numberOfSuit('c', hand);
-		
+
 		int max = Math.max(numHeart, numDiamond);
 		if(max==numHeart) tmpLed='h';
 		else tmpLed = 'd';
@@ -164,7 +179,7 @@ public class MediumAI implements AI{
 		if(max==numSpade) tmpLed = 's';
 		max = Math.max(numClub, max);
 		if(max==numClub) tmpLed = 'c';
-		
+
 		Card theCard = CardEvaluator.lowestCardInHand(toPick.getSuit(), tmpLed, hand);
 		int cardNum = 0;
 		for (int i=0; i<5; i++){
@@ -173,8 +188,9 @@ public class MediumAI implements AI{
 			}
 		}
 		return cardNum;
+
 	}
-	
+
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
@@ -282,7 +298,7 @@ public class MediumAI implements AI{
 				else{
 					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 				}
-				
+
 				//If the card to be played (playCard) will not beat the current winning card, play the lowest card in hand
 				if(CardEvaluator.cardValue(trump, led.getSuit(), playCard) < CardEvaluator.cardValue(trump, led.getSuit(), CardEvaluator.highestCardInHand(trump, led.getSuit(), played))){
 					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
@@ -365,7 +381,7 @@ public class MediumAI implements AI{
 		int numDiamond = 0;
 		int numSpade = 0;
 		int numClub = 0;
-		
+
 		numHeart = CardEvaluator.numberOfSuit('h', hand);
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
@@ -430,12 +446,12 @@ public class MediumAI implements AI{
 	 */
 	@Override
 	public char stickDealer(Card turnedDown) {
-		
+
 		int numHeart = 0;
 		int numDiamond = 0;
 		int numSpade = 0;
 		int numClub = 0;
-		
+
 		numHeart = CardEvaluator.numberOfSuit('h', hand);
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
@@ -454,7 +470,7 @@ public class MediumAI implements AI{
 			numClub = 0;
 			break;
 		}
-		
+
 		int max = Math.max(numHeart, numDiamond);
 		if(max==numHeart) trump='h';
 		else trump = 'd';
@@ -529,7 +545,7 @@ public class MediumAI implements AI{
 	public void setNumber(int i) {
 		playerNumber = i;
 	}
-	
+
 	public void setCard(int number, char value, char suit){
 		hand[number] = new Card(value, suit);
 	}

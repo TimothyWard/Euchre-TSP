@@ -1,5 +1,7 @@
 package euchre.player;
 
+import javax.swing.JOptionPane;
+
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -41,8 +43,10 @@ public class EasyAI implements AI{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
+		JOptionPane.showMessageDialog(null, "easy","", JOptionPane.ERROR_MESSAGE);
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
+		JOptionPane.showMessageDialog(null, "Action needed: '" + action + "'", "Easy AI", JOptionPane.ERROR_MESSAGE);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}

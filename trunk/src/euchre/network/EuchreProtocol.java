@@ -1,5 +1,6 @@
 package euchre.network;
 import java.util.StringTokenizer;
+
 import euchre.player.*;
 
 /**
@@ -275,11 +276,11 @@ public class EuchreProtocol {
 				String difficulty = parser.nextToken();
 				if (AIName.equals(manager.getPlayerIAm().getName())){
 					if(difficulty.equals("e")) 
-						manager.setp1(new EasyAI());
+						manager.setp1(new EasyAI(manager.getClientNetworkManager()));
 					if(difficulty.equals("m")) 
-						manager.setp1(new MediumAI());
+						manager.setp1(new MediumAI(manager.getClientNetworkManager()));
 					if(difficulty.equals("h")) 
-						manager.setp1(new HardAI());
+						manager.setp1(new HardAI(manager.getClientNetworkManager()));
 				}
 			}
 			else if(token.equals("SetTeam")){
@@ -329,15 +330,16 @@ public class EuchreProtocol {
 				int id = Integer.parseInt(parser.nextToken());
 
 				manager.setTurnPlayerID(id);
-				if(!manager.getPlayerIAm().isHuman()){
-					((AI) (manager.getPlayerIAm())).makeTurn();
+				if (!manager.getPlayerIAm().isHuman()){
+					manager.getPlayerIAm().makeTurn();
 				}
+			
 			}
 			else if(token.equals("SetNextPlayerTurn")){
 
 				manager.setNextPlayerTurn();
-				if(!manager.getPlayerIAm().isHuman()){
-					((AI) (manager.getPlayerIAm())).makeTurn();
+				if (!manager.getPlayerIAm().isHuman()){
+					manager.getPlayerIAm().makeTurn();
 				}
 
 			}
