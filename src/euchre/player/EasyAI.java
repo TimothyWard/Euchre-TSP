@@ -1,5 +1,9 @@
 package euchre.player;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import javax.swing.JOptionPane;
 
 import euchre.gui.GameBoard;
@@ -27,7 +31,15 @@ public class EasyAI implements AI{
 
 
 	public EasyAI(){
-
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.println("YOU FUCKED UP");
+		System.out.flush();
+	
 	}
 
 	/**
@@ -36,6 +48,13 @@ public class EasyAI implements AI{
 	 * @param client Reference to the network interface
 	 */
 	public EasyAI(ClientNetworkManager client){
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.flush();
 		clientManager = client;
 	}
 
@@ -138,7 +157,7 @@ public class EasyAI implements AI{
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the index of the card to replace with the turned up card.
 	 * 
@@ -156,7 +175,7 @@ public class EasyAI implements AI{
 		}
 		return cardNum;
 	}
-	
+
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.

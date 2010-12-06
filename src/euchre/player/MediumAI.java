@@ -31,6 +31,14 @@ public class MediumAI implements AI{
 
 
 	public MediumAI(){
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.println("YOU FUCKED UP");
+		System.out.flush();
 
 	}
 
@@ -40,6 +48,13 @@ public class MediumAI implements AI{
 	 * @param client Reference to the network interface
 	 */
 	public MediumAI(ClientNetworkManager client){
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.flush();
 		clientManager = client;
 	}
 
@@ -48,15 +63,9 @@ public class MediumAI implements AI{
 	 */
 	public void makeTurn(){
 
-		System.out.println("Tester");
-		System.out.println(clientManager);
-		System.out.println(clientManager.getGameManager());
-		System.out.println(clientManager.getGameManager().getGameBoard());
+		
 		GameBoard game = clientManager.getGameManager().getGameBoard();
-		System.out.println(game);
-		JOptionPane.showMessageDialog(null, "medium", "", JOptionPane.ERROR_MESSAGE);
 		String action = game.whatToDo();
-		JOptionPane.showMessageDialog(null, "Action needed: '" + action + "'", "Medium AI", JOptionPane.ERROR_MESSAGE);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}

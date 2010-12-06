@@ -104,22 +104,22 @@ public class EuchreProtocol {
 				if(htype.equalsIgnoreCase("human"))
 					one = new Human();
 				else
-					one = new MediumAI();
+					one = new MediumAI(manager.getClientNetworkManager());
 
 				if(p1type.equalsIgnoreCase("human"))
 					two = new Human();
 				else
-					two = new MediumAI();
+					two = new MediumAI(manager.getClientNetworkManager());
 
 				if(p2type.equalsIgnoreCase("human"))
 					three = new Human();
 				else					
-					three = new MediumAI();
+					three = new MediumAI(manager.getClientNetworkManager());
 
 				if(p3type.equalsIgnoreCase("human"))
 					four = new Human();
 				else 
-					four = new MediumAI();
+					four = new MediumAI(manager.getClientNetworkManager());
 				one.setName(host);
 				one.setPlayerID(hostID);
 				two.setName(player1);
@@ -247,22 +247,22 @@ public class EuchreProtocol {
 				if(htype.equalsIgnoreCase("human"))
 					one = new Human();
 				else
-					one = new MediumAI();
+					one = new MediumAI(manager.getClientNetworkManager());
 
 				if(p1type.equalsIgnoreCase("human"))
 					two = new Human();
 				else
-					two = new MediumAI();
+					two = new MediumAI(manager.getClientNetworkManager());
 
 				if(p2type.equalsIgnoreCase("human"))
 					three = new Human();
 				else					
-					three = new MediumAI();
+					three = new MediumAI(manager.getClientNetworkManager());
 
 				if(p3type.equalsIgnoreCase("human"))
 					four = new Human();
 				else 
-					four = new MediumAI();
+					four = new MediumAI(manager.getClientNetworkManager());
 
 
 				one.setName(host);
