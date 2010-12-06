@@ -1,9 +1,6 @@
 package euchre.player;
 
 import java.io.*;
-
-import javax.swing.JOptionPane;
-
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -29,24 +26,6 @@ public class MediumAI implements AI{
 	private Card led = null;
 	private int playerID = (int)(Math.random()*5000000);
 
-
-	public MediumAI(){
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.println("YOU FUCKED UP");
-		System.out.flush();
-
-	}
-
-	/**
-	 * AI constructor with a reference to the client network interface
-	 * 
-	 * @param client Reference to the network interface
-	 */
 	public MediumAI(ClientNetworkManager client){
 		try{
 			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
@@ -58,12 +37,24 @@ public class MediumAI implements AI{
 		clientManager = client;
 	}
 
+	public MediumAI(ClientNetworkManager client, String name2) {
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.flush();
+		name = name2;
+		clientManager = client;
+	}
+
 	/**
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
 
-		
+
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
 		if (action.equals("Nothing")){

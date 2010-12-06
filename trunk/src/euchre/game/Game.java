@@ -54,7 +54,7 @@ public class Game {
 
 				//create new client and join network
 				ClientNetworkManager client = createNewClient(GM, "localhost");
-				
+
 				//make a new AI
 				AI computer = new MediumAI(client);
 
@@ -67,8 +67,8 @@ public class Game {
 				GM.setGameBoard(GB);
 				GM.newPlayer(computer);
 				computer.setName(computerName);
-				
-				client.toServer("RegisterPlayer,AI," + computerName + "," + computer.getPlayerID());
+
+				client.toServer("RegisterPlayer,AI," + computerName  + "," + difficulty + "," + computer.getPlayerID());
 
 				//wait for everyone to join before continuing
 				while(GM.areTeamsComplete() == false) Thread.sleep(500);
@@ -165,7 +165,7 @@ public class Game {
 
 		//make the specified number of AI's once the user specifies the correct number of AIs
 		while (hostSetup.setupComplete()==false) Thread.sleep(500);
-		server.getParser().serverParse("RegisterPlayer,Human,"+ hostSetup.getPlayerName() + "," + GM.getp1().getPlayerID());
+		server.getParser().serverParse("RegisterPlayer,Human,"+ hostSetup.getPlayerName() + ",x" + "," + GM.getp1().getPlayerID());
 		spawnAIs(hostSetup.getNumAIs(), hostSetup.getGameLobby().getplayer2Difficulty(), hostSetup.getGameLobby().getplayer3Difficulty(), 'x');
 
 		//wait until the user has input name and number of additional human players	
@@ -200,7 +200,7 @@ public class Game {
 
 		//wait for ai difficulty information, then make the ai's
 		while (local.getSetupComplete() == false) Thread.sleep(500);
-		server.getParser().serverParse("RegisterPlayer,Human,"+ local.getPlayerName() + "," + GM.getp1().getPlayerID());
+		server.getParser().serverParse("RegisterPlayer,Human,"+ local.getPlayerName() + ",x" + "," + GM.getp1().getPlayerID());
 		spawnAIs(3, local.getComputer1Difficulty(), local.getComputer2Difficulty(), local.getComputer3Difficulty());
 
 		GM.setTeam(1, 1);
@@ -246,7 +246,7 @@ public class Game {
 		ClientNetworkManager client = createNewClient(GM, clientSetup.getIP());
 
 		while(client.isConnected() == false) Thread.sleep(500);
-		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + "," + human.getPlayerID());
+		client.toServer("RegisterPlayer,Human," + clientSetup.getClientName().trim() + ",x" + "," + human.getPlayerID());
 
 		//wait for everyone to join before continuing
 		while(GM.areTeamsComplete() == false) Thread.sleep(500);
