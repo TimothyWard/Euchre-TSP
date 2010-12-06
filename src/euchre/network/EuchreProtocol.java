@@ -15,7 +15,7 @@ public class EuchreProtocol {
 	private ServerNetworkManager server;
 	String connectedClients;
 
-	boolean debug = false;
+	boolean debug = true;
 
 	/**
 	 * Get any necessary references
@@ -163,6 +163,12 @@ public class EuchreProtocol {
 				manager.getGameBoard().pickItUp();
 				server.toClients("PickItUp");
 			}
+			else if(token.equals("TeamWhoOrdered")){
+				int teamWhoOrdered = Integer.parseInt(parser.nextToken());
+				if (teamWhoOrdered==1) manager.getGameBoard().setTeamWhoOrdered(manager.getTeamOne());
+				else if (teamWhoOrdered==2) manager.getGameBoard().setTeamWhoOrdered(manager.getTeamTwo());
+				server.toClients("TeamWhoOrdered," + teamWhoOrdered);
+			}
 			else if(token.equals("SetTrump")){
 				char trump = parser.nextToken().charAt(0);
 				manager.setTrump(trump);
@@ -293,6 +299,11 @@ public class EuchreProtocol {
 			else if(token.equals("SpawnGameBoard")){
 				manager.initializeGameBoard(manager.getGameBoard());
 				manager.setTeamsComplete(true);
+			}
+			else if(token.equals("TeamWhoOrdered")){
+				int teamWhoOrdered = Integer.parseInt(parser.nextToken());
+				if (teamWhoOrdered==1) manager.getGameBoard().setTeamWhoOrdered(manager.getTeamOne());
+				else if (teamWhoOrdered==2) manager.getGameBoard().setTeamWhoOrdered(manager.getTeamTwo());
 			}
 			else if(token.equals("SetHand")){
 				int playernum = Integer.parseInt(parser.nextToken());
