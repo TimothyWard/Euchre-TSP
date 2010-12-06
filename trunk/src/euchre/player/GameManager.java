@@ -54,17 +54,6 @@ public class GameManager {
 	 * Determines the winner of each hand, and that player leads the next hand.
 	 */
 	public void playRound(){
-
-
-
-		//		if(TeamOneScore>=10){
-		//			System.out.println("Team One Wins!");
-		//			System.exit(0);
-		//		}
-		//		else if(TeamTwoScore>=10){
-		//			System.out.println("Team Two Wins!");
-		//			System.exit(0);
-		//		}
 		board.newRound();
 		if(server!=null) deal();
 		//server.toClients("SetNewRound,");
