@@ -133,7 +133,7 @@ public class GameBoard extends javax.swing.JFrame{
 	 * resets the board to start a new round
 	 */
 	public void newRound(){
-		
+
 		YourPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
 		RPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
 		LPlayed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/euchre/gui/pictures/empty.png")));
@@ -1066,10 +1066,29 @@ public class GameBoard extends javax.swing.JFrame{
 			if(settingSuit == false){
 				if(GM.isServer()){					
 					GM.getServerNetworkManager().toClients("PickItUp");
+
+					if(GM.getPlayerIAm().getTeam()==1) {
+						teamWhoOrdered=GM.getTeamOne();
+						GM.getServerNetworkManager().toClients("TeamWhoOrdered,1");
+					}
+					else {
+						teamWhoOrdered=GM.getTeamTwo();
+						GM.getServerNetworkManager().toClients("TeamWhoOrdered,2");
+					}
+
 					pickItUp();
 				}
-				else
+				else {
+					if(GM.getPlayerIAm().getTeam()==1) {
+						teamWhoOrdered=GM.getTeamOne();
+						GM.getClientNetworkManager().toServer("TeamWhoOrdered,1");
+					}
+					else {
+						teamWhoOrdered=GM.getTeamTwo();
+						GM.getClientNetworkManager().toServer("TeamWhoOrdered,2");
+					}
 					GM.getClientNetworkManager().toServer("PickItUp");
+				}
 				setPlayerTurn(GM.getDealer().getPlayerID());
 			}
 			this.hideTrumpButtons();
@@ -1198,7 +1217,6 @@ public class GameBoard extends javax.swing.JFrame{
 	 * displays the buttons used during suit selection
 	 */
 	private void showSuitButtons(){
-		//System.out.println("showsuitbuttons");
 		heartsButton.setVisible(true);
 		clubsButton.setVisible(true);
 		diamondsButton.setVisible(true);
@@ -1248,12 +1266,12 @@ public class GameBoard extends javax.swing.JFrame{
 	public void playCard(Card c, int playerNumber){
 
 		played[cardsPlayed] = c;
-		
+
 		cardsPlayed++;
-		
+
 		if(playerNumber != humanPlayer.getNumber())
 			hideOpponentCard(playerNumber);
-		
+
 		if(rightPlayer.getNumber() == playerNumber){
 			RPlayed.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		}
@@ -1272,14 +1290,14 @@ public class GameBoard extends javax.swing.JFrame{
 				suitLed = getTrump();
 			else
 				suitLed = c.getSuit();
-			
+
 			if(playerNumber==1) playerWhoLed=GM.getPlayer1();
 			else if(playerNumber==2) playerWhoLed=GM.getPlayer2();
 			else if(playerNumber==3) playerWhoLed=GM.getPlayer3();
 			else if(playerNumber==4) playerWhoLed=GM.getPlayer4();
-			
+
 		}
-		
+
 		if (cardsPlayed < 4){
 			if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
 			else if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
@@ -1287,9 +1305,9 @@ public class GameBoard extends javax.swing.JFrame{
 			else if(playerNumber==GM.getPlayerIAm().getNumber()) turnOver();
 		}
 		else if (cardsPlayed == 4){
-			
+
 			hand++;
-			
+
 			if(CardEvaluator.highestPlayed(played, trump, played[0].getSuit()).equals(played[0])) {
 				if(playerWhoLed.getTeam()==1) oneTricks++;
 				else twoTricks++;
@@ -1310,7 +1328,7 @@ public class GameBoard extends javax.swing.JFrame{
 				else twoTricks++;
 				setPlayerTurn((GM.nextPlayer(GM.nextPlayer(GM.nextPlayer(playerWhoLed)))).getPlayerID());
 			}
-			
+
 			if(GM.getPlayerIAm().getTeam() == 1){
 				setWeTricks(oneTricks);
 				setTheyTricks(twoTricks);
@@ -1319,23 +1337,23 @@ public class GameBoard extends javax.swing.JFrame{
 				setWeTricks(twoTricks);
 				setTheyTricks(oneTricks);
 			}
-			
+
 			if(hand>5){
-				
+
 				GM.interpretRound(oneTricks, twoTricks);				
 				GM.setDealer(GM.nextPlayer(GM.getDealer()));
 				GM.playRound();
-				
+
 			}
-			
-			
+
+
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
 			YourPlayed.setIcon(picManager.getPicture('e','0'));
 			cardsPlayed = 0;
-			
-			
+
+
 		}
 
 	}
@@ -1541,7 +1559,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	public void turnOver(){
-		//System.out.println(GM.getPlayerIAm().getName() + " sees " + cardsPlayed + " played cards");
 		if(cardsPlayed<4){
 			if(GM.getServerNetworkManager() != null){
 				GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
@@ -1583,10 +1600,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public void pickItUp(){
 
-		if(GM.getPlayerIAm().getTeam()==1) 
-			teamWhoOrdered=GM.getTeamOne();
-		else 
-			teamWhoOrdered=GM.getTeamTwo();
+		//		if(GM.getPlayerIAm().getTeam()==1) 
+		//			teamWhoOrdered=GM.getTeamOne();
+		//		else 
+		//			teamWhoOrdered=GM.getTeamTwo();
 
 		trump = turnedCard.getSuit();
 
@@ -1613,6 +1630,9 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public Team getTeamWhoOrdered(){
 		return teamWhoOrdered;
+	}
+	public void setTeamWhoOrdered(Team t){
+		this.teamWhoOrdered = t;
 	}
 
 }
