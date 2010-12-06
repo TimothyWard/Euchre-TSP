@@ -366,18 +366,10 @@ public class GameManager {
 	 * @return The player after the given player
 	 */
 	public Player nextPlayer(Player p) {
-		if(p.equals(player1)){
-			return player2;
-		}
-		else if(p.equals(player2)){
-			return player3;
-		}
-		else if(p.equals(player3)){
-			return player4;
-		}
-		else{
-			return player1;
-		}
+		if(p.equals(player1)) return player2;
+		else if(p.equals(player2)) return player3;
+		else if(p.equals(player3)) return player4;
+		else return player1;
 	}
 
 
@@ -423,27 +415,6 @@ public class GameManager {
 		return p4;
 	}
 
-	public Card[] getHand1() {
-		return hand1;
-	}
-
-	public Card[] getHand2() {
-		return hand2;
-	}
-
-	public Card[] getHand3() {
-		return hand3;
-	}
-
-	public Card[] getHand4() {
-		return hand4;
-	}
-
-	//	public void setRound(Round round){
-	//		this.round = round;
-	//		board.setRound(round);
-	//	}
-
 	public void setGameBoard(GameBoard gb){
 		board = gb;
 	}
@@ -475,43 +446,27 @@ public class GameManager {
 		return client;
 	}
 
-	//	public Round getRound(){
-	//		return round;
-	//	}
-
 	public boolean isServer(){
 		return (client==null);
 	}
 
 	public void setNextPlayerTurn(){
 
-
 		if(currentTurnPlayerID == player1.getPlayerID()){
 			currentTurnPlayerID = player2.getPlayerID();
 			board.updateBoard();
-			//System.out.println("Current player turn:" + currentTurnPlayerID);
-			return;
 		}
-		if (currentTurnPlayerID == player2.getPlayerID()){
+		else if (currentTurnPlayerID == player2.getPlayerID()){
 			currentTurnPlayerID = player3.getPlayerID();
 			board.updateBoard();
-
-			//System.out.println("Current player turn:" + currentTurnPlayerID);
-			return;
 		}
-		if (currentTurnPlayerID == player3.getPlayerID()){
+		else if (currentTurnPlayerID == player3.getPlayerID()){
 			currentTurnPlayerID = player4.getPlayerID();
 			board.updateBoard();
-
-			//System.out.println("Current player turn:" + currentTurnPlayerID);
-			return;
 		}
-		if (currentTurnPlayerID == player4.getPlayerID()){
+		else if (currentTurnPlayerID == player4.getPlayerID()){
 			currentTurnPlayerID = player1.getPlayerID();
 			board.updateBoard();
-
-			//System.out.println("Current player turn:" + currentTurnPlayerID);
-			return;
 		}
 	}
 
