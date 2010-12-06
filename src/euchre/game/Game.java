@@ -1,4 +1,8 @@
 package euchre.game;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
@@ -21,66 +25,70 @@ public class Game {
 	 * @throws InterruptedException Not thrown, the program will wait for input forever because this is not thrown.
 	 */
 	public static void main(String [] args) throws InterruptedException{
+		try{
+			//setup host and client objects, in a new game
+			GameManager GM = new GameManager();
 
-		//setup host and client objects, in a new game
-		GameManager GM = new GameManager();
+			//if this process is for a human
+			if(args.length==0){
 
-		//if this process is for a human
-		if(args.length==0){
+				//declare GUI welcome window to ask if host or client
+				Welcome welcomeWindow = new Welcome();
+				welcomeWindow.setVisible(true);
 
-			//declare GUI welcome window to ask if host or client
-			Welcome welcomeWindow = new Welcome();
-			welcomeWindow.setVisible(true);
+				//wait for the user to decide the game type
+				while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
 
-			//wait for the user to decide the game type
-			while (welcomeWindow.isWinodwComplete()==false) Thread.sleep(500);
+				//retrieve the user's desired game choice and dispose of the welcome window
+				char gameChoice = welcomeWindow.getGameChoice();
+				welcomeWindow.setVisible(false);
+				welcomeWindow.dispose();
 
-			//retrieve the user's desired game choice and dispose of the welcome window
-			char gameChoice = welcomeWindow.getGameChoice();
-			welcomeWindow.setVisible(false);
-			welcomeWindow.dispose();
-
-			//create the users desired player type based on the game choice
-			if (gameChoice == 'h') createHostPlayer(GM);
-			else if(gameChoice == 'c') createClientPlayer(GM);
-			else if(gameChoice == 'a') createLocalGame(GM);
-		}
-
-		//if this process is for an AI
-		else if (args.length > 0){
-			if (args[0].equals("-ai")){
-				String computerName = args[2];
-				String difficulty = args[1];
-
-				//create new client and join network
-				ClientNetworkManager client = createNewClient(GM, "localhost");
-
-				//make a new AI
-				AI computer = new MediumAI(client);
-
-				//make a new game board and a new human to pass to the game manager
-				if (difficulty == "e") computer = new EasyAI(client);
-				else if (difficulty == "m") computer = new MediumAI(client);
-				else if (difficulty == "h") computer = new HardAI(client);
-				GameBoard GB = new GameBoard();
-				GB.setGameManager(GM);
-				GM.setGameBoard(GB);
-				GM.newPlayer(computer);
-				computer.setName(computerName);
-
-				client.toServer("RegisterPlayer,AI," + computerName  + "," + difficulty + "," + computer.getPlayerID());
-
-				//wait for everyone to join before continuing
-				while(GM.areTeamsComplete() == false) Thread.sleep(500);
+				//create the users desired player type based on the game choice
+				if (gameChoice == 'h') createHostPlayer(GM);
+				else if(gameChoice == 'c') createClientPlayer(GM);
+				else if(gameChoice == 'a') createLocalGame(GM);
 			}
-		}
 
-		//play the game
-		GM.playGame();
-		//wait for the game to end, then display the winner and exit
-		while (GM.gameWinner()==0) Thread.sleep(1000);
-		JOptionPane.showMessageDialog(null, "Team " + GM.gameWinner() + " wins!!!");
-		System.exit(0);
+			//if this process is for an AI
+			else if (args.length > 0){
+				if (args[0].equals("-ai")){
+					String computerName = args[2];
+					String difficulty = args[1];
+
+					//create new client and join network
+					ClientNetworkManager client = createNewClient(GM, "localhost");
+
+					//make a new AI
+					AI computer = new MediumAI(client);
+
+					//make a new game board and a new human to pass to the game manager
+					if (difficulty == "e") computer = new EasyAI(client);
+					else if (difficulty == "m") computer = new MediumAI(client);
+					else if (difficulty == "h") computer = new HardAI(client);
+					GameBoard GB = new GameBoard();
+					GB.setGameManager(GM);
+					GM.setGameBoard(GB);
+					GM.newPlayer(computer);
+					computer.setName(computerName);
+
+					client.toServer("RegisterPlayer,AI," + computerName  + "," + difficulty + "," + computer.getPlayerID());
+
+					//wait for everyone to join before continuing
+					while(GM.areTeamsComplete() == false) Thread.sleep(500);
+				}
+			}
+
+			//play the game
+			GM.playGame();
+			//wait for the game to end, then display the winner and exit
+			while (GM.gameWinner()==0) Thread.sleep(5000);
+			JOptionPane.showMessageDialog(null, "Team " + GM.gameWinner() + " wins!!!");
+			System.exit(0);
+		}
+		catch(Throwable t){
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -94,9 +102,12 @@ public class Game {
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
 		//return if the number of AIs is zero
 		if(numberOfAIs == 0) return;
-
+		System.out.println(System.getProperty("user.dir"));
 		//if there are more than zero AIs, spawn up to three
 		try {
+//			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/OUTPUT"))));
+			System.out.println("Ouput data for AI");
+			System.out.flush();
 			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "AI One"};
 			//if the first AI is to be spawned, spawn it and increment the command
 			if (difficultyOfAIOne != 'x'){
@@ -130,13 +141,19 @@ public class Game {
 					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Two"};
 					cmdarray = cmdarray2;
 				}
+				else{
+					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Three"};
+					cmdarray = cmdarray2;
+				}
 				//then spawn it
 				Runtime.getRuntime().exec(cmdarray);
 			}
-			Thread.sleep(3500);			
+			Thread.sleep(3500);		
 		} 
 		catch (Throwable e) {
+			System.out.println("AI has crashed");
 			e.printStackTrace();
+			System.out.flush();
 			System.exit(1);
 		}
 	}
