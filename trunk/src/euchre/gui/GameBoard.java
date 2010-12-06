@@ -1049,7 +1049,8 @@ public class GameBoard extends javax.swing.JFrame{
 		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit==false){
 				if(GM.isDealer()){
-					GM.getServerNetworkManager().toClients("SettingSuit");
+					if (GM.isServer()) GM.getServerNetworkManager().toClients("SettingSuit");
+					else GM.getClientNetworkManager().toServer("SettingSuit");
 					settingSuit();
 					cannotPassSuit = true;
 					jLabelDealer.setVisible(false);
