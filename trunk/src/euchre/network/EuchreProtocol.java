@@ -15,7 +15,7 @@ public class EuchreProtocol {
 	private ServerNetworkManager server;
 	String connectedClients;
 
-	boolean debug = true;
+	boolean debug = false;
 
 	/**
 	 * Get any necessary references
@@ -72,6 +72,7 @@ public class EuchreProtocol {
 						manager.getLobby().setPlayer4Status(name);
 						break;
 					}
+					
 				}
 				catch(NullPointerException e){
 
@@ -380,6 +381,9 @@ public class EuchreProtocol {
 			}
 			else if(token.equals("SetNewRound")){
 				manager.getGameBoard().newRound();
+			}
+			else if(token.equals("DisplayWinner")){
+				
 			}
 
 
