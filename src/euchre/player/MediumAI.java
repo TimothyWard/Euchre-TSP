@@ -27,24 +27,10 @@ public class MediumAI implements AI{
 	private int playerID = (int)(Math.random()*5000000);
 
 	public MediumAI(ClientNetworkManager client){
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.flush();
 		clientManager = client;
 	}
 
 	public MediumAI(ClientNetworkManager client, String name2) {
-		try{
-			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
-		}
-		catch(Throwable t){
-			t.printStackTrace();
-		}
-		System.out.flush();
 		name = name2;
 		clientManager = client;
 	}
@@ -53,8 +39,6 @@ public class MediumAI implements AI{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
-
-
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
 		if (action.equals("Nothing")){
