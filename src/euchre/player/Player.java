@@ -40,4 +40,9 @@ public interface Player {
 	
 	public void setCard(int number, char value, char suit);
 
+	/**
+	 * Implemented for AI only.
+	 */
+	public void makeTurn();
+
 }

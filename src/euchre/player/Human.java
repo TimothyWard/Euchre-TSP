@@ -273,6 +273,12 @@ public class Human implements Player{
 		playerNum = i;
 	}
 
+	/**
+	 * Unimplemented - Implemented for AI only.
+	 */
+	public void makeTurn(){
+
+	}
 
 	public boolean isTurn(){
 		return isTurn;

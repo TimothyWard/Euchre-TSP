@@ -2,6 +2,8 @@ package euchre.player;
 
 import java.util.Arrays;
 
+import javax.swing.JOptionPane;
+
 import euchre.gui.GameBoard;
 import euchre.network.ClientNetworkManager;
 
@@ -43,8 +45,10 @@ public class HardAI implements AI{
 	 * The AI performs the appropriate actions for his turn.
 	 */
 	public void makeTurn(){
+		JOptionPane.showMessageDialog(null, "hard", "", JOptionPane.ERROR_MESSAGE);
 		GameBoard game = clientManager.getGameManager().getGameBoard();
 		String action = game.whatToDo();
+		JOptionPane.showMessageDialog(null, "Action needed: '" + action + "'", "Hard AI", JOptionPane.ERROR_MESSAGE);
 		if (action.equals("Nothing")){
 			System.out.println("Something went horribly wrong, " + clientManager.getGameManager().getPlayerIAm().getName() + " died");
 		}
