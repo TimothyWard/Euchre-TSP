@@ -105,8 +105,6 @@ public class GameManager {
 
 		server.toClients("SetTurnedCard,"+upCard);
 
-		System.out.println("Dealer:  " + dealer.getName());
-		System.out.println("Player who leads:  " + nextPlayer(dealer).getName());
 		initializeGameBoard(board);
 		int next = nextPlayer(dealer).getPlayerID();
 		server.toClients("SetDealerName," + dealer.getName());
@@ -246,13 +244,14 @@ public class GameManager {
 		int teamOneTricks = tOne;
 		int teamTwoTricks = tTwo;
 
-		if(teamOneTricks == 5 && board.getTeamWhoOrdered().equals(teamOne)) TeamOneScore=TeamOneScore+2;
+		if(teamOneTricks == 5 && board.getTeamWhoOrdered().equals(teamOne))	TeamOneScore=TeamOneScore+2;
 		else if (teamTwoTricks == 5 && board.getTeamWhoOrdered().equals(teamTwo)) TeamTwoScore=TeamTwoScore+2;
 		else if (teamOneTricks >= 3 && board.getTeamWhoOrdered().equals(teamOne)) TeamOneScore++;
 		else if (teamTwoTricks >= 3 && board.getTeamWhoOrdered().equals(teamTwo)) TeamTwoScore++;
 		else if(teamOneTricks < 3 && board.getTeamWhoOrdered().equals(teamOne)) TeamTwoScore+=2;
 		else if(teamTwoTricks < 3 && board.getTeamWhoOrdered().equals(teamTwo)) TeamOneScore+=2;
 		else System.out.println("ERROR: THE ROUND WINNER WAS NOT CORRECTLY DETERMINED");
+		
 
 		if(teamOne.getPlayerOne().equals(playerIAm) || teamOne.getPlayerTwo().equals(playerIAm)){
 			board.setWePoints(TeamOneScore);
