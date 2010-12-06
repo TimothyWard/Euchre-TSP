@@ -1,5 +1,8 @@
 package euchre.player;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import javax.swing.JOptionPane;
@@ -29,15 +32,30 @@ public class HardAI implements AI{
 
 
 	public HardAI(){
-		
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.println("YOU FUCKED UP");
+		System.out.flush();
+
 	}
-	
+
 	/**
 	 * AI constructor with a reference to the client network interface
 	 * 
 	 * @param client Reference to the network interface
 	 */
 	public HardAI(ClientNetworkManager client){
+		try{
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("/home/major/nmmacbay/Desktop/output"))));
+		}
+		catch(Throwable t){
+			t.printStackTrace();
+		}
+		System.out.flush();
 		clientManager = client;
 	}
 
@@ -140,7 +158,7 @@ public class HardAI implements AI{
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the index of the card to replace with the turned up card.
 	 * 
@@ -154,7 +172,7 @@ public class HardAI implements AI{
 		int numSpade = 0;
 		int numClub = 0;
 		char tmpLed;
-		
+
 		numHeart = CardEvaluator.numberOfSuit('h', hand);
 		numDiamond = CardEvaluator.numberOfSuit('d', hand);
 		numSpade = CardEvaluator.numberOfSuit('s', hand);
@@ -173,7 +191,7 @@ public class HardAI implements AI{
 			numClub = 0;
 			break;
 		}
-		
+
 		int max = Math.max(numHeart, numDiamond);
 		if(max==numHeart) tmpLed='h';
 		else tmpLed = 'd';
@@ -181,7 +199,7 @@ public class HardAI implements AI{
 		if(max==numSpade) tmpLed = 's';
 		max = Math.max(numClub, max);
 		if(max==numClub) tmpLed = 'c';
-		
+
 		Card theCard = CardEvaluator.lowestCardInHand(toPick.getSuit(), tmpLed, hand);
 		int cardNum = 0;
 		for (int i=0; i<5; i++){
@@ -191,7 +209,7 @@ public class HardAI implements AI{
 		}
 		return cardNum;
 	}
-	
+
 	/**
 	 * Determines if the AI will order up the suit or pass on the trump suit, 
 	 * and acts accordingly. Should only be called once per hand.
@@ -210,7 +228,7 @@ public class HardAI implements AI{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * A point system for calling cards, developed by the alias MetalHead and submitted on website for public use.
 	 * Reference: http://webspace.webring.com/people/nm/metalheadtlh/Stratagies.html
@@ -411,7 +429,7 @@ public class HardAI implements AI{
 				else{
 					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
 				}
-				
+
 				//If the card to be played (playCard) will not beat the current winning card, play the lowest card in hand
 				if(CardEvaluator.cardValue(trump, led.getSuit(), playCard) < CardEvaluator.cardValue(trump, led.getSuit(), CardEvaluator.highestCardInHand(trump, led.getSuit(), played))){
 					playCard = CardEvaluator.lowestCardInHand(trump, led.getSuit(), hand);
@@ -494,7 +512,7 @@ public class HardAI implements AI{
 		double pDiamond = 0;
 		double pSpade = 0;
 		double pClub = 0;
-		
+
 		if (turnedDown.getSuit() != 'h'){
 			pHeart = metalHeadPoints(hand, 'h', false);
 		}
@@ -510,7 +528,7 @@ public class HardAI implements AI{
 
 		double[] tmpArr = {pHeart, pDiamond, pSpade, pClub};
 		Arrays.sort(tmpArr);
-		
+
 		if (tmpArr[3] == pHeart){
 			if (metalHeadPoints(hand, 'h', true) >= 4){
 				//insert going alone code.
@@ -583,12 +601,12 @@ public class HardAI implements AI{
 	 */
 	@Override
 	public char stickDealer(Card turnedDown) {
-		
+
 		double pHeart = 0;
 		double pDiamond = 0;
 		double pSpade = 0;
 		double pClub = 0;
-		
+
 		if (turnedDown.getSuit() != 'h'){
 			pHeart = metalHeadPoints(hand, 'h', false);
 		}
@@ -604,7 +622,7 @@ public class HardAI implements AI{
 
 		double[] tmpArr = {pHeart, pDiamond, pSpade, pClub};
 		Arrays.sort(tmpArr);
-		
+
 		if (tmpArr[3] == pHeart){
 			if (metalHeadPoints(hand, 'h', true) >= 4){
 				//insert going alone code.
@@ -696,7 +714,7 @@ public class HardAI implements AI{
 	public void setNumber(int i) {
 		playerNumber = i;
 	}
-	
+
 	public void setCard(int number, char value, char suit){
 		hand[number] = new Card(value, suit);
 	}
