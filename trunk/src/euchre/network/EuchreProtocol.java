@@ -14,7 +14,7 @@ public class EuchreProtocol {
 	private ServerNetworkManager server;
 	String connectedClients;
 
-	boolean debug = true;
+	boolean debug = false;
 
 	/**
 	 * Get any necessary references
