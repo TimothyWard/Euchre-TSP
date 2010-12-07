@@ -1,6 +1,8 @@
 package euchre.network;
 import java.util.StringTokenizer;
 
+import javax.swing.JOptionPane;
+
 import euchre.player.*;
 
 /**
@@ -72,7 +74,7 @@ public class EuchreProtocol {
 						manager.getLobby().setPlayer4Status(name);
 						break;
 					}
-					
+
 				}
 				catch(NullPointerException e){
 
@@ -80,6 +82,10 @@ public class EuchreProtocol {
 
 			}			
 
+			else if (token.equals("CLOSE")){
+				JOptionPane.showMessageDialog(null, "Another Player has quit. The program will now exit", "Error", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
+			}
 			else if(token.equals("SetPlayers")){
 				Player one;
 				Player two;
@@ -292,6 +298,12 @@ public class EuchreProtocol {
 						manager.setPlayerIAm(new HardAI(manager.getClientNetworkManager(),manager.getPlayerIAm().getName()));
 				}
 			}
+			else if (token.equals("CLOSE")){
+				if (manager.getPlayerIAm().isHuman() == true){
+					JOptionPane.showMessageDialog(null, "Another Player has quit. The program will now exit", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				System.exit(0);
+			}
 			else if(token.equals("SetTeam")){
 				int player = Integer.parseInt(parser.nextToken());
 				int team = Integer.parseInt(parser.nextToken());
@@ -383,7 +395,7 @@ public class EuchreProtocol {
 				manager.getGameBoard().newRound();
 			}
 			else if(token.equals("DisplayWinner")){
-				
+
 			}
 
 

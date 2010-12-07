@@ -2,6 +2,8 @@ package euchre.gui;
 
 import java.awt.Point;
 import java.awt.Toolkit;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
@@ -108,6 +110,24 @@ public class GameBoard extends javax.swing.JFrame{
 		handButtons[2] = jButtonYourCard3;
 		handButtons[3] = jButtonYourCard4;
 		handButtons[4] = jButtonYourCard5;
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e){
+				if(GM.getServerNetworkManager() != null){
+					GM.getServerNetworkManager().toClients("CLOSE");
+					JOptionPane.showMessageDialog(null, "The program will now exit", "Error", JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
+				}
+				else{
+					GM.getClientNetworkManager().toServer("CLOSE");
+					if (GM.getPlayerIAm().isHuman() == true){
+						JOptionPane.showMessageDialog(null, "The program will now exit", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					System.exit(0);
+				}
+
+			}
+		});
 	}
 
 	/**
@@ -1618,7 +1638,7 @@ public class GameBoard extends javax.swing.JFrame{
 	public Card[] getPlayed() {
 		return played;
 	}
-	
+
 	public int getTeamTwoTricks(){
 		return twoTricks;
 	}
@@ -1633,5 +1653,4 @@ public class GameBoard extends javax.swing.JFrame{
 	public void setTeamWhoOrdered(Team t){
 		this.teamWhoOrdered = t;
 	}
-
 }
