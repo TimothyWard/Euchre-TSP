@@ -110,7 +110,10 @@ public class Game {
 			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar" , "-ai", "" + difficultyOfAIOne, "AI One"};
 
 			//spawn the first AI
-			if (difficultyOfAIOne != 'x') Runtime.getRuntime().exec(cmdarray);
+			if (difficultyOfAIOne != 'x'){
+				Runtime.getRuntime().exec(cmdarray);
+				Thread.sleep(250);
+			}
 
 			//spawn the second AI
 			if (difficultyOfAITwo != 'x'){
@@ -118,6 +121,7 @@ public class Game {
 				if (difficultyOfAIOne == 'x') cmdarray[5] = "AI One";
 				else cmdarray[5] = "AI Two";
 				Runtime.getRuntime().exec(cmdarray);
+				Thread.sleep(250);
 			}
 
 			//spawn the third AI

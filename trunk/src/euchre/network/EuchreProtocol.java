@@ -84,6 +84,7 @@ public class EuchreProtocol {
 
 			else if (token.equals("CLOSE")){
 				JOptionPane.showMessageDialog(null, "Another Player has quit. The program will now exit", "Error", JOptionPane.ERROR_MESSAGE);
+				server.toClients("CLOSE");
 				System.exit(0);
 			}
 			else if(token.equals("SetPlayers")){
