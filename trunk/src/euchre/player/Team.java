@@ -1,6 +1,5 @@
-package euchre.game;
+package euchre.player;
 
-import euchre.player.Player;
 
 /**
  * @author Timothy Ward 

@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import euchre.game.Team;
 import euchre.gui.pictures.PictureManager;
 import euchre.player.*;
 
