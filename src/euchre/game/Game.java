@@ -1,14 +1,8 @@
 package euchre.game;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-
 import euchre.gui.*;
 import euchre.player.*;
 import euchre.network.*;
 import javax.swing.JOptionPane;
-
-
 
 /**
  * @author Timothy Ward
@@ -53,6 +47,8 @@ public class Game {
 			//if this process is for an AI
 			else if (args.length > 0){
 				if (args[0].equals("-ai")){
+
+					//define difficulty and computer name
 					String computerName = args[2];
 					String difficulty = args[1];
 
@@ -75,18 +71,24 @@ public class Game {
 					client.toServer("RegisterPlayer,AI," + computerName  + "," + difficulty + "," + computer.getPlayerID());
 
 					//wait for everyone to join before continuing
-					while(GM.areTeamsComplete() == false) Thread.sleep(500);
+					while(GM.areTeamsComplete() == false){
+						Thread.sleep(500);
+					}
 				}
 			}
 
 			//play the game
 			GM.playGame();
+
 			//wait for the game to end, then display the winner and exit
-			while (GM.gameWinner()==0) Thread.sleep(5000);
+			while (GM.gameWinner()==0) Thread.sleep(1000);
 			JOptionPane.showMessageDialog(null, "Team " + GM.gameWinner() + " wins!!!");
 			System.exit(0);
 		}
+
+		//if the program threw an error, print and exit with status code 1
 		catch(Throwable t){
+			t.printStackTrace();
 			System.exit(1);
 		}
 	}
@@ -102,58 +104,34 @@ public class Game {
 	private static void spawnAIs(int numberOfAIs, char difficultyOfAIOne, char difficultyOfAITwo, char difficultyOfAIThree){
 		//return if the number of AIs is zero
 		if(numberOfAIs == 0) return;
-		System.out.println(System.getProperty("user.dir"));
+
 		//if there are more than zero AIs, spawn up to three
 		try {
-//			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("~/Desktop/OUTPUT"))));
-			System.out.println("Ouput data for AI");
-			System.out.flush();
-			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIOne, "AI One"};
-			//if the first AI is to be spawned, spawn it and increment the command
-			if (difficultyOfAIOne != 'x'){
-				Runtime.getRuntime().exec(cmdarray);
-				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI Two"};
-				cmdarray = cmdarray2;
-				Thread.sleep(250);
-			}
-			//if the second AI is two be spawned, spawn it
+			String[] cmdarray = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar" , "-ai", "" + difficultyOfAIOne, "AI One"};
+
+			//spawn the first AI
+			if (difficultyOfAIOne != 'x') Runtime.getRuntime().exec(cmdarray);
+
+			//spawn the second AI
 			if (difficultyOfAITwo != 'x'){
-				//if the second AI is to be spawned in position one, change the command
-				if (difficultyOfAIOne == 'x'){
-					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAITwo, "AI One"};
-					cmdarray = cmdarray2;
-				}
-				//then spawn it and increment the command assuming it was spawned in position two
+				cmdarray[4] = "" + difficultyOfAITwo;
+				if (difficultyOfAIOne == 'x') cmdarray[5] = "AI One";
+				else cmdarray[5] = "AI Two";
 				Runtime.getRuntime().exec(cmdarray);
-				String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Three"};
-				cmdarray = cmdarray2;
-				Thread.sleep(250);
 			}
-			//if the third AI is to be spawned, spawn it
+
+			//spawn the third AI
 			if (difficultyOfAIThree != 'x'){
-				//if the third AI is to be spawned in position one, change the command
-				if (difficultyOfAIOne == 'x' && difficultyOfAITwo == 'x'){
-					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI One"};
-					cmdarray = cmdarray2;
-				}
-				//if the third AI is to be spawned in position two, change the command
-				else if ((difficultyOfAIOne == 'x' && difficultyOfAITwo != 'x')  ||  (difficultyOfAIOne != 'x' && difficultyOfAITwo == 'x')){
-					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Two"};
-					cmdarray = cmdarray2;
-				}
-				else{
-					String[] cmdarray2 = {"java", "-jar", System.getProperty("user.dir") + "/Euchre.jar", "-ai", "" + difficultyOfAIThree, "AI Three"};
-					cmdarray = cmdarray2;
-				}
-				//then spawn it
+				cmdarray[4] = "" + difficultyOfAIThree;
+				if (difficultyOfAIOne == 'x' && difficultyOfAITwo == 'x') cmdarray[5] = "AI One";
+				else if ((difficultyOfAIOne == 'x' && difficultyOfAITwo != 'x')  ||  (difficultyOfAIOne != 'x' && difficultyOfAITwo == 'x')) cmdarray[5] = "AI Two";
+				else cmdarray[5] = "AI Three";
 				Runtime.getRuntime().exec(cmdarray);
 			}
 			Thread.sleep(3500);		
 		} 
 		catch (Throwable e) {
-			System.out.println("AI has crashed");
 			e.printStackTrace();
-			System.out.flush();
 			System.exit(1);
 		}
 	}
