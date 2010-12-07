@@ -1,6 +1,5 @@
 package euchre.player;
 
-import euchre.game.*;
 import euchre.gui.*;
 import euchre.network.ClientNetworkManager;
 import euchre.network.ServerNetworkManager;
