@@ -805,6 +805,10 @@ public class GameBoard extends javax.swing.JFrame{
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * When this card is clicked, it will determine what stage of the game it currently is, and will act accordingly.
+	 * @param evt This card has been clicked.
+	 */
 	public void card1Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card1Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[0].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
@@ -847,6 +851,10 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}//GEN-LAST:event_card1Clicked
 
+	/**
+	 * When this card is clicked, it will determine what stage of the game it currently is, and will act accordingly.
+	 * @param evt This card has been clicked.
+	 */
 	public void card2Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card2Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[1].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
@@ -890,6 +898,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card2Clicked
 
+	/**
+	 * When this card is clicked, it will determine what stage of the game it currently is, and will act accordingly.
+	 * @param evt This card has been clicked.
+	 */
 	public void card3Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card3Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[2].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
@@ -933,6 +945,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card3Clicked
 
+	/**
+	 * When this card is clicked, it will determine what stage of the game it currently is, and will act accordingly.
+	 * @param evt This card has been clicked.
+	 */
 	public void card4Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card4Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[3].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
@@ -976,6 +992,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}//GEN-LAST:event_card4Clicked
 
+	/**
+	 * When this card is clicked, it will determine what stage of the game it currently is, and will act accordingly.
+	 * @param evt This card has been clicked.
+	 */
 	public void card5Clicked(java.awt.event.MouseEvent evt){//GEN-FIRST:event_card5Clicked
 		if(GM.isMyTurn() && GM.getPlayerIAm().getHand()[4].getSuit() != 'e'){
 			if(pickItUp && GM.isDealer()){
@@ -1360,7 +1380,6 @@ public class GameBoard extends javax.swing.JFrame{
 
 			}
 
-
 			RPlayed.setIcon(picManager.getPicture('e','0'));
 			LPlayed.setIcon(picManager.getPicture('e','0'));
 			UPlayed.setIcon(picManager.getPicture('e','0'));
@@ -1372,6 +1391,10 @@ public class GameBoard extends javax.swing.JFrame{
 
 	}
 
+	/**
+	 * Hides the card image when another player plays a card
+	 * @param playerNumber The player who played a card.
+	 */
 	public void hideOpponentCard(int playerNumber){
 		if(playerNumber == leftPlayer.getNumber())
 		{	
@@ -1442,6 +1465,10 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Sets the turned card to a given card.
+	 * @param c The card that has been turned over.
+	 */
 	public void setTurnedCard(Card c){
 		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
 		turnedCard = c;
@@ -1449,7 +1476,6 @@ public class GameBoard extends javax.swing.JFrame{
 
 	public void setGameManager(GameManager gm){
 		GM = gm;
-		//round = GM.getRound();
 	}
 
 	/**
@@ -1572,6 +1598,9 @@ public class GameBoard extends javax.swing.JFrame{
 		gameplay = true;
 	}
 
+	/**
+	 * When a players turn is over, it increments to the next player's turn.
+	 */
 	public void turnOver(){
 		if(cardsPlayed<4){
 			if(GM.getServerNetworkManager() != null){
@@ -1584,6 +1613,10 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Sets a players turn, given their ID
+	 * @param id The ID number of the player who's turn it is.
+	 */
 	public void setPlayerTurn(int id){
 		if(GM.isServer()){
 			GM.setTurnPlayerID(id);
@@ -1595,6 +1628,10 @@ public class GameBoard extends javax.swing.JFrame{
 		} 
 	}
 
+	/**
+	 * When determining the suit to pick, this method is called. Hides the trump
+	 * buttons and shows the suit buttons.
+	 */
 	public void settingSuit(){
 		this.hideTrumpButtons();
 		this.showSuitButtons();
@@ -1603,6 +1640,10 @@ public class GameBoard extends javax.swing.JFrame{
 		settingSuit = true;
 	}
 
+	/**
+	 * Method called when trump has been determined. Begins the 
+	 * actual gameplay.
+	 */
 	public void trumpSet(){
 		if(settingSuit){
 			hideSuitButtons();
@@ -1612,12 +1653,12 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * The method called for all players when a player tells the dealer
+	 * to "pick it up". Sets the buttons and labels invisible for all
+	 * players besides the dealer.
+	 */
 	public void pickItUp(){
-
-		//		if(GM.getPlayerIAm().getTeam()==1) 
-		//			teamWhoOrdered=GM.getTeamOne();
-		//		else 
-		//			teamWhoOrdered=GM.getTeamTwo();
 
 		trump = turnedCard.getSuit();
 
