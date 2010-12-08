@@ -38,11 +38,10 @@ public class GameManager {
 	Card[] hand4 = new Card[5];
 
 	/**
-	 * The actual control for playing through the game.
-	 * While round has been initialized, deal cards, determine trump, and play a round of Euchre.
+	 * Begins gameplay.  If the current game manager is the server, then it will begin playing the game.
 	 */
 	public void playGame(){
-		//dealer = nextPlayer(dealer);
+		
 		if(server != null){
 			playRound();
 		}
@@ -50,27 +49,23 @@ public class GameManager {
 
 	/**
 	 * Plays a round of Euchre, consisting of five hands.
-	 * Determines the winner of each hand, and that player leads the next hand.
+	 * Sets a new round in the board and deals the cards to the players.
 	 */
 	public void playRound(){
 		board.newRound();
 		if(server!=null) deal();
-		//server.toClients("SetNewRound,");
-		//board.newRound();
+		
 
 	}
 
 
 	/**
 	 * Creates a new deck of cards, shuffles the cards, and then
-	 * deals five cards to each player, in groups of two and three.
-	 * 
-	 * Order of dealing is two, three, two, three, three, two, three, two
+	 * deals five cards to each player..
 	 */
 	private void deal(){
 		deck = new Deck();									//Create a brand new deck of cards
 		deck.shuffle();										//Shuffle the deck of cards
-		//curPlayer = dealer;
 
 		for(int i=0;i<5;i++){
 			hand1[i]=deck.drawCard();
@@ -199,6 +194,10 @@ public class GameManager {
 
 	}
 
+	/**
+	 * Sets the next players turn by determining which player's turn it currently is.
+	 * To avoid any confusion or problems, this works with the unique ID numbers of each player.
+	 */
 	public void setNextPlayerTurn(){
 
 		if(currentTurnPlayerID == player1.getPlayerID()){
@@ -403,6 +402,10 @@ public class GameManager {
 	public Team getTeamTwo(){
 		return teamTwo;
 	}
+	/**
+	 * Sets the player for the current game manager
+	 * @param p The player to set
+	 */
 	public void setPlayerIAm(Player p){
 		if (p1.equals(playerIAm)){
 			p1 = p;
