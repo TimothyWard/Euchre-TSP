@@ -153,6 +153,11 @@ public class Welcome extends javax.swing.JFrame{
 		windowComplete = true;
 	}
 
+	/**
+	 * Whether or not this window is done being used by the user.
+	 * 
+	 * @return True if window is done being used.
+	 */
 	public boolean isWinodwComplete(){
 		return windowComplete;
 	}

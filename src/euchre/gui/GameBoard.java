@@ -1078,6 +1078,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to pass, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void passButtonClicked(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit==false){
@@ -1094,6 +1099,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to have the dealer pick up the dealt card, will act in accordance to the game to allow user to make the dealer pick up the card.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void pickItUpButtonClicked(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn() && !pickItUp){
 			if(settingSuit == false){
@@ -1128,6 +1138,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to make suit hearts, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void heartsListener(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
@@ -1143,6 +1158,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to make the suit clubs, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void clubsListener(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
@@ -1158,6 +1178,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to make the suit diamonds, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void diamondsListener(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
@@ -1172,6 +1197,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to make the suit spades, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void spadesListener(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn()){
 			suitButtonsUsed = true;
@@ -1186,6 +1216,11 @@ public class GameBoard extends javax.swing.JFrame{
 		}
 	}
 
+	/**
+	 * Signifies that the user wishes to pass on calling the suit, will act in accordance to the game to allow user to do so.
+	 * 
+	 * @param evt Mouse click that triggered this event.
+	 */
 	public void suitPassListener(java.awt.event.MouseEvent evt){
 		if(GM.isMyTurn() && !cannotPassSuit){
 			hideSuitButtons();
