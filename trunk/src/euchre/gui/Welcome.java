@@ -154,11 +154,11 @@ public class Welcome extends javax.swing.JFrame{
 		windowComplete = true;
 	}
 
-	public char getGameChoice(){
-		return gameChoice;
-	}
-
 	public boolean isWinodwComplete(){
 		return windowComplete;
+	}
+
+	public char getGameChoice(){
+		return gameChoice;
 	}
 }

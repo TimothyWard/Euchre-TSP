@@ -54,11 +54,6 @@ public interface AI extends Player{
 	public char callSuit(Card turnedDown);
 
 	/**
-	 * Returns the AI's hand
-	 */
-	public Card[] getHand();
-
-	/**
 	 * Send a message across the network 
 	 * 
 	 * @param message The tokenized message to send across the network (formatting to be defined)
@@ -70,6 +65,13 @@ public interface AI extends Player{
 	 * @return The suit that the AI picked for trump
 	 */
 	public char stickDealer(Card turnedDown);
+
+	public boolean isHuman();
+
+	/**
+	 * Returns the AI's hand
+	 */
+	public Card[] getHand();
 
 	/**
 	 * Sets the AI's turn to true
@@ -87,8 +89,6 @@ public interface AI extends Player{
 	public void setPlayerID(int playerID);
 
 	public void setTrump(char tr);
-
-	public boolean isHuman();
 
 	public int getTeam();
 

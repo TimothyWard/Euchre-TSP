@@ -94,6 +94,19 @@ public class GameLobby extends javax.swing.JFrame{
 	}
 
 	/**
+	 * Moves the jFrame to the center of the screen
+	 */
+	private void centerScreen(){
+		int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
+		int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
+		int xSize = this.getSize().width;
+		int ySize = this.getSize().height;
+		Point p = new Point();
+		p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
+		this.setLocation(p);
+	}
+
+	/**
 	 * sets the AI difficulty for player 2
 	 * @param difficulty e for easy, m for medium, h for hard
 	 */
@@ -125,19 +138,6 @@ public class GameLobby extends javax.swing.JFrame{
 			player3Difficulty = 'h';
 			Player3Status.setText("AI Two: Difficulty: Hard");
 		}
-	}
-
-	/**
-	 * Moves the jFrame to the center of the screen
-	 */
-	private void centerScreen(){
-		int xCenter = Toolkit.getDefaultToolkit().getScreenSize().width/2;
-		int yCenter = Toolkit.getDefaultToolkit().getScreenSize().height/2;
-		int xSize = this.getSize().width;
-		int ySize = this.getSize().height;
-		Point p = new Point();
-		p.setLocation(xCenter - xSize/2, yCenter - ySize/2);
-		this.setLocation(p);
 	}
 
 	/** This method is called from within the constructor to

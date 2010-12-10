@@ -1206,16 +1206,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}//GEN-LAST:event_suitPassListener
 
 	/**
-	 * This method is used to display the players hand to the GUI
-	 * 
-	 * @param card the card to be set to the specified button
-	 * @param cardNumber the button to set to the specified card
-	 */
-	public void setCard(Card card, int cardNumber){
-		handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
-	}  
-
-	/**
 	 * hides the buttons used during trump selection
 	 */
 	private void hideTrumpButtons(){
@@ -1256,39 +1246,6 @@ public class GameBoard extends javax.swing.JFrame{
 		diamondsButton.setVisible(true);
 		spadesButton.setVisible(true);
 		suitPassButton.setVisible(true);
-	}
-
-	/**
-	 * Sets the string above the deal to represent that the deal belongs to the given players name.
-	 * 
-	 * @param name The name of who the deal belongs to.
-	 */
-	public void setDealerName(String name){
-		String possesive = name;
-		if (name.compareTo(this.jLabelYourName.getText()) == 0){
-			possesive = "Your";
-		}else if(name.charAt(name.length()-1) == 's'){
-			possesive += "'";
-		}else{
-			possesive += "'s";
-		}
-		jLabelDealer.setText(possesive+"  Deal:");
-	}
-
-	public void setWeTricks(int tricks){
-		weTeamTricksLabel.setText("" + tricks);
-	}
-
-	public void setTheyTricks(int tricks){
-		theyTeamTricksLabel.setText("" + tricks);
-	}
-
-	public void setWePoints(int points){
-		weTeamPointsLabel.setText("" + points);
-	}
-
-	public void setTheyPoints(int points){
-		theyTeamPointsLabel.setText("" + points);
 	}
 
 	/**
@@ -1466,19 +1423,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	/**
-	 * Sets the turned card to a given card.
-	 * @param c The card that has been turned over.
-	 */
-	public void setTurnedCard(Card c){
-		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
-		turnedCard = c;
-	}
-
-	public void setGameManager(GameManager gm){
-		GM = gm;
-	}
-
-	/**
 	 * Primarily for AI Use. Gives A String telling the player what is required of them.
 	 * Phrase(string returned) - Description
 	 * 
@@ -1507,6 +1451,120 @@ public class GameBoard extends javax.swing.JFrame{
 			return "Call Suit";
 		}
 		return "Nothing";
+	}
+
+	/**
+	 * When a players turn is over, it increments to the next player's turn.
+	 */
+	public void turnOver(){
+		if(cardsPlayed<4){
+			if(GM.getServerNetworkManager() != null){
+				GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
+				GM.setNextPlayerTurn();
+			}
+			else{
+				GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
+			}
+		}
+	}
+
+	/**
+	 * The method called for all players when a player tells the dealer
+	 * to "pick it up". Sets the buttons and labels invisible for all
+	 * players besides the dealer.
+	 */
+	public void pickItUp(){
+	
+		trump = turnedCard.getSuit();
+	
+		if(!GM.isDealer()){
+			TurnedCard.setVisible(false);
+			jLabelDealer.setVisible(false);
+		}
+		jButtonPass.setVisible(false);
+		jButtonPickUp.setVisible(false);
+		pickItUp = true;
+	}
+
+	/**
+	 * Method called when trump has been determined. Begins the 
+	 * actual gameplay.
+	 */
+	public void trumpSet(){
+		if(settingSuit){
+			hideSuitButtons();
+			settingSuit = false;
+			gameplay = true;
+			setPlayerTurn(GM.nextPlayer(GM.getDealer()).getPlayerID());
+		}
+	}
+
+	/**
+	 * When determining the suit to pick, this method is called. Hides the trump
+	 * buttons and shows the suit buttons.
+	 */
+	public void settingSuit(){
+		this.hideTrumpButtons();
+		this.showSuitButtons();
+		jLabelDealer.setVisible(false);
+		TurnedCard.setVisible(false);
+		settingSuit = true;
+	}
+
+	/**
+	 * This method is used to display the players hand to the GUI
+	 * 
+	 * @param card the card to be set to the specified button
+	 * @param cardNumber the button to set to the specified card
+	 */
+	public void setCard(Card card, int cardNumber){
+		handButtons[cardNumber].setIcon(picManager.getPicture(card.getSuit(), card.getCardValue()));
+	}
+
+	/**
+	 * Sets the string above the deal to represent that the deal belongs to the given players name.
+	 * 
+	 * @param name The name of who the deal belongs to.
+	 */
+	public void setDealerName(String name){
+		String possesive = name;
+		if (name.compareTo(this.jLabelYourName.getText()) == 0){
+			possesive = "Your";
+		}else if(name.charAt(name.length()-1) == 's'){
+			possesive += "'";
+		}else{
+			possesive += "'s";
+		}
+		jLabelDealer.setText(possesive+"  Deal:");
+	}
+
+	public void setWeTricks(int tricks){
+		weTeamTricksLabel.setText("" + tricks);
+	}
+
+	public void setTheyTricks(int tricks){
+		theyTeamTricksLabel.setText("" + tricks);
+	}
+
+	public void setWePoints(int points){
+		weTeamPointsLabel.setText("" + points);
+	}
+
+	public void setTheyPoints(int points){
+		theyTeamPointsLabel.setText("" + points);
+	}
+
+	/**
+	 * Sets the turned card to a given card.
+	 * @param c The card that has been turned over.
+	 */
+	public void setTurnedCard(Card c){
+		TurnedCard.setIcon(picManager.getPicture(c.getSuit(), c.getCardValue()));
+		turnedCard = c;
+	}
+
+	public void setGameManager(GameManager gm){
+		GM = gm;
 	}
 
 	private void setTopPlayer(Player player){
@@ -1599,21 +1657,6 @@ public class GameBoard extends javax.swing.JFrame{
 	}
 
 	/**
-	 * When a players turn is over, it increments to the next player's turn.
-	 */
-	public void turnOver(){
-		if(cardsPlayed<4){
-			if(GM.getServerNetworkManager() != null){
-				GM.getServerNetworkManager().toClients("SetNextPlayerTurn");
-				GM.setNextPlayerTurn();
-			}
-			else{
-				GM.getClientNetworkManager().toServer("SetNextPlayerTurn");
-			}
-		}
-	}
-
-	/**
 	 * Sets a players turn, given their ID
 	 * @param id The ID number of the player who's turn it is.
 	 */
@@ -1626,49 +1669,6 @@ public class GameBoard extends javax.swing.JFrame{
 			GM.getClientNetworkManager().toServer("SetPlayerTurn,"+id);
 
 		} 
-	}
-
-	/**
-	 * When determining the suit to pick, this method is called. Hides the trump
-	 * buttons and shows the suit buttons.
-	 */
-	public void settingSuit(){
-		this.hideTrumpButtons();
-		this.showSuitButtons();
-		jLabelDealer.setVisible(false);
-		TurnedCard.setVisible(false);
-		settingSuit = true;
-	}
-
-	/**
-	 * Method called when trump has been determined. Begins the 
-	 * actual gameplay.
-	 */
-	public void trumpSet(){
-		if(settingSuit){
-			hideSuitButtons();
-			settingSuit = false;
-			gameplay = true;
-			setPlayerTurn(GM.nextPlayer(GM.getDealer()).getPlayerID());
-		}
-	}
-
-	/**
-	 * The method called for all players when a player tells the dealer
-	 * to "pick it up". Sets the buttons and labels invisible for all
-	 * players besides the dealer.
-	 */
-	public void pickItUp(){
-
-		trump = turnedCard.getSuit();
-
-		if(!GM.isDealer()){
-			TurnedCard.setVisible(false);
-			jLabelDealer.setVisible(false);
-		}
-		jButtonPass.setVisible(false);
-		jButtonPickUp.setVisible(false);
-		pickItUp = true;
 	}
 
 	public int getTeamOneTricks(){
