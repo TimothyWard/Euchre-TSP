@@ -192,6 +192,11 @@ public class HostDifficultyChange extends javax.swing.JFrame {
 		pack();
 	}
 
+	/**
+	 * Applies the difficulties selected by this window to the gameLobby and game in general, and then disposes of this window.
+	 * 
+	 * @param evt The mouse click that initiated this method.
+	 */
 	private void applyDifficultiesClicked(java.awt.event.MouseEvent evt) {
 		if (player2){
 			if (player2Easy.isSelected()){

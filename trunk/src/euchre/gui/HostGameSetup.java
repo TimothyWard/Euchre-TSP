@@ -163,6 +163,11 @@ public class HostGameSetup extends javax.swing.JFrame {
     	return wasFound;	
     }
 
+    /**
+     * Whether or not this setup window is done being used by the user.
+     * 
+     * @return True if this window is done being used.
+     */
 	public boolean setupComplete(){
 		return setupComplete;
 	}

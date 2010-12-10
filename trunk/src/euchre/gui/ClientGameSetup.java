@@ -175,6 +175,11 @@ public class ClientGameSetup extends javax.swing.JFrame{
 		return gottenInput;
 	}
 
+	/**
+	 * Whether or not this client is waiting for the game they connected to, to start.
+	 * 
+	 * @return True if the client is waiting on the game to start.
+	 */
 	public boolean isWaiting(){
 		return jLabelWaitingStatus.isVisible();
 	}
