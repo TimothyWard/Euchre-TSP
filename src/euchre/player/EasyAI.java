@@ -374,14 +374,6 @@ public class EasyAI implements AI{
 	}
 
 	/**
-	 * Returns the AI's hand
-	 */
-	@Override
-	public Card[] getHand() {
-		return hand;
-	}
-
-	/**
 	 * Send a message across the network 
 	 * 
 	 * @param message The tokenized message to send across the network (formatting to be defined)
@@ -434,12 +426,16 @@ public class EasyAI implements AI{
 
 	}
 
+	public boolean isHuman() {
+		return false;
+	}
+
 	/**
 	 * Sets the AI's turn to true
 	 */
 	@Override
 	public void setTurn(boolean turn) {	
-
+	
 	}
 
 	/**
@@ -453,7 +449,7 @@ public class EasyAI implements AI{
 				played[x]=cards[2-i];
 				x++;
 			}
-
+	
 		}
 	}
 
@@ -469,8 +465,12 @@ public class EasyAI implements AI{
 		trump = tr;
 	}
 
-	public boolean isHuman() {
-		return false;
+	/**
+	 * Returns the AI's hand
+	 */
+	@Override
+	public Card[] getHand() {
+		return hand;
 	}
 
 	public int getTeam() {
