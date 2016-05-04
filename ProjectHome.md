@@ -1,0 +1,1 @@
+This product includes a Euchre game, that can be played by up to four people, following standard rules of Euchre. It supports AI with for up to 3 of the players, networked games, and an easy to use GUI.
